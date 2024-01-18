@@ -5,18 +5,18 @@ function Logo({ size }: { size: "sm" | "md" | "lg" }) {
   const getSize = () => {
     switch (size) {
       case "sm":
-        return { height: 24, width: 28, fontSize: "text-xs" };
+        return { height: 24, width: 28, fontSize: "text-xs/[12px]" };
       case "md":
-        return { height: 28, width: 32, fontSize: "text-sm" };
+        return { height: 28, width: 32, fontSize: "text-sm/[14px]" };
       case "lg":
-        return { height: 32, width: 36, fontSize: "text-base" };
+        return { height: 32, width: 36, fontSize: "text-base/[16px]" };
     }
   };
 
   const { height, width, fontSize } = getSize();
 
   return (
-    <div className="flex flex-row items-center">
+    <button className="flex flex-row items-center">
       <div className="p-2">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -28,11 +28,11 @@ function Logo({ size }: { size: "sm" | "md" | "lg" }) {
         </svg>
       </div>
 
-      <div className={`font-extrabold ${fontSize}`}>
+      <div className={`text-left font-extrabold ${fontSize}`}>
         <div className="text-navy">Antarctica</div>
-        <div className="text-misty_blue">Explorer</div>
+        <div className="text-pale_azure">Explorer</div>
       </div>
-    </div>
+    </button>
   );
 }
 
