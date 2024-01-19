@@ -63,7 +63,6 @@ export default function Home({ expeditions }: TCruiseLinesAndExpeditions) {
 
           <BottomNavigation
             options={itemsPerPageOptions}
-            totalItems={expeditions.length}
             currentPage={currentPage}
             totalPages={totalPages}
             handlePreviousPage={previousPage}
