@@ -3,19 +3,20 @@ import { useEffect, useState } from "react";
 
 import getLayout from "@/Layout";
 import BottomNavigation from "@/components/BottomNavigation";
-import Expedition from "@/components/Expedition";
 import ExpeditionSortHeader from "@/components/ExpeditionSortHeader";
+import Expeditions from "@/components/Expeditions";
 import { NAVBAR_HEIGHT } from "@/styles/styles";
 import { TCruiseLinesAndExpeditions } from "@/type";
 
 export default function Home({ expeditions }: TCruiseLinesAndExpeditions) {
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedOption, setSelectedOption] = useState(0);
-  const options = [6, 12, 18, 24];
-  const totalPages = Math.ceil(expeditions.length / options[selectedOption]);
+  const itemsPerPageOptions = [6, 12, 18, 24];
+  const totalPages = Math.ceil(
+    expeditions.length / itemsPerPageOptions[selectedOption],
+  );
 
   const setItemsPerPage = (index: number) => {
-    console.log(index);
     setSelectedOption(index);
     setCurrentPage(1);
   };
@@ -31,7 +32,7 @@ export default function Home({ expeditions }: TCruiseLinesAndExpeditions) {
   }, [currentPage]);
 
   return (
-    <div className="w-full h-full max-w-screen-lg mr-auto ml-auto">
+    <div className="w-full max-w-screen-lg mr-auto ml-auto">
       <div
         className={`h-[${NAVBAR_HEIGHT}px] flex items-center justify-center text-base sm:text-lg font-bold md:text-xl p-2 sm:p-4`}
       >
@@ -52,26 +53,16 @@ export default function Home({ expeditions }: TCruiseLinesAndExpeditions) {
 
           <ExpeditionSortHeader numExpeditions={expeditions.length} />
 
-          <div
-            id="expeditions-list"
-            className="flex flex-col items-center space-y-6 overflow-y-auto mb-2"
-          >
-            {expeditions
-              .filter(
-                (_, i) =>
-                  i < currentPage * options[selectedOption] &&
-                  i + 1 > (currentPage - 1) * options[selectedOption],
-              )
-              .map((expedition, index) => (
-                <Expedition
-                  key={"expedition" + index}
-                  expedition={expedition}
-                />
-              ))}
-          </div>
+          <Expeditions
+            expeditions={expeditions.filter(
+              (_, i) =>
+                i < currentPage * itemsPerPageOptions[selectedOption] &&
+                i + 1 > (currentPage - 1) * itemsPerPageOptions[selectedOption],
+            )}
+          />
 
           <BottomNavigation
-            options={options}
+            options={itemsPerPageOptions}
             totalItems={expeditions.length}
             currentPage={currentPage}
             totalPages={totalPages}
