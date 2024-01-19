@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import getLayout from "@/Layout";
 import BottomNavigation from "@/components/BottomNavigation";
 import Expedition from "@/components/Expedition";
+import ExpeditionSortHeader from "@/components/ExpeditionSortHeader";
 import { NAVBAR_HEIGHT } from "@/styles/styles";
 import { TCruiseLinesAndExpeditions } from "@/type";
 
@@ -48,6 +49,8 @@ export default function Home({ expeditions }: TCruiseLinesAndExpeditions) {
           className="w-full space-y-4 lg:space-y-0 px-4 lg:px-2"
         >
           <div className="lg:hidden h-[80px] bg-gray-400"></div>
+
+          <ExpeditionSortHeader numExpeditions={expeditions.length} />
 
           <div
             id="expeditions-list"
