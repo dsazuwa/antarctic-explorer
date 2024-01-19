@@ -9,6 +9,8 @@ module.exports = {
         sky_blue: "#6096BA",
         pale_azure: "#A3CEF1",
         stone_gray: "#8B8C89",
+        light_gray: "#F3F5F7",
+        lighter_gray: "#F7F9FB",
       },
     },
   },

@@ -6,7 +6,7 @@ import { TCruiseLinesAndExpeditions } from "@/type";
 
 export default function Home({ expeditions }: TCruiseLinesAndExpeditions) {
   return (
-    <div className="w-full">
+    <div className="w-full bg-lighter_gray">
       <div className="w-full max-w-screen-lg mr-auto ml-auto">
         <div className="flex flex-col items-center m-2 space-y-6">
           {expeditions.map((expedition, index) => (
