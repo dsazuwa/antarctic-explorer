@@ -8,10 +8,7 @@ type ButtonProps = {
 
 function Button({ children, className, onClick }: ButtonProps) {
   return (
-    <button
-      className={`join-item btn btn-sm h-6 min-h-6 text-[8px] ${className}`}
-      onClick={onClick}
-    >
+    <button className={`h-6 min-h-6 text-[8px] ${className}`} onClick={onClick}>
       {children}
     </button>
   );
@@ -40,7 +37,7 @@ function BottomNavigation({
     <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 justify-between items-center p-4 sm:p-6 text-[10px]">
       <div>{`${totalItems} results`}</div>
 
-      <div className="join">
+      <div>
         <Button
           className={currentPage === 1 ? "btn-disabled" : undefined}
           onClick={handlePreviousPage}
