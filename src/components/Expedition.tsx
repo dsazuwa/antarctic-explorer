@@ -1,24 +1,24 @@
-import React from "react";
+import React from 'react';
 
-import { TExpedition } from "@/type";
+import { TExpedition } from '@/type';
 
 function Expedition({ expedition }: { expedition: TExpedition }) {
   const { name, photoUrl } = expedition;
 
   return (
     <div
-      id="card"
-      className="flex flex-col sm:flex-row w-full sm:h-[240px] rounded-md shadow bg-white"
+      id='card'
+      className='flex w-full flex-col rounded-md bg-white shadow sm:h-[240px] sm:flex-row'
     >
       <img
-        id="card-image"
-        className="sm:w-5/12 sm:max-w-5/12 h-[240px] sm:h-full object-cover rounded-t-md sm:rounded-none sm:rounded-l-md"
+        id='card-image'
+        className='sm:max-w-5/12 h-[240px] rounded-t-md object-cover sm:h-full sm:w-5/12 sm:rounded-none sm:rounded-l-md'
         src={photoUrl}
         alt={name}
       />
 
-      <div id="card-content" className="sm:flex-1 p-2 h-[160px]">
-        <div className="font-semibold text-[12px] text-navy text-center line-clamp-2">
+      <div id='card-content' className='h-[160px] p-2 sm:flex-1'>
+        <div className='line-clamp-2 text-center text-[12px] font-semibold text-navy'>
           {name}
         </div>
       </div>

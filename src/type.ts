@@ -33,6 +33,6 @@ export type TCruiseLinesAndExpeditions = {
 
 export type ExpeditionSortType = {
   displayText: string;
-  field: "departure" | "startingPrice" | "name";
-  dir: "asc" | "desc";
+  field: 'departure' | 'startingPrice' | 'name';
+  dir: 'asc' | 'desc';
 };

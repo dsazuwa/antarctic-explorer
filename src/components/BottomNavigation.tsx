@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { ReactNode } from 'react';
 
 type ButtonProps = {
   className?: string;
@@ -34,32 +34,32 @@ function BottomNavigation({
   setItemsPerPage,
 }: BottomNavigationProps) {
   return (
-    <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 justify-between items-center p-4 sm:p-6 text-[10px]">
+    <div className='flex flex-col items-center justify-between space-y-2 p-4 text-[10px] sm:flex-row sm:space-y-0 sm:p-6'>
       <div>{`${totalItems} results`}</div>
 
       <div>
         <Button
-          className={currentPage === 1 ? "btn-disabled" : undefined}
+          className={currentPage === 1 ? 'btn-disabled' : undefined}
           onClick={handlePreviousPage}
         >
           «
         </Button>
 
-        <Button>{"Page " + currentPage}</Button>
+        <Button>{'Page ' + currentPage}</Button>
 
         <Button
-          className={currentPage === totalPages ? "btn-disabled" : undefined}
+          className={currentPage === totalPages ? 'btn-disabled' : undefined}
           onClick={handleNextPage}
         >
           »
         </Button>
       </div>
 
-      <div className="flex flex-row items-center space-x-2">
-        <div className="">Items per page</div>
+      <div className='flex flex-row items-center space-x-2'>
+        <div className=''>Items per page</div>
 
         <select
-          className="select select-bordered select-xs"
+          className='select select-bordered select-xs'
           onChange={(e) => setItemsPerPage(parseInt(e.target.value, 10))}
         >
           {options.map((o, i) => (

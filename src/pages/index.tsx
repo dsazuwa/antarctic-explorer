@@ -1,12 +1,12 @@
-import type { GetStaticProps } from "next";
-import { useEffect, useState } from "react";
+import type { GetStaticProps } from 'next';
+import { useEffect, useState } from 'react';
 
-import getLayout from "@/Layout";
-import BottomNavigation from "@/components/BottomNavigation";
-import ExpeditionSortHeader from "@/components/ExpeditionSortHeader";
-import Expeditions from "@/components/Expeditions";
-import { NAVBAR_HEIGHT } from "@/styles/styles";
-import { TCruiseLinesAndExpeditions } from "@/type";
+import getLayout from '@/Layout';
+import BottomNavigation from '@/components/BottomNavigation';
+import ExpeditionSortHeader from '@/components/ExpeditionSortHeader';
+import Expeditions from '@/components/Expeditions';
+import { NAVBAR_HEIGHT } from '@/styles/styles';
+import { TCruiseLinesAndExpeditions } from '@/type';
 
 export default function Home({ expeditions }: TCruiseLinesAndExpeditions) {
   const [currentPage, setCurrentPage] = useState(1);
@@ -28,28 +28,28 @@ export default function Home({ expeditions }: TCruiseLinesAndExpeditions) {
     setCurrentPage((prevPage) => Math.min(prevPage + 1, totalPages));
 
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [currentPage]);
 
   return (
-    <div className="w-full max-w-screen-lg mr-auto ml-auto">
+    <div className='ml-auto mr-auto w-full max-w-screen-lg'>
       <div
-        className={`h-[${NAVBAR_HEIGHT}px] flex items-center justify-center text-base sm:text-lg font-bold md:text-xl p-2 sm:p-4`}
+        className={`h-[${NAVBAR_HEIGHT}px] flex items-center justify-center p-2 text-base font-bold sm:p-4 sm:text-lg md:text-xl`}
       >
         Expeditions
       </div>
 
-      <div className="flex flex-row">
+      <div className='flex flex-row'>
         <div
-          id="side-panel"
-          className="hidden lg:flex w-[304px] bg-gray-400"
+          id='side-panel'
+          className='hidden w-[304px] bg-gray-400 lg:flex'
         ></div>
 
         <div
-          id="main-panel"
-          className="w-full space-y-4 lg:space-y-0 px-4 lg:px-2"
+          id='main-panel'
+          className='w-full space-y-4 px-4 lg:space-y-0 lg:px-2'
         >
-          <div className="lg:hidden h-[80px] bg-gray-400"></div>
+          <div className='h-[80px] bg-gray-400 lg:hidden'></div>
 
           <ExpeditionSortHeader numExpeditions={expeditions.length} />
 
@@ -77,7 +77,7 @@ export default function Home({ expeditions }: TCruiseLinesAndExpeditions) {
 }
 
 export const getStaticProps = (async () => {
-  const res = await fetch(process.env.NEXT_PUBLIC_API_URL || "");
+  const res = await fetch(process.env.NEXT_PUBLIC_API_URL || '');
   const { cruiseLines, expeditions } = await res.json();
 
   return { props: { cruiseLines, expeditions } };

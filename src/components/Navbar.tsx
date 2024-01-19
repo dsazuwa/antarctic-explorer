@@ -1,14 +1,14 @@
-import { NAVBAR_HEIGHT } from "@/styles/styles";
-import Logo from "./Logo";
+import { NAVBAR_HEIGHT } from '@/styles/styles';
+import Logo from './Logo';
 
 function Navbar() {
   const h = NAVBAR_HEIGHT;
 
   return (
     <>
-      <div className={`fixed z-10 w-full top-0 h-[${h}px] bg-light_gray`}>
-        <div className="w-full max-w-screen-lg mr-auto ml-auto py-2 px-4">
-          <Logo size={"sm"} />
+      <div className={`fixed top-0 z-10 w-full h-[${h}px] bg-light_gray`}>
+        <div className='ml-auto mr-auto w-full max-w-screen-lg px-4 py-2'>
+          <Logo size={'sm'} />
         </div>
       </div>
 
