@@ -8,7 +8,7 @@ function Expedition({ expedition }: { expedition: TExpedition }) {
   return (
     <div
       id="card"
-      className="flex flex-col sm:flex-row w-full sm:max-w-[800px] sm:h-[240px] rounded-md shadow bg-white"
+      className="flex flex-col sm:flex-row w-full sm:h-[240px] rounded-md shadow bg-white"
     >
       <img
         id="card-image"
