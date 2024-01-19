@@ -2,10 +2,11 @@ import type { GetStaticProps } from "next";
 
 import getLayout from "@/Layout";
 import Expedition from "@/components/Expedition";
+import { NAVBAR_HEIGHT } from "@/styles/styles";
 import { TCruiseLinesAndExpeditions } from "@/type";
 
 export default function Home({ expeditions }: TCruiseLinesAndExpeditions) {
-  const offset = 56 * 2;
+  const offset = NAVBAR_HEIGHT * 2;
 
   return (
     <div
@@ -16,7 +17,9 @@ export default function Home({ expeditions }: TCruiseLinesAndExpeditions) {
       }}
     >
       <div className="w-full h-full max-w-screen-lg mr-auto ml-auto">
-        <div className="h-[56px] text-center text-base sm:text-lg font-bold md:text-xl p-2 sm:p-4">
+        <div
+          className={`h-[${NAVBAR_HEIGHT}px] flex items-center justify-center text-base sm:text-lg font-bold md:text-xl p-2 sm:p-4`}
+        >
           Expeditions
         </div>
 
