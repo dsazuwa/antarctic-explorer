@@ -1,10 +1,22 @@
-import type { AppProps } from "next/app";
+import { NextPage } from "next";
+import type { AppProps as NextAppProps } from "next/app";
 import Head from "next/head";
+import { ReactElement, ReactNode } from "react";
 
 import montserrat from "@/font";
 import "@/styles/globals.css";
 
+export type NextPageWithLayout<P = object, IP = P> = NextPage<P, IP> & {
+  getLayout?: (page: ReactElement) => ReactNode;
+};
+
+export type AppProps = NextAppProps & {
+  Component: NextPageWithLayout;
+};
+
 export default function App({ Component, pageProps }: AppProps) {
+  const getLayout = Component.getLayout ?? ((page) => page);
+
   return (
     <>
       <Head>
@@ -15,7 +27,7 @@ export default function App({ Component, pageProps }: AppProps) {
       </Head>
 
       <main className={`${montserrat.className}`}>
-        <Component {...pageProps} />
+        {getLayout(<Component {...pageProps} />)}
       </main>
     </>
   );

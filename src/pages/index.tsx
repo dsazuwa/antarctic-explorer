@@ -1,24 +1,20 @@
 import type { GetStaticProps } from "next";
 
+import getLayout from "@/Layout";
 import Expedition from "@/components/Expedition";
-import Navbar from "@/components/Navbar";
 import { TCruiseLinesAndExpeditions } from "@/type";
 
 export default function Home({ expeditions }: TCruiseLinesAndExpeditions) {
   return (
-    <>
-      <Navbar />
-
-      <div className="w-full">
-        <div className="w-full max-w-screen-lg mr-auto ml-auto">
-          <div className="flex flex-col items-center m-2 space-y-6">
-            {expeditions.map((expedition, index) => (
-              <Expedition key={"expedition" + index} expedition={expedition} />
-            ))}
-          </div>
+    <div className="w-full">
+      <div className="w-full max-w-screen-lg mr-auto ml-auto">
+        <div className="flex flex-col items-center m-2 space-y-6">
+          {expeditions.map((expedition, index) => (
+            <Expedition key={"expedition" + index} expedition={expedition} />
+          ))}
         </div>
       </div>
-    </>
+    </div>
   );
 }
 
@@ -28,3 +24,5 @@ export const getStaticProps = (async () => {
 
   return { props: { cruiseLines, expeditions } };
 }) satisfies GetStaticProps<TCruiseLinesAndExpeditions>;
+
+Home.getLayout = getLayout;
