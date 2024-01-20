@@ -22,7 +22,7 @@ export type TExpedition = {
   departingFrom: string;
   arrivingAt: string;
   duration: string;
-  startingPrice: number;
+  startingPrice: number | null;
   photoUrl: string;
 };
 
@@ -33,6 +33,39 @@ export type TCruiseLinesAndExpeditions = {
 
 export type ExpeditionSortType = {
   displayText: string;
-  field: 'departure' | 'startingPrice' | 'name';
+  field: 'startingPrice' | 'name'; //  | 'departure';
   dir: 'asc' | 'desc';
 };
+
+export const sortOptions: ExpeditionSortType[] = [
+  // {
+  //   displayText: 'Departure Date (near to far)',
+  //   field: 'departure',
+  //   dir: 'asc',
+  // },
+  // {
+  //   displayText: 'Departure Date (far to near)',
+  //   field: 'departure',
+  //   dir: 'desc',
+  // },
+  {
+    displayText: 'Price (low to high)',
+    field: 'startingPrice',
+    dir: 'asc',
+  },
+  {
+    displayText: 'Price (high to low)',
+    field: 'startingPrice',
+    dir: 'desc',
+  },
+  {
+    displayText: 'Name (A-Z)',
+    field: 'name',
+    dir: 'asc',
+  },
+  {
+    displayText: 'Name (Z-A)',
+    field: 'name',
+    dir: 'desc',
+  },
+];

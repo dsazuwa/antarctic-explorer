@@ -17,6 +17,7 @@ export default function Home({ expeditions }: TCruiseLinesAndExpeditions) {
     setItemsPerPage,
     previousPage,
     nextPage,
+    sortExpeditions,
   } = useExpeditions(expeditions);
 
   return (
@@ -39,7 +40,10 @@ export default function Home({ expeditions }: TCruiseLinesAndExpeditions) {
         >
           <div className='h-[80px] bg-gray-400 lg:hidden'></div>
 
-          <ExpeditionSortHeader numExpeditions={expeditions.length} />
+          <ExpeditionSortHeader
+            numExpeditions={expeditions.length}
+            sortExpeditions={sortExpeditions}
+          />
 
           <Expeditions expeditions={filteredExpeditions} />
 

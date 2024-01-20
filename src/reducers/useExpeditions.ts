@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useReducer } from 'react';
 
-import { TExpedition } from '@/type';
+import { ExpeditionSortType, TExpedition, sortOptions } from '@/type';
 
 type ExpeditionsState = {
   expeditions: TExpedition[];
@@ -9,10 +9,19 @@ type ExpeditionsState = {
   currentPage: number;
 };
 
-type SET_ITEMS_PER_PAGE = { type: 'SET_ITEMS_PER_PAGE'; payload: number };
+type SET_ITEMS_PER_PAGE = { type: 'SET_ITEMS_PER_PAGE'; index: number };
 type PREVIOUS_PAGE = { type: 'PREVIOUS_PAGE' };
-type NEXT_PAGE = { type: 'NEXT_PAGE'; payload: number };
-type ExpeditionsAction = SET_ITEMS_PER_PAGE | PREVIOUS_PAGE | NEXT_PAGE;
+type NEXT_PAGE = { type: 'NEXT_PAGE'; totalPages: number };
+type SORT_EXPEDITIONS = {
+  type: 'SORT_EXPEDITIONS';
+  payload: ExpeditionSortType;
+};
+
+type ExpeditionsAction =
+  | SET_ITEMS_PER_PAGE
+  | PREVIOUS_PAGE
+  | NEXT_PAGE
+  | SORT_EXPEDITIONS;
 
 function expeditionsReducer(
   state: ExpeditionsState,
@@ -22,7 +31,7 @@ function expeditionsReducer(
     case 'SET_ITEMS_PER_PAGE':
       return {
         ...state,
-        selectedItemsPerPageOption: action.payload,
+        selectedItemsPerPageOption: action.index,
         currentPage: 1,
       };
 
@@ -35,7 +44,34 @@ function expeditionsReducer(
     case 'NEXT_PAGE':
       return {
         ...state,
-        currentPage: Math.min(state.currentPage + 1, action.payload),
+        currentPage: Math.min(state.currentPage + 1, action.totalPages),
+      };
+
+    case 'SORT_EXPEDITIONS':
+      const { field, dir } = action.payload;
+
+      const sortedExpeditions = [...state.expeditions].sort((a, b) => {
+        switch (field) {
+          case 'name':
+            return dir === 'asc'
+              ? a.name.localeCompare(b.name)
+              : b.name.localeCompare(a.name);
+
+          case 'startingPrice': {
+            const valA = a.startingPrice;
+            const valB = b.startingPrice;
+
+            if (valA === null) return 1;
+            if (valB === null) return -1;
+
+            return dir === 'asc' ? valA - valB : valB - valA;
+          }
+        }
+      });
+
+      return {
+        ...state,
+        expeditions: sortedExpeditions,
       };
 
     default:
@@ -43,24 +79,28 @@ function expeditionsReducer(
   }
 }
 
-export default function useExpeditions(expeditions: TExpedition[]) {
+export default function useExpeditions(rawExpeditions: TExpedition[]) {
   const initialState: ExpeditionsState = {
-    expeditions,
+    expeditions: rawExpeditions,
     itemsPerPageOptions: [6, 12, 18, 24],
     selectedItemsPerPageOption: 0,
     currentPage: 1,
   };
 
   const [state, dispatch] = useReducer(expeditionsReducer, initialState);
-  const { currentPage, selectedItemsPerPageOption, itemsPerPageOptions } =
-    state;
+  const {
+    expeditions,
+    currentPage,
+    selectedItemsPerPageOption,
+    itemsPerPageOptions,
+  } = state;
 
   const totalPages = Math.ceil(
     expeditions.length / itemsPerPageOptions[selectedItemsPerPageOption],
   );
 
   const setItemsPerPage = (index: number) => {
-    dispatch({ type: 'SET_ITEMS_PER_PAGE', payload: index });
+    dispatch({ type: 'SET_ITEMS_PER_PAGE', index });
   };
 
   const previousPage = () => {
@@ -68,7 +108,12 @@ export default function useExpeditions(expeditions: TExpedition[]) {
   };
 
   const nextPage = () => {
-    dispatch({ type: 'NEXT_PAGE', payload: totalPages });
+    dispatch({ type: 'NEXT_PAGE', totalPages });
+  };
+
+  const sortExpeditions = (index: number) => {
+    const selectedSortOption = sortOptions[index];
+    dispatch({ type: 'SORT_EXPEDITIONS', payload: selectedSortOption });
   };
 
   useEffect(() => {
@@ -94,5 +139,6 @@ export default function useExpeditions(expeditions: TExpedition[]) {
     setItemsPerPage,
     previousPage,
     nextPage,
+    sortExpeditions,
   };
 }
