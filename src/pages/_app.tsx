@@ -3,7 +3,7 @@ import type { AppProps as NextAppProps } from 'next/app';
 import Head from 'next/head';
 import { ReactElement, ReactNode } from 'react';
 
-import montserrat from '@/font';
+import montserrat from '@/styles/font';
 import '@/styles/globals.css';
 
 export type NextPageWithLayout<P = object, IP = P> = NextPage<P, IP> & {
