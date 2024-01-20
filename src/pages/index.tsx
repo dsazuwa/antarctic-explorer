@@ -7,6 +7,7 @@ import Expeditions from '@/components/Expeditions';
 import useExpeditions from '@/reducers/useExpeditions';
 import { NAVBAR_HEIGHT } from '@/styles/styles';
 import { TCruiseLinesAndExpeditions } from '@/type';
+import MobileFilterPanel from '@/components/MobileFilterPanel';
 
 export default function Home({ expeditions }: TCruiseLinesAndExpeditions) {
   const {
@@ -31,14 +32,11 @@ export default function Home({ expeditions }: TCruiseLinesAndExpeditions) {
       <div className='flex flex-row'>
         <div
           id='side-panel'
-          className='hidden w-[304px] bg-gray-400 lg:flex'
+          className='hidden w-[304px] bg-gray-400 p-2 lg:inline'
         ></div>
 
-        <div
-          id='main-panel'
-          className='w-full space-y-4 px-4 lg:space-y-0 lg:px-2'
-        >
-          <div className='h-[80px] bg-gray-400 lg:hidden'></div>
+        <div id='main-panel' className='w-full px-4 lg:space-y-0 lg:px-2'>
+          <MobileFilterPanel />
 
           <ExpeditionSortHeader
             numExpeditions={expeditions.length}
