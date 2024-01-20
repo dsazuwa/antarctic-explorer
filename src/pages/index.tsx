@@ -1,35 +1,23 @@
 import type { GetStaticProps } from 'next';
-import { useEffect, useState } from 'react';
 
 import getLayout from '@/Layout';
 import BottomNavigation from '@/components/BottomNavigation';
 import ExpeditionSortHeader from '@/components/ExpeditionSortHeader';
 import Expeditions from '@/components/Expeditions';
+import useExpeditions from '@/reducers/useExpeditions';
 import { NAVBAR_HEIGHT } from '@/styles/styles';
 import { TCruiseLinesAndExpeditions } from '@/type';
 
 export default function Home({ expeditions }: TCruiseLinesAndExpeditions) {
-  const [currentPage, setCurrentPage] = useState(1);
-  const [selectedOption, setSelectedOption] = useState(0);
-  const itemsPerPageOptions = [6, 12, 18, 24];
-  const totalPages = Math.ceil(
-    expeditions.length / itemsPerPageOptions[selectedOption],
-  );
-
-  const setItemsPerPage = (index: number) => {
-    setSelectedOption(index);
-    setCurrentPage(1);
-  };
-
-  const previousPage = () =>
-    setCurrentPage((prevPage) => Math.max(prevPage - 1, 1));
-
-  const nextPage = () =>
-    setCurrentPage((prevPage) => Math.min(prevPage + 1, totalPages));
-
-  useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }, [currentPage]);
+  const {
+    filteredExpeditions,
+    currentPage,
+    itemsPerPageOptions,
+    totalPages,
+    setItemsPerPage,
+    previousPage,
+    nextPage,
+  } = useExpeditions(expeditions);
 
   return (
     <div className='ml-auto mr-auto w-full max-w-screen-lg'>
@@ -53,13 +41,7 @@ export default function Home({ expeditions }: TCruiseLinesAndExpeditions) {
 
           <ExpeditionSortHeader numExpeditions={expeditions.length} />
 
-          <Expeditions
-            expeditions={expeditions.filter(
-              (_, i) =>
-                i < currentPage * itemsPerPageOptions[selectedOption] &&
-                i + 1 > (currentPage - 1) * itemsPerPageOptions[selectedOption],
-            )}
-          />
+          <Expeditions expeditions={filteredExpeditions} />
 
           <BottomNavigation
             options={itemsPerPageOptions}
