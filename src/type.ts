@@ -16,6 +16,7 @@ export type TCruiseLines = {
 
 export type TExpedition = {
   id: number;
+  cruiseLine: string;
   website: string;
   name: string;
   description: string;
@@ -33,7 +34,7 @@ export type TCruiseLinesAndExpeditions = {
 
 export type ExpeditionSortType = {
   displayText: string;
-  field: 'startingPrice' | 'name'; //  | 'departure';
+  field: 'cruiseLine' | 'startingPrice' | 'name'; //  | 'departure';
   dir: 'asc' | 'desc';
 };
 
@@ -46,8 +47,18 @@ export const sortOptions: ExpeditionSortType[] = [
   // {
   //   displayText: 'Departure Date (far to near)',
   //   field: 'departure',
-  //   dir: 'desc',
+  //   dir: 'desc',222222
   // },
+  {
+    displayText: 'Cruiselines (A-Z)',
+    field: 'cruiseLine',
+    dir: 'asc',
+  },
+  {
+    displayText: 'Cruiselines (Z-A)',
+    field: 'cruiseLine',
+    dir: 'desc',
+  },
   {
     displayText: 'Price (low to high)',
     field: 'startingPrice',

@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useReducer } from 'react';
 
 import { ExpeditionSortType, TExpedition, sortOptions } from '@/type';
+import { sortByNumber, sortByString } from '@/utils';
 
 type ExpeditionsState = {
   expeditions: TExpedition[];
@@ -52,25 +53,23 @@ function expeditionsReducer(
 
       const sortedExpeditions = [...state.expeditions].sort((a, b) => {
         switch (field) {
+          case 'cruiseLine':
+            const comparison = sortByString(a[field], b[field], dir);
+            return comparison !== 0
+              ? comparison
+              : sortByString(a.name, b.name, dir);
+
           case 'name':
-            return dir === 'asc'
-              ? a.name.localeCompare(b.name)
-              : b.name.localeCompare(a.name);
+            return sortByString(a[field], b[field], dir);
 
-          case 'startingPrice': {
-            const valA = a.startingPrice;
-            const valB = b.startingPrice;
-
-            if (valA === null) return 1;
-            if (valB === null) return -1;
-
-            return dir === 'asc' ? valA - valB : valB - valA;
-          }
+          case 'startingPrice':
+            return sortByNumber(a[field], b[field], dir);
         }
       });
 
       return {
         ...state,
+        currentPage: 1,
         expeditions: sortedExpeditions,
       };
 
