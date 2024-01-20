@@ -27,7 +27,7 @@ function BottomNavButton({ children, disabled, onClick }: ButtonProps) {
           xmlns='http://www.w3.org/2000/svg'
           viewBox='0 0 24 24'
           data-testid='icon-selector'
-          height='16'
+          height='14'
         >
           <path fill='none' d='M0 0h24v24H0z'></path>
           {children}

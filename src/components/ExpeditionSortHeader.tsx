@@ -35,7 +35,7 @@ function ExpeditionSortHeader({ numExpeditions }: { numExpeditions: number }) {
   ];
 
   return (
-    <div className='flex items-center justify-between text-[8px] sm:py-4 sm:text-base sm:text-xs'>
+    <div className='flex items-center justify-between text-[8px] sm:py-4 sm:text-xs'>
       <div className='mr-2 font-semibold'>{`Showing ${numExpeditions} expedition cruise(s)`}</div>
 
       <div className='flex flex-row items-center'>

@@ -28,7 +28,7 @@ function BottomNavigation({
         </BottomNavButton>
 
         <div className='flex items-center text-center'>
-          {`'Page ${currentPage} of ${totalPages}`}
+          {`Page ${currentPage} of ${totalPages}`}
         </div>
 
         <BottomNavButton

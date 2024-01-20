@@ -12,7 +12,7 @@ function Navbar() {
         </div>
       </div>
 
-      <div className={`mt-[${h}px]`} />
+      <div className={`mt-[${h}px]`} style={{ marginTop: NAVBAR_HEIGHT }} />
     </>
   );
 }
