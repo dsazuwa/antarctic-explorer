@@ -62,9 +62,13 @@ function Expedition({ expedition, cruiseLine }: ExpeditionProps) {
 
 export default Expedition;
 
-const formatPrice = (price: number) =>
-  price.toLocaleString('en-US', {
+const formatPrice = (price: number) => {
+  const hasDecimal = price % 1 !== 0;
+
+  return price.toLocaleString('en-US', {
     style: 'currency',
     currency: 'USD',
-    minimumFractionDigits: 0,
+    minimumFractionDigits: hasDecimal ? 2 : 0,
+    maximumFractionDigits: hasDecimal ? 2 : 0,
   });
+};
