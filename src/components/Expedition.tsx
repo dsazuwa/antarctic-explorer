@@ -1,9 +1,15 @@
-import React from 'react';
+import DateIcon from '@/assets/icons/DateIcon';
+import PriceTag from '@/assets/icons/PriceTag';
+import { TCruiseLine, TExpedition } from '@/type';
+import InfoDisplay from './InfoDisplay';
 
-import { TExpedition } from '@/type';
+type ExpeditionProps = {
+  expedition: TExpedition;
+  cruiseLine: TCruiseLine;
+};
 
-function Expedition({ expedition }: { expedition: TExpedition }) {
-  const { name, photoUrl } = expedition;
+function Expedition({ expedition, cruiseLine }: ExpeditionProps) {
+  const { name, duration, startingPrice, photoUrl } = expedition;
 
   return (
     <div
@@ -17,13 +23,48 @@ function Expedition({ expedition }: { expedition: TExpedition }) {
         alt={name}
       />
 
-      <div id='card-content' className='h-[160px] p-2 sm:flex-1'>
-        <div className='line-clamp-2 text-center text-[12px] font-semibold text-navy'>
-          {name}
+      <div
+        id='card-content'
+        className='flex h-[200px] flex-col justify-between p-4 sm:h-full sm:flex-1'
+      >
+        <div className='flex flex-row items-start justify-between'>
+          <div className='mr-2 line-clamp-2 text-sm font-semibold text-navy sm:text-base'>
+            {name}
+          </div>
+
+          <img
+            id='card-image'
+            className='h-[20px] sm:h-[32px]'
+            src={cruiseLine.logo}
+            alt={`${cruiseLine.name} logo`}
+          />
         </div>
+
+        <span className='flex flex-row space-x-8 border-t-2 border-solid border-gray-200 pt-2'>
+          <InfoDisplay
+            Icon={PriceTag}
+            primaryLabel='Price from'
+            secondaryLabel='pp'
+            value={startingPrice ? formatPrice(startingPrice) : '0'}
+          />
+
+          <InfoDisplay
+            Icon={DateIcon}
+            primaryLabel='Duration'
+            secondaryLabel='days'
+            value={duration}
+          />
+        </span>
       </div>
     </div>
   );
 }
 
 export default Expedition;
+
+const formatPrice = (price: number) =>
+  price.toLocaleString('en-US', {
+    style: 'currency',
+    currency: 'USD',
+    minimumFractionDigits: 0,
+  });

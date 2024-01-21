@@ -9,7 +9,10 @@ import { NAVBAR_HEIGHT } from '@/styles/styles';
 import { TCruiseLinesAndExpeditions } from '@/type';
 import MobileFilterPanel from '@/components/MobileFilterPanel';
 
-export default function Home({ expeditions }: TCruiseLinesAndExpeditions) {
+export default function Home({
+  expeditions,
+  cruiseLines,
+}: TCruiseLinesAndExpeditions) {
   const {
     filteredExpeditions,
     currentPage,
@@ -43,7 +46,10 @@ export default function Home({ expeditions }: TCruiseLinesAndExpeditions) {
             sortExpeditions={sortExpeditions}
           />
 
-          <Expeditions expeditions={filteredExpeditions} />
+          <Expeditions
+            expeditions={filteredExpeditions}
+            cruiseLines={cruiseLines}
+          />
 
           <BottomNavigation
             options={itemsPerPageOptions}

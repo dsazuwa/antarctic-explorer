@@ -12,7 +12,7 @@ export type TCruiseLineWithExpeditions = TCruiseLine & {
 
 export type TCruiseLines = {
   [key: string]: TCruiseLine;
-}[];
+};
 
 export type TExpedition = {
   id: number;
@@ -28,8 +28,8 @@ export type TExpedition = {
 };
 
 export type TCruiseLinesAndExpeditions = {
-  cruiseLines: TCruiseLines;
   expeditions: TExpedition[];
+  cruiseLines: TCruiseLines;
 };
 
 export type ExpeditionSortType = {
