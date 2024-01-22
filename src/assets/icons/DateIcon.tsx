@@ -17,3 +17,5 @@ function DateIcon({ className }: { className?: string }) {
 }
 
 export default DateIcon;
+
+/* sourced from: import { MdOutlineDateRange } from "react-icons/md"; */

@@ -16,3 +16,5 @@ function PriceTag({ className }: { className?: string }) {
 }
 
 export default PriceTag;
+
+/* sourced from: import { RiPriceTag3Line } from "react-icons/ri"; */
