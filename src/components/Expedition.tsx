@@ -1,5 +1,5 @@
 import DurationIcon from '@/assets/icons/DurationIcon';
-import PriceTag from '@/assets/icons/PriceTag';
+import PriceTagIcon from '@/assets/icons/PriceTagIcon';
 import { TCruiseLine, TExpedition } from '@/type';
 import InfoDisplay from './InfoDisplay';
 
@@ -43,7 +43,7 @@ function Expedition({ expedition, cruiseLine }: ExpeditionProps) {
         <span className='flex flex-row space-x-8 border-t-2 border-solid border-gray-200 pt-2'>
           {startingPrice && (
             <InfoDisplay
-              Icon={PriceTag}
+              Icon={PriceTagIcon}
               primaryLabel='Price from'
               secondaryLabel='pp'
               value={formatPrice(startingPrice)}

@@ -1,4 +1,4 @@
-function PriceTag({ className }: { className?: string }) {
+function PriceTagIcon({ className }: { className?: string }) {
   return (
     <svg
       stroke='currentColor'
@@ -15,6 +15,6 @@ function PriceTag({ className }: { className?: string }) {
   );
 }
 
-export default PriceTag;
+export default PriceTagIcon;
 
 /* sourced from: import { RiPriceTag3Line } from "react-icons/ri"; */
