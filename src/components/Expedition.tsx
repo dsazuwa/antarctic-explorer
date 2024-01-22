@@ -1,4 +1,4 @@
-import DateIcon from '@/assets/icons/DateIcon';
+import DurationIcon from '@/assets/icons/DurationIcon';
 import PriceTag from '@/assets/icons/PriceTag';
 import { TCruiseLine, TExpedition } from '@/type';
 import InfoDisplay from './InfoDisplay';
@@ -49,7 +49,7 @@ function Expedition({ expedition, cruiseLine }: ExpeditionProps) {
           />
 
           <InfoDisplay
-            Icon={DateIcon}
+            Icon={DurationIcon}
             primaryLabel='Duration'
             secondaryLabel='days'
             value={duration}
