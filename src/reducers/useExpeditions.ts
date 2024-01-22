@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useReducer } from 'react';
 
-import { ExpeditionSortType, TExpedition, sortOptions } from '@/type';
+import { TExpedition, sortOptions } from '@/type';
 import { sortByNumber, sortByString } from '@/utils';
 
 type ExpeditionsState = {
@@ -8,15 +8,13 @@ type ExpeditionsState = {
   itemsPerPageOptions: number[];
   selectedItemsPerPageOption: number;
   currentPage: number;
+  selectedSortOption: number;
 };
 
 type SET_ITEMS_PER_PAGE = { type: 'SET_ITEMS_PER_PAGE'; index: number };
 type PREVIOUS_PAGE = { type: 'PREVIOUS_PAGE' };
 type NEXT_PAGE = { type: 'NEXT_PAGE'; totalPages: number };
-type SORT_EXPEDITIONS = {
-  type: 'SORT_EXPEDITIONS';
-  payload: ExpeditionSortType;
-};
+type SORT_EXPEDITIONS = { type: 'SORT_EXPEDITIONS'; index: number };
 
 type ExpeditionsAction =
   | SET_ITEMS_PER_PAGE
@@ -49,7 +47,7 @@ function expeditionsReducer(
       };
 
     case 'SORT_EXPEDITIONS':
-      const { field, dir } = action.payload;
+      const { field, dir } = sortOptions[action.index];
 
       const sortedExpeditions = [...state.expeditions].sort((a, b) => {
         switch (field) {
@@ -71,6 +69,7 @@ function expeditionsReducer(
         ...state,
         currentPage: 1,
         expeditions: sortedExpeditions,
+        selectedSortOption: action.index,
       };
 
     default:
@@ -82,8 +81,9 @@ export default function useExpeditions(rawExpeditions: TExpedition[]) {
   const initialState: ExpeditionsState = {
     expeditions: rawExpeditions,
     itemsPerPageOptions: [6, 12, 18, 24],
-    selectedItemsPerPageOption: 0,
     currentPage: 1,
+    selectedItemsPerPageOption: 0,
+    selectedSortOption: 0,
   };
 
   const [state, dispatch] = useReducer(expeditionsReducer, initialState);
@@ -92,6 +92,7 @@ export default function useExpeditions(rawExpeditions: TExpedition[]) {
     currentPage,
     selectedItemsPerPageOption,
     itemsPerPageOptions,
+    selectedSortOption,
   } = state;
 
   const totalPages = Math.ceil(
@@ -111,13 +112,8 @@ export default function useExpeditions(rawExpeditions: TExpedition[]) {
   };
 
   const sortExpeditions = (index: number) => {
-    const selectedSortOption = sortOptions[index];
-    dispatch({ type: 'SORT_EXPEDITIONS', payload: selectedSortOption });
+    dispatch({ type: 'SORT_EXPEDITIONS', index });
   };
-
-  useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }, [currentPage]);
 
   const { filteredExpeditions } = useMemo(() => {
     return {
@@ -130,11 +126,17 @@ export default function useExpeditions(rawExpeditions: TExpedition[]) {
     };
   }, [currentPage, selectedItemsPerPageOption, expeditions]);
 
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [currentPage]);
+
   return {
     filteredExpeditions,
     currentPage,
     itemsPerPageOptions,
+    selectedItemsPerPageOption,
     totalPages,
+    selectedSortOption,
     setItemsPerPage,
     previousPage,
     nextPage,

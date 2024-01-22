@@ -4,6 +4,7 @@ type BottomNavigationProps = {
   options: number[];
   currentPage: number;
   totalPages: number;
+  selectedOption: number;
   handlePreviousPage: () => void;
   handleNextPage: () => void;
   setItemsPerPage: (index: number) => void;
@@ -13,6 +14,7 @@ function BottomNavigation({
   options,
   currentPage,
   totalPages,
+  selectedOption,
   handlePreviousPage,
   handleNextPage,
   setItemsPerPage,
@@ -44,6 +46,7 @@ function BottomNavigation({
 
         <select
           className='select select-bordered select-xs p-1'
+          value={selectedOption}
           onChange={(e) => setItemsPerPage(parseInt(e.target.value, 10))}
         >
           {options.map((o, i) => (

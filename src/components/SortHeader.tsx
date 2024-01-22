@@ -2,10 +2,15 @@ import { sortOptions } from '@/type';
 
 type Props = {
   numExpeditions: number;
+  selectedOption: number;
   sortExpeditions: (index: number) => void;
 };
 
-function ExpeditionSortHeader({ numExpeditions, sortExpeditions }: Props) {
+function SortHeader({
+  numExpeditions,
+  selectedOption,
+  sortExpeditions,
+}: Props) {
   return (
     <div className='flex items-center justify-between text-[9px] sm:py-2 sm:text-xs'>
       <div className='mr-2 font-semibold'>{`Showing ${numExpeditions} expedition cruise(s)`}</div>
@@ -15,6 +20,7 @@ function ExpeditionSortHeader({ numExpeditions, sortExpeditions }: Props) {
 
         <select
           className='select select-xs px-1 py-2'
+          value={selectedOption}
           onChange={(e) => sortExpeditions(parseInt(e.target.value, 10))}
         >
           {sortOptions.map((option, index) => (
@@ -28,4 +34,4 @@ function ExpeditionSortHeader({ numExpeditions, sortExpeditions }: Props) {
   );
 }
 
-export default ExpeditionSortHeader;
+export default SortHeader;

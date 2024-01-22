@@ -2,7 +2,7 @@ import type { GetStaticProps } from 'next';
 
 import getLayout from '@/Layout';
 import BottomNavigation from '@/components/BottomNavigation';
-import ExpeditionSortHeader from '@/components/ExpeditionSortHeader';
+import SortHeader from '@/components/SortHeader';
 import Expeditions from '@/components/Expeditions';
 import useExpeditions from '@/reducers/useExpeditions';
 import { NAVBAR_HEIGHT } from '@/styles/styles';
@@ -18,6 +18,8 @@ export default function Home({
     currentPage,
     itemsPerPageOptions,
     totalPages,
+    selectedSortOption,
+    selectedItemsPerPageOption,
     setItemsPerPage,
     previousPage,
     nextPage,
@@ -41,8 +43,9 @@ export default function Home({
         <div id='main-panel' className='w-full px-4 lg:space-y-0 lg:px-2'>
           <MobileFilterPanel />
 
-          <ExpeditionSortHeader
+          <SortHeader
             numExpeditions={expeditions.length}
+            selectedOption={selectedSortOption}
             sortExpeditions={sortExpeditions}
           />
 
@@ -55,6 +58,7 @@ export default function Home({
             options={itemsPerPageOptions}
             currentPage={currentPage}
             totalPages={totalPages}
+            selectedOption={selectedItemsPerPageOption}
             handlePreviousPage={previousPage}
             handleNextPage={nextPage}
             setItemsPerPage={setItemsPerPage}
