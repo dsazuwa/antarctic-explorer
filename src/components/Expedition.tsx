@@ -41,12 +41,14 @@ function Expedition({ expedition, cruiseLine }: ExpeditionProps) {
         </div>
 
         <span className='flex flex-row space-x-8 border-t-2 border-solid border-gray-200 pt-2'>
-          <InfoDisplay
-            Icon={PriceTag}
-            primaryLabel='Price from'
-            secondaryLabel='pp'
-            value={startingPrice ? formatPrice(startingPrice) : '0'}
-          />
+          {startingPrice && (
+            <InfoDisplay
+              Icon={PriceTag}
+              primaryLabel='Price from'
+              secondaryLabel='pp'
+              value={formatPrice(startingPrice)}
+            />
+          )}
 
           <InfoDisplay
             Icon={DurationIcon}
