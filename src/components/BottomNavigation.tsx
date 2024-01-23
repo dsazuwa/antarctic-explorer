@@ -20,7 +20,7 @@ function BottomNavigation({
   setItemsPerPage,
 }: BottomNavigationProps) {
   return (
-    <div className='flex w-full flex-col items-center space-y-2 p-4 text-[10px] sm:relative sm:space-y-0 sm:p-6'>
+    <div className='flex w-full flex-col items-center space-y-2 p-4 text-xxs sm:relative sm:space-y-0 sm:p-6'>
       <div className='flex flex-row justify-center space-x-2'>
         <BottomNavButton
           disabled={currentPage === 1}

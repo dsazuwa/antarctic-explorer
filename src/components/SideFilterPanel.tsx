@@ -28,7 +28,7 @@ function SideFilterPanel({ cruiseLines }: { cruiseLines: string[] }) {
   ];
 
   return (
-    <div id='side-panel' className='hidden w-[304px] p-2 text-[12px] lg:inline'>
+    <div id='side-panel' className='hidden w-[300px] p-2 text-xxs lg:inline'>
       <div className='flex w-full justify-end p-2'>
         <FilterButton disabled={disabled} />
       </div>
@@ -77,7 +77,7 @@ function FilterSection({ label, type, options }: FilterSectionProps) {
         <div>{label}</div>
         <button
           className={clsx(
-            'rounded-full p-[2px] transition-transform delay-150 ease-in-out hover:bg-gray-200 hover:shadow',
+            'rounded-full p-0.5 transition-transform delay-150 ease-in-out hover:bg-gray-200 hover:shadow',
             { 'rotate-180': !isExpanded },
           )}
           onClick={handleClick}
@@ -92,7 +92,7 @@ function FilterSection({ label, type, options }: FilterSectionProps) {
         })}
       >
         {options.map((o, i) => (
-          <label key={i} className='my-2 flex text-[11px]/[11px] font-medium'>
+          <label key={i} className='my-2 flex text-xxs font-medium leading-3'>
             <input
               type={type}
               className='mr-2 rounded-none'
@@ -122,7 +122,7 @@ function FilterSection({ label, type, options }: FilterSectionProps) {
 //       <div>{label}</div>
 //       <button
 //         className={clsx(
-//           'rounded-full p-[2px] transition-transform delay-150 ease-in-out hover:bg-gray-200 hover:shadow',
+//           'rounded-full p-0.5 transition-transform delay-150 ease-in-out hover:bg-gray-200 hover:shadow',
 //           { 'rotate-180': !isExpanded },
 //         )}
 //         onClick={handleClick}

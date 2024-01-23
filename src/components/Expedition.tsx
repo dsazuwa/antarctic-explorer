@@ -14,27 +14,27 @@ function Expedition({ expedition, cruiseLine }: ExpeditionProps) {
   return (
     <div
       id='card'
-      className='flex w-full flex-col rounded-md bg-white shadow sm:h-[240px] sm:flex-row'
+      className='flex w-full flex-col rounded-md bg-white shadow sm:h-64 sm:flex-row'
     >
       <img
         id='card-image'
-        className='sm:max-w-5/12 h-[240px] rounded-t-md object-cover sm:h-full sm:w-5/12 sm:rounded-none sm:rounded-l-md'
+        className='sm:max-w-5/12 h-64 rounded-t-md object-cover sm:h-full sm:w-5/12 sm:rounded-none sm:rounded-l-md'
         src={photoUrl}
         alt={name}
       />
 
       <div
         id='card-content'
-        className='flex h-[200px] flex-col justify-between p-4 sm:h-full sm:flex-1'
+        className='flex h-52 flex-col justify-between p-4 sm:h-full sm:flex-1'
       >
         <div className='flex flex-row items-start justify-between'>
-          <div className='mr-2 line-clamp-2 text-sm font-semibold text-navy sm:text-base'>
+          <div className='mr-2 line-clamp-2 text-sm font-semibold text-navy'>
             {name}
           </div>
 
           <img
             id='card-image'
-            className='h-[20px] sm:h-[32px]'
+            className='h-5 sm:h-8'
             src={cruiseLine.logo}
             alt={`${cruiseLine.name} logo`}
           />

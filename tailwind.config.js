@@ -3,6 +3,10 @@ module.exports = {
   content: ['./src/**/*.{js,ts,jsx,tsx,mdx}'],
   theme: {
     extend: {
+      fontSize: {
+        xxs: '0.625rem',
+      },
+
       colors: {
         misty_blue: '#E7ECEF',
         navy: '#274C77',

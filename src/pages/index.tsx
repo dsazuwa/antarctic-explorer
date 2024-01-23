@@ -7,7 +7,6 @@ import MobileFilterPanel from '@/components/MobileFilterPanel';
 import SideFilterPanel from '@/components/SideFilterPanel';
 import SortHeader from '@/components/SortHeader';
 import useExpeditions from '@/hooks/useExpeditions';
-import { NAVBAR_HEIGHT } from '@/styles/styles';
 import { TCruiseLinesAndExpeditions } from '@/type';
 
 export default function Home({
@@ -28,19 +27,19 @@ export default function Home({
   } = useExpeditions(expeditions);
 
   return (
-    <div className='ml-auto mr-auto w-full max-w-screen-lg'>
+    <div className='mx-auto w-full max-w-screen-lg'>
       <div
-        className={`h-[${NAVBAR_HEIGHT}px] flex items-center justify-center p-2 text-base font-bold text-navy sm:p-4 sm:text-lg md:text-xl`}
+        className={`flex h-14 items-center justify-center p-2 text-base font-bold text-navy sm:p-4 sm:text-lg md:text-xl`}
       >
         Expeditions
       </div>
 
-      <div className='flex flex-row'>
+      <div className='lg:flex lg:flex-row'>
         <SideFilterPanel cruiseLines={Object.keys(cruiseLines)} />
 
         <div
           id='main-panel'
-          className='px-4 lg:w-[calc(100%-304px)] lg:space-y-0 lg:px-2'
+          className='px-4 lg:w-[calc(100%-300px)] lg:space-y-0 lg:px-2'
         >
           <MobileFilterPanel />
 
