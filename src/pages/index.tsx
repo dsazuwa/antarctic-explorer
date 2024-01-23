@@ -6,6 +6,7 @@ import Expeditions from '@/components/Expeditions';
 import MobileFilterPanel from '@/components/MobileFilterPanel';
 import SideFilterPanel from '@/components/SideFilterPanel';
 import SortHeader from '@/components/SortHeader';
+import useExpeditions from '@/hooks/useExpeditions';
 import { NAVBAR_HEIGHT } from '@/styles/styles';
 import { TCruiseLinesAndExpeditions } from '@/type';
 

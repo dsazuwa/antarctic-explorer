@@ -124,7 +124,12 @@ export default function useExpeditions(rawExpeditions: TExpedition[]) {
             (currentPage - 1) * itemsPerPageOptions[selectedItemsPerPageOption],
       ),
     };
-  }, [currentPage, selectedItemsPerPageOption, expeditions]);
+  }, [
+    currentPage,
+    selectedItemsPerPageOption,
+    itemsPerPageOptions,
+    expeditions,
+  ]);
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });

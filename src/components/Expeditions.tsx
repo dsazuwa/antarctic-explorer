@@ -5,7 +5,7 @@ function Expeditions({ expeditions, cruiseLines }: TCruiseLinesAndExpeditions) {
   return (
     <div
       id='expeditions-list'
-      className='mb-2 flex flex-col items-center space-y-6 overflow-y-auto'
+      className='flex flex-col items-center space-y-6 overflow-y-auto'
     >
       {expeditions.map((expedition, index) => (
         <Expedition
