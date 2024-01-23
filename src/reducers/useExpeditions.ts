@@ -80,9 +80,9 @@ function expeditionsReducer(
 export default function useExpeditions(rawExpeditions: TExpedition[]) {
   const initialState: ExpeditionsState = {
     expeditions: rawExpeditions,
-    itemsPerPageOptions: [6, 12, 18, 24],
+    itemsPerPageOptions: [5, 10, 15, 20],
     currentPage: 1,
-    selectedItemsPerPageOption: 0,
+    selectedItemsPerPageOption: 1,
     selectedSortOption: 0,
   };
 
