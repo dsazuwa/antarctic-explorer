@@ -1,9 +1,8 @@
-import clsx from 'clsx';
-
 import FilterIcon from '@/assets/icons/FilterIcon';
+import FilterButton from './FilterButton';
 
 function MobileFilterPanel() {
-  const disabled = true;
+  const disabled = false;
 
   return (
     <div className='flex flex-row justify-between py-2 text-[8px] font-semibold sm:text-xs lg:hidden'>
@@ -12,14 +11,7 @@ function MobileFilterPanel() {
         <div>Filter</div>
       </button>
 
-      <button
-        className={clsx('p-2', {
-          'rounded bg-white shadow': !disabled,
-          'bg-gray-200 text-gray-400': disabled,
-        })}
-      >
-        Clear all filters
-      </button>
+      <FilterButton disabled={disabled} />
     </div>
   );
 }
