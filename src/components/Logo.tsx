@@ -1,5 +1,6 @@
-import React from 'react';
-import LogoIconPath from './LogoIconPath';
+import clsx from 'clsx';
+
+import LogoIcon from '@/assets/icons/Logo';
 
 function Logo({ size }: { size: 'sm' | 'md' | 'lg' }) {
   const getSize = () => {
@@ -18,17 +19,10 @@ function Logo({ size }: { size: 'sm' | 'md' | 'lg' }) {
   return (
     <button className='flex flex-row items-center'>
       <div className='p-2'>
-        <svg
-          xmlns='http://www.w3.org/2000/svg'
-          height={height}
-          width={width}
-          viewBox='0 0 576 512'
-        >
-          <LogoIconPath fill='#274c77' />
-        </svg>
+        <LogoIcon fill='#274c77' height={height} width={width} />
       </div>
 
-      <div className={`text-left font-extrabold ${fontSize}`}>
+      <div className={clsx('text-left font-extrabold', fontSize)}>
         <div className='text-navy'>Antarctica</div>
         <div className='text-pale_azure'>Explorer</div>
       </div>
