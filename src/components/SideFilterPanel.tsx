@@ -3,6 +3,7 @@ import { useState } from 'react';
 
 import ExpandMore from '@/assets/icons/ExpandMore';
 import FilterButton from './FilterButton';
+import { DatePickerWithRange } from './DatePickerWithRange';
 
 function SideFilterPanel({ cruiseLines }: { cruiseLines: string[] }) {
   const disabled = true;
@@ -33,9 +34,13 @@ function SideFilterPanel({ cruiseLines }: { cruiseLines: string[] }) {
         <FilterButton disabled={disabled} />
       </div>
 
-      {/* <div className='mt-2 p-2'>
-        <OptionHeader label='Depature Dates' />
-      </div> */}
+      <div className='mt-2 p-2'>
+        <div className='mb-2 border-b-2 border-solid border-gray-200 pb-1 font-semibold text-primary'>
+          Departure Dates
+        </div>
+
+        <DatePickerWithRange />
+      </div>
 
       <FilterSection
         label='Cruise lines'
@@ -77,7 +82,7 @@ function FilterSection({ label, type, options }: FilterSectionProps) {
         <div>{label}</div>
         <button
           className={clsx(
-            'rounded-full p-0.5 transition-transform delay-150 ease-in-out hover:bg-gray-200 hover:shadow',
+            'rounded-full p-0.5 transition-transform ease-in-out hover:bg-gray-200 hover:shadow',
             { 'rotate-180': !isExpanded },
           )}
           onClick={handleClick}
@@ -87,7 +92,7 @@ function FilterSection({ label, type, options }: FilterSectionProps) {
       </div>
 
       <div
-        className={clsx('transition-transform delay-150 ease-in-out', {
+        className={clsx('transition-transform ease-in-out', {
           hidden: !isExpanded,
         })}
       >
