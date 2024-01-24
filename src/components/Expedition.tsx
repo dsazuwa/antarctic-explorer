@@ -40,7 +40,7 @@ function Expedition({ expedition, cruiseLine }: ExpeditionProps) {
           />
         </div>
 
-        <span className='flex flex-row space-x-8 border-t-2 border-solid border-gray-200 pt-2'>
+        <span className='flex flex-row space-x-6 border-t-2 border-solid border-gray-200 pt-2'>
           {startingPrice && (
             <InfoDisplay
               Icon={PriceTagIcon}

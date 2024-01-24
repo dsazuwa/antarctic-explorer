@@ -15,15 +15,15 @@ function InfoDisplay({
 }: InfoDisplayProps) {
   return (
     <div className='flex flex-row items-center'>
-      <div className='mr-2 flex h-7 w-7 items-center justify-center rounded-full bg-gray-200 sm:h-8 sm:w-8'>
-        <Icon className='h-4 w-4 sm:h-5 sm:w-5' />
+      <div className='mr-1 flex h-6 w-6 items-center justify-center rounded-full bg-gray-200 sm:h-7 sm:w-7'>
+        <Icon className='h-3 w-3 sm:h-4 sm:w-4' />
       </div>
 
       <div className='text-xxs font-semibold text-gray-400'>
         <div>{primaryLabel}</div>
 
         <div className='items-baseline'>
-          <span className='mr-1 text-sm text-black'>{value}</span>
+          <span className='mr-1 text-xs text-black'>{value}</span>
           {secondaryLabel && <span>{secondaryLabel}</span>}
         </div>
       </div>
