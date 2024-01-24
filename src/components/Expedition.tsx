@@ -1,5 +1,6 @@
 import DurationIcon from '@/assets/icons/DurationIcon';
 import PriceTagIcon from '@/assets/icons/PriceTagIcon';
+import { Card, CardTitle } from '@/components/ui/card';
 import { TCruiseLine, TExpedition } from '@/type';
 import InfoDisplay from './InfoDisplay';
 
@@ -12,10 +13,7 @@ function Expedition({ expedition, cruiseLine }: ExpeditionProps) {
   const { name, duration, startingPrice, photoUrl } = expedition;
 
   return (
-    <div
-      id='card'
-      className='flex w-full flex-col rounded-md bg-white shadow sm:h-64 sm:flex-row'
-    >
+    <Card className='flex w-full flex-col sm:h-64 sm:flex-row'>
       <img
         id='card-image'
         className='sm:max-w-5/12 h-64 rounded-t-md object-cover sm:h-full sm:w-5/12 sm:rounded-none sm:rounded-l-md'
@@ -23,14 +21,9 @@ function Expedition({ expedition, cruiseLine }: ExpeditionProps) {
         alt={name}
       />
 
-      <div
-        id='card-content'
-        className='flex h-52 flex-col justify-between p-4 sm:h-full sm:flex-1'
-      >
-        <div className='flex flex-row items-start justify-between'>
-          <div className='mr-2 line-clamp-2 text-sm font-semibold text-navy'>
-            {name}
-          </div>
+      <div className='flex h-52 flex-col justify-between sm:h-full sm:flex-1'>
+        <div className='flex flex-row items-start justify-between p-6'>
+          <CardTitle className='mr-2 text-primary'>{name}</CardTitle>
 
           <img
             id='card-image'
@@ -40,7 +33,7 @@ function Expedition({ expedition, cruiseLine }: ExpeditionProps) {
           />
         </div>
 
-        <span className='flex flex-row space-x-6 border-t-2 border-solid border-gray-200 pt-2'>
+        <span className='mx-6 mb-6 flex flex-row space-x-6 border-t-2 border-solid border-gray-200 pt-2'>
           {startingPrice && (
             <InfoDisplay
               Icon={PriceTagIcon}
@@ -58,7 +51,7 @@ function Expedition({ expedition, cruiseLine }: ExpeditionProps) {
           />
         </span>
       </div>
-    </div>
+    </Card>
   );
 }
 
