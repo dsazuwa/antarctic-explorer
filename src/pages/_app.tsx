@@ -5,6 +5,7 @@ import { ReactElement, ReactNode } from 'react';
 
 import montserrat from '@/styles/font';
 import '@/styles/globals.css';
+import '@radix-ui/themes/styles.css';
 
 export type NextPageWithLayout<P = object, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode;
