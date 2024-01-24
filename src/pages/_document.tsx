@@ -1,4 +1,3 @@
-import { Theme } from '@radix-ui/themes';
 import { Head, Html, Main, NextScript } from 'next/document';
 
 export default function Document() {
@@ -6,15 +5,8 @@ export default function Document() {
     <Html lang='en'>
       <Head />
       <body>
-        <Theme
-          accentColor='crimson'
-          grayColor='sand'
-          radius='large'
-          scaling='95%'
-        >
-          <Main />
-          <NextScript />
-        </Theme>
+        <Main />
+        <NextScript />
       </body>
     </Html>
   );
