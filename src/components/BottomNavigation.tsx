@@ -1,7 +1,7 @@
+import { itemsPerPageOptions } from '@/constants';
 import BottomNavButton from './BottomNavButton';
 
 type BottomNavigationProps = {
-  options: number[];
   currentPage: number;
   totalPages: number;
   selectedOption: number;
@@ -11,7 +11,6 @@ type BottomNavigationProps = {
 };
 
 function BottomNavigation({
-  options,
   currentPage,
   totalPages,
   selectedOption,
@@ -49,7 +48,7 @@ function BottomNavigation({
           value={selectedOption}
           onChange={(e) => setItemsPerPage(parseInt(e.target.value, 10))}
         >
-          {options.map((o, i) => (
+          {itemsPerPageOptions.map((o, i) => (
             <option key={`option${i}`} value={i}>
               {o}
             </option>

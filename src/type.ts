@@ -32,51 +32,31 @@ export type TCruiseLinesAndExpeditions = {
   cruiseLines: TCruiseLines;
 };
 
+export type BasicFilterOption = { displayName: string }[];
+
+export type RangedFilterOption = {
+  displayName: string;
+  min: number;
+  max: number;
+}[];
+
 export type ExpeditionSortType = {
   displayText: string;
   field: 'cruiseLine' | 'startingPrice' | 'name'; //  | 'departure';
   dir: 'asc' | 'desc';
 };
 
-export const sortOptions: ExpeditionSortType[] = [
-  // {
-  //   displayText: 'Departure Date (near to far)',
-  //   field: 'departure',
-  //   dir: 'asc',
-  // },
-  // {
-  //   displayText: 'Departure Date (far to near)',
-  //   field: 'departure',
-  //   dir: 'desc',222222
-  // },
-  {
-    displayText: 'Cruiselines (A-Z)',
-    field: 'cruiseLine',
-    dir: 'asc',
-  },
-  {
-    displayText: 'Cruiselines (Z-A)',
-    field: 'cruiseLine',
-    dir: 'desc',
-  },
-  {
-    displayText: 'Price (low to high)',
-    field: 'startingPrice',
-    dir: 'asc',
-  },
-  {
-    displayText: 'Price (high to low)',
-    field: 'startingPrice',
-    dir: 'desc',
-  },
-  {
-    displayText: 'Name (A-Z)',
-    field: 'name',
-    dir: 'asc',
-  },
-  {
-    displayText: 'Name (Z-A)',
-    field: 'name',
-    dir: 'desc',
-  },
-];
+export type FilterState = {
+  startDate: Date | undefined;
+  endDate: Date | undefined;
+  cruiseLines: number[];
+  capactity: number;
+  duration: number;
+};
+
+export type ExpeditionsState = {
+  selectedItemsPerPageOption: number;
+  currentPage: number;
+  selectedSortOption: number;
+  filters: FilterState;
+};

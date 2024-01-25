@@ -1,32 +1,26 @@
-import clsx from 'clsx';
-import { useState } from 'react';
+import { ChangeEventHandler } from 'react';
 
-import ExpandMore from '@/assets/icons/ExpandMore';
-import FilterButton from './FilterButton';
+import { durationOptions } from '@/constants';
+import { BasicFilterOption, FilterState } from '@/type';
 import { DatePickerWithRange } from './DatePickerWithRange';
+import FilterButton from './FilterButton';
+import OptionHeader from './OptionHeader';
+import OptionsSelector from './OptionsSelector';
 
-function SideFilterPanel({ cruiseLines }: { cruiseLines: string[] }) {
+type Props = {
+  cruiseLineOptions: BasicFilterOption;
+  filters: FilterState;
+  filterByCruiseLine: ChangeEventHandler<HTMLInputElement>;
+  filterByDuration: ChangeEventHandler<HTMLInputElement>;
+};
+
+function SideFilterPanel({
+  cruiseLineOptions,
+  filters,
+  filterByCruiseLine,
+  filterByDuration,
+}: Props) {
   const disabled = true;
-
-  const cruiseLineOptions = cruiseLines.map((x) => {
-    return { displayName: x };
-  });
-
-  const durationOptions = [
-    { displayName: '1 - 7 days' },
-    { displayName: '8 - 14 days' },
-    { displayName: '15 - 7 days' },
-    { displayName: '22+ days' },
-    { displayName: 'All' },
-  ];
-
-  const capacityOptions = [
-    { displayName: '1 - 100' },
-    { displayName: '100 - 200' },
-    { displayName: '200 - 500' },
-    { displayName: '500+' },
-    { displayName: 'All' },
-  ];
 
   return (
     <div id='side-panel' className='hidden w-[300px] p-2 text-xxs lg:inline'>
@@ -35,110 +29,34 @@ function SideFilterPanel({ cruiseLines }: { cruiseLines: string[] }) {
       </div>
 
       <div className='mt-2 p-2'>
-        <div className='mb-2 border-b-2 border-solid border-gray-200 pb-1 font-semibold text-primary'>
-          Departure Dates
-        </div>
-
+        <OptionHeader>Departure Dates</OptionHeader>
         <DatePickerWithRange />
       </div>
 
-      <FilterSection
+      <OptionsSelector
         label='Cruise lines'
         type='checkbox'
         options={cruiseLineOptions}
+        isChecked={(i: number) => filters.cruiseLines.includes(i)}
+        handleChange={filterByCruiseLine}
       />
 
-      <FilterSection
+      {/* <OptionsSelector
         label='Ship capacity'
         type='radio'
         options={capacityOptions}
-      />
+        handleChange={filterByCapacity}
+      /> */}
 
-      <FilterSection label='Duration' type='radio' options={durationOptions} />
+      <OptionsSelector
+        label='Duration'
+        type='radio'
+        options={durationOptions}
+        isChecked={(i: number) => filters.duration === i}
+        handleChange={filterByDuration}
+      />
     </div>
   );
 }
 
 export default SideFilterPanel;
-
-type OptionsType = { displayName: string }[];
-
-type FilterSectionProps = {
-  label: string;
-  type: 'checkbox' | 'radio';
-  options: OptionsType;
-};
-
-function FilterSection({ label, type, options }: FilterSectionProps) {
-  const [isExpanded, setExpanded] = useState(true);
-
-  const handleClick = () => {
-    setExpanded((x) => !x);
-  };
-
-  return (
-    <div className='p-2'>
-      <div className='mb-2 flex flex-row items-center justify-between border-b-2 border-solid border-gray-200 pb-1 font-semibold text-navy'>
-        <div>{label}</div>
-        <button
-          className={clsx(
-            'rounded-full p-0.5 transition-transform ease-in-out hover:bg-gray-200 hover:shadow',
-            { 'rotate-180': !isExpanded },
-          )}
-          onClick={handleClick}
-        >
-          <ExpandMore />
-        </button>
-      </div>
-
-      <div
-        className={clsx('transition-transform ease-in-out', {
-          hidden: !isExpanded,
-        })}
-      >
-        {options.map((o, i) => (
-          <label key={i} className='my-2 flex text-xxs font-medium leading-3'>
-            <input
-              type={type}
-              className='mr-2 rounded-none'
-              value={o.displayName}
-            />
-            {o.displayName}
-          </label>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-// type OptionsHeaderProps = {
-//   label: string;
-// };
-
-// function OptionHeader({ label }: OptionsHeaderProps) {
-//   const [isExpanded, setExpanded] = useState(true);
-
-//   const handleClick = () => {
-//     setExpanded((x) => !x);
-//   };
-
-//   return (
-//     <div className='mb-2 flex flex-row items-center justify-between border-b-2 border-solid border-gray-200 pb-1 font-semibold text-navy'>
-//       <div>{label}</div>
-//       <button
-//         className={clsx(
-//           'rounded-full p-0.5 transition-transform delay-150 ease-in-out hover:bg-gray-200 hover:shadow',
-//           { 'rotate-180': !isExpanded },
-//         )}
-//         onClick={handleClick}
-//       >
-//         <ExpandMore />
-//       </button>
-//     </div>
-//   );
-// }
-
-// function Options() {}
-
-// checked={selectedOption === o.displayName}
-// onChange={handleOptionChange}

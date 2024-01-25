@@ -10,21 +10,25 @@ import useExpeditions from '@/hooks/useExpeditions';
 import { TCruiseLinesAndExpeditions } from '@/type';
 
 export default function Home({
-  expeditions,
+  expeditions: rawExpeditions,
   cruiseLines,
 }: TCruiseLinesAndExpeditions) {
   const {
-    filteredExpeditions,
+    expeditions,
+    numExpeditions,
     currentPage,
-    itemsPerPageOptions,
     totalPages,
     selectedSortOption,
     selectedItemsPerPageOption,
+    cruiseLineOptions,
+    filters,
     setItemsPerPage,
     previousPage,
     nextPage,
     sortExpeditions,
-  } = useExpeditions(expeditions);
+    filterByCruiseLine,
+    filterByDuration,
+  } = useExpeditions(rawExpeditions, cruiseLines);
 
   return (
     <div className='mx-auto w-full max-w-screen-lg'>
@@ -35,7 +39,12 @@ export default function Home({
       </div>
 
       <div className='lg:flex lg:flex-row'>
-        <SideFilterPanel cruiseLines={Object.keys(cruiseLines)} />
+        <SideFilterPanel
+          cruiseLineOptions={cruiseLineOptions}
+          filters={filters}
+          filterByCruiseLine={filterByCruiseLine}
+          filterByDuration={filterByDuration}
+        />
 
         <div
           id='main-panel'
@@ -44,18 +53,14 @@ export default function Home({
           <MobileFilterPanel />
 
           <SortHeader
-            numExpeditions={expeditions.length}
+            numExpeditions={numExpeditions}
             selectedOption={selectedSortOption}
             sortExpeditions={sortExpeditions}
           />
 
-          <Expeditions
-            expeditions={filteredExpeditions}
-            cruiseLines={cruiseLines}
-          />
+          <Expeditions expeditions={expeditions} cruiseLines={cruiseLines} />
 
           <BottomNavigation
-            options={itemsPerPageOptions}
             currentPage={currentPage}
             totalPages={totalPages}
             selectedOption={selectedItemsPerPageOption}

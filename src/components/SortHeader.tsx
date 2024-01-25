@@ -1,4 +1,4 @@
-import { sortOptions } from '@/type';
+import { sortOptions } from '@/constants';
 
 type Props = {
   numExpeditions: number;
