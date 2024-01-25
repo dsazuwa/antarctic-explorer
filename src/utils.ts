@@ -6,6 +6,11 @@ import {
   TExpedition,
 } from './type';
 
+export const toggleIndex = (index: number, selectedIndices: number[]) =>
+  selectedIndices.includes(index)
+    ? selectedIndices.filter((i) => i !== index)
+    : [...selectedIndices, index];
+
 export const sortByString = (
   valA: string | null,
   valB: string | null,

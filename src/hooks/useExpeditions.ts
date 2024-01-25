@@ -111,8 +111,10 @@ export default function useExpeditions(
   };
 
   const filterByCruiseLine = (event: ChangeEvent<HTMLInputElement>) => {
-    console.log(event.target.value);
-    // dispatch({ type: 'FILTER_CRUISE_LINES', cruiseLines });
+    dispatch({
+      type: 'FILTER_CRUISE_LINES',
+      index: Number.parseInt(event.target.value),
+    });
   };
 
   const filterByDuration = (event: ChangeEvent<HTMLInputElement>) => {
