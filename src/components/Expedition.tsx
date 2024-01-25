@@ -33,7 +33,7 @@ function Expedition({ expedition, cruiseLine }: ExpeditionProps) {
           />
         </div>
 
-        <span className='mx-6 mb-6 flex flex-row space-x-6 border-t-2 border-solid border-gray-200 pt-2'>
+        <span className='mx-4 mb-4 flex flex-row space-x-6 border-t-2 border-solid border-gray-200 pt-4'>
           {startingPrice && (
             <InfoDisplay
               Icon={PriceTagIcon}
