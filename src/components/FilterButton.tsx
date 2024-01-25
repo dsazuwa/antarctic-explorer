@@ -1,17 +1,10 @@
-import clsx from 'clsx';
+import { Button } from './ui/button';
 
 function FilterButton({ disabled }: { disabled: boolean }) {
   return (
-    <button
-      disabled={disabled}
-      className={clsx('relative overflow-hidden p-2 lg:font-semibold', {
-        'bg-gray-200 text-gray-400': disabled,
-        'rounded-lg bg-blue_5 text-white shadow-sm hover:bg-blue_4 hover:shadow-sm':
-          !disabled,
-      })}
-    >
+    <Button className='p-2' disabled={disabled} size='xs'>
       Clear all filters
-    </button>
+    </Button>
   );
 }
 
