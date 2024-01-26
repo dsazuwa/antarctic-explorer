@@ -2,8 +2,8 @@ import { ChangeEventHandler } from 'react';
 
 import { durationOptions } from '@/constants';
 import { BasicFilterOption, FilterState } from '@/type';
+import ClearFilters from './ClearFilters';
 import { DatePickerWithRange } from './DatePickerWithRange';
-import FilterButton from './FilterButton';
 import OptionHeader from './OptionHeader';
 import OptionsSelector from './OptionsSelector';
 
@@ -25,7 +25,7 @@ function SideFilterPanel({
   return (
     <div id='side-panel' className='hidden w-[300px] p-2 text-xxs lg:inline'>
       <div className='flex w-full justify-end p-2'>
-        <FilterButton disabled={disabled} />
+        <ClearFilters disabled={disabled} />
       </div>
 
       <div className='mt-2 p-2'>
