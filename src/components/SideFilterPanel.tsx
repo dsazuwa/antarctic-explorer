@@ -1,11 +1,8 @@
 import { ChangeEventHandler } from 'react';
 
-import { durationOptions } from '@/constants';
 import { BasicFilterOption, FilterState } from '@/type';
 import ClearFilters from './ClearFilters';
-import { DatePickerWithRange } from './DatePickerWithRange';
-import OptionHeader from './OptionHeader';
-import OptionsSelector from './OptionsSelector';
+import FilterPanel from './FilterPanel';
 
 type Props = {
   cruiseLineOptions: BasicFilterOption;
@@ -28,33 +25,11 @@ function SideFilterPanel({
         <ClearFilters disabled={disabled} />
       </div>
 
-      <div className='mt-2 p-2'>
-        <OptionHeader>Departure Dates</OptionHeader>
-        <DatePickerWithRange />
-      </div>
-
-      <OptionsSelector
-        label='Cruise lines'
-        type='checkbox'
-        options={cruiseLineOptions}
-        isChecked={(i: number) => filters.cruiseLines.includes(i)}
-        handleChange={filterByCruiseLine}
-      />
-
-      {/* <OptionsSelector
-        label='Ship capacity'
-        type='radio'
-        options={capacityOptions}
-        isChecked={(i: number) => filters.cruiseLines.includes(i)}
-        handleChange={filterByCapacity}
-      /> */}
-
-      <OptionsSelector
-        label='Duration'
-        type='radio'
-        options={durationOptions}
-        isChecked={(i: number) => filters.duration === i}
-        handleChange={filterByDuration}
+      <FilterPanel
+        cruiseLineOptions={cruiseLineOptions}
+        filters={filters}
+        filterByCruiseLine={filterByCruiseLine}
+        filterByDuration={filterByDuration}
       />
     </div>
   );
