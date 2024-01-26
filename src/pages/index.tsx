@@ -50,7 +50,12 @@ export default function Home({
           id='main-panel'
           className='px-4 lg:w-[calc(100%-300px)] lg:space-y-0 lg:px-2'
         >
-          <MobileFilterPanel />
+          <MobileFilterPanel
+            cruiseLineOptions={cruiseLineOptions}
+            filters={filters}
+            filterByCruiseLine={filterByCruiseLine}
+            filterByDuration={filterByDuration}
+          />
 
           <SortHeader
             numExpeditions={numExpeditions}
