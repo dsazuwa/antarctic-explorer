@@ -66,14 +66,14 @@ function MobileFilterPanel({
             <SheetClose asChild>
               <Button
                 type='submit'
-                className='mr-3 rounded-2xl bg-primary-foreground/20 px-8 uppercase transition-colors hover:bg-primary-foreground'
+                className='mr-3 bg-primary-foreground/20 px-8 uppercase transition-colors hover:bg-primary-foreground'
               >
                 <div className='text-primary'>Clear all filters</div>
               </Button>
             </SheetClose>
 
             <SheetClose asChild>
-              <Button type='submit' className='rounded-2xl px-10 uppercase'>
+              <Button type='submit' className='px-8 uppercase'>
                 Apply filters
               </Button>
             </SheetClose>
