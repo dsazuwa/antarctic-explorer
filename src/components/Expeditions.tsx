@@ -28,7 +28,7 @@ function Expeditions() {
     fetchExpeditions({
       page: currentPage,
       size: itemsPerPageOptions[selectedItemsPerPage],
-      sort: selectedSort !== 0 ? '' : sortOptions[selectedSort].sort,
+      sort: selectedSort === 0 ? '' : sortOptions[selectedSort].sort,
       dir: sortOptions[selectedSort].dir === 'asc' ? '' : 'desc',
       cruiseLines: filters.cruiseLines
         .map((x) => cruiseLineOptions[x].displayName)
