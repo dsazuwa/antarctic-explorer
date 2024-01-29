@@ -1,22 +1,7 @@
-import { ChangeEventHandler } from 'react';
-
-import { BasicFilterOption, FilterState } from '@/type';
 import ClearFilters from './ClearFilters';
 import FilterPanel from './FilterPanel';
 
-type Props = {
-  cruiseLineOptions: BasicFilterOption;
-  filters: FilterState;
-  filterByCruiseLine: ChangeEventHandler<HTMLInputElement>;
-  filterByDuration: ChangeEventHandler<HTMLInputElement>;
-};
-
-function SideFilterPanel({
-  cruiseLineOptions,
-  filters,
-  filterByCruiseLine,
-  filterByDuration,
-}: Props) {
+function SideFilterPanel() {
   const disabled = true;
 
   return (
@@ -25,12 +10,7 @@ function SideFilterPanel({
         <ClearFilters disabled={disabled} />
       </div>
 
-      <FilterPanel
-        cruiseLineOptions={cruiseLineOptions}
-        filters={filters}
-        filterByCruiseLine={filterByCruiseLine}
-        filterByDuration={filterByDuration}
-      />
+      <FilterPanel />
     </div>
   );
 }

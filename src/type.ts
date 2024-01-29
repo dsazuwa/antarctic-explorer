@@ -27,8 +27,16 @@ export type TExpedition = {
   photoUrl: string;
 };
 
-export type TCruiseLinesAndExpeditions = {
-  expeditions: TExpedition[];
+export type ExpeditionsResponse = {
+  data: TExpedition[];
+  itemsPerPage: number;
+  totalItems: number;
+  totalPages: number;
+  currentPage: number;
+};
+
+export type MainResponse = {
+  expeditions: ExpeditionsResponse;
   cruiseLines: TCruiseLines;
 };
 
@@ -42,7 +50,7 @@ export type RangedFilterOption = {
 
 export type ExpeditionSortType = {
   displayText: string;
-  field: 'cruiseLine' | 'startingPrice' | 'name'; //  | 'departure';
+  sort: 'cruiseLine' | 'startingPrice' | 'name'; //  | 'departure';
   dir: 'asc' | 'desc';
 };
 
@@ -50,7 +58,7 @@ export type FilterState = {
   startDate: Date | undefined;
   endDate: Date | undefined;
   cruiseLines: number[];
-  capactity: number;
+  capacity: number;
   duration: number;
 };
 

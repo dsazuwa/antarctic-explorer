@@ -1,5 +1,5 @@
 import { MixerHorizontalIcon } from '@radix-ui/react-icons';
-import { ChangeEventHandler, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import {
   Sheet,
@@ -10,24 +10,11 @@ import {
   SheetTrigger,
 } from '@/components/ui/sheet';
 import useWindowWidth from '@/hooks/useWindowWidth';
-import { BasicFilterOption, FilterState } from '@/type';
 import ClearFilters from './ClearFilters';
 import FilterPanel from './FilterPanel';
 import { Button } from './ui/button';
 
-type Props = {
-  cruiseLineOptions: BasicFilterOption;
-  filters: FilterState;
-  filterByCruiseLine: ChangeEventHandler<HTMLInputElement>;
-  filterByDuration: ChangeEventHandler<HTMLInputElement>;
-};
-
-function MobileFilterPanel({
-  cruiseLineOptions,
-  filters,
-  filterByCruiseLine,
-  filterByDuration,
-}: Props) {
+function MobileFilterPanel() {
   const disabled = true;
   const [open, setOpen] = useState(false);
   const windowWidth = useWindowWidth();
@@ -54,12 +41,7 @@ function MobileFilterPanel({
           </SheetHeader>
 
           <div>
-            <FilterPanel
-              cruiseLineOptions={cruiseLineOptions}
-              filters={filters}
-              filterByCruiseLine={filterByCruiseLine}
-              filterByDuration={filterByDuration}
-            />
+            <FilterPanel />
           </div>
 
           <div className='mx-auto mt-auto flex w-full flex-row justify-center p-4'>
