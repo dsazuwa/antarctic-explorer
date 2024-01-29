@@ -61,10 +61,3 @@ export type FilterState = {
   capacity: number;
   duration: number;
 };
-
-export type ExpeditionsState = {
-  selectedItemsPerPageOption: number;
-  currentPage: number;
-  selectedSortOption: number;
-  filters: FilterState;
-};
