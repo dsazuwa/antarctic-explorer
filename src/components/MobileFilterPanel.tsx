@@ -1,12 +1,10 @@
-import { MixerHorizontalIcon } from '@radix-ui/react-icons';
+import { Cross2Icon, MixerHorizontalIcon } from '@radix-ui/react-icons';
 import { useEffect, useState } from 'react';
 
 import {
   Sheet,
   SheetClose,
   SheetContent,
-  SheetHeader,
-  SheetTitle,
   SheetTrigger,
 } from '@/components/ui/sheet';
 import useWindowWidth from '@/hooks/useWindowWidth';
@@ -27,30 +25,35 @@ function MobileFilterPanel() {
     <div className='flex flex-row justify-between py-2 text-xxs font-semibold sm:text-xs lg:hidden'>
       <Sheet open={open} onOpenChange={setOpen}>
         <SheetTrigger asChild>
-          <Button className='flex flex-row items-center bg-white' size='xs'>
+          <Button variant='white' size='xs'>
             <MixerHorizontalIcon className='mr-2 text-muted-foreground' />
             <div className='text-muted-foreground'>Filter</div>
           </Button>
         </SheetTrigger>
 
-        <SheetContent className='h-full w-screen'>
-          <SheetHeader>
-            <SheetTitle className='border-bottom border-b-2 border-solid pb-4 text-xl'>
-              Filter
-            </SheetTitle>
-          </SheetHeader>
-
+        <SheetContent side='left' className='flex w-screen flex-col'>
           <div>
-            <FilterPanel />
+            <div className='text-md flex items-center justify-between bg-primary-foreground p-4 font-semibold'>
+              Filter
+              <SheetClose className='rounded-sm opacity-70 transition-opacity hover:opacity-100'>
+                <Cross2Icon className='h-4 w-4' />
+                <span className='sr-only'>Close</span>
+              </SheetClose>
+            </div>
+
+            <div className='px-2'>
+              <FilterPanel />
+            </div>
           </div>
 
-          <div className='mx-auto mt-auto flex w-full flex-row justify-center p-4'>
+          <div className='mx-auto mt-auto flex w-full flex-row justify-center bg-primary-foreground p-4'>
             <SheetClose asChild>
               <Button
                 type='submit'
-                className='mr-3 bg-primary-foreground/20 px-8 uppercase transition-colors hover:bg-primary-foreground'
+                variant='white'
+                className='mr-3 px-8 uppercase'
               >
-                <div className='text-primary'>Clear all filters</div>
+                Clear all filters
               </Button>
             </SheetClose>
 
