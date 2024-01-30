@@ -5,7 +5,7 @@ import Footer from './components/Footer';
 
 function getLayout(page: ReactElement) {
   return (
-    <div className='flex min-h-screen w-full flex-col bg-lighter_gray'>
+    <div className='flex min-h-screen w-full flex-col'>
       <Navbar />
       {page}
       <Footer />

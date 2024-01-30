@@ -2,7 +2,7 @@ import React from 'react';
 
 function Footer() {
   return (
-    <footer className='mt-auto bg-light_gray py-4 text-center'>
+    <footer className='mt-auto bg-primary-foreground py-4 text-center'>
       <span className='flex flex-row justify-center text-xxs font-medium md:text-xs'>
         This project is open source. The code can be found on
         <a
