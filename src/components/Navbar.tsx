@@ -3,9 +3,9 @@ import Logo from './Logo';
 function Navbar() {
   return (
     <>
-      <div className={`h-14] fixed top-0 z-10 w-full bg-light_gray`}>
-        <div className='ml-auto mr-auto w-full max-w-screen-lg px-4 py-2'>
-          <Logo size={'sm'} />
+      <div className='fixed top-0 z-10 h-14 w-full bg-primary-foreground'>
+        <div className='ml-auto mr-auto flex w-full max-w-screen-lg flex-row px-4 py-2'>
+          <Logo size={'sm'} className='flex-grow' />
         </div>
       </div>
 

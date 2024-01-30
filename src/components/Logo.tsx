@@ -1,8 +1,11 @@
 import clsx from 'clsx';
+import { HTMLAttributes } from 'react';
 
 import LogoIcon from '@/assets/icons/Logo';
 
-function Logo({ size }: { size: 'sm' | 'md' | 'lg' }) {
+type Props = { size: 'sm' | 'md' | 'lg' } & HTMLAttributes<HTMLDivElement>;
+
+function Logo({ size, ...props }: Props) {
   const getSize = () => {
     switch (size) {
       case 'sm':
@@ -17,16 +20,18 @@ function Logo({ size }: { size: 'sm' | 'md' | 'lg' }) {
   const { height, width, fontSize } = getSize();
 
   return (
-    <button className='flex flex-row items-center'>
-      <div className='p-2'>
-        <LogoIcon fill='#274c77' height={height} width={width} />
-      </div>
+    <div {...props}>
+      <button className='flex flex-row items-center'>
+        <div className='p-2'>
+          <LogoIcon fill='#274c77' height={height} width={width} />
+        </div>
 
-      <div className={clsx('text-left font-extrabold', fontSize)}>
-        <div className='text-navy'>Antarctica</div>
-        <div className='text-pale_azure'>Explorer</div>
-      </div>
-    </button>
+        <div className={clsx('text-left font-extrabold', fontSize)}>
+          <div className='text-navy'>Antarctica</div>
+          <div className='text-pale_azure'>Explorer</div>
+        </div>
+      </button>
+    </div>
   );
 }
 
