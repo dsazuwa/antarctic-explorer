@@ -22,7 +22,7 @@ function Expedition({ expedition, cruiseLine }: ExpeditionProps) {
       />
 
       <div className='flex h-52 flex-col justify-between sm:h-full sm:flex-1'>
-        <div className='flex flex-row items-start justify-between p-6'>
+        <div className='flex flex-row items-center justify-between p-6'>
           <CardTitle className='mr-2 text-primary'>{name}</CardTitle>
 
           <img
