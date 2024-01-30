@@ -1,7 +1,7 @@
 import { ChevronRightIcon, HamburgerMenuIcon } from '@radix-ui/react-icons';
 import Link from 'next/link';
 
-import { Sheet, SheetContent, SheetTrigger } from './ui/sheet';
+import { Sheet, SheetContent, SheetTrigger } from '../ui/sheet';
 
 function NavDrawer() {
   return (
