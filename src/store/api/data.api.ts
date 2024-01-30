@@ -5,7 +5,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { HYDRATE } from 'next-redux-wrapper';
 import { Action } from 'redux';
 
-import { ExpeditionsResponse, MainResponse } from '@/type';
+import { ExpeditionsResponse, MainResponse } from '@/lib/type';
 import { RootState } from '..';
 import { setData, setExpeditions } from '../slice/data.slice';
 

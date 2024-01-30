@@ -1,6 +1,6 @@
 import { ChangeEvent } from 'react';
 
-import { durationOptions } from '@/constants';
+import { durationOptions } from '@/lib/constants';
 import { filterExpeditions, useAppDispatch, useAppSelector } from '@/store';
 import { DatePickerWithRange } from './DatePickerWithRange';
 import OptionHeader from './OptionHeader';

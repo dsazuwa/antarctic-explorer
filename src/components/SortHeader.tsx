@@ -1,4 +1,4 @@
-import { sortOptions } from '@/constants';
+import { sortOptions } from '@/lib/constants';
 import { setSortOption, useAppDispatch, useAppSelector } from '@/store';
 
 function SortHeader() {

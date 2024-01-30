@@ -6,14 +6,14 @@ import {
   capacityOptions,
   durationOptions,
   itemsPerPageOptions,
-} from '@/constants';
+} from '@/lib/constants';
 import {
   ExpeditionsResponse,
   FilterState,
   MainResponse,
   TCruiseLines,
-} from '@/type';
-import { toggleIndex } from '@/utils';
+} from '@/lib/type';
+import { toggleIndex } from '@/lib/utils';
 
 export type DataState = {
   cruiseLines: TCruiseLines;

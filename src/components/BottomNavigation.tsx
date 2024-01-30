@@ -1,4 +1,4 @@
-import { itemsPerPageOptions } from '@/constants';
+import { itemsPerPageOptions } from '@/lib/constants';
 import {
   navigateToNext,
   navigateToPrevious,

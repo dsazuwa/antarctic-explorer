@@ -1,6 +1,10 @@
 import { useEffect } from 'react';
 
-import { durationOptions, itemsPerPageOptions, sortOptions } from '@/constants';
+import {
+  durationOptions,
+  itemsPerPageOptions,
+  sortOptions,
+} from '@/lib/constants';
 import { useAppSelector, useLazyGetExpeditionsQuery } from '@/store';
 import Expedition from './Expedition';
 

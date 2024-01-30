@@ -2,7 +2,7 @@ import clsx from 'clsx';
 import { ChangeEventHandler, useState } from 'react';
 
 import ExpandLess from '@/assets/icons/ExpandLess';
-import { BasicFilterOption, RangedFilterOption } from '@/type';
+import { BasicFilterOption, RangedFilterOption } from '@/lib/type';
 import OptionHeader from './OptionHeader';
 
 type OptionsSelectorProps = {

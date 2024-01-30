@@ -1,7 +1,7 @@
 import DurationIcon from '@/assets/icons/DurationIcon';
 import PriceTagIcon from '@/assets/icons/PriceTagIcon';
 import { Card, CardTitle } from '@/components/ui/card';
-import { TCruiseLine, TExpedition } from '@/type';
+import { TCruiseLine, TExpedition } from '@/lib/type';
 import InfoDisplay from './InfoDisplay';
 
 type ExpeditionProps = {
