@@ -38,19 +38,19 @@ function FilterPanel() {
       /> */}
 
       <OptionsSelector
-        label='Duration'
-        type='radio'
-        options={durationOptions}
-        isChecked={(i: number) => filters.duration === i}
-        handleChange={(e) => handleFilterChange('duration', e)}
-      />
-
-      <OptionsSelector
         label='Cruise lines'
         type='checkbox'
         options={cruiseLineOptions}
         isChecked={(i: number) => filters.cruiseLines.includes(i)}
         handleChange={(e) => handleFilterChange('cruiseLines', e)}
+      />
+
+      <OptionsSelector
+        label='Duration'
+        type='radio'
+        options={durationOptions}
+        isChecked={(i: number) => filters.duration === i}
+        handleChange={(e) => handleFilterChange('duration', e)}
       />
     </>
   );
