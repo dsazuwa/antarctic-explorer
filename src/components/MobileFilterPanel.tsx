@@ -8,6 +8,7 @@ import {
   SheetTrigger,
 } from '@/components/ui/sheet';
 import useWindowWidth from '@/hooks/useWindowWidth';
+import { resetFilters, useAppDispatch } from '@/store';
 import ClearFilters from './ClearFilters';
 import FilterPanel from './FilterPanel';
 import { Button } from './ui/button';
@@ -15,10 +16,15 @@ import { Button } from './ui/button';
 function MobileFilterPanel() {
   const [open, setOpen] = useState(false);
   const windowWidth = useWindowWidth();
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     if (windowWidth && windowWidth >= 1024) setOpen(false);
   }, [windowWidth]);
+
+  const handleClearFilters = () => {
+    dispatch(resetFilters());
+  };
 
   return (
     <div className='flex flex-row justify-between py-2 text-xxs font-semibold sm:text-xs lg:hidden'>
@@ -51,6 +57,7 @@ function MobileFilterPanel() {
                 type='submit'
                 variant='white'
                 className='mr-3 px-8 uppercase'
+                onClick={handleClearFilters}
               >
                 Clear all filters
               </Button>
