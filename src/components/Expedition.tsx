@@ -2,6 +2,7 @@ import DurationIcon from '@/assets/icons/DurationIcon';
 import PriceTagIcon from '@/assets/icons/PriceTagIcon';
 import { Card, CardTitle } from '@/components/ui/card';
 import { TCruiseLine, TExpedition } from '@/lib/type';
+import { formatPrice } from '@/lib/utils';
 import InfoDisplay from './InfoDisplay';
 
 type ExpeditionProps = {
@@ -58,14 +59,3 @@ function Expedition({ expedition, cruiseLine }: ExpeditionProps) {
 }
 
 export default Expedition;
-
-const formatPrice = (price: number) => {
-  const hasDecimal = price % 1 !== 0;
-
-  return price.toLocaleString('en-US', {
-    style: 'currency',
-    currency: 'USD',
-    minimumFractionDigits: hasDecimal ? 2 : 0,
-    maximumFractionDigits: hasDecimal ? 2 : 0,
-  });
-};
