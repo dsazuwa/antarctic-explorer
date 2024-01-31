@@ -28,6 +28,14 @@ type FilterAction =
   | { filterType: 'startDate' | 'endDate'; value: Date }
   | { filterType: 'cruiseLines' | 'duration' | 'capacity'; value: number };
 
+const initalFilterState: FilterState = {
+  startDate: undefined,
+  endDate: undefined,
+  cruiseLines: [],
+  capacity: capacityOptions.length - 1,
+  duration: durationOptions.length - 1,
+};
+
 export const dataSlice = createSlice({
   name: 'dataSlice',
 
@@ -46,13 +54,7 @@ export const dataSlice = createSlice({
     selectedItemsPerPage: 1,
     selectedSort: 0,
 
-    filters: {
-      startDate: undefined,
-      endDate: undefined,
-      cruiseLines: [],
-      capacity: capacityOptions.length - 1,
-      duration: durationOptions.length - 1,
-    },
+    filters: initalFilterState,
   } as DataState,
 
   reducers: {
@@ -130,6 +132,10 @@ export const dataSlice = createSlice({
         // }
       }
     },
+
+    resetFilters: (state) => {
+      state.filters = initalFilterState;
+    },
   },
 });
 
@@ -140,7 +146,8 @@ export const {
   setExpeditions,
   setSortOption,
   setItemsPerPage,
-  filterExpeditions,
   navigateToNext,
   navigateToPrevious,
+  filterExpeditions,
+  resetFilters,
 } = dataSlice.actions;

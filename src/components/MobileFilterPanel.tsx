@@ -13,7 +13,6 @@ import FilterPanel from './FilterPanel';
 import { Button } from './ui/button';
 
 function MobileFilterPanel() {
-  const disabled = true;
   const [open, setOpen] = useState(false);
   const windowWidth = useWindowWidth();
 
@@ -66,7 +65,7 @@ function MobileFilterPanel() {
         </SheetContent>
       </Sheet>
 
-      <ClearFilters disabled={disabled} />
+      <ClearFilters />
     </div>
   );
 }
