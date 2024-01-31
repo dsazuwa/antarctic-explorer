@@ -1,6 +1,7 @@
 import getLayout from '@/Layout';
 import BottomNavigation from '@/components/BottomNavigation';
 import Expeditions from '@/components/Expeditions';
+import FilterChips from '@/components/FilterChips';
 import MobileFilterPanel from '@/components/MobileFilterPanel';
 import SideFilterPanel from '@/components/SideFilterPanel';
 import SortHeader from '@/components/SortHeader';
@@ -11,7 +12,7 @@ export default function ExpeditionPage() {
 
   return (
     <div className='mx-auto w-full max-w-screen-lg'>
-      <div className='flex h-14 items-center justify-center p-2 text-base font-bold text-navy sm:p-4 sm:text-lg md:text-xl'>
+      <div className='flex h-14 items-center justify-center py-1 text-base font-bold text-navy sm:p-4 sm:text-lg md:text-xl'>
         Expeditions
       </div>
 
@@ -23,6 +24,8 @@ export default function ExpeditionPage() {
           className='px-4 lg:w-[calc(100%-300px)] lg:space-y-0 lg:px-2'
         >
           <MobileFilterPanel />
+
+          <FilterChips />
 
           <SortHeader />
 
