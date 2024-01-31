@@ -13,17 +13,19 @@ function Expedition({ expedition, cruiseLine }: ExpeditionProps) {
   const { name, duration, startingPrice, photoUrl } = expedition;
 
   return (
-    <Card className='flex w-full flex-col sm:h-64 sm:flex-row'>
+    <Card className=' sm:h-[416px]'>
       <img
         id='card-image'
-        className='sm:max-w-5/12 h-64 rounded-t-md object-cover sm:h-full sm:w-5/12 sm:rounded-none sm:rounded-l-md'
+        className='h-[256px] w-full rounded-t-md object-cover'
         src={photoUrl}
         alt={name}
       />
 
-      <div className='flex h-52 flex-col justify-between sm:h-full sm:flex-1'>
-        <div className='flex flex-row items-center justify-between p-6'>
-          <CardTitle className='mr-2 text-primary'>{name}</CardTitle>
+      <div className='flex h-[160px] flex-col sm:flex-1'>
+        <div className='flex flex-row items-center justify-between p-4 pt-6'>
+          <CardTitle className='mr-2 line-clamp-3 text-primary'>
+            {name}
+          </CardTitle>
 
           <img
             id='card-image'
@@ -33,7 +35,7 @@ function Expedition({ expedition, cruiseLine }: ExpeditionProps) {
           />
         </div>
 
-        <span className='mx-4 mb-4 flex flex-row space-x-6 border-t-2 border-solid border-gray-200 pt-4'>
+        <span className='mx-4 mb-4 mt-auto flex flex-row space-x-6 border-t-2 border-solid border-gray-200 pt-4'>
           {startingPrice && (
             <InfoDisplay
               Icon={PriceTagIcon}
