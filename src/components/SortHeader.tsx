@@ -13,7 +13,7 @@ function SortHeader() {
         <div className='mr-1 font-semibold'>Sort</div>
 
         <select
-          className='select select-xs px-1 py-2'
+          className='select select-xs px-1 py-1'
           value={selectedSort}
           onChange={(e) =>
             dispatch(setSortOption(parseInt(e.target.value, 10)))

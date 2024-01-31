@@ -51,7 +51,7 @@ function Expeditions() {
   return (
     <div
       id='expeditions-list'
-      className='flex flex-col items-center space-y-6 overflow-y-auto'
+      className='flex flex-col items-center space-y-6 overflow-y-auto py-1'
     >
       {data.map((expedition, index) => (
         <Expedition
