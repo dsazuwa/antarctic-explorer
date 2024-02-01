@@ -48,6 +48,10 @@ function Expeditions() {
     fetchExpeditions,
   ]);
 
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [currentPage]);
+
   return (
     <div
       id='expeditions-list'

@@ -12,7 +12,7 @@ export default function ExpeditionPage() {
 
   return (
     <div className='mx-auto w-full max-w-screen-lg'>
-      <div className='flex h-14 items-center justify-center py-1 text-base font-bold text-navy sm:p-4 sm:text-lg md:text-xl'>
+      <div className='flex h-10 items-center justify-center text-base font-bold text-navy sm:text-lg md:text-xl'>
         Expeditions
       </div>
 
