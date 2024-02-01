@@ -23,17 +23,15 @@ function Expedition({ expedition, cruiseLine }: ExpeditionProps) {
       />
 
       <div className='flex h-[160px] flex-col sm:flex-1'>
-        <div className='flex flex-row items-center justify-between p-4 pt-6'>
-          <CardTitle className='mr-2 line-clamp-3 text-primary'>
-            {name}
-          </CardTitle>
-
+        <div className='flex flex-row p-4 pt-6'>
           <img
             id='card-image'
-            className='h-5 sm:h-8'
+            className='mr-2 h-5 sm:h-8'
             src={cruiseLine.logo}
             alt={`${cruiseLine.name} logo`}
           />
+
+          <CardTitle className='line-clamp-3 text-primary'>{name}</CardTitle>
         </div>
 
         <span className='mx-4 mb-4 mt-auto flex flex-row space-x-6 border-t-2 border-solid border-gray-200 pt-4'>
