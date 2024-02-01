@@ -1,6 +1,6 @@
 import { ExpeditionSortType, RangedFilterOption } from './type';
 
-export const itemsPerPageOptions = [5, 10, 15, 20];
+export const itemsPerPageOptions = [6, 12, 18, 24];
 
 export const durationOptions: RangedFilterOption = [
   { displayName: '1 - 7 days', min: 1, max: 7 },

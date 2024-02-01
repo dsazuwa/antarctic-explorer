@@ -46,12 +46,12 @@ export const dataSlice = createSlice({
     expeditions: {
       data: [],
       currentPage: 0,
-      itemsPerPage: 5,
+      itemsPerPage: 6,
       totalItems: 0,
       totalPages: 0,
     },
 
-    selectedItemsPerPage: 1,
+    selectedItemsPerPage: 0,
     selectedSort: 0,
 
     filters: initalFilterState,
