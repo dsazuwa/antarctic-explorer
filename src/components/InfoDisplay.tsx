@@ -19,11 +19,11 @@ function InfoDisplay({
         <Icon className='text-muted-foregound h-3 w-3 sm:h-4 sm:w-4' />
       </div>
 
-      <div className='text-xxs font-semibold text-gray-400'>
+      <div className='text-[8px] font-semibold text-gray-400'>
         <div>{primaryLabel}</div>
 
         <div className='items-baseline'>
-          <span className='mr-1 text-xs text-black'>{value}</span>
+          <span className='mr-1 text-[10px] text-black'>{value}</span>
           {secondaryLabel && <span>{secondaryLabel}</span>}
         </div>
       </div>
