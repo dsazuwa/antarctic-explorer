@@ -13,10 +13,10 @@ type ExpeditionProps = {
 };
 
 function Expedition({ expedition, cruiseLine }: ExpeditionProps) {
-  const { name, duration, startingPrice, photoUrl } = expedition;
+  const { name, duration, startingPrice, nearestDate, photoUrl } = expedition;
 
   return (
-    <Card className=' sm:h-[404px]'>
+    <Card className=' sm:h-[408px]'>
       <img
         id='card-image'
         className='h-[256px] w-full rounded-t-md object-cover'
@@ -24,7 +24,7 @@ function Expedition({ expedition, cruiseLine }: ExpeditionProps) {
         alt={name}
       />
 
-      <div className='flex h-[148px] flex-col sm:flex-1'>
+      <div className='flex h-[152px] flex-col sm:flex-1'>
         <div className='flex flex-row p-4 pt-6'>
           <img
             id='card-image'
@@ -38,7 +38,7 @@ function Expedition({ expedition, cruiseLine }: ExpeditionProps) {
           </div>
         </div>
 
-        <span className='mx-4 mb-6 mt-auto grid grid-cols-3 border-t-2 border-solid border-gray-200 pt-4'>
+        <span className='mx-4 mb-6 mt-auto grid grid-cols-3 border-t-2 border-solid border-gray-200 pt-6'>
           <InfoDisplay
             Icon={DurationIcon}
             primaryLabel='Duration'
@@ -48,20 +48,23 @@ function Expedition({ expedition, cruiseLine }: ExpeditionProps) {
 
           <InfoDisplay
             Icon={CalendarIcon}
-            primaryLabel='Departs'
-            value='03/11/24'
+            primaryLabel='Departure'
+            value={
+              nearestDate === null
+                ? 'none'
+                : new Date(nearestDate).toLocaleDateString('en-US', {
+                    year: '2-digit',
+                    month: '2-digit',
+                    day: '2-digit',
+                  })
+            }
           />
-
-          {startingPrice ? (
-            <InfoDisplay
-              Icon={PriceTagIcon}
-              primaryLabel='Price from'
-              secondaryLabel='pp'
-              value={formatPrice(startingPrice)}
-            />
-          ) : (
-            <div></div>
-          )}
+          <InfoDisplay
+            Icon={PriceTagIcon}
+            primaryLabel='Price from'
+            secondaryLabel='pp'
+            value={startingPrice == null ? '' : formatPrice(startingPrice)}
+          />
         </span>
       </div>
     </Card>

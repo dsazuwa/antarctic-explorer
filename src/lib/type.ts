@@ -23,6 +23,7 @@ export type TExpedition = {
   departingFrom: string;
   arrivingAt: string;
   duration: string;
+  nearestDate: string | null;
   startingPrice: number | null;
   photoUrl: string;
 };
@@ -50,7 +51,7 @@ export type RangedFilterOption = {
 
 export type ExpeditionSortType = {
   displayText: string;
-  sort: 'cruiseLine' | 'startingPrice' | 'name'; //  | 'departure';
+  sort: 'cruiseLine' | 'name' | 'nearestDate' | 'startingPrice';
   dir: 'asc' | 'desc';
 };
 

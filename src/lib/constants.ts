@@ -29,18 +29,16 @@ export const sortOptions: ExpeditionSortType[] = [
     sort: 'cruiseLine',
     dir: 'desc',
   },
-
-  // {
-  //   displayText: 'Departure Date (near to far)',
-  //   sort: 'departure',
-  //   dir: 'asc',
-  // },
-  // {
-  //   displayText: 'Departure Date (far to near)',
-  //   sort: 'departure',
-  //   dir: 'desc',222222
-  // },
-
+  {
+    displayText: 'Departure Date (near to far)',
+    sort: 'nearestDate',
+    dir: 'asc',
+  },
+  {
+    displayText: 'Departure Date (far to near)',
+    sort: 'nearestDate',
+    dir: 'desc',
+  },
   {
     displayText: 'Name (A-Z)',
     sort: 'name',
