@@ -48,29 +48,23 @@ export const dataApi = createApi({
         sort?: string;
         dir?: string;
         cruiseLines?: string;
+        'capacity.min'?: number;
+        'capacity.max'?: number;
         'duration.min'?: number;
         'duration.max'?: number;
       }
     >({
       query: (args) => {
-        const { page, size, sort, dir, cruiseLines } = args;
+        const { sort, dir, cruiseLines, ...rest } = args;
 
         return {
           url: '/expeditions',
           method: 'GET',
           params: {
-            ...(page !== undefined && { page }),
-            ...(size !== undefined && { size: size }),
             ...(sort && { sort }),
             ...(dir && { dir }),
             ...(cruiseLines && { cruiseLines }),
-
-            ...(args['duration.min'] !== undefined && {
-              'duration.min': args['duration.min'],
-            }),
-            ...(args['duration.max'] !== undefined && {
-              'duration.max': args['duration.max'],
-            }),
+            ...rest,
           },
         };
       },

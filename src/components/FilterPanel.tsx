@@ -1,6 +1,6 @@
 import { ChangeEvent } from 'react';
 
-import { durationOptions } from '@/lib/constants';
+import { capacityOptions, durationOptions } from '@/lib/constants';
 import { filterExpeditions, useAppDispatch, useAppSelector } from '@/store';
 import { DatePickerWithRange } from './DatePickerWithRange';
 import OptionHeader from './OptionHeader';
@@ -11,7 +11,7 @@ function FilterPanel() {
   const { cruiseLineOptions, filters } = useAppSelector((state) => state.state);
 
   const handleFilterChange = (
-    filterType: 'cruiseLines' | 'duration',
+    filterType: 'cruiseLines' | 'capacity' | 'duration',
     event: ChangeEvent<HTMLInputElement>,
   ) => {
     dispatch(
@@ -29,20 +29,20 @@ function FilterPanel() {
         <DatePickerWithRange />
       </div>
 
-      {/* <OptionsSelector
-          label='Ship capacity'
-          type='radio'
-          options={capacityOptions}
-          isChecked={(i: number) => filters.cruiseLines.includes(i)}
-          handleChange={(e) => handleFilterChange('capacity', e)}
-      /> */}
-
       <OptionsSelector
         label='Cruise lines'
         type='checkbox'
         options={cruiseLineOptions}
         isChecked={(i: number) => filters.cruiseLines.includes(i)}
         handleChange={(e) => handleFilterChange('cruiseLines', e)}
+      />
+
+      <OptionsSelector
+        label='Ship capacity'
+        type='radio'
+        options={capacityOptions}
+        isChecked={(i: number) => filters.capacity === i}
+        handleChange={(e) => handleFilterChange('capacity', e)}
       />
 
       <OptionsSelector

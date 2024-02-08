@@ -119,17 +119,12 @@ export const dataSlice = createSlice({
           };
           break;
 
+        case 'capacity':
         case 'duration':
           if (value < 0 || value > durationOptions.length - 1) return;
           state.expeditions.currentPage = 0;
           state.filters = { ...state.filters, [filterType]: value };
           break;
-
-        // case 'capacity': {
-        //   if (value < 0 || value > capacityOptions.length - 1) return;
-        //   state.currentPage = 1;
-        //   state.filters = { ...state.filters, [filterType]: value };
-        // }
       }
     },
 

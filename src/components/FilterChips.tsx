@@ -1,31 +1,38 @@
-import { durationOptions } from '@/lib/constants';
+import clsx from 'clsx';
+
+import { capacityOptions, durationOptions } from '@/lib/constants';
+import { RangedFilterOption } from '@/lib/type';
 import { filterExpeditions, useAppDispatch, useAppSelector } from '@/store';
 import Chip from './Chip';
-import clsx from 'clsx';
 
 function FilterChips() {
   const dispatch = useAppDispatch();
   const {
     cruiseLineOptions,
-    filters: { cruiseLines, duration },
+    filters: { cruiseLines, capacity, duration },
   } = useAppSelector((s) => s.state);
 
-  const handleCruiseLineClick = (value: number) => {
+  const handleCruiseLine = (value: number) => {
     dispatch(filterExpeditions({ filterType: 'cruiseLines', value }));
   };
 
-  const handleDurationClick = () => {
+  const handleRadio = (
+    filterType: 'duration' | 'capacity',
+    options: RangedFilterOption,
+  ) => {
     dispatch(
       filterExpeditions({
-        filterType: 'duration',
-        value: durationOptions.length - 1,
+        filterType,
+        value: options.length - 1,
       }),
     );
   };
 
-  const isCruiseFiltered = cruiseLines.length > 0;
-  const isDurationFIltered = duration !== durationOptions.length - 1;
-  const isFiltered = isCruiseFiltered || isDurationFIltered;
+  const isFilteredByCruise = cruiseLines.length > 0;
+  const isFIlteredByCapacity = capacity !== capacityOptions.length - 1;
+  const isFIlteredByDuration = duration !== durationOptions.length - 1;
+  const isFiltered =
+    isFilteredByCruise || isFIlteredByCapacity || isFIlteredByDuration;
 
   return (
     <div
@@ -34,19 +41,26 @@ function FilterChips() {
         { hidden: !isFiltered },
       )}
     >
-      {isCruiseFiltered &&
+      {isFilteredByCruise &&
         cruiseLines.map((x, i) => (
           <Chip
             key={`cruiseLineChip${i}`}
             label={cruiseLineOptions[x].displayName}
-            handleClick={() => handleCruiseLineClick(x)}
+            handleClick={() => handleCruiseLine(x)}
           />
         ))}
 
-      {isDurationFIltered && (
+      {isFIlteredByCapacity && (
+        <Chip
+          label={`Capacity: ${capacityOptions[capacity].displayName}`}
+          handleClick={() => handleRadio('capacity', capacityOptions)}
+        />
+      )}
+
+      {isFIlteredByDuration && (
         <Chip
           label={`Duration: ${durationOptions[duration].displayName}`}
-          handleClick={handleDurationClick}
+          handleClick={() => handleRadio('duration', durationOptions)}
         />
       )}
     </div>

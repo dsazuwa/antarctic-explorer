@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 
 import {
+  capacityOptions,
   durationOptions,
   itemsPerPageOptions,
   sortOptions,
@@ -21,6 +22,14 @@ function Expeditions() {
   const [fetchExpeditions] = useLazyGetExpeditionsQuery();
 
   useEffect(() => {
+    const capacityFillter =
+      filters.capacity !== capacityOptions.length - 1
+        ? {
+            'capacity.min': capacityOptions[filters.capacity].min,
+            'capacity.max': capacityOptions[filters.capacity].max,
+          }
+        : {};
+
     const durationFilter =
       filters.duration !== durationOptions.length - 1
         ? {
@@ -37,6 +46,7 @@ function Expeditions() {
       cruiseLines: filters.cruiseLines
         .map((x) => cruiseLineOptions[x].displayName)
         .join(','),
+      ...capacityFillter,
       ...durationFilter,
     });
   }, [
