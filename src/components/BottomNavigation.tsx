@@ -35,7 +35,10 @@ function BottomNavigation() {
   return (
     <div className='flex flex-col-reverse items-center py-4 text-xs sm:grid sm:grid-cols-3'>
       <div className='flex flex-row items-center space-x-2'>
-        <Label htmlFor='items per page' className='text-xs'>
+        <Label
+          htmlFor='items per page'
+          className='text-xs font-semibold text-slate-500'
+        >
           Items per page
         </Label>
 
@@ -74,7 +77,7 @@ function BottomNavigation() {
           onClick={() => dispatch(navigateToPrevious())}
         />
 
-        <div className='flex items-center px-1 text-center text-xs font-medium leading-none'>
+        <div className='flex items-center px-1 text-center text-xs font-semibold leading-none text-slate-500'>
           {`Page ${currentPage + 1} of ${totalPages}`}
         </div>
 
