@@ -2,15 +2,25 @@ import clsx from 'clsx';
 
 import { capacityOptions, durationOptions } from '@/lib/constants';
 import { RangedFilterOption } from '@/lib/type';
-import { filterExpeditions, useAppDispatch, useAppSelector } from '@/store';
+import { formatDate } from '@/lib/utils';
+import {
+  filterExpeditions,
+  resetDateFilters,
+  useAppDispatch,
+  useAppSelector,
+} from '@/store';
 import Chip from './Chip';
 
 function FilterChips() {
   const dispatch = useAppDispatch();
   const {
     cruiseLineOptions,
-    filters: { cruiseLines, capacity, duration },
+    filters: { startDate, endDate, cruiseLines, capacity, duration },
   } = useAppSelector((s) => s.state);
+
+  const handleDate = () => {
+    dispatch(resetDateFilters());
+  };
 
   const handleCruiseLine = (value: number) => {
     dispatch(filterExpeditions({ filterType: 'cruiseLines', value }));
@@ -28,11 +38,17 @@ function FilterChips() {
     );
   };
 
+  const isFilteredByStartDate = startDate !== undefined;
+  const isFilteredByEndDate = endDate !== undefined;
   const isFilteredByCruise = cruiseLines.length > 0;
   const isFIlteredByCapacity = capacity !== capacityOptions.length - 1;
   const isFIlteredByDuration = duration !== durationOptions.length - 1;
   const isFiltered =
-    isFilteredByCruise || isFIlteredByCapacity || isFIlteredByDuration;
+    isFilteredByStartDate ||
+    isFilteredByEndDate ||
+    isFilteredByCruise ||
+    isFIlteredByCapacity ||
+    isFIlteredByDuration;
 
   return (
     <div
@@ -41,6 +57,13 @@ function FilterChips() {
         { hidden: !isFiltered },
       )}
     >
+      {isFilteredByStartDate && (
+        <Chip
+          label={`Start: ${formatDate(startDate, 'LLL dd, y')}${isFilteredByEndDate ? ` End: ${formatDate(endDate, 'LLL dd, y')}` : ''}`}
+          handleClick={() => handleDate()}
+        />
+      )}
+
       {isFilteredByCruise &&
         cruiseLines.map((x, i) => (
           <Chip

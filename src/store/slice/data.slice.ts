@@ -7,13 +7,16 @@ import {
   durationOptions,
   itemsPerPageOptions,
 } from '@/lib/constants';
-import {
-  ExpeditionsResponse,
-  FilterState,
-  MainResponse,
-  TCruiseLines,
-} from '@/lib/type';
+import { ExpeditionsResponse, MainResponse, TCruiseLines } from '@/lib/type';
 import { toggleIndex } from '@/lib/utils';
+
+export type FilterState = {
+  startDate: Date | undefined;
+  endDate: Date | undefined;
+  cruiseLines: number[];
+  capacity: number;
+  duration: number;
+};
 
 export type DataState = {
   cruiseLines: TCruiseLines;
@@ -131,6 +134,14 @@ export const dataSlice = createSlice({
     resetFilters: (state) => {
       state.filters = initalFilterState;
     },
+
+    resetDateFilters: (state) => {
+      state.filters = {
+        ...state.filters,
+        startDate: undefined,
+        endDate: undefined,
+      };
+    },
   },
 });
 
@@ -145,4 +156,5 @@ export const {
   navigateToPrevious,
   filterExpeditions,
   resetFilters,
+  resetDateFilters,
 } = dataSlice.actions;

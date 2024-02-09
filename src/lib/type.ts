@@ -54,11 +54,3 @@ export type ExpeditionSortType = {
   sort: 'cruiseLine' | 'name' | 'nearestDate' | 'startingPrice';
   dir: 'asc' | 'desc';
 };
-
-export type FilterState = {
-  startDate: string | undefined;
-  endDate: string | undefined;
-  cruiseLines: number[];
-  capacity: number;
-  duration: number;
-};

@@ -6,6 +6,7 @@ import {
   itemsPerPageOptions,
   sortOptions,
 } from '@/lib/constants';
+import { formatDate } from '@/lib/utils';
 import { useAppSelector, useLazyGetExpeditionsQuery } from '@/store';
 import Expedition from './Expedition';
 
@@ -22,25 +23,37 @@ function Expeditions() {
   const [fetchExpeditions] = useLazyGetExpeditionsQuery();
 
   useEffect(() => {
+    const {
+      startDate,
+      endDate,
+      cruiseLines: linesFilter,
+      capacity,
+      duration,
+    } = filters;
+
     const startFilter =
-      filters.startDate !== undefined ? { startDate: filters.startDate } : {};
+      startDate !== undefined
+        ? { startDate: encodeURIComponent(formatDate(startDate, 'yyyy-MM-dd')) }
+        : {};
 
     const endFilter =
-      filters.endDate !== undefined ? { endDate: filters.endDate } : {};
+      endDate !== undefined
+        ? { endDate: encodeURIComponent(formatDate(endDate, 'yyyy-MM-dd')) }
+        : {};
 
     const capacityFillter =
-      filters.capacity !== capacityOptions.length - 1
+      capacity !== capacityOptions.length - 1
         ? {
-            'capacity.min': capacityOptions[filters.capacity].min,
-            'capacity.max': capacityOptions[filters.capacity].max,
+            'capacity.min': capacityOptions[capacity].min,
+            'capacity.max': capacityOptions[capacity].max,
           }
         : {};
 
     const durationFilter =
-      filters.duration !== durationOptions.length - 1
+      duration !== durationOptions.length - 1
         ? {
-            'duration.min': durationOptions[filters.duration].min,
-            'duration.max': durationOptions[filters.duration].max,
+            'duration.min': durationOptions[duration].min,
+            'duration.max': durationOptions[duration].max,
           }
         : {};
 
@@ -49,7 +62,7 @@ function Expeditions() {
       size: itemsPerPageOptions[selectedItemsPerPage],
       sort: selectedSort === 0 ? '' : sortOptions[selectedSort].sort,
       dir: sortOptions[selectedSort].dir === 'asc' ? '' : 'desc',
-      cruiseLines: filters.cruiseLines
+      cruiseLines: linesFilter
         .map((x) => cruiseLineOptions[x].displayName)
         .join(','),
       ...startFilter,
