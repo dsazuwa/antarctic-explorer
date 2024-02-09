@@ -81,7 +81,7 @@ function Expeditions() {
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
-  }, [currentPage]);
+  }, [currentPage, selectedItemsPerPage]);
 
   return (
     <div

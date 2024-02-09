@@ -1,12 +1,29 @@
+import {
+  ChevronLeftIcon,
+  ChevronRightIcon,
+  DoubleArrowLeftIcon,
+  DoubleArrowRightIcon,
+} from '@radix-ui/react-icons';
+
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
 import { itemsPerPageOptions } from '@/lib/constants';
 import {
+  navigateToFirst,
+  navigateToLast,
   navigateToNext,
   navigateToPrevious,
   setItemsPerPage,
   useAppDispatch,
   useAppSelector,
 } from '@/store';
-import BottomNavButton from './BottomNavButton';
+import IconButton from './IconButton';
+import { Label } from './ui/label';
 
 function BottomNavigation() {
   const dispatch = useAppDispatch();
@@ -16,43 +33,62 @@ function BottomNavigation() {
   } = useAppSelector((s) => s.state);
 
   return (
-    <div className='flex w-full flex-col items-center space-y-2 p-4 text-xxs sm:relative sm:space-y-0 sm:p-6'>
-      <div className='flex flex-row justify-center space-x-2'>
-        <BottomNavButton
+    <div className='flex flex-col-reverse items-center py-4 text-xs sm:grid sm:grid-cols-3'>
+      <div className='flex flex-row items-center space-x-2'>
+        <Label htmlFor='items per page' className='text-xs'>
+          Items per page
+        </Label>
+
+        <Select
+          onValueChange={(i) => dispatch(setItemsPerPage(Number.parseInt(i)))}
+          value={selectedItemsPerPage + ''}
+          defaultValue={selectedItemsPerPage + ''}
+        >
+          <SelectTrigger
+            id='items per page'
+            className='h-[28px] w-16 text-xxs font-semibold'
+          >
+            <SelectValue defaultValue={selectedItemsPerPage} />
+          </SelectTrigger>
+
+          <SelectContent>
+            {itemsPerPageOptions.map((o, i) => (
+              <SelectItem key={`option${i}`} value={i + ''}>
+                {o}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+      </div>
+
+      <div className='mb-2 flex flex-row justify-center space-x-1 sm:mb-0'>
+        <IconButton
+          Icon={DoubleArrowLeftIcon}
+          disabled={currentPage === 0}
+          onClick={() => dispatch(navigateToFirst())}
+        />
+
+        <IconButton
+          Icon={ChevronLeftIcon}
           disabled={currentPage === 0}
           onClick={() => dispatch(navigateToPrevious())}
-        >
-          <path d='M7.828 11H20v2H7.828l5.364 5.364-1.414 1.414L4 12l7.778-7.778 1.414 1.414z'></path>
-        </BottomNavButton>
+        />
 
-        <div className='flex items-center text-center'>
+        <div className='flex items-center px-1 text-center text-xs font-medium leading-none'>
           {`Page ${currentPage + 1} of ${totalPages}`}
         </div>
 
-        <BottomNavButton
-          disabled={currentPage + 1 === totalPages}
+        <IconButton
+          Icon={ChevronRightIcon}
+          disabled={currentPage === totalPages - 1}
           onClick={() => dispatch(navigateToNext())}
-        >
-          <path d='M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z'></path>
-        </BottomNavButton>
-      </div>
+        />
 
-      <div className='flex flex-row items-center space-x-2 py-1 sm:absolute sm:right-6'>
-        <div>Items per page</div>
-
-        <select
-          className='select select-bordered select-xs p-1'
-          value={selectedItemsPerPage}
-          onChange={(e) =>
-            dispatch(setItemsPerPage(parseInt(e.target.value, 10)))
-          }
-        >
-          {itemsPerPageOptions.map((o, i) => (
-            <option key={`option${i}`} value={i}>
-              {o}
-            </option>
-          ))}
-        </select>
+        <IconButton
+          Icon={DoubleArrowRightIcon}
+          disabled={currentPage === totalPages - 1}
+          onClick={() => dispatch(navigateToLast())}
+        />
       </div>
     </div>
   );

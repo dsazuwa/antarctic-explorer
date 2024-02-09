@@ -91,6 +91,10 @@ export const dataSlice = createSlice({
       state.expeditions.currentPage = 0;
     },
 
+    navigateToFirst: (state) => {
+      state.expeditions.currentPage = 0;
+    },
+
     navigateToPrevious: (state) => {
       if (state.expeditions.currentPage === 0) return;
       state.expeditions.currentPage = state.expeditions.currentPage - 1;
@@ -100,6 +104,10 @@ export const dataSlice = createSlice({
       if (state.expeditions.currentPage + 1 === state.expeditions.totalPages)
         return;
       state.expeditions.currentPage = state.expeditions.currentPage + 1;
+    },
+
+    navigateToLast: (state) => {
+      state.expeditions.currentPage = state.expeditions.totalPages - 1;
     },
 
     filterExpeditions: (state, action: PayloadAction<FilterAction>) => {
@@ -152,8 +160,10 @@ export const {
   setExpeditions,
   setSortOption,
   setItemsPerPage,
-  navigateToNext,
+  navigateToFirst,
   navigateToPrevious,
+  navigateToNext,
+  navigateToLast,
   filterExpeditions,
   resetFilters,
   resetDateFilters,
