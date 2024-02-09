@@ -22,6 +22,12 @@ function Expeditions() {
   const [fetchExpeditions] = useLazyGetExpeditionsQuery();
 
   useEffect(() => {
+    const startFilter =
+      filters.startDate !== undefined ? { startDate: filters.startDate } : {};
+
+    const endFilter =
+      filters.endDate !== undefined ? { endDate: filters.endDate } : {};
+
     const capacityFillter =
       filters.capacity !== capacityOptions.length - 1
         ? {
@@ -46,6 +52,8 @@ function Expeditions() {
       cruiseLines: filters.cruiseLines
         .map((x) => cruiseLineOptions[x].displayName)
         .join(','),
+      ...startFilter,
+      ...endFilter,
       ...capacityFillter,
       ...durationFilter,
     });

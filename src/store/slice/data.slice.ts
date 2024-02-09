@@ -25,7 +25,7 @@ export type DataState = {
 };
 
 type FilterAction =
-  | { filterType: 'startDate' | 'endDate'; value: Date }
+  | { filterType: 'startDate' | 'endDate'; value: string | undefined }
   | { filterType: 'cruiseLines' | 'duration' | 'capacity'; value: number };
 
 const initalFilterState: FilterState = {
@@ -103,11 +103,11 @@ export const dataSlice = createSlice({
       const { filterType, value } = action.payload;
 
       switch (filterType) {
-        // case 'startDate':
-        // case 'endDate':
-        //   state.currentPage = 0;
-        //   state.filters = { ...state.filters, [filterType]: value };
-        //   break;
+        case 'startDate':
+        case 'endDate':
+          state.expeditions.currentPage = 0;
+          state.filters = { ...state.filters, [filterType]: value };
+          break;
 
         case 'cruiseLines':
           if (value < 0 || value > state.cruiseLineOptions.length - 1) return;

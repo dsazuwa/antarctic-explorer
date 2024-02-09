@@ -56,8 +56,8 @@ export type ExpeditionSortType = {
 };
 
 export type FilterState = {
-  startDate: Date | undefined;
-  endDate: Date | undefined;
+  startDate: string | undefined;
+  endDate: string | undefined;
   cruiseLines: number[];
   capacity: number;
   duration: number;

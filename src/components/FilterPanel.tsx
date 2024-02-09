@@ -2,7 +2,7 @@ import { ChangeEvent } from 'react';
 
 import { capacityOptions, durationOptions } from '@/lib/constants';
 import { filterExpeditions, useAppDispatch, useAppSelector } from '@/store';
-import { DatePickerWithRange } from './DatePickerWithRange';
+import DatePicker from './DatePicker';
 import OptionHeader from './OptionHeader';
 import OptionsSelector from './OptionsSelector';
 
@@ -14,19 +14,15 @@ function FilterPanel() {
     filterType: 'cruiseLines' | 'capacity' | 'duration',
     event: ChangeEvent<HTMLInputElement>,
   ) => {
-    dispatch(
-      filterExpeditions({
-        filterType,
-        value: Number.parseInt(event.target.value),
-      }),
-    );
+    const value = Number.parseInt(event.target.value);
+    dispatch(filterExpeditions({ filterType, value }));
   };
 
   return (
     <>
       <div className='p-2'>
         <OptionHeader>Departure Dates</OptionHeader>
-        <DatePickerWithRange />
+        <DatePicker />
       </div>
 
       <OptionsSelector

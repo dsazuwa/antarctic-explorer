@@ -48,6 +48,8 @@ export const dataApi = createApi({
         sort?: string;
         dir?: string;
         cruiseLines?: string;
+        startDate?: string;
+        endDate?: string;
         'capacity.min'?: number;
         'capacity.max'?: number;
         'duration.min'?: number;
