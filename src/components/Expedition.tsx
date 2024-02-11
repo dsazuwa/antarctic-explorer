@@ -2,7 +2,6 @@ import { CalendarIcon } from '@radix-ui/react-icons';
 
 import DurationIcon from '@/assets/icons/DurationIcon';
 import PriceTagIcon from '@/assets/icons/PriceTagIcon';
-import { Card } from '@/components/ui/card';
 import { TCruiseLine, TExpedition } from '@/lib/type';
 import { formatPrice } from '@/lib/utils';
 import InfoDisplay from './InfoDisplay';
@@ -16,25 +15,27 @@ function Expedition({ expedition, cruiseLine }: ExpeditionProps) {
   const { name, duration, startingPrice, nearestDate, photoUrl } = expedition;
 
   return (
-    <Card className=' sm:h-[408px]'>
+    <div className='group rounded-xl hover:shadow-lg sm:h-[408px]'>
       <img
         id='card-image'
-        className='h-[256px] w-full rounded-t-md object-cover'
+        className='h-[256px] w-full rounded-t-xl object-cover'
         src={photoUrl}
         alt={name}
       />
 
-      <div className='flex h-[152px] flex-col sm:flex-1'>
-        <div className='flex flex-row p-4 pt-6'>
+      <div className='flex h-[152px] flex-col rounded-b-xl border sm:flex-1'>
+        <div className='flex flex-row p-4 pb-2 pt-6'>
           <img
             id='card-image'
-            className='mr-2 h-5 sm:h-8'
+            className='mr-2 h-6 sm:h-8'
             src={cruiseLine.logo}
             alt={`${cruiseLine.name} logo`}
           />
 
-          <div className='line-clamp-2 text-sm/[1rem] font-semibold text-primary'>
-            {name}
+          <div className='group-hover:underline'>
+            <div className='line-clamp-2 text-sm/[1rem] font-semibold text-primary'>
+              {name}
+            </div>
           </div>
         </div>
 
@@ -48,7 +49,7 @@ function Expedition({ expedition, cruiseLine }: ExpeditionProps) {
 
           <InfoDisplay
             Icon={CalendarIcon}
-            primaryLabel='Departure'
+            primaryLabel='First Departure'
             value={
               nearestDate === null
                 ? 'none'
@@ -59,15 +60,18 @@ function Expedition({ expedition, cruiseLine }: ExpeditionProps) {
                   })
             }
           />
-          <InfoDisplay
-            Icon={PriceTagIcon}
-            primaryLabel='Price from'
-            secondaryLabel='pp'
-            value={startingPrice == null ? '' : formatPrice(startingPrice)}
-          />
+
+          {startingPrice && (
+            <InfoDisplay
+              Icon={PriceTagIcon}
+              primaryLabel='Price from'
+              secondaryLabel='pp'
+              value={formatPrice(startingPrice)}
+            />
+          )}
         </span>
       </div>
-    </Card>
+    </div>
   );
 }
 

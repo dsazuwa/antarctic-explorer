@@ -15,7 +15,7 @@ function InfoDisplay({
 }: InfoDisplayProps) {
   return (
     <div className='flex flex-row items-center'>
-      <div className='mr-1 flex h-6 w-6 items-center justify-center rounded-full bg-muted sm:h-7 sm:w-7'>
+      <div className='mr-2 flex h-6 w-6 items-center justify-center rounded-full bg-muted sm:h-7 sm:w-7'>
         <Icon className='text-muted-foregound h-3 w-3 sm:h-4 sm:w-4' />
       </div>
 
