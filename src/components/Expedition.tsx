@@ -1,4 +1,5 @@
 import { CalendarIcon } from '@radix-ui/react-icons';
+import Link from 'next/link';
 
 import DurationIcon from '@/assets/icons/DurationIcon';
 import PriceTagIcon from '@/assets/icons/PriceTagIcon';
@@ -12,66 +13,69 @@ type ExpeditionProps = {
 };
 
 function Expedition({ expedition, cruiseLine }: ExpeditionProps) {
-  const { name, duration, startingPrice, nearestDate, photoUrl } = expedition;
+  const { id, name, duration, startingPrice, nearestDate, photoUrl } =
+    expedition;
 
   return (
-    <div className='group rounded-xl hover:shadow-lg sm:h-[408px]'>
-      <img
-        id='card-image'
-        className='h-[256px] w-full rounded-t-xl object-cover'
-        src={photoUrl}
-        alt={name}
-      />
+    <Link aria-label={name} href={`expeditions/${id}`}>
+      <div className='group rounded-xl hover:shadow-lg sm:h-[408px]'>
+        <img
+          id='card-image'
+          className='h-[256px] w-full rounded-t-xl object-cover'
+          src={photoUrl}
+          alt={name}
+        />
 
-      <div className='flex h-[152px] flex-col rounded-b-xl border sm:flex-1'>
-        <div className='flex flex-row p-4 pb-2 pt-6'>
-          <img
-            id='card-image'
-            className='mr-2 h-6 sm:h-8'
-            src={cruiseLine.logo}
-            alt={`${cruiseLine.name} logo`}
-          />
+        <div className='flex h-[152px] flex-col rounded-b-xl border sm:flex-1'>
+          <div className='flex flex-row p-4 pb-2 pt-6'>
+            <img
+              id='card-image'
+              className='mr-2 h-6 sm:h-8'
+              src={cruiseLine.logo}
+              alt={`${cruiseLine.name} logo`}
+            />
 
-          <div className='group-hover:underline'>
-            <div className='line-clamp-2 text-sm/[1rem] font-semibold text-primary'>
-              {name}
+            <div className='group-hover:underline'>
+              <div className='line-clamp-2 text-sm/[1rem] font-semibold text-primary'>
+                {name}
+              </div>
             </div>
           </div>
-        </div>
 
-        <span className='mx-4 mb-6 mt-auto grid grid-cols-3 border-t-2 border-solid border-gray-200 pt-6'>
-          <InfoDisplay
-            Icon={DurationIcon}
-            primaryLabel='Duration'
-            secondaryLabel='days'
-            value={duration}
-          />
-
-          <InfoDisplay
-            Icon={CalendarIcon}
-            primaryLabel='First Departure'
-            value={
-              nearestDate === null
-                ? 'none'
-                : new Date(nearestDate).toLocaleDateString('en-US', {
-                    year: '2-digit',
-                    month: '2-digit',
-                    day: '2-digit',
-                  })
-            }
-          />
-
-          {startingPrice && (
+          <span className='mx-4 mb-6 mt-auto grid grid-cols-3 border-t-2 border-solid border-gray-200 pt-6'>
             <InfoDisplay
-              Icon={PriceTagIcon}
-              primaryLabel='Price from'
-              secondaryLabel='pp'
-              value={formatPrice(startingPrice)}
+              Icon={DurationIcon}
+              primaryLabel='Duration'
+              secondaryLabel='days'
+              value={duration}
             />
-          )}
-        </span>
+
+            <InfoDisplay
+              Icon={CalendarIcon}
+              primaryLabel='First Departure'
+              value={
+                nearestDate === null
+                  ? 'none'
+                  : new Date(nearestDate).toLocaleDateString('en-US', {
+                      year: '2-digit',
+                      month: '2-digit',
+                      day: '2-digit',
+                    })
+              }
+            />
+
+            {startingPrice && (
+              <InfoDisplay
+                Icon={PriceTagIcon}
+                primaryLabel='Price from'
+                secondaryLabel='pp'
+                value={formatPrice(startingPrice)}
+              />
+            )}
+          </span>
+        </div>
       </div>
-    </div>
+    </Link>
   );
 }
 
