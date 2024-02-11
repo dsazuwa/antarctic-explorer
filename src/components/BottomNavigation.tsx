@@ -49,7 +49,7 @@ function BottomNavigation() {
         >
           <SelectTrigger
             id='items per page'
-            className='h-[28px] w-16 text-xxs font-semibold'
+            className='h-[28px] w-[64px] text-xxs font-semibold'
           >
             <SelectValue defaultValue={selectedItemsPerPage} />
           </SelectTrigger>
