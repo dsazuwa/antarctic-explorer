@@ -17,7 +17,7 @@ function ClearFilters() {
         duration === durationOptions.length - 1
       }
       size='xs'
-      className='px-3 capitalize'
+      className='h-[32px] px-3 capitalize'
       onClick={() => dispatch(resetFilters())}
     >
       Clear all filters

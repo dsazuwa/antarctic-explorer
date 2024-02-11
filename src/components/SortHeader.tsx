@@ -13,8 +13,8 @@ function SortHeader() {
   const { expeditions, selectedSort } = useAppSelector((s) => s.state);
 
   return (
-    <div className='flex items-center justify-between text-xxs sm:py-2 sm:text-xs'>
-      <div className='mr-2 font-semibold text-slate-500'>{`Showing ${expeditions.totalItems} expedition cruise(s)`}</div>
+    <div className='flex items-center justify-between py-2 text-xxs sm:py-0 sm:pb-2 sm:text-xs'>
+      <div className='mr-2 font-semibold text-slate-500'>{`Showing ${expeditions.totalItems} expedition(s)`}</div>
 
       <div className='flex flex-row items-center'>
         <div className='mr-1 font-semibold text-slate-500'>Sort</div>
