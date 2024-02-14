@@ -21,8 +21,8 @@ export const formatPrice = (price: number) => {
 };
 
 export const formatDate = (
-  date: Date,
-  formatStr: 'yyyy-MM-dd' | 'LLL dd, y',
+  date: Date | string,
+  formatStr: 'yyyy-MM-dd' | 'LLL dd, y' | 'LLL y',
 ) => {
   return format(date, formatStr);
 };
