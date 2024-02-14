@@ -20,16 +20,6 @@ export const capacityOptions: RangedFilterOption = [
 
 export const sortOptions: ExpeditionSortType[] = [
   {
-    displayText: 'Cruiselines (A-Z)',
-    sort: 'cruiseLine',
-    dir: 'asc',
-  },
-  {
-    displayText: 'Cruiselines (Z-A)',
-    sort: 'cruiseLine',
-    dir: 'desc',
-  },
-  {
     displayText: 'Departure Date (near to far)',
     sort: 'nearestDate',
     dir: 'asc',
@@ -47,6 +37,16 @@ export const sortOptions: ExpeditionSortType[] = [
   {
     displayText: 'Name (Z-A)',
     sort: 'name',
+    dir: 'desc',
+  },
+  {
+    displayText: 'Cruiselines (A-Z)',
+    sort: 'cruiseLine',
+    dir: 'asc',
+  },
+  {
+    displayText: 'Cruiselines (Z-A)',
+    sort: 'cruiseLine',
     dir: 'desc',
   },
   {
