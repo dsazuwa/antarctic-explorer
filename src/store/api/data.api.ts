@@ -5,9 +5,9 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { HYDRATE } from 'next-redux-wrapper';
 import { Action } from 'redux';
 
-import { ExpeditionsResponse, MainResponse } from '@/lib/type';
+import { MainResponse } from '@/lib/type';
 import { RootState } from '..';
-import { setData, setExpeditions } from '../slice/data.slice';
+import { setData } from '../slice/data.slice';
 
 const BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 
@@ -39,53 +39,7 @@ export const dataApi = createApi({
         }
       },
     }),
-
-    getExpeditions: builder.query<
-      ExpeditionsResponse,
-      {
-        page?: number;
-        size?: number;
-        sort?: string;
-        dir?: string;
-        cruiseLines?: string;
-        startDate?: string;
-        endDate?: string;
-        'capacity.min'?: number;
-        'capacity.max'?: number;
-        'duration.min'?: number;
-        'duration.max'?: number;
-      }
-    >({
-      query: (args) => {
-        const { sort, dir, cruiseLines, ...rest } = args;
-
-        return {
-          url: '/expeditions',
-          method: 'GET',
-          params: {
-            ...(sort && { sort }),
-            ...(dir && { dir }),
-            ...(cruiseLines && { cruiseLines }),
-            ...rest,
-          },
-        };
-      },
-
-      async onQueryStarted(arg, api) {
-        try {
-          const { data } = await api.queryFulfilled;
-          api.dispatch(setExpeditions(data));
-        } catch (e) {
-          console.error(e);
-        }
-      },
-    }),
   }),
 });
 
-export const {
-  useGetDataQuery,
-  useLazyGetDataQuery,
-  useGetExpeditionsQuery,
-  useLazyGetExpeditionsQuery,
-} = dataApi;
+export const { useGetDataQuery, useLazyGetDataQuery } = dataApi;

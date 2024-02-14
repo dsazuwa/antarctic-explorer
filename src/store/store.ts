@@ -4,17 +4,22 @@ import { createWrapper } from 'next-redux-wrapper';
 
 import { dataApi } from './api/data.api';
 import { dataReducer } from './slice/data.slice';
+import { expeditionApi } from './api/expedition.api';
 
 export const store = configureStore({
   devTools: process.env.NODE_ENV === 'development',
 
   reducer: {
     [dataApi.reducerPath]: dataApi.reducer,
+    [expeditionApi.reducerPath]: expeditionApi.reducer,
     state: dataReducer,
   },
 
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware({}).concat([dataApi.middleware]),
+    getDefaultMiddleware({}).concat([
+      dataApi.middleware,
+      expeditionApi.middleware,
+    ]),
 });
 
 setupListeners(store.dispatch);

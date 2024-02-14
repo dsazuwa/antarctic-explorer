@@ -28,6 +28,43 @@ export type TExpedition = {
   photoUrl: string;
 };
 
+export type TItinerary = {
+  day: string;
+  header: string;
+  content: string;
+};
+
+export type Vessel = {
+  id: number;
+  name: string;
+};
+
+export type TDeparture = {
+  name: string;
+  arrivingAt: string;
+  departingFrom: string;
+  startDate: string;
+  endDate: string;
+  startingPrice: number;
+  vessel: Vessel;
+};
+
+export type ExpeditionResponse = {
+  id: number;
+  name: string;
+  description: string;
+  highlights: string[];
+  departingFrom: string;
+  arrivingAt: string;
+  duration: string;
+  startingPrice: number;
+  photoUrl: string;
+  website: string;
+  vessels: Vessel[];
+  itinerary: TItinerary[];
+  departures: TDeparture[];
+};
+
 export type ExpeditionsResponse = {
   data: TExpedition[];
   itemsPerPage: number;
