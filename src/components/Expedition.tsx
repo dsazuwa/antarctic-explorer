@@ -21,7 +21,7 @@ function Expedition({ expedition, cruiseLine }: ExpeditionProps) {
       <div className='group rounded-xl hover:shadow-lg sm:h-[408px]'>
         <img
           id='card-image'
-          className='h-[256px] w-full rounded-t-xl object-cover'
+          className='h-[256px] w-full rounded-t-xl object-cover object-bottom'
           src={photoUrl}
           alt={name}
         />
@@ -52,7 +52,7 @@ function Expedition({ expedition, cruiseLine }: ExpeditionProps) {
 
             <InfoDisplay
               Icon={CalendarIcon}
-              primaryLabel='First Departure'
+              primaryLabel='First Sailing'
               value={
                 nearestDate === null
                   ? 'none'
