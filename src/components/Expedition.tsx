@@ -52,7 +52,7 @@ function Expedition({ expedition, cruiseLine }: ExpeditionProps) {
 
             <InfoDisplay
               Icon={CalendarIcon}
-              primaryLabel='First Sailing'
+              primaryLabel='Next Sailing'
               value={
                 nearestDate === null
                   ? 'none'
