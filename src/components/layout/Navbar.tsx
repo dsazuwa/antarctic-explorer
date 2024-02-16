@@ -6,7 +6,7 @@ import NavDrawer from './NavDrawer';
 function Navbar() {
   return (
     <>
-      <div className='fixed top-0 z-10 h-14 w-full bg-primary-foreground'>
+      <nav className='fixed top-0 z-10 h-14 w-full bg-primary-foreground'>
         <div className='ml-auto mr-auto flex w-full max-w-screen-lg flex-row px-4 py-2'>
           <NavDrawer />
 
@@ -30,7 +30,7 @@ function Navbar() {
             </Link>
           </div>
         </div>
-      </div>
+      </nav>
 
       <div className='mt-14' />
     </>
