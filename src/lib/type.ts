@@ -19,7 +19,7 @@ export type TExpedition = {
   cruiseLine: string;
   website: string;
   name: string;
-  description: string;
+  description: string[];
   departingFrom: string;
   arrivingAt: string;
   duration: string;
@@ -28,40 +28,57 @@ export type TExpedition = {
   photoUrl: string;
 };
 
-export type TItinerary = {
+export type TGallery = {
+  alt: string;
+  url: string;
+};
+
+export type TSchedule = {
   day: string;
   header: string;
-  content: string;
+  content: string[];
+};
+
+export type TItinerary = {
+  name: string;
+  startPort: string;
+  endPort: string;
+  duration: string;
+  mapUrl: string;
+  schedules: TSchedule[];
 };
 
 export type Vessel = {
-  id: number;
   name: string;
+  description: string[];
+  capacity: number;
+  cabins: number;
+  photoUrl: string;
+  website: string;
 };
 
 export type TDeparture = {
+  itineraryId: number;
+  vesselId: number;
   name: string;
-  arrivingAt: string;
-  departingFrom: string;
   startDate: string;
   endDate: string;
   startingPrice: number;
-  vessel: Vessel;
 };
 
 export type ExpeditionResponse = {
   id: number;
   name: string;
-  description: string;
+  description: string[];
   highlights: string[];
-  departingFrom: string;
-  arrivingAt: string;
   duration: string;
   startingPrice: number;
   photoUrl: string;
   website: string;
-  vessels: Vessel[];
-  itinerary: TItinerary[];
+  cruiseLine: { name: string; logo: string };
+  gallery: TGallery[];
+  vessels: { [id: number]: Vessel };
+  itinerary: { [id: number]: TItinerary };
   departures: TDeparture[];
 };
 
