@@ -1,5 +1,6 @@
 import { ExpeditionResponse } from '@/lib/type';
 import Header from './Header';
+import Overview from './Overview';
 
 type Props = {
   expedition: ExpeditionResponse;
@@ -8,12 +9,15 @@ type Props = {
 export default function Expedition({ expedition }: Props) {
   const {
     name,
+    description,
+    highlights,
     duration,
     startingPrice,
     cruiseLine,
     departures,
     vessels,
     photoUrl,
+    gallery,
   } = expedition;
 
   return (
@@ -26,6 +30,12 @@ export default function Expedition({ expedition }: Props) {
         departures={departures}
         vessels={vessels}
         photoUrl={photoUrl}
+      />
+
+      <Overview
+        description={description}
+        highlights={highlights}
+        gallery={gallery}
       />
     </div>
   );
