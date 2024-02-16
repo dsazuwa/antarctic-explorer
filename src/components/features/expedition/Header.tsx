@@ -11,7 +11,7 @@ type Props = {
   vessels: { [id: number]: Vessel };
 };
 
-export default function ExpeditionHeader({
+export default function Header({
   name,
   duration,
   startingPrice,
@@ -41,24 +41,24 @@ export default function ExpeditionHeader({
             <div className='text-xs font-medium text-gray-400'>
               {cruiseLine}
             </div>
-            <div className='text-2xl font-semibold'>{name}</div>
+            <h1 className='text-2xl font-semibold'>{name}</h1>
           </div>
 
-          <div className=''>
-            <div className='text-xxs'>Price from</div>
+          <div>
+            <div className='text-xxs text-gray-200'>Price from</div>
             <div className='text-md font-medium'>
               {formatPrice(startingPrice)}
             </div>
           </div>
 
-          <div className='text-xxs text-gray-200'>
-            <div>{`Departure Date(s)`}</div>
+          <div className='text-xxs'>
+            <div className='text-gray-200'>{`Departure Date(s)`}</div>
             <div className='font-medium'>{getDepartureDatesLabel()}</div>
           </div>
 
           <div className='flex flex-row space-x-8 text-xxs'>
             <div>
-              <div className='text-xxs text-gray-200'>Ship</div>
+              <div className='text-gray-200'>Ship</div>
               {Object.values(vessels)
                 .map((vessel) => vessel.name)
                 .map((v, i) => (
@@ -76,7 +76,7 @@ export default function ExpeditionHeader({
         </div>
 
         <img
-          className='h-[240px] object-cover object-bottom sm:h-[400px] sm:w-3/5'
+          className='aspect-video object-cover object-bottom sm:w-3/5 sm:pr-4 lg:pr-0'
           src={photoUrl}
         />
       </div>

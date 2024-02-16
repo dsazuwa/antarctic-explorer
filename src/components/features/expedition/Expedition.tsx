@@ -1,5 +1,5 @@
 import { ExpeditionResponse } from '@/lib/type';
-import ExpeditionHeader from './ExpeditionHeader';
+import Header from './Header';
 
 type Props = {
   expedition: ExpeditionResponse;
@@ -18,7 +18,7 @@ export default function Expedition({ expedition }: Props) {
 
   return (
     <div>
-      <ExpeditionHeader
+      <Header
         name={name}
         duration={duration}
         startingPrice={startingPrice}
