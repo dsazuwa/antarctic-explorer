@@ -2,6 +2,7 @@ import getLayout from '@/Layout';
 import BottomNavigation from '@/components/BottomNavigation';
 import Expeditions from '@/components/Expeditions';
 import FilterChips from '@/components/FilterChips';
+import Loader from '@/components/Loader';
 import MobileFilterPanel from '@/components/MobileFilterPanel';
 import SideFilterPanel from '@/components/SideFilterPanel';
 import SortHeader from '@/components/SortHeader';
@@ -29,7 +30,7 @@ export default function ExpeditionPage() {
 
           <SortHeader />
 
-          {isLoading ? <></> : <Expeditions />}
+          {isLoading ? <Loader /> : <Expeditions />}
 
           <BottomNavigation />
         </div>
