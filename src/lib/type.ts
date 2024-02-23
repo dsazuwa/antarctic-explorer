@@ -48,7 +48,7 @@ export type TItinerary = {
   schedules: TSchedule[];
 };
 
-export type Vessel = {
+export type TVessel = {
   name: string;
   description: string[];
   capacity: number;
@@ -77,7 +77,7 @@ export type ExpeditionResponse = {
   website: string;
   cruiseLine: { name: string; logo: string };
   gallery: TGallery[];
-  vessels: { [id: number]: Vessel };
+  vessels: { [id: number]: TVessel };
   itinerary: { [id: number]: TItinerary };
   departures: TDeparture[];
 };

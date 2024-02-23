@@ -1,6 +1,6 @@
 import { ArrowRightIcon } from '@radix-ui/react-icons';
 
-import { Vessel as TVessel } from '@/lib/type';
+import { TVessel } from '@/lib/type';
 import VesselDetail from './VesselDetail';
 
 type VesselProps = {

@@ -1,4 +1,4 @@
-import { Vessel as TVessel } from '@/lib/type';
+import { TVessel } from '@/lib/type';
 import H3Heading from './H3Heading';
 import Vessel from './Vessel';
 

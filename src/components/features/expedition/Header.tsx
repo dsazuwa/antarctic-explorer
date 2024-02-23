@@ -1,4 +1,4 @@
-import { TDeparture, Vessel } from '@/lib/type';
+import { TDeparture, TVessel } from '@/lib/type';
 import { formatDate, formatPrice } from '@/lib/utils';
 
 type Props = {
@@ -8,7 +8,7 @@ type Props = {
   photoUrl: string;
   cruiseLine: string;
   departures: TDeparture[];
-  vessels: { [id: number]: Vessel };
+  vessels: { [id: number]: TVessel };
 };
 
 export default function Header({
