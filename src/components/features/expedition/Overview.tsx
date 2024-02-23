@@ -2,6 +2,7 @@ import { StarFilledIcon } from '@radix-ui/react-icons';
 
 import { TGallery } from '@/lib/type';
 import Gallery from './Gallery';
+import H3Heading from './H3Heading';
 
 type Props = {
   description: string[];
@@ -13,7 +14,7 @@ export default function Overview({ description, highlights, gallery }: Props) {
   return (
     <div className='w-full'>
       <div className='mx-auto flex max-w-screen-lg flex-col bg-white p-4 lg:px-2'>
-        <h3 className='text-xl font-bold text-navy'>Overview</h3>
+        <H3Heading text='Overview' />
 
         <div className='mt-4 flex flex-col lg:flex-row'>
           <div className='flex flex-col lg:w-[calc(100%-400px)] lg:flex-col-reverse'>
