@@ -34,7 +34,7 @@ export default function Header({
   };
 
   return (
-    <div className='w-full bg-navy text-white'>
+    <section className='w-full bg-navy text-white' aria-label='Header'>
       <div className='mx-auto flex w-full max-w-screen-lg flex-col sm:flex-row sm:py-8'>
         <div className='flex flex-col space-y-3 p-4 sm:w-2/5'>
           <div className='flex flex-col'>
@@ -80,6 +80,6 @@ export default function Header({
           src={photoUrl}
         />
       </div>
-    </div>
+    </section>
   );
 }

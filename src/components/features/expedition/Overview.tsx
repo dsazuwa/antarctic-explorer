@@ -12,17 +12,17 @@ type Props = {
 
 export default function Overview({ description, highlights, gallery }: Props) {
   return (
-    <div className='w-full'>
-      <div className='mx-auto flex max-w-screen-lg flex-col bg-white p-4 lg:px-2'>
+    <section className='w-full' aria-label='Expedition Overview'>
+      <div className='mx-auto flex max-w-screen-lg flex-col bg-white p-4'>
         <H3Heading text='Overview' />
 
-        <div className='mt-4 flex flex-col lg:flex-row'>
+        <div className='flex flex-col lg:flex-row'>
           <div className='flex flex-col lg:w-[calc(100%-400px)] lg:flex-col-reverse'>
             <div className='space-y-3'>
               {description.map((x, i) => (
-                <div key={`description-${i}`} className='text-sm font-medium'>
+                <p key={`desc-${i}`} className='text-sm'>
                   {x}
-                </div>
+                </p>
               ))}
             </div>
 
@@ -37,13 +37,13 @@ export default function Overview({ description, highlights, gallery }: Props) {
                 <li key={`highlight-${i}`} className='flex w-full flex-row'>
                   <StarFilledIcon className='mr-1 h-5 w-4 p-1 text-primary' />
 
-                  <div className='w-full text-sm font-medium'>{x}</div>
+                  <div className='w-full text-sm'>{x}</div>
                 </li>
               ))}
             </ul>
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }
