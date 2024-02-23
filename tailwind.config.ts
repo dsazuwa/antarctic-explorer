@@ -22,6 +22,10 @@ const config = {
         xxs: '0.625rem',
       },
 
+      boxShadow: {
+        icon: '0px 0px 12px rgba(0, 51, 102, 0.4)',
+      },
+
       colors: {
         misty_blue: '#E7ECEF',
         navy: '#14273E',
@@ -30,17 +34,6 @@ const config = {
         stone_gray: '#8B8C89',
         light_gray: '#F3F5F7',
         lighter_gray: '#F7F9FB',
-
-        blue_0: '#A3CEF1',
-        blue_1: '#93C0E4',
-        blue_2: '#82B2D6',
-        blue_3: '#71A4C8',
-        blue_4: '#6096BA',
-        blue_5: '#588BB2',
-        blue_6: '#4E7EA6',
-        blue_7: '#447199',
-        blue_8: '#2F5680',
-        blue_9: '#274C77',
 
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
@@ -86,8 +79,8 @@ const config = {
 
       borderRadius: {
         lg: 'var(--radius)',
-        md: 'calc(var(--radius) - 2px)',
-        sm: 'calc(var(--radius) - 4px)',
+        md: 'calc(var(--radius) - 4px)',
+        sm: 'calc(var(--radius) - 8px)',
       },
 
       keyframes: {
