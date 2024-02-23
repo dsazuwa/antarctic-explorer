@@ -1,6 +1,7 @@
 import { ExpeditionResponse } from '@/lib/type';
 import Header from './Header';
 import Overview from './Overview';
+import Vessels from './Vessels';
 
 type Props = {
   expedition: ExpeditionResponse;
@@ -37,6 +38,8 @@ export default function Expedition({ expedition }: Props) {
         highlights={highlights}
         gallery={gallery}
       />
+
+      <Vessels vessels={vessels}/>
     </div>
   );
 }
