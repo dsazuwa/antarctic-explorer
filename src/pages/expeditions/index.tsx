@@ -1,9 +1,9 @@
 import getLayout from '@/Layout';
-import BottomNavigation from '@/components/BottomNavigation';
 import Expeditions from '@/components/Expeditions';
 import FilterChips from '@/components/FilterChips';
 import Loader from '@/components/Loader';
 import MobileFilterPanel from '@/components/MobileFilterPanel';
+import PaginationControls from '@/components/PaginationControls';
 import SideFilterPanel from '@/components/SideFilterPanel';
 import SortHeader from '@/components/SortHeader';
 import useInitializeData from '@/hooks/useGetData';
@@ -32,7 +32,7 @@ export default function ExpeditionPage() {
 
           {isLoading ? <Loader /> : <Expeditions />}
 
-          <BottomNavigation />
+          <PaginationControls />
         </div>
       </div>
     </div>
