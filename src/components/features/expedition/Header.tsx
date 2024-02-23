@@ -8,6 +8,7 @@ type Props = {
   photoUrl: string;
   cruiseLine: string;
   departures: TDeparture[];
+  numVessels: number;
   vessels: { [id: number]: TVessel };
 };
 
@@ -17,6 +18,7 @@ export default function Header({
   startingPrice,
   cruiseLine,
   departures,
+  numVessels,
   vessels,
   photoUrl,
 }: Props) {
@@ -57,16 +59,19 @@ export default function Header({
           </div>
 
           <div className='flex flex-row space-x-8 text-xxs'>
-            <div>
-              <div className='text-gray-200'>Ship</div>
-              {Object.values(vessels)
-                .map((vessel) => vessel.name)
-                .map((v, i) => (
-                  <div key={'vessel' + i} className='font-medium'>
-                    {v}
-                  </div>
-                ))}
-            </div>
+            {numVessels > 0 && (
+              <div>
+                <div className='text-gray-200'>Ship</div>
+
+                {Object.values(vessels)
+                  .map((vessel) => vessel.name)
+                  .map((v, i) => (
+                    <div key={'vessel' + i} className='font-medium'>
+                      {v}
+                    </div>
+                  ))}
+              </div>
+            )}
 
             <div>
               <div className='text-xxs text-gray-200'>Duration</div>

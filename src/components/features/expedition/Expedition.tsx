@@ -21,6 +21,8 @@ export default function Expedition({ expedition }: Props) {
     gallery,
   } = expedition;
 
+  const numVessels = Object.keys(vessels).length;
+
   return (
     <div>
       <Header
@@ -29,6 +31,7 @@ export default function Expedition({ expedition }: Props) {
         startingPrice={startingPrice}
         cruiseLine={cruiseLine.name}
         departures={departures}
+        numVessels={numVessels}
         vessels={vessels}
         photoUrl={photoUrl}
       />
@@ -39,7 +42,7 @@ export default function Expedition({ expedition }: Props) {
         gallery={gallery}
       />
 
-      <Vessels vessels={vessels}/>
+      {numVessels > 0 && <Vessels vessels={vessels} />}
     </div>
   );
 }
