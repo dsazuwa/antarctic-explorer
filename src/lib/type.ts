@@ -58,12 +58,20 @@ export type TVessel = {
 };
 
 export type TDeparture = {
-  itineraryId: number;
-  vesselId: number;
+  // itineraryId: number;
+  // vesselId: number;
+  // name: string;
+  // startDate: string;
+  // endDate: string;
+  // startingPrice: number;
+  id: number;
+  expeditionId: number;
   name: string;
+  vessel: string;
   startDate: string;
   endDate: string;
-  startingPrice: number;
+  startingPrice?: number;
+  website: string;
 };
 
 export type ExpeditionResponse = {
@@ -84,6 +92,14 @@ export type ExpeditionResponse = {
 
 export type ExpeditionsResponse = {
   data: TExpedition[];
+  itemsPerPage: number;
+  totalItems: number;
+  totalPages: number;
+  currentPage: number;
+};
+
+export type DeparturesResponse = {
+  data: TDeparture[];
   itemsPerPage: number;
   totalItems: number;
   totalPages: number;

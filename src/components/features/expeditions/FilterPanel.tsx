@@ -8,7 +8,9 @@ import DatePicker from './DatePicker';
 
 function FilterPanel() {
   const dispatch = useAppDispatch();
-  const { cruiseLineOptions, filters } = useAppSelector((state) => state.state);
+  const { cruiseLineOptions, filters } = useAppSelector(
+    (store) => store.expeditionState,
+  );
 
   const handleFilterChange = (
     filterType: 'cruiseLines' | 'capacity' | 'duration',

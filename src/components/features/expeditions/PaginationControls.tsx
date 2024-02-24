@@ -1,3 +1,5 @@
+import Pagination from '@/components/common/Pagination';
+import PerPageSelector from '@/components/common/PerPageSelector';
 import {
   navigateToFirst,
   navigateToLast,
@@ -7,15 +9,13 @@ import {
   useAppDispatch,
   useAppSelector,
 } from '@/store';
-import Pagination from '../../common/Pagination';
-import PerPageSelector from '../../common/PerPageSelector';
 
 export default function PaginationControls() {
   const dispatch = useAppDispatch();
   const {
     expeditions: { currentPage, totalPages },
     selectedItemsPerPage,
-  } = useAppSelector((s) => s.state);
+  } = useAppSelector((s) => s.expeditionState);
 
   return (
     <div className='flex flex-col-reverse items-center py-4 text-xs sm:grid sm:grid-cols-3'>

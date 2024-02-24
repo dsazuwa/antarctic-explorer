@@ -18,7 +18,7 @@ function Expeditions() {
     selectedItemsPerPage,
     selectedSort,
     filters,
-  } = useAppSelector((s) => s.state);
+  } = useAppSelector((s) => s.expeditionState);
 
   const [fetchExpeditions] = useLazyGetExpeditionsQuery();
 

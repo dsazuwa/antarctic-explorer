@@ -3,7 +3,8 @@ import { setupListeners } from '@reduxjs/toolkit/query';
 import { createWrapper } from 'next-redux-wrapper';
 
 import { dataApi } from './api/data.api';
-import { dataReducer } from './slice/data.slice';
+import { expeditionsReducer } from './slice/expeditions.slice';
+import { departureReducer } from './slice/departures.slice';
 import { expeditionApi } from './api/expedition.api';
 
 export const store = configureStore({
@@ -12,7 +13,8 @@ export const store = configureStore({
   reducer: {
     [dataApi.reducerPath]: dataApi.reducer,
     [expeditionApi.reducerPath]: expeditionApi.reducer,
-    state: dataReducer,
+    expeditionState: expeditionsReducer,
+    departureState: departureReducer,
   },
 
   middleware: (getDefaultMiddleware) =>

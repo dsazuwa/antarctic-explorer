@@ -5,9 +5,14 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { HYDRATE } from 'next-redux-wrapper';
 import { Action } from 'redux';
 
-import { ExpeditionResponse, ExpeditionsResponse } from '@/lib/type';
-import { RootState } from '..';
-import { setExpeditions } from '../slice/data.slice';
+import {
+  DeparturesResponse,
+  ExpeditionResponse,
+  ExpeditionsResponse,
+} from '@/lib/type';
+import { setDepartures } from '../slice/departures.slice';
+import { setExpeditions } from '../slice/expeditions.slice';
+import { RootState } from '../store';
 
 const BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 
@@ -25,15 +30,6 @@ export const expeditionApi = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: `${BASE_URL}/expeditions` }),
 
   endpoints: (builder) => ({
-    getExpedition: builder.query<ExpeditionResponse, number>({
-      query: (id) => {
-        return {
-          url: `/${id}`,
-          method: 'GET',
-        };
-      },
-    }),
-
     getExpeditions: builder.query<
       ExpeditionsResponse,
       {
@@ -74,6 +70,33 @@ export const expeditionApi = createApi({
         }
       },
     }),
+
+    getExpedition: builder.query<ExpeditionResponse, number>({
+      query: (id) => {
+        return {
+          url: `/${id}`,
+          method: 'GET',
+        };
+      },
+    }),
+
+    getDepartures: builder.query<DeparturesResponse, number>({
+      query: (id) => {
+        return {
+          url: `/${id}/departures`,
+          method: 'GET',
+        };
+      },
+
+      async onQueryStarted(arg, api) {
+        try {
+          const { data } = await api.queryFulfilled;
+          api.dispatch(setDepartures(data));
+        } catch (e) {
+          console.error(e);
+        }
+      },
+    }),
   }),
 });
 
@@ -81,4 +104,5 @@ export const {
   useGetExpeditionQuery,
   useGetExpeditionsQuery,
   useLazyGetExpeditionsQuery,
+  useGetDeparturesQuery,
 } = expeditionApi;

@@ -1,5 +1,6 @@
 import clsx from 'clsx';
 
+import Chip from '@/components/common/Chip';
 import { capacityOptions, durationOptions } from '@/lib/constants';
 import { RangedFilterOption } from '@/lib/type';
 import { formatDate } from '@/lib/utils';
@@ -9,14 +10,13 @@ import {
   useAppDispatch,
   useAppSelector,
 } from '@/store';
-import Chip from '../../common/Chip';
 
 function FilterChips() {
   const dispatch = useAppDispatch();
   const {
     cruiseLineOptions,
     filters: { startDate, endDate, cruiseLines, capacity, duration },
-  } = useAppSelector((s) => s.state);
+  } = useAppSelector((s) => s.expeditionState);
 
   const handleDate = () => {
     dispatch(resetDateFilters());

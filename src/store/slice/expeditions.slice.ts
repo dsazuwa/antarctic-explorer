@@ -18,7 +18,7 @@ export type FilterState = {
   duration: number;
 };
 
-export type DataState = {
+export type ExpeditionsState = {
   cruiseLines: TCruiseLines;
   cruiseLineOptions: { displayName: string }[];
   expeditions: ExpeditionsResponse;
@@ -39,8 +39,8 @@ const initalFilterState: FilterState = {
   duration: durationOptions.length - 1,
 };
 
-export const dataSlice = createSlice({
-  name: 'dataSlice',
+export const expeditionsSlice = createSlice({
+  name: 'expeditionsSlice',
 
   initialState: {
     cruiseLines: {},
@@ -58,7 +58,7 @@ export const dataSlice = createSlice({
     selectedSort: 0,
 
     filters: initalFilterState,
-  } as DataState,
+  } as ExpeditionsState,
 
   reducers: {
     setData: (state, action: PayloadAction<MainResponse>) => {
@@ -153,7 +153,7 @@ export const dataSlice = createSlice({
   },
 });
 
-export const dataReducer = dataSlice.reducer;
+export const expeditionsReducer = expeditionsSlice.reducer;
 
 export const {
   setData,
@@ -167,4 +167,4 @@ export const {
   filterExpeditions,
   resetFilters,
   resetDateFilters,
-} = dataSlice.actions;
+} = expeditionsSlice.actions;

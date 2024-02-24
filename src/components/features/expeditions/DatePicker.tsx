@@ -15,7 +15,9 @@ export default function DatePicker({
   className,
 }: React.HTMLAttributes<HTMLDivElement>) {
   const dispatch = useAppDispatch();
-  const { startDate, endDate } = useAppSelector((s) => s.state.filters);
+  const { startDate, endDate } = useAppSelector(
+    (s) => s.expeditionState.filters,
+  );
 
   const handleSelectDate = (range?: DateRange) => {
     dispatch(

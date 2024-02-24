@@ -1,6 +1,7 @@
 import { ExpeditionSortType, RangedFilterOption } from './type';
 
 export const itemsPerPageOptions = [6, 12, 18, 24];
+export const departuresPerPageOptions = [5, 10, 15, 20];
 
 export const durationOptions: RangedFilterOption = [
   { displayName: '1 - 7 days', min: 1, max: 7 },
@@ -37,6 +38,29 @@ export const sortOptions: ExpeditionSortType[] = [
   {
     displayText: 'Name (Z-A)',
     sort: 'name',
+    dir: 'desc',
+  },
+  {
+    displayText: 'Price (Low to High)',
+    sort: 'startingPrice',
+    dir: 'asc',
+  },
+  {
+    displayText: 'Price (High to Low)',
+    sort: 'startingPrice',
+    dir: 'desc',
+  },
+];
+
+export const departuresSortOption: ExpeditionSortType[] = [
+  {
+    displayText: 'Date (Upcoming to Later)',
+    sort: 'nearestDate',
+    dir: 'asc',
+  },
+  {
+    displayText: 'Date (Later to Upcoming)',
+    sort: 'nearestDate',
     dir: 'desc',
   },
   {

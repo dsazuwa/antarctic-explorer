@@ -7,7 +7,7 @@ import { Action } from 'redux';
 
 import { MainResponse } from '@/lib/type';
 import { RootState } from '..';
-import { setData } from '../slice/data.slice';
+import { setData } from '../slice/expeditions.slice';
 
 const BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 

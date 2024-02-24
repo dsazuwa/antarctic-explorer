@@ -2,6 +2,7 @@ import { Cross2Icon, MixerHorizontalIcon } from '@radix-ui/react-icons';
 import clsx from 'clsx';
 import { useEffect, useState } from 'react';
 
+import { Button } from '@/components/ui/button';
 import {
   Sheet,
   SheetClose,
@@ -11,7 +12,6 @@ import {
 import useWindowWidth from '@/hooks/useWindowWidth';
 import ClearFilterButton from './ClearFilterButton';
 import FilterPanel from './FilterPanel';
-import { Button } from '../../ui/button';
 
 function MobileFilterPanel() {
   const [open, setOpen] = useState(false);
