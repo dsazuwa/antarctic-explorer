@@ -16,12 +16,12 @@ function IconButton({ Icon, disabled, onClick }: Props) {
       onClick={onClick}
       className={clsx(
         'group flex h-6 max-h-6 w-6 items-center justify-center rounded-full',
-        { 'hover:bg-gray-500': !disabled, 'bg-white': disabled },
+        { 'hover:bg-primary/90': !disabled, 'bg-white': disabled },
       )}
     >
       <i
         className={clsx('flex items-center justify-center fill-current', {
-          'text-black transition-colors hover:text-white group-hover:text-white':
+          'text-black hover:text-primary-foreground group-hover:text-primary-foreground':
             !disabled,
           'text-gray-400': disabled,
         })}
