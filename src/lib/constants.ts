@@ -1,4 +1,8 @@
-import { ExpeditionSortType, RangedFilterOption } from './type';
+import {
+  DepartureSortType,
+  ExpeditionSortType,
+  RangedFilterOption,
+} from './type';
 
 export const itemsPerPageOptions = [6, 12, 18, 24];
 export const departuresPerPageOptions = [5, 10, 15, 20];
@@ -52,15 +56,15 @@ export const sortOptions: ExpeditionSortType[] = [
   },
 ];
 
-export const departuresSortOption: ExpeditionSortType[] = [
+export const departureSortOption: DepartureSortType[] = [
   {
     displayText: 'Date (Upcoming to Later)',
-    sort: 'nearestDate',
+    sort: 'startDate',
     dir: 'asc',
   },
   {
     displayText: 'Date (Later to Upcoming)',
-    sort: 'nearestDate',
+    sort: 'startDate',
     dir: 'desc',
   },
   {

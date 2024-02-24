@@ -1,5 +1,6 @@
 import HeaderSelect from '@/components/common/HeaderSelect';
 import HeaderSummary from '@/components/common/HeaderSummary';
+import { sortOptions } from '@/lib/constants';
 import { setSortOption, useAppDispatch, useAppSelector } from '@/store';
 
 function SortHeader() {
@@ -19,6 +20,7 @@ function SortHeader() {
       />
 
       <HeaderSelect
+        sortOptions={sortOptions}
         selectedSort={selectedSort}
         setSortOption={(i: number) => dispatch(setSortOption(i))}
       />

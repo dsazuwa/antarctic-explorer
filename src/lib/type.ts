@@ -119,8 +119,20 @@ export type RangedFilterOption = {
   max: number;
 }[];
 
+export type SortType = {
+  displayText: string;
+  sort: string;
+  dir: 'asc' | 'desc';
+};
+
 export type ExpeditionSortType = {
   displayText: string;
   sort: 'cruiseLine' | 'name' | 'nearestDate' | 'startingPrice';
+  dir: 'asc' | 'desc';
+};
+
+export type DepartureSortType = {
+  displayText: string;
+  sort: 'startDate' | 'startingPrice';
   dir: 'asc' | 'desc';
 };

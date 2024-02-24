@@ -1,5 +1,3 @@
-import React from 'react';
-import { sortOptions } from '@/lib/constants';
 import {
   Select,
   SelectContent,
@@ -7,13 +5,19 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
+import { SortType } from '@/lib/type';
 
 type Props = {
+  sortOptions: SortType[];
   selectedSort: number;
   setSortOption: (i: number) => void;
 };
 
-export default function HeaderSelect({ selectedSort, setSortOption }: Props) {
+export default function HeaderSelect({
+  sortOptions,
+  selectedSort,
+  setSortOption,
+}: Props) {
   return (
     <div className='flex flex-row items-center'>
       <div className='mr-1 text-xxs font-semibold text-slate-500'>Sort</div>
