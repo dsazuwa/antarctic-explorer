@@ -1,5 +1,6 @@
 import Pagination from '@/components/common/Pagination';
 import PerPageSelector from '@/components/common/PerPageSelector';
+import { itemsPerPageOptions } from '@/lib/constants';
 import {
   navigateToFirst,
   navigateToLast,
@@ -20,6 +21,7 @@ export default function PaginationControls() {
   return (
     <div className='flex flex-col-reverse items-center py-4 text-xs sm:grid sm:grid-cols-3'>
       <PerPageSelector
+        options={itemsPerPageOptions}
         itemsPerPage={selectedItemsPerPage}
         setItemsPerPage={(i) => dispatch(setItemsPerPage(i))}
       />

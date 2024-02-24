@@ -5,15 +5,16 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { itemsPerPageOptions } from '@/lib/constants';
 import { Label } from '../ui/label';
 
 type Props = {
+  options: number[];
   itemsPerPage: number;
   setItemsPerPage: (i: number) => void;
 };
 
 export default function PerPageSelector({
+  options,
   itemsPerPage,
   setItemsPerPage,
 }: Props) {
@@ -39,7 +40,7 @@ export default function PerPageSelector({
         </SelectTrigger>
 
         <SelectContent>
-          {itemsPerPageOptions.map((o, i) => (
+          {options.map((o, i) => (
             <SelectItem key={`option${i}`} value={i + ''}>
               {o}
             </SelectItem>
