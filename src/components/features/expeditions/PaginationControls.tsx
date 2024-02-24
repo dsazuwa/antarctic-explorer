@@ -7,8 +7,8 @@ import {
   useAppDispatch,
   useAppSelector,
 } from '@/store';
-import Pagination from './Pagination';
-import PerPageSelector from './PerPageSelector';
+import Pagination from '../../common/Pagination';
+import PerPageSelector from '../../common/PerPageSelector';
 
 export default function PaginationControls() {
   const dispatch = useAppDispatch();

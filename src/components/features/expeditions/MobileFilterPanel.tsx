@@ -9,9 +9,9 @@ import {
   SheetTrigger,
 } from '@/components/ui/sheet';
 import useWindowWidth from '@/hooks/useWindowWidth';
-import ClearFilters from './ClearFilters';
+import ClearFilterButton from './ClearFilterButton';
 import FilterPanel from './FilterPanel';
-import { Button } from './ui/button';
+import { Button } from '../../ui/button';
 
 function MobileFilterPanel() {
   const [open, setOpen] = useState(false);
@@ -56,7 +56,7 @@ function MobileFilterPanel() {
         </SheetContent>
       </Sheet>
 
-      <ClearFilters />
+      <ClearFilterButton />
     </div>
   );
 }

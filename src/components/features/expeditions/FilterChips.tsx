@@ -9,7 +9,7 @@ import {
   useAppDispatch,
   useAppSelector,
 } from '@/store';
-import Chip from './Chip';
+import Chip from '../../common/Chip';
 
 function FilterChips() {
   const dispatch = useAppDispatch();

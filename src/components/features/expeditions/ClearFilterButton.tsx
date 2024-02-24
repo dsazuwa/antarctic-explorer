@@ -1,8 +1,8 @@
 import { capacityOptions, durationOptions } from '@/lib/constants';
 import { resetFilters, useAppDispatch, useAppSelector } from '@/store';
-import { Button } from './ui/button';
+import { Button } from '../../ui/button';
 
-function ClearFilters() {
+export default function ClearFilterButton() {
   const dispatch = useAppDispatch();
   const { startDate, endDate, cruiseLines, capacity, duration } =
     useAppSelector((s) => s.state.filters);
@@ -24,5 +24,3 @@ function ClearFilters() {
     </Button>
   );
 }
-
-export default ClearFilters;

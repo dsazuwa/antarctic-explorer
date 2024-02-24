@@ -6,7 +6,7 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { itemsPerPageOptions } from '@/lib/constants';
-import { Label } from './ui/label';
+import { Label } from '../ui/label';
 
 type Props = {
   itemsPerPage: number;
@@ -33,7 +33,7 @@ export default function PerPageSelector({
       >
         <SelectTrigger
           id='items per page'
-          className='h-[28px] w-[64px] text-xxs font-semibold'
+          className='h-[28px] w-[50px] text-xxs font-semibold'
         >
           <SelectValue defaultValue={itemsPerPage} />
         </SelectTrigger>

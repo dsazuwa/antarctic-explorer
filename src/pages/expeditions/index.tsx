@@ -1,11 +1,13 @@
 import getLayout from '@/Layout';
-import Expeditions from '@/components/Expeditions';
-import FilterChips from '@/components/FilterChips';
-import Loader from '@/components/Loader';
-import MobileFilterPanel from '@/components/MobileFilterPanel';
-import PaginationControls from '@/components/PaginationControls';
-import SideFilterPanel from '@/components/SideFilterPanel';
-import SortHeader from '@/components/SortHeader';
+import Loader from '@/components/common/Loader';
+import {
+  Expeditions,
+  FilterChips,
+  MobileFilterPanel,
+  PaginationControls,
+  SideFilterPanel,
+  SortHeader,
+} from '@/components/features/expeditions';
 import useInitializeData from '@/hooks/useGetData';
 
 export default function ExpeditionPage() {

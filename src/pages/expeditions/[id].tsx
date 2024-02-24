@@ -1,9 +1,9 @@
 import { useRouter } from 'next/router';
 
 import getLayout from '@/Layout';
-import Loader from '@/components/Loader';
+import PageNotFound from '@/components/PageNotFound';
+import Loader from '@/components/common/Loader';
 import { Expedition } from '@/components/features/expedition';
-import PageNotFound from '@/components/not-found';
 import { useGetExpeditionQuery } from '@/store';
 
 export default function ExpeditionPage() {
