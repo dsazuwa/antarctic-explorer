@@ -5,8 +5,8 @@ import {
   FilterChips,
   MobileFilterPanel,
   PaginationControls,
+  PaginationHeader,
   SideFilterPanel,
-  SortHeader,
 } from '@/components/features/expeditions';
 import useInitializeData from '@/hooks/useGetData';
 
@@ -30,7 +30,7 @@ export default function ExpeditionPage() {
 
           <FilterChips />
 
-          <SortHeader />
+          <PaginationHeader />
 
           {isLoading ? <Loader /> : <Expeditions />}
 

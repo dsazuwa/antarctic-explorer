@@ -3,7 +3,7 @@ import HeaderSummary from '@/components/common/HeaderSummary';
 import { sortOptions } from '@/lib/constants';
 import { setSortOption, useAppDispatch, useAppSelector } from '@/store';
 
-function SortHeader() {
+export default function PaginationHeader() {
   const dispatch = useAppDispatch();
   const {
     expeditions: { currentPage, totalItems, itemsPerPage },
@@ -27,5 +27,3 @@ function SortHeader() {
     </div>
   );
 }
-
-export default SortHeader;
