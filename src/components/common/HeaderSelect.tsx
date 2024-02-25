@@ -20,7 +20,9 @@ export default function HeaderSelect({
 }: Props) {
   return (
     <div className='flex flex-row items-center'>
-      <div className='mr-1 text-xxs font-semibold text-slate-500'>Sort</div>
+      <div className='mr-1 text-xxs font-semibold text-slate-500 md:text-xs'>
+        Sort
+      </div>
 
       <Select
         onValueChange={(i) => setSortOption(parseInt(i, 10))}
@@ -29,7 +31,7 @@ export default function HeaderSelect({
       >
         <SelectTrigger
           id='items per page'
-          className='h-[28px] w-[152px] px-1 py-1 font-semibold'
+          className='h-[28px] w-[144px] p-1 font-semibold md:w-[168px]'
         >
           <SelectValue defaultValue={selectedSort} />
         </SelectTrigger>

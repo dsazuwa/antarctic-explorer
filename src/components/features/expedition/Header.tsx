@@ -32,12 +32,13 @@ export default function Header({
       departures[departures.length - 1].startDate,
       'LLL y',
     );
+
     return `${departures.length} departures between ${firstStart} and ${lastStart}`;
   };
 
   return (
     <section className='w-full bg-navy text-white' aria-label='Header'>
-      <div className='mx-auto flex w-full max-w-screen-lg flex-col sm:flex-row sm:py-8'>
+      <div className='mx-auto flex max-w-screen-lg flex-col sm:flex-row sm:py-8'>
         <div className='flex flex-col space-y-3 p-4 sm:w-2/5'>
           <div className='flex flex-col'>
             <div className='text-xs font-medium text-gray-400'>

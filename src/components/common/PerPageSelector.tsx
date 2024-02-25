@@ -34,7 +34,7 @@ export default function PerPageSelector({
       >
         <SelectTrigger
           id='items per page'
-          className='h-[28px] w-[50px] text-xxs font-semibold'
+          className='h-7 w-8 text-xs font-semibold md:w-10'
         >
           <SelectValue defaultValue={itemsPerPage} />
         </SelectTrigger>

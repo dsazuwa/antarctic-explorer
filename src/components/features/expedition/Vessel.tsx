@@ -14,7 +14,9 @@ export default function Vessel({ id, vessel }: VesselProps) {
   return (
     <div className='flex flex-col-reverse lg:h-[600px] lg:flex-row lg:space-x-4'>
       <div className='mt-4 flex h-full w-full flex-col lg:mt-0 lg:w-5/12'>
-        <h4 className='text-lg font-black italic text-sky-800'>{name}</h4>
+        <h4 className='text-sm font-black italic text-sky-800 md:text-base'>
+          {name}
+        </h4>
 
         <div className='mt-3 grid grid-cols-2 divide-x border-b border-t py-4'>
           <VesselDetail label='Guests' value={capacity} />

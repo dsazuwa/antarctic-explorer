@@ -30,7 +30,7 @@ export default function Overview({ description, highlights, gallery }: Props) {
           </div>
 
           <div className='mt-4 w-full space-y-4 lg:mt-0 lg:w-[400px] lg:px-4 lg:pr-0'>
-            <h3 className='text-lg font-bold text-navy'>Highlights</h3>
+            <h3 className='font-bold text-navy md:text-lg'>Highlights</h3>
 
             <ul className='flex flex-col space-y-3'>
               {highlights.map((x, i) => (
