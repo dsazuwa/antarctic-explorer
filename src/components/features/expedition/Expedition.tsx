@@ -1,4 +1,5 @@
 import { ExpeditionResponse } from '@/lib/type';
+import Departures from './Departures';
 import Header from './Header';
 import Overview from './Overview';
 import Vessels from './Vessels';
@@ -9,6 +10,7 @@ type Props = {
 
 export default function Expedition({ expedition }: Props) {
   const {
+    id,
     name,
     description,
     highlights,
@@ -41,6 +43,8 @@ export default function Expedition({ expedition }: Props) {
         highlights={highlights}
         gallery={gallery}
       />
+
+      <Departures id={id} />
 
       {numVessels > 0 && <Vessels vessels={vessels} />}
     </div>

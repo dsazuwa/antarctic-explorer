@@ -58,19 +58,18 @@ export type TVessel = {
 };
 
 export type TDeparture = {
-  // itineraryId: number;
-  // vesselId: number;
-  // name: string;
-  // startDate: string;
-  // endDate: string;
-  // startingPrice: number;
   id: number;
   expeditionId: number;
   name: string;
+  itinerary: string;
   vessel: string;
+  departingFrom: string;
+  arrivingAt: string;
+  duration: string;
   startDate: string;
   endDate: string;
-  startingPrice?: number;
+  startingPrice: number;
+  discountedPrice: number | null;
   website: string;
 };
 
@@ -133,6 +132,6 @@ export type ExpeditionSortType = {
 
 export type DepartureSortType = {
   displayText: string;
-  sort: 'startDate' | 'startingPrice';
+  sort: 'startDate' | 'price';
   dir: 'asc' | 'desc';
 };

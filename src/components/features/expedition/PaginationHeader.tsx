@@ -1,6 +1,6 @@
 import HeaderSelect from '@/components/common/HeaderSelect';
 import HeaderSummary from '@/components/common/HeaderSummary';
-import { departureSortOption } from '@/lib/constants';
+import { departureSortOptions } from '@/lib/constants';
 import { setDepartureSort, useAppDispatch, useAppSelector } from '@/store';
 
 export default function PaginationHeader() {
@@ -20,7 +20,7 @@ export default function PaginationHeader() {
       />
 
       <HeaderSelect
-        sortOptions={departureSortOption}
+        sortOptions={departureSortOptions}
         selectedSort={selectedSort}
         setSortOption={(i: number) => dispatch(setDepartureSort(i))}
       />

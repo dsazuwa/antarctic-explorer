@@ -56,7 +56,7 @@ export const sortOptions: ExpeditionSortType[] = [
   },
 ];
 
-export const departureSortOption: DepartureSortType[] = [
+export const departureSortOptions: DepartureSortType[] = [
   {
     displayText: 'Date (Upcoming to Later)',
     sort: 'startDate',
@@ -69,12 +69,12 @@ export const departureSortOption: DepartureSortType[] = [
   },
   {
     displayText: 'Price (Low to High)',
-    sort: 'startingPrice',
+    sort: 'price',
     dir: 'asc',
   },
   {
     displayText: 'Price (High to Low)',
-    sort: 'startingPrice',
+    sort: 'price',
     dir: 'desc',
   },
 ];

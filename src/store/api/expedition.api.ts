@@ -80,11 +80,23 @@ export const expeditionApi = createApi({
       },
     }),
 
-    getDepartures: builder.query<DeparturesResponse, number>({
-      query: (id) => {
+    getDepartures: builder.query<
+      DeparturesResponse,
+      {
+        id: number;
+        page?: number;
+        size?: number;
+        sort?: 'startDate' | 'price';
+        dir?: 'asc' | 'desc';
+      }
+    >({
+      query: (args) => {
+        const { id, ...rest } = args;
+
         return {
           url: `/${id}/departures`,
           method: 'GET',
+          params: { ...rest },
         };
       },
 
@@ -105,4 +117,5 @@ export const {
   useGetExpeditionsQuery,
   useLazyGetExpeditionsQuery,
   useGetDeparturesQuery,
+  useLazyGetDeparturesQuery,
 } = expeditionApi;

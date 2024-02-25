@@ -1,0 +1,95 @@
+import { ArrowRightIcon } from '@radix-ui/react-icons';
+import clsx from 'clsx';
+import { format, isSameMonth, isSameYear } from 'date-fns';
+
+import { TDeparture } from '@/lib/type';
+import { formatPrice } from '@/lib/utils';
+import DepartureInfo from './DepartureInfo';
+
+export default function Departure({ departure }: { departure: TDeparture }) {
+  const {
+    name,
+    itinerary,
+    vessel,
+    departingFrom,
+    arrivingAt,
+    duration,
+    startDate,
+    endDate,
+    startingPrice,
+    discountedPrice,
+    website,
+  } = departure;
+
+  const isDiscounted = discountedPrice !== null;
+
+  const formatDateRange = () => {
+    if (isSameYear(startDate, endDate))
+      return isSameMonth(startDate, endDate)
+        ? `${format(startDate, 'MMM d')} - ${format(endDate, 'd, yyyy')}`
+        : `${format(startDate, 'MMM d')} - ${format(endDate, 'MMM d, yyyy')}`;
+    else
+      return `${format(startDate, 'MMM d, yyyy')} - ${format(endDate, 'MMM d, yyyy')}`;
+  };
+
+  return (
+    <div className='flex flex-col space-y-4 rounded-r-sm border border-l-amber-400 p-4 shadow-sm md:flex-row md:space-y-0'>
+      <div className='flex flex-col justify-center space-y-3 md:w-9/12'>
+        <div className='font-bold'>
+          {itinerary}
+          {name !== null && (
+            <span className='ml-1 text-sm font-normal'>{`(${name})`}</span>
+          )}
+        </div>
+
+        <ul className='grid grid-flow-row grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4'>
+          <DepartureInfo label='Departure Date' value={formatDateRange()} />
+
+          <DepartureInfo label='Duration' value={duration + ' days'} />
+
+          <DepartureInfo label='Origin Port' value={departingFrom} />
+
+          <DepartureInfo label='Final Port' value={arrivingAt} />
+
+          <DepartureInfo label='Ship' value={vessel} />
+        </ul>
+      </div>
+
+      <div className='flex flex-col items-center justify-center space-y-2 border-t md:w-3/12 md:border-l md:border-t-0'>
+        <div className='mt-4 text-xxs/[10px] font-semibold text-slate-400 md:mt-0 md:text-xs/[12px]'>
+          Starting from
+        </div>
+
+        <div className='flex flex-col items-center'>
+          <div
+            className={clsx({
+              'text-xs/[12px] line-through md:text-sm/[16px]': isDiscounted,
+              'text-lg/[20px] font-bold md:text-xl/[22px]': !isDiscounted,
+            })}
+          >
+            {formatPrice(startingPrice)}
+          </div>
+
+          {isDiscounted && (
+            <div className='text-lg font-bold text-emerald-600 md:text-xl'>
+              {formatPrice(discountedPrice)}
+            </div>
+          )}
+        </div>
+
+        <a
+          href={website}
+          target='_blank'
+          rel='noopener noreferrer'
+          className='group flex flex-row items-center space-x-2 rounded-[32px] border border-amber-400 bg-amber-400 px-4 py-2 text-xs font-black text-black transition-colors hover:bg-white hover:shadow-md sm:text-sm'
+        >
+          <span>Book Now</span>
+
+          <span className='transition-transform group-hover:rotate-[-35deg]'>
+            <ArrowRightIcon className='stroke-black' strokeWidth={1.2} />
+          </span>
+        </a>
+      </div>
+    </div>
+  );
+}
