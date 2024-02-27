@@ -1,7 +1,7 @@
-import { ArrowRightIcon } from '@radix-ui/react-icons';
 import clsx from 'clsx';
 import { format, isSameMonth, isSameYear } from 'date-fns';
 
+import LinkButton from '@/components/common/LinkButton';
 import { TDeparture } from '@/lib/type';
 import { formatPrice } from '@/lib/utils';
 import DepartureInfo from './DepartureInfo';
@@ -77,18 +77,7 @@ export default function Departure({ departure }: { departure: TDeparture }) {
           )}
         </div>
 
-        <a
-          href={website}
-          target='_blank'
-          rel='noopener noreferrer'
-          className='group flex flex-row items-center space-x-2 rounded-[32px] border border-amber-400 bg-amber-400 px-4 py-2 text-xs font-black text-black transition-colors hover:bg-white hover:shadow-md sm:text-sm'
-        >
-          <span>Book Now</span>
-
-          <span className='transition-transform group-hover:rotate-[-35deg]'>
-            <ArrowRightIcon className='stroke-black' strokeWidth={1.2} />
-          </span>
-        </a>
+        <LinkButton variant='secondary' label='Book Now' website={website} />
       </div>
     </div>
   );

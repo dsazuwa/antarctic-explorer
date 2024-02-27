@@ -1,5 +1,4 @@
-import { ArrowRightIcon } from '@radix-ui/react-icons';
-
+import LinkButton from '@/components/common/LinkButton';
 import { TVessel } from '@/lib/type';
 import VesselDetail from './VesselDetail';
 
@@ -32,21 +31,7 @@ export default function Vessel({ id, vessel }: VesselProps) {
         </div>
 
         <div className='mt-3 flex flex-row justify-end lg:mt-auto'>
-          <a
-            href={website}
-            target='_blank'
-            rel='noopener noreferrer'
-            className='group m-2 flex flex-row items-center space-x-2 rounded-[32px] border border-sky-800/50 px-4 py-2 text-sm font-black text-sky-800 transition-colors hover:border-sky-800 hover:shadow-md focus:bg-sky-800 focus:text-white'
-          >
-            <span>Explore Ship</span>
-
-            <span className='transition-transform group-hover:rotate-[-35deg]'>
-              <ArrowRightIcon
-                className='stroke-sky-800 group-focus:stroke-white'
-                strokeWidth={1.2}
-              />
-            </span>
-          </a>
+          <LinkButton className='m-2' label='Explore Ship' website={website} />
         </div>
       </div>
 
