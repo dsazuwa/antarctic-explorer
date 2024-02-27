@@ -42,7 +42,7 @@ export default function Departure({ departure }: { departure: TDeparture }) {
           )}
         </div>
 
-        <ul className='grid grid-flow-row grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4'>
+        <ul className='grid grid-flow-row grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4'>
           <DepartureInfo label='Departure Date' value={formatDateRange()} />
 
           <DepartureInfo label='Duration' value={duration + ' days'} />
