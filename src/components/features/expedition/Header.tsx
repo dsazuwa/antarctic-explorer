@@ -1,15 +1,16 @@
-import { TDeparture, TVessel } from '@/lib/type';
+import { TDeparture, TGallery, TVessel } from '@/lib/type';
 import { formatDate, formatPrice } from '@/lib/utils';
+import Gallery from './Gallery';
 
 type Props = {
   name: string;
   duration: string;
   startingPrice: number;
-  photoUrl: string;
   cruiseLine: string;
   departures: TDeparture[];
   numVessels: number;
   vessels: { [id: number]: TVessel };
+  gallery: TGallery[];
 };
 
 export default function Header({
@@ -20,7 +21,7 @@ export default function Header({
   departures,
   numVessels,
   vessels,
-  photoUrl,
+  gallery,
 }: Props) {
   const getDepartureDatesLabel = () => {
     if (departures.length === 0) return 'None available';
@@ -81,10 +82,7 @@ export default function Header({
           </div>
         </div>
 
-        <img
-          className='aspect-video object-cover object-bottom sm:w-3/5 sm:pr-4 lg:pr-0'
-          src={photoUrl}
-        />
+        <Gallery gallery={gallery} className='sm:w-3/5 sm:pr-4 lg:pr-0' />
       </div>
     </section>
   );

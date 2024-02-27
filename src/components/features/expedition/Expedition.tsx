@@ -19,7 +19,6 @@ export default function Expedition({ expedition }: Props) {
     cruiseLine,
     departures,
     vessels,
-    photoUrl,
     gallery,
   } = expedition;
 
@@ -35,14 +34,10 @@ export default function Expedition({ expedition }: Props) {
         departures={departures}
         numVessels={numVessels}
         vessels={vessels}
-        photoUrl={photoUrl}
-      />
-
-      <Overview
-        description={description}
-        highlights={highlights}
         gallery={gallery}
       />
+
+      <Overview description={description} highlights={highlights} />
 
       <Departures id={id} />
 
