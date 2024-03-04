@@ -1,11 +1,12 @@
+import { SortType } from '@/lib/type';
+import { Label } from '../ui/label';
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@/components/ui/select';
-import { SortType } from '@/lib/type';
+} from '../ui/select';
 
 type Props = {
   sortOptions: SortType[];
@@ -20,9 +21,12 @@ export default function HeaderSelect({
 }: Props) {
   return (
     <div className='flex flex-row items-center'>
-      <div className='mr-1 text-xxs font-semibold text-slate-500 md:text-xs'>
+      <Label
+        htmlFor='select_sort_option'
+        className='mr-1 text-xxs font-semibold text-slate-500 md:text-xs'
+      >
         Sort
-      </div>
+      </Label>
 
       <Select
         onValueChange={(i) => setSortOption(parseInt(i, 10))}
@@ -30,7 +34,7 @@ export default function HeaderSelect({
         defaultValue={selectedSort + ''}
       >
         <SelectTrigger
-          id='items per page'
+          id='select_sort_option'
           className='h-[28px] w-[144px] p-1 font-semibold md:w-[168px]'
         >
           <SelectValue defaultValue={selectedSort} />

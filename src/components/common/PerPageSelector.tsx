@@ -21,7 +21,7 @@ export default function PerPageSelector({
   return (
     <div className='flex flex-row items-center space-x-2'>
       <Label
-        htmlFor='items per page'
+        htmlFor='items_per_page'
         className='text-xs font-semibold text-slate-500'
       >
         Items per page
@@ -33,7 +33,7 @@ export default function PerPageSelector({
         defaultValue={itemsPerPage + ''}
       >
         <SelectTrigger
-          id='items per page'
+          id='items_per_page'
           className='h-[28px] w-8 text-xs font-semibold md:w-10'
         >
           <SelectValue defaultValue={itemsPerPage} />

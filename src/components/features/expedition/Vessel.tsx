@@ -38,6 +38,7 @@ export default function Vessel({ id, vessel }: VesselProps) {
       <img
         className='w-full rounded-sm object-cover lg:w-7/12'
         src={photoUrl}
+        alt={name}
       />
     </div>
   );

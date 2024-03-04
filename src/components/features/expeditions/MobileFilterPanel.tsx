@@ -27,7 +27,7 @@ function MobileFilterPanel() {
         <SheetTrigger asChild>
           <Button variant='white' size='xs'>
             <MixerHorizontalIcon className='mr-2 text-muted-foreground' />
-            <div className='text-muted-foreground'>Filter</div>
+            <span className='text-muted-foreground'>Filter</span>
           </Button>
         </SheetTrigger>
 
