@@ -1,16 +1,14 @@
-import { ReactElement } from 'react';
+import { ReactNode } from 'react';
 
-import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
+import Navbar from './components/layout/Navbar';
 
-function getLayout(page: ReactElement) {
+export default function Layout({ children }: { children: ReactNode }) {
   return (
     <div className='flex min-h-screen w-full flex-col'>
       <Navbar />
-      {page}
+      {children}
       <Footer />
     </div>
   );
 }
-
-export default getLayout;
