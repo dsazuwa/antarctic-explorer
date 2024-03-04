@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { Button } from './ui/button';
 
 type Props = {
-  statusCode: string;
+  statusCode: number;
   title: string;
   text: string;
 };
