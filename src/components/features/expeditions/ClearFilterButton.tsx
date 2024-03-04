@@ -10,8 +10,8 @@ export default function ClearFilterButton() {
   return (
     <Button
       disabled={
-        startDate === undefined &&
-        endDate === undefined &&
+        startDate === null &&
+        endDate === null &&
         cruiseLines.length === 0 &&
         capacity === capacityOptions.length - 1 &&
         duration === durationOptions.length - 1

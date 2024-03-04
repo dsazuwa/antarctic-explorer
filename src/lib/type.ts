@@ -63,8 +63,8 @@ export type TDeparture = {
   name: string;
   itinerary: string;
   vessel: string;
-  departingFrom?: string;
-  arrivingAt?: string;
+  departingFrom: string | null;
+  arrivingAt: string | null;
   duration: string;
   startDate: string;
   endDate: string;

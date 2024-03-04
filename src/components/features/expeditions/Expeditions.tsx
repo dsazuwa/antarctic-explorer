@@ -32,12 +32,12 @@ function Expeditions() {
     } = filters;
 
     const startFilter =
-      startDate !== undefined
+      startDate !== null
         ? { startDate: encodeURIComponent(formatDate(startDate, 'yyyy-MM-dd')) }
         : {};
 
     const endFilter =
-      endDate !== undefined
+      endDate !== null
         ? { endDate: encodeURIComponent(formatDate(endDate, 'yyyy-MM-dd')) }
         : {};
 

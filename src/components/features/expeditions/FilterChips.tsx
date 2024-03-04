@@ -38,8 +38,8 @@ function FilterChips() {
     );
   };
 
-  const isFilteredByStartDate = startDate !== undefined;
-  const isFilteredByEndDate = endDate !== undefined;
+  const isFilteredByStartDate = startDate !== null;
+  const isFilteredByEndDate = endDate !== null;
   const isFilteredByCruise = cruiseLines.length > 0;
   const isFIlteredByCapacity = capacity !== capacityOptions.length - 1;
   const isFIlteredByDuration = duration !== durationOptions.length - 1;

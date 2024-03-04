@@ -26,7 +26,7 @@ export default function DatePicker({
         value:
           range && range.from
             ? encodeURIComponent(formatDate(range.from, 'yyyy-MM-dd'))
-            : undefined,
+            : null,
       }),
     );
 
@@ -36,7 +36,7 @@ export default function DatePicker({
         value:
           range && range.to
             ? encodeURIComponent(formatDate(range.to, 'yyyy-MM-dd'))
-            : undefined,
+            : null,
       }),
     );
   };
@@ -70,8 +70,11 @@ export default function DatePicker({
           <Calendar
             initialFocus
             mode='range'
-            defaultMonth={startDate}
-            selected={{ from: startDate, to: endDate }}
+            defaultMonth={startDate || undefined}
+            selected={{
+              from: startDate || undefined,
+              to: endDate || undefined,
+            }}
             onSelect={handleSelectDate}
             numberOfMonths={2}
           />

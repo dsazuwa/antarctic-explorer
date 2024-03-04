@@ -11,8 +11,8 @@ import { ExpeditionsResponse, MainResponse, TCruiseLines } from '@/lib/type';
 import { toggleIndex } from '@/lib/utils';
 
 export type FilterState = {
-  startDate: Date | undefined;
-  endDate: Date | undefined;
+  startDate: Date | null;
+  endDate: Date | null;
   cruiseLines: number[];
   capacity: number;
   duration: number;
@@ -28,12 +28,12 @@ export type ExpeditionsState = {
 };
 
 type FilterAction =
-  | { filterType: 'startDate' | 'endDate'; value: string | undefined }
+  | { filterType: 'startDate' | 'endDate'; value: string | null }
   | { filterType: 'cruiseLines' | 'duration' | 'capacity'; value: number };
 
 const initalFilterState: FilterState = {
-  startDate: undefined,
-  endDate: undefined,
+  startDate: null,
+  endDate: null,
   cruiseLines: [],
   capacity: capacityOptions.length - 1,
   duration: durationOptions.length - 1,
@@ -146,8 +146,8 @@ export const expeditionsSlice = createSlice({
     resetDateFilters: (state) => {
       state.filters = {
         ...state.filters,
-        startDate: undefined,
-        endDate: undefined,
+        startDate: null,
+        endDate: null,
       };
     },
   },
