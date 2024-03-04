@@ -5,7 +5,6 @@ import { ReactElement, ReactNode } from 'react';
 import { Provider } from 'react-redux';
 
 import { wrapper } from '@/store';
-import font from '@/styles/font';
 import '@/styles/globals.css';
 
 export type NextPageWithLayout<P = object, IP = P> = NextPage<P, IP> & {
@@ -30,9 +29,7 @@ export default function App({ Component, ...rest }: AppProps) {
           <link rel='icon' href='/favicon.ico' />
         </Head>
 
-        <main className={`${font.className}`}>
-          {getLayout(<Component {...props} />)}
-        </main>
+        <main>{getLayout(<Component {...props} />)}</main>
       </Provider>
     </>
   );
