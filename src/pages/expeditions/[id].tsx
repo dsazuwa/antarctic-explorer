@@ -1,26 +1,37 @@
-import { useRouter } from 'next/router';
+import { GetServerSideProps, GetServerSidePropsContext } from 'next';
 
 import getLayout from '@/Layout';
-import PageNotFound from '@/components/PageNotFound';
-import Loader from '@/components/common/Loader';
 import { Expedition } from '@/components/features/expedition';
-import { useGetExpeditionQuery } from '@/store';
+import { ExpeditionResponse } from '@/lib/type';
+import { expeditionApi, wrapper } from '@/store';
 
-export default function ExpeditionPage() {
-  const router = useRouter();
-  const { id } = router.query;
+export const getServerSideProps: GetServerSideProps =
+  wrapper.getServerSideProps(
+    (store) => async (context: GetServerSidePropsContext) => {
+      const { id } = context.query;
+      const { dispatch } = store;
 
-  const { isError, data } = useGetExpeditionQuery(
-    Number.parseInt(id as string, 10),
-    { skip: id === undefined },
+      if (typeof id !== 'string' || Number.isNaN(Number.parseInt(id, 10)))
+        return { notFound: true };
+
+      const expedition = await dispatch(
+        expeditionApi.endpoints.getExpedition.initiate(Number.parseInt(id, 10)),
+      );
+
+      await Promise.all(dispatch(expeditionApi.util.getRunningQueriesThunk()));
+
+      return expedition.isError
+        ? { notFound: true }
+        : { props: { expedition: expedition.data } };
+    },
   );
 
-  if (isError)
-    return (
-      <PageNotFound href='/expeditions' buttonLabel='Back to Expeditions' />
-    );
+type Props = {
+  pageProps: { expedition: ExpeditionResponse };
+};
 
-  return data == undefined ? <Loader /> : <Expedition expedition={data} />;
+export default function ExpeditionPage({ pageProps: { expedition } }: Props) {
+  return <Expedition expedition={expedition} />;
 }
 
 ExpeditionPage.getLayout = getLayout;
