@@ -13,7 +13,7 @@ type Props = {
   gallery: TGallery[];
 };
 
-export default function Header({
+export default function Hero({
   name,
   duration,
   startingPrice,
@@ -82,7 +82,7 @@ export default function Header({
           </div>
         </div>
 
-        <Gallery gallery={gallery} className='sm:w-3/5 sm:pr-4 lg:pr-0' />
+        <Gallery gallery={gallery} className='sm:mr-4 sm:w-3/5 lg:mr-0' />
       </div>
     </section>
   );

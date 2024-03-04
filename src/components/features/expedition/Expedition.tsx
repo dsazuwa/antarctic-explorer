@@ -1,6 +1,6 @@
 import { ExpeditionResponse } from '@/lib/type';
 import Departures from './Departures';
-import Header from './Header';
+import Hero from './Hero';
 import Overview from './Overview';
 import Vessels from './Vessels';
 
@@ -26,7 +26,7 @@ export default function Expedition({ expedition }: Props) {
 
   return (
     <div>
-      <Header
+      <Hero
         name={name}
         duration={duration}
         startingPrice={startingPrice}
