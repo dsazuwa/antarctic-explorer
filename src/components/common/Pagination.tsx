@@ -39,7 +39,7 @@ export default function Pagination({
       />
 
       <div className='flex items-center px-1 text-center text-xs font-semibold leading-none text-slate-500'>
-        {`Page ${currentPage + 1} of ${totalPages}`}
+        {`Page ${totalPages == 0 ? 0 : currentPage + 1} of ${totalPages}`}
       </div>
 
       <IconButton
