@@ -4,7 +4,7 @@ import { format, isSameMonth, isSameYear } from 'date-fns';
 import LinkButton from '@/components/common/LinkButton';
 import { TDeparture } from '@/lib/type';
 import { formatPrice } from '@/lib/utils';
-import DepartureInfo from './DepartureInfo';
+import InfoDisplay from './InfoDisplay';
 
 export default function Departure({ departure }: { departure: TDeparture }) {
   const {
@@ -43,15 +43,15 @@ export default function Departure({ departure }: { departure: TDeparture }) {
         </div>
 
         <ul className='grid grid-flow-row grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4'>
-          <DepartureInfo label='Departure Date' value={formatDateRange()} />
+          <InfoDisplay label='Departure Date' value={formatDateRange()} />
 
-          <DepartureInfo label='Duration' value={duration + ' days'} />
+          <InfoDisplay label='Duration' value={duration + ' days'} />
 
-          <DepartureInfo label='Origin Port' value={departingFrom} />
+          <InfoDisplay label='Origin Port' value={departingFrom} />
 
-          <DepartureInfo label='Final Port' value={arrivingAt} />
+          <InfoDisplay label='Final Port' value={arrivingAt} />
 
-          <DepartureInfo label='Ship' value={vessel} />
+          <InfoDisplay label='Ship' value={vessel} />
         </ul>
       </div>
 
