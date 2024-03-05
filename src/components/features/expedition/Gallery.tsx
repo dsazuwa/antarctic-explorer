@@ -21,7 +21,6 @@ export default function Gallery({ gallery, className }: Props) {
 
   return (
     <div
-      tabIndex={0}
       role='group'
       aria-label='highlights images carousel'
       aria-roledescription='carousel'

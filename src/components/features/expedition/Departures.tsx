@@ -31,7 +31,7 @@ export default function Departures({ id }: { id: number }) {
       dir:
         departureSortOptions[selectedSort].dir === 'asc' ? undefined : 'desc',
     });
-  }, [currentPage, selectedItemsPerPage, selectedSort]);
+  }, [id, currentPage, selectedItemsPerPage, selectedSort, fetchDepartures]);
 
   return data === undefined || data.length === 0 ? (
     <></>
