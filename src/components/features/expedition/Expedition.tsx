@@ -3,6 +3,7 @@ import Departures from './Departures';
 import Hero from './Hero';
 import Overview from './Overview';
 import Vessels from './Vessels';
+import Itineraries from './Itineraries';
 
 type Props = {
   expedition: ExpeditionResponse;
@@ -16,6 +17,7 @@ export default function Expedition({ expedition }: Props) {
     highlights,
     duration,
     startingPrice,
+    itineraries,
     cruiseLine,
     departures,
     vessels,
@@ -25,7 +27,7 @@ export default function Expedition({ expedition }: Props) {
   const numVessels = Object.keys(vessels).length;
 
   return (
-    <div>
+    <main>
       <Hero
         name={name}
         duration={duration}
@@ -39,9 +41,11 @@ export default function Expedition({ expedition }: Props) {
 
       <Overview description={description} highlights={highlights} />
 
+      <Itineraries itineraries={itineraries} />
+
       <Departures id={id} />
 
       {numVessels > 0 && <Vessels vessels={vessels} />}
-    </div>
+    </main>
   );
 }

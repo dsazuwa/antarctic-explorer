@@ -40,6 +40,7 @@ export type TSchedule = {
 };
 
 export type TItinerary = {
+  id: number;
   name: string;
   startPort: string;
   endPort: string;
@@ -85,7 +86,7 @@ export type ExpeditionResponse = {
   cruiseLine: { name: string; logo: string };
   gallery: TGallery[];
   vessels: { [id: number]: TVessel };
-  itinerary: { [id: number]: TItinerary };
+  itineraries: TItinerary[];
   departures: TDeparture[];
 };
 
