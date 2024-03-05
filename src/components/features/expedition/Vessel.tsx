@@ -11,8 +11,8 @@ export default function Vessel({ id, vessel }: VesselProps) {
   const { name, cabins, capacity, description, photoUrl, website } = vessel;
 
   return (
-    <div className='flex flex-col-reverse lg:h-[600px] lg:flex-row lg:space-x-4'>
-      <div className='mt-4 flex h-full w-full flex-col lg:mt-0 lg:w-5/12'>
+    <div className='grid w-full grid-cols-1 gap-4 lg:grid-cols-12'>
+      <div className='order-2 mt-4 flex flex-col lg:order-1 lg:col-span-5 lg:mt-0'>
         <h4 className='text-sm font-black italic text-sky-800 md:text-base'>
           {name}
         </h4>
@@ -22,9 +22,9 @@ export default function Vessel({ id, vessel }: VesselProps) {
           <VesselDetail label='Cabins' value={cabins} />
         </div>
 
-        <div className='mt-3 space-y-2'>
+        <div className='mt-3 space-y-4'>
           {description.map((x, i) => (
-            <p key={`vessel-${id}-desc=${i}`} className='text-sm'>
+            <p key={`vessel-${id}-desc=${i}`} className='text-base/[1.5em]'>
               {x}
             </p>
           ))}
@@ -36,7 +36,7 @@ export default function Vessel({ id, vessel }: VesselProps) {
       </div>
 
       <img
-        className='w-full rounded-sm object-cover lg:w-7/12'
+        className='rounded-sm object-cover lg:order-2 lg:col-span-7 lg:h-[680px]'
         src={photoUrl}
         alt={name}
       />

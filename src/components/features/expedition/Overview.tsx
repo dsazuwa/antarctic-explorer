@@ -19,7 +19,7 @@ export default function Overview({ description, highlights }: Props) {
 
           <div className='space-y-4'>
             {description.map((x, i) => (
-              <p key={`desc-${i}`} className='text-sm'>
+              <p key={`desc-${i}`} className='text-base/[1.75em]'>
                 {x}
               </p>
             ))}
@@ -34,7 +34,7 @@ export default function Overview({ description, highlights }: Props) {
               <li key={`highlight-${i}`} className='flex w-full flex-row'>
                 <StarFilledIcon className='mr-1 h-5 w-4 p-1 text-primary' />
 
-                <div className='w-full text-sm'>{x}</div>
+                <div className='w-full text-base/[1.75em]'>{x}</div>
               </li>
             ))}
           </ul>
