@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { TItinerary } from '@/lib/type';
 import H3Heading from './H3Heading';
 import Itinerary from './Itinerary';
+import Dialog from './ItineraryDialog';
 import Tab from './ItineraryTab';
 
 type Props = { itineraries: TItinerary[] };
@@ -21,7 +22,7 @@ export default function Itineraries({ itineraries }: Props) {
           team available.
         </p>
 
-        <div className='grid grid-cols-4 gap-4'>
+        <div className='hidden md:grid md:grid-cols-4 md:gap-4'>
           <ul>
             {itineraries.map(({ name, startPort }, i) => (
               <Tab
@@ -36,7 +37,15 @@ export default function Itineraries({ itineraries }: Props) {
             ))}
           </ul>
 
-          <Itinerary itinerary={itineraries[index]} className='col-span-3' />
+          <Itinerary itinerary={itineraries[index]} className='md:col-span-3' />
+        </div>
+
+        <div className='md:hidden'>
+          <Dialog
+            itineraries={itineraries}
+            index={index}
+            handleClick={(i: number) => setIndex(i)}
+          />
         </div>
       </div>
     </section>

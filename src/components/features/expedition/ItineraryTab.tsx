@@ -21,21 +21,21 @@ export default function Tab({
   return (
     <li
       key={`itinerary_btn_${index}`}
-      className={clsx('', {
+      className={clsx({
         'border-b': isLastTab,
-        'border-l-2 border-l-primary': isSelected,
+        'border-l-2 border-l-amber-400': isSelected,
       })}
     >
       <button
         onClick={handleClick}
-        className='flex flex-row items-center justify-between'
+        className='flex w-full flex-row items-center justify-between md:w-auto'
       >
-        <span className='flex flex-col space-y-1 py-4 pl-4 font-semibold'>
-          <span className='text-start text-base'>{name}</span>
+        <span className='flex flex-col space-y-1 py-4 pl-4 text-start font-semibold'>
+          <span className='text-base'>{name}</span>
 
           {startPort && (
             <span className='space-x-1 text-sm'>
-              <span className='font-light'>FROM</span>
+              <span className='text-xs font-light'>FROM</span>
               <span>{startPort}</span>
             </span>
           )}

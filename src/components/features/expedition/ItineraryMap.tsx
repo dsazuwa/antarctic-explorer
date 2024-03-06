@@ -12,9 +12,9 @@ export default function Map({ alt, url }: Props) {
   return (
     <div
       className={clsx(
-        'aspect-[5/6] md:col-span-2 md:mt-[-180px] md:max-h-[580px]',
+        'aspect-[5/6] md:col-span-2 md:mt-[-35%] md:max-h-[580px]',
         {
-          'flex items-center justify-center rounded-sm bg-[#F2F7FC]': !hasMap,
+          'flex items-center justify-center rounded-sm bg-muted': !hasMap,
         },
       )}
     >
