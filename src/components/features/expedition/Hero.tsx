@@ -1,4 +1,4 @@
-import { TDeparture, TGallery, TVessel } from '@/lib/type';
+import { TGallery, TVessel } from '@/lib/type';
 import { formatDate, formatPrice } from '@/lib/utils';
 import Gallery from './Gallery';
 
@@ -7,7 +7,7 @@ type Props = {
   duration: string;
   startingPrice: number;
   cruiseLine: string;
-  departures: TDeparture[];
+  departures: { startDate: Date; endDate: Date }[];
   numVessels: number;
   vessels: { [id: number]: TVessel };
   gallery: TGallery[];

@@ -17,11 +17,8 @@ export type TCruiseLines = {
 export type TExpedition = {
   id: number;
   cruiseLine: string;
-  website: string;
+  logo: string;
   name: string;
-  description: string[];
-  departingFrom: string;
-  arrivingAt: string;
   duration: string;
   nearestDate: string | null;
   startingPrice: number | null;
@@ -87,7 +84,8 @@ export type ExpeditionResponse = {
   gallery: TGallery[];
   vessels: { [id: number]: TVessel };
   itineraries: TItinerary[];
-  departures: TDeparture[];
+  departures: { startDate: Date; endDate: Date }[];
+  otherExpeditions: TExpedition;
 };
 
 export type ExpeditionsResponse = {

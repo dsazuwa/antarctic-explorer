@@ -3,18 +3,25 @@ import Link from 'next/link';
 
 import DurationIcon from '@/assets/icons/DurationIcon';
 import PriceTagIcon from '@/assets/icons/PriceTagIcon';
-import { TCruiseLine, TExpedition } from '@/lib/type';
+import { TExpedition } from '@/lib/type';
 import { formatPrice } from '@/lib/utils';
 import InfoDisplay from './InfoDisplay';
 
 type ExpeditionProps = {
   expedition: TExpedition;
-  cruiseLine: TCruiseLine;
 };
 
-function Expedition({ expedition, cruiseLine }: ExpeditionProps) {
-  const { id, name, duration, startingPrice, nearestDate, photoUrl } =
-    expedition;
+function Expedition({ expedition }: ExpeditionProps) {
+  const {
+    id,
+    cruiseLine,
+    logo,
+    name,
+    duration,
+    startingPrice,
+    nearestDate,
+    photoUrl,
+  } = expedition;
 
   return (
     <Link aria-label={name} href={`expeditions/${id}`}>
@@ -31,8 +38,8 @@ function Expedition({ expedition, cruiseLine }: ExpeditionProps) {
             <img
               id='card-image'
               className='mr-2 h-6 sm:h-8'
-              src={cruiseLine.logo}
-              alt={`${cruiseLine.name} logo`}
+              src={logo}
+              alt={`${cruiseLine} logo`}
             />
 
             <div className='group-hover:underline'>

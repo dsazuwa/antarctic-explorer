@@ -10,10 +10,9 @@ import { formatDate } from '@/lib/utils';
 import { useAppSelector, useLazyGetExpeditionsQuery } from '@/store';
 import Expedition from './Expedition';
 
-function Expeditions() {
+export default function Expeditions() {
   const {
     expeditions: { data, currentPage },
-    cruiseLines,
     cruiseLineOptions,
     selectedItemsPerPage,
     selectedSort,
@@ -89,14 +88,8 @@ function Expeditions() {
       className='grid grid-cols-1 gap-4 py-1 sm:grid-cols-2'
     >
       {data.map((expedition, index) => (
-        <Expedition
-          key={'expedition' + index}
-          expedition={expedition}
-          cruiseLine={cruiseLines[expedition.cruiseLine]}
-        />
+        <Expedition key={'expedition' + index} expedition={expedition} />
       ))}
     </div>
   );
 }
-
-export default Expeditions;
