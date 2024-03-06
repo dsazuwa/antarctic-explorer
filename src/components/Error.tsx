@@ -1,7 +1,5 @@
 import Link from 'next/link';
 
-import { Button } from './ui/button';
-
 type Props = {
   statusCode: number;
   title: string;
@@ -20,10 +18,11 @@ export default function Error({ statusCode, title, text }: Props) {
 
         <div className='text-sm text-gray-600 md:text-base/[1rem]'>{text}</div>
 
-        <Link href='/'>
-          <Button className='bg-navy uppercase hover:bg-navy/90'>
-            Back Home
-          </Button>
+        <Link
+          className='h-9 rounded-md bg-primary px-4 py-2 text-sm text-primary-foreground shadow hover:bg-primary/90'
+          href='/'
+        >
+          Back Home
         </Link>
       </div>
     </div>
