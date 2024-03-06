@@ -14,7 +14,7 @@ export default function DaySchedule({ schedule }: { schedule: TSchedule }) {
         className='flex w-full flex-col space-y-0.5 border-b py-2.5 pr-2 text-start'
         onClick={() => setIsOpen((x) => !x)}
       >
-        <span className='text-sm font-light'>{day}</span>
+        <span className='text-sm font-normal'>{day}</span>
 
         <span className='flex w-full flex-row items-center justify-between space-x-4'>
           <span className='w-[calc(100%-32px)] text-sm/[1rem] font-bold text-[#323436] md:text-base'>

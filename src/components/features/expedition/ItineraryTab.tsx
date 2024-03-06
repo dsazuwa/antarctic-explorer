@@ -28,7 +28,7 @@ export default function Tab({
     >
       <button
         onClick={handleClick}
-        className='flex w-full flex-row items-center justify-between md:w-auto'
+        className='flex w-full flex-row items-center justify-between'
       >
         <span className='flex flex-col space-y-1 py-4 pl-4 text-start font-semibold'>
           <span className='text-base'>{name}</span>
@@ -41,7 +41,7 @@ export default function Tab({
           )}
         </span>
 
-        {isSelected && <ChevronRightIcon className='h-8 w-8 p-2' />}
+        {isSelected && <ChevronRightIcon className='h-8 w-6 py-2' />}
       </button>
     </li>
   );

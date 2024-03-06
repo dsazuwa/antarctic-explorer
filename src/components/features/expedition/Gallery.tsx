@@ -24,7 +24,7 @@ export default function Gallery({ gallery, className }: Props) {
       role='group'
       aria-label='highlights images carousel'
       aria-roledescription='carousel'
-      className={clsx('relative aspect-video', className)}
+      className={clsx('relative aspect-video h-[300px] sm:h-auto', className)}
     >
       <div className='embla h-full w-full overflow-hidden' ref={emblaRef}>
         <div className='embla__container flex h-full w-full flex-row'>

@@ -36,7 +36,7 @@ export default function Vessel({ id, vessel }: VesselProps) {
       </div>
 
       <img
-        className='rounded-sm object-cover lg:order-2 lg:col-span-7 lg:h-[680px]'
+        className='rounded-sm object-cover lg:order-2 lg:col-span-7 lg:h-[600px]'
         src={photoUrl}
         alt={name}
       />
