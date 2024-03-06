@@ -1,9 +1,10 @@
 import { ExpeditionResponse } from '@/lib/type';
 import Departures from './Departures';
 import Hero from './Hero';
+import Itineraries from './Itineraries';
+import Expeditions from './OtherExpeditions';
 import Overview from './Overview';
 import Vessels from './Vessels';
-import Itineraries from './Itineraries';
 
 type Props = {
   expedition: ExpeditionResponse;
@@ -22,6 +23,7 @@ export default function Expedition({ expedition }: Props) {
     departures,
     vessels,
     gallery,
+    otherExpeditions,
   } = expedition;
 
   const numVessels = Object.keys(vessels).length;
@@ -46,6 +48,8 @@ export default function Expedition({ expedition }: Props) {
       <Departures id={id} />
 
       {numVessels > 0 && <Vessels vessels={vessels} />}
+
+      <Expeditions expeditions={otherExpeditions} />
     </main>
   );
 }

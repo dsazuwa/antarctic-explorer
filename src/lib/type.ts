@@ -85,7 +85,7 @@ export type ExpeditionResponse = {
   vessels: { [id: number]: TVessel };
   itineraries: TItinerary[];
   departures: { startDate: Date; endDate: Date }[];
-  otherExpeditions: TExpedition;
+  otherExpeditions: TExpedition[];
 };
 
 export type ExpeditionsResponse = {
