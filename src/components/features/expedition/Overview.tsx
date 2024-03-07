@@ -1,7 +1,5 @@
 import { StarFilledIcon } from '@radix-ui/react-icons';
 
-import H3Heading from './H3Heading';
-
 type Props = {
   description: string[];
   highlights: string[];
@@ -9,13 +7,12 @@ type Props = {
 
 export default function Overview({ description, highlights }: Props) {
   return (
-    <section
-      className='w-full bg-primary-foreground'
-      aria-label='Expedition Overview'
-    >
-      <div className='mx-auto flex max-w-screen-lg flex-col space-y-8 p-4 py-8 lg:flex-row lg:space-x-8 lg:space-y-0'>
+    <section className='w-full' aria-label='Expedition Overview'>
+      <div className='mx-auto flex max-w-screen-lg flex-col gap-4 px-4 py-8 md:py-12 lg:flex-row'>
         <div className='flex flex-col lg:w-7/12'>
-          <H3Heading text='Overview' />
+          <h2 className='mb-2 text-lg font-bold text-sky-900 md:text-xl'>
+            Overview
+          </h2>
 
           <div className='space-y-4'>
             {description.map((x, i) => (
@@ -27,7 +24,7 @@ export default function Overview({ description, highlights }: Props) {
         </div>
 
         <div className='lg:w-5/12'>
-          <h4 className='mb-4 font-bold text-navy md:text-lg'>Highlights</h4>
+          <h3 className='mb-2 font-bold text-navy md:text-lg'>Highlights</h3>
 
           <ul className='flex flex-col space-y-3'>
             {highlights.map((x, i) => (

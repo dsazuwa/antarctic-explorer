@@ -10,7 +10,7 @@ export default function Extension({ extension }: Props) {
   const { name, startingPrice, duration, photoUrl, website } = extension;
 
   return (
-    <div className='group relative h-full rounded-xl hover:shadow-lg'>
+    <div className='group relative h-full rounded-xl bg-white hover:shadow-lg'>
       <img
         className='h-[270px] w-full rounded-t-xl object-cover'
         src={photoUrl}
@@ -19,9 +19,9 @@ export default function Extension({ extension }: Props) {
 
       <div className='flex h-[calc(100%-270px)] flex-col rounded-b-xl border'>
         <div className='flex flex-row justify-between gap-4 p-4'>
-          <h4 className='line-clamp-2text-sm/[1rem] font-bold text-primary group-hover:underline'>
+          <h3 className='line-clamp-2text-sm/[1rem] font-bold text-primary group-hover:underline'>
             {name}
-          </h4>
+          </h3>
 
           {duration && (
             <p className='whitespace-nowrap text-xs font-semibold text-gray-400'>

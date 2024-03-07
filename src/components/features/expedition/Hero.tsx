@@ -38,7 +38,7 @@ export default function Hero({
   };
 
   return (
-    <section className='w-full bg-navy text-white' aria-label='Header'>
+    <section className='w-full bg-navy text-white' aria-label='Hero'>
       <div className='mx-auto flex max-w-screen-lg flex-col sm:flex-row sm:py-8'>
         <div className='flex flex-col space-y-3 p-4 sm:w-2/5'>
           <div className='flex flex-col'>

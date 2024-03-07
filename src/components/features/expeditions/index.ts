@@ -1,3 +1,4 @@
+import Expedition from './Expedition';
 import Expeditions from './Expeditions';
 import FilterChips from './FilterChips';
 import MobileFilterPanel from './MobileFilterPanel';
@@ -6,6 +7,7 @@ import PaginationHeader from './PaginationHeader';
 import SideFilterPanel from './SideFilterPanel';
 
 export {
+  Expedition,
   Expeditions,
   FilterChips,
   MobileFilterPanel,

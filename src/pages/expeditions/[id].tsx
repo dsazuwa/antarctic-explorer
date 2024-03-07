@@ -2,7 +2,7 @@ import { GetServerSideProps, GetServerSidePropsContext } from 'next';
 import Head from 'next/head';
 
 import Layout from '@/Layout';
-import { Expedition } from '@/components/features/expedition';
+import Expedition from '@/components/features/expedition';
 import { ExpeditionResponse } from '@/lib/type';
 import { expeditionApi, wrapper } from '@/store';
 

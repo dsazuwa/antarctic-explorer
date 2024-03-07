@@ -1,14 +1,13 @@
 import { useEffect } from 'react';
 
-import { useAppSelector, useLazyGetDeparturesQuery } from '@/store';
-import Departure from './Departure';
-import H3Heading from './H3Heading';
-import PaginationControls from './PaginationControls';
-import PaginationHeader from './PaginationHeader';
 import {
   departureSortOptions,
   departuresPerPageOptions,
 } from '@/lib/constants';
+import { useAppSelector, useLazyGetDeparturesQuery } from '@/store';
+import Departure from './Departure';
+import PaginationControls from './PaginationControls';
+import PaginationHeader from './PaginationHeader';
 
 export default function Departures({ id }: { id: number }) {
   const {
@@ -37,8 +36,10 @@ export default function Departures({ id }: { id: number }) {
     <></>
   ) : (
     <section className='w-full' aria-label='Departure Date & Rates'>
-      <div className='mx-auto max-w-screen-lg space-y-1 p-4'>
-        <H3Heading text='Departures' />
+      <div className='mx-auto max-w-screen-lg space-y-1 px-4 py-8 md:py-12'>
+        <h2 className='mb-2 text-lg font-bold text-sky-900 md:text-xl'>
+          Departures
+        </h2>
 
         <PaginationHeader />
 

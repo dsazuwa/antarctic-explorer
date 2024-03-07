@@ -1,7 +1,6 @@
 import { useState } from 'react';
 
 import { TItinerary } from '@/lib/type';
-import H3Heading from './H3Heading';
 import Itinerary from './Itinerary';
 import Dialog from './ItineraryDialog';
 import Tab from './ItineraryTab';
@@ -13,8 +12,10 @@ export default function Itineraries({ itineraries }: Props) {
 
   return (
     <section className='w-full' aria-label='Itineraries'>
-      <div className='mx-auto flex max-w-screen-lg flex-col px-4 py-8 md:py-16'>
-        <H3Heading text='Available Itineraries' />
+      <div className='mx-auto flex max-w-screen-lg flex-col px-4 py-8 md:pb-12 md:pt-16'>
+        <h2 className='mb-2 text-lg font-bold text-sky-900 md:text-xl'>
+          Available Itineraries
+        </h2>
 
         <p className='mb-4 pr-4 text-base/7 md:w-1/2'>
           Our portfolio of immersive itineraries allows you to choose where and

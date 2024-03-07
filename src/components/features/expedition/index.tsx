@@ -29,7 +29,7 @@ export default function Expedition({ expedition }: Props) {
   const numVessels = Object.keys(vessels).length;
 
   return (
-    <main>
+    <main className='[&>*:nth-child(even)]:bg-muted/80 [&>*:nth-child(odd):not(:first-child)]:bg-white'>
       <Hero
         name={name}
         duration={duration}

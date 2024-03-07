@@ -13,9 +13,9 @@ export default function Vessel({ id, vessel }: VesselProps) {
   return (
     <div className='grid w-full grid-cols-1 gap-4 lg:grid-cols-12'>
       <div className='order-2 mt-4 flex flex-col lg:order-1 lg:col-span-5 lg:mt-0'>
-        <h4 className='text-sm font-black italic text-sky-800 md:text-base'>
+        <h3 className='text-sm font-black italic text-sky-800 md:text-base'>
           {name}
-        </h4>
+        </h3>
 
         <div className='mt-3 grid grid-cols-2 divide-x border-b border-t py-4'>
           <VesselDetail label='Guests' value={capacity} />
@@ -30,8 +30,8 @@ export default function Vessel({ id, vessel }: VesselProps) {
           ))}
         </div>
 
-        <div className='mt-3 flex flex-row justify-end lg:mt-auto'>
-          <LinkButton className='m-2' label='Explore Ship' website={website} />
+        <div className='m-2 mt-3 flex flex-row justify-end lg:mt-auto'>
+          <LinkButton label='Explore Ship' website={website} />
         </div>
       </div>
 

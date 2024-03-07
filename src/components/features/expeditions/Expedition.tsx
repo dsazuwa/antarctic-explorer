@@ -25,7 +25,7 @@ function Expedition({ expedition }: ExpeditionProps) {
 
   return (
     <Link aria-label={name} href={`/expeditions/${id}`}>
-      <div className='group rounded-xl hover:shadow-lg'>
+      <div className='group rounded-xl bg-white hover:shadow-lg'>
         <img
           className='h-[270px] w-full rounded-t-xl object-cover object-bottom'
           src={photoUrl}
@@ -40,9 +40,9 @@ function Expedition({ expedition }: ExpeditionProps) {
               alt={`${cruiseLine} logo`}
             />
 
-            <h4 className='line-clamp-2 text-sm/[1rem] font-semibold text-primary group-hover:underline'>
+            <h3 className='line-clamp-2 text-sm/[1rem] font-semibold text-primary group-hover:underline'>
               {name}
-            </h4>
+            </h3>
           </div>
 
           <div className='mx-4 mb-6 mt-auto grid grid-cols-3 border-t-2 border-solid border-gray-200 pt-4'>
