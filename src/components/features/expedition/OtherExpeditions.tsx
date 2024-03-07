@@ -8,10 +8,10 @@ type Props = { expeditions: TExpedition[] };
 export default function Expeditions({ expeditions }: Props) {
   return (
     <section className='w-full' aria-label='Itineraries'>
-      <div className='mx-auto max-w-screen-lg px-4 py-8 md:py-16'>
+      <div className='mx-auto max-w-screen-lg px-4 py-8 md:py-12'>
         <H3Heading text='Other Expeditions' />
 
-        <div className='grid grid-cols-1 gap-6 pt-3 sm:grid-cols-2 lg:grid-cols-3'>
+        <div className='grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3'>
           {expeditions.map((expedition, i) => (
             <Expedition key={`other-expedition-${i}`} expedition={expedition} />
           ))}

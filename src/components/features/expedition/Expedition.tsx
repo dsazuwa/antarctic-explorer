@@ -1,14 +1,13 @@
 import { ExpeditionResponse } from '@/lib/type';
 import Departures from './Departures';
+import Extensions from './Extensions';
 import Hero from './Hero';
 import Itineraries from './Itineraries';
 import Expeditions from './OtherExpeditions';
 import Overview from './Overview';
 import Vessels from './Vessels';
 
-type Props = {
-  expedition: ExpeditionResponse;
-};
+type Props = { expedition: ExpeditionResponse };
 
 export default function Expedition({ expedition }: Props) {
   const {
@@ -23,6 +22,7 @@ export default function Expedition({ expedition }: Props) {
     departures,
     vessels,
     gallery,
+    extensions,
     otherExpeditions,
   } = expedition;
 
@@ -48,6 +48,8 @@ export default function Expedition({ expedition }: Props) {
       <Departures id={id} />
 
       {numVessels > 0 && <Vessels vessels={vessels} />}
+
+      {extensions.length > 0 && <Extensions extensions={extensions} />}
 
       <Expeditions expeditions={otherExpeditions} />
     </main>

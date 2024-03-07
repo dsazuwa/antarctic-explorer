@@ -71,6 +71,14 @@ export type TDeparture = {
   website: string;
 };
 
+export type TExtension = {
+  name: string;
+  startingPrice: number | null;
+  duration: number | null;
+  photoUrl: string;
+  website: string | null;
+};
+
 export type ExpeditionResponse = {
   id: number;
   name: string;
@@ -85,6 +93,7 @@ export type ExpeditionResponse = {
   vessels: { [id: number]: TVessel };
   itineraries: TItinerary[];
   departures: { startDate: Date; endDate: Date }[];
+  extensions: TExtension[];
   otherExpeditions: TExpedition[];
 };
 
