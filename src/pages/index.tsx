@@ -27,17 +27,17 @@ export default function ExpeditionPage() {
         <link rel='icon' href='/favicon.ico' />
       </Head>
 
-      <div className='bg-warm-gray-1 mx-auto w-full max-w-screen-lg'>
+      <div className='bg-warm-gray-1 mx-auto h-full h-full min-h-[calc(100vh-104px)] w-full max-w-screen-lg'>
         <div className='flex h-10 items-center justify-center text-base font-bold text-navy sm:mb-1 sm:text-lg md:text-xl'>
           Expeditions
         </div>
 
-        <div className='lg:flex lg:flex-row'>
+        <div className='grid min-h-[calc(100vh-148px)] grid-cols-1 grid-cols-3 gap-4 lg:px-2'>
           <SideFilterPanel />
 
           <div
             id='main-panel'
-            className='px-4 lg:w-[calc(100%-300px)] lg:space-y-0 lg:px-2'
+            className='relative col-span-4 min-h-[calc(100vh-148px)] px-4 lg:col-span-2 lg:space-y-0 lg:px-0'
           >
             <MobileFilterPanel />
 
@@ -45,7 +45,7 @@ export default function ExpeditionPage() {
 
             <PaginationHeader />
 
-            {isLoading ? <Loader /> : <Expeditions />}
+            {isLoading ? <Loader className='h-40' /> : <Expeditions />}
 
             <PaginationControls />
           </div>

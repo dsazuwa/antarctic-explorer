@@ -11,7 +11,7 @@ export default function PaginationHeader() {
   } = useAppSelector((s) => s.expeditionState);
 
   return (
-    <div className='flex items-center justify-between py-2 sm:py-0 sm:pb-2 sm:text-xs'>
+    <div className='flex h-10 items-center justify-between py-2 sm:py-0 sm:pb-2 sm:text-xs'>
       <HeaderSummary
         currentPage={currentPage}
         itemsPerPage={itemsPerPage}

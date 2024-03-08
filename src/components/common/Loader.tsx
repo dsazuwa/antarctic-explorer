@@ -1,8 +1,8 @@
-import React from 'react';
+import clsx from 'clsx';
 
-function Loader() {
+export default function Loader({ className }: { className?: string }) {
   return (
-    <div className='mt-40 flex w-full items-center justify-center'>
+    <div className={clsx('flex w-full items-center justify-center', className)}>
       <svg
         aria-hidden='true'
         className='h-16 w-16 animate-spin fill-primary text-gray-100'
@@ -24,5 +24,3 @@ function Loader() {
     </div>
   );
 }
-
-export default Loader;
