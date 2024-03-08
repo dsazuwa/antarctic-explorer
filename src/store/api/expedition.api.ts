@@ -40,10 +40,10 @@ export const expeditionApi = createApi({
         cruiseLines?: string;
         startDate?: string;
         endDate?: string;
-        'capacity.min'?: number;
-        'capacity.max'?: number;
-        'duration.min'?: number;
-        'duration.max'?: number;
+        'capacity.min'?: number | null;
+        'capacity.max'?: number | null;
+        'duration.min'?: number | null;
+        'duration.max'?: number | null;
       }
     >({
       query: (args) => {
