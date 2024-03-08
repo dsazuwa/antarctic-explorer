@@ -122,8 +122,8 @@ export type BasicFilterOption = { displayName: string }[];
 
 export type RangedFilterOption = {
   displayName: string;
-  min: number;
-  max: number;
+  min: number | null;
+  max: number | null;
 }[];
 
 export type SortType = {
