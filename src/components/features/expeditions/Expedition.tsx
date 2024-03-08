@@ -58,7 +58,7 @@ function Expedition({ expedition }: ExpeditionProps) {
               primaryLabel='Next Sailing'
               value={
                 nearestDate === null
-                  ? 'none'
+                  ? null
                   : new Date(nearestDate).toLocaleDateString('en-US', {
                       year: '2-digit',
                       month: '2-digit',

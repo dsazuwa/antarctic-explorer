@@ -4,7 +4,7 @@ interface InfoDisplayProps {
   Icon: ComponentType<{ className?: string }>;
   primaryLabel: string;
   secondaryLabel?: string;
-  value: string;
+  value: string | null;
 }
 
 function InfoDisplay({
@@ -23,7 +23,12 @@ function InfoDisplay({
         <div>{primaryLabel}</div>
 
         <div className='items-baseline'>
-          <span className='mr-1 text-[10px] text-black'>{value}</span>
+          {value === null ? (
+            <span>Unavailable</span>
+          ) : (
+            <span className='mr-1 text-[10px] text-black'>{value}</span>
+          )}
+
           {secondaryLabel && <span>{secondaryLabel}</span>}
         </div>
       </div>
