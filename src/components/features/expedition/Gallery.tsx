@@ -1,4 +1,5 @@
 import { ChevronLeftIcon, ChevronRightIcon } from '@radix-ui/react-icons';
+import Image from 'next/image';
 import clsx from 'clsx';
 import { HTMLProps } from 'react';
 
@@ -33,7 +34,14 @@ export default function Gallery({ gallery, className }: Props) {
               key={`highlighted-img-${i}`}
               className='embla__slide shrink-0 grow-0 basis-full'
             >
-              <img alt={alt} src={url} className='h-full w-full object-cover' />
+              <Image
+                className='h-full w-full object-cover'
+                alt={alt}
+                src={url}
+                width={0}
+                height={0}
+                sizes='100vw'
+              />
             </div>
           ))}
         </div>

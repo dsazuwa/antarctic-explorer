@@ -1,10 +1,8 @@
 import { ImageIcon } from '@radix-ui/react-icons';
 import clsx from 'clsx';
+import Image from 'next/image';
 
-type Props = {
-  url: string;
-  alt: string;
-};
+type Props = { url: string; alt: string };
 
 export default function Map({ alt, url }: Props) {
   const hasMap = url !== null;
@@ -19,7 +17,14 @@ export default function Map({ alt, url }: Props) {
       )}
     >
       {hasMap ? (
-        <img src={url} alt={alt} className='h-full w-full object-cover' />
+        <Image
+          className='h-full w-full object-cover'
+          src={url}
+          alt={alt}
+          width={0}
+          height={0}
+          sizes='100vw'
+        />
       ) : (
         <ImageIcon
           className='h-48 w-48 text-primary/20'

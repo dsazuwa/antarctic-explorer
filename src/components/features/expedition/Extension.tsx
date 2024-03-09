@@ -1,4 +1,5 @@
 import clsx from 'clsx';
+import Image from 'next/image';
 
 import LinkButton from '@/components/common/LinkButton';
 import { TExtension } from '@/lib/type';
@@ -11,10 +12,13 @@ export default function Extension({ extension }: Props) {
 
   return (
     <li className='group relative h-full rounded-xl bg-white hover:shadow-lg'>
-      <img
+      <Image
         className='h-[270px] w-full rounded-t-xl object-cover'
         src={photoUrl}
         alt={name}
+        width={0}
+        height={0}
+        sizes='100vw'
       />
 
       <div className='flex h-[calc(100%-270px)] flex-col rounded-b-xl border'>

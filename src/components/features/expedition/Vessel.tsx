@@ -1,3 +1,5 @@
+import Image from 'next/image';
+
 import LinkButton from '@/components/common/LinkButton';
 import { TVessel } from '@/lib/type';
 import VesselDetail from './VesselDetail';
@@ -35,10 +37,13 @@ export default function Vessel({ id, vessel }: VesselProps) {
         </div>
       </div>
 
-      <img
+      <Image
         className='rounded-sm object-cover lg:order-2 lg:col-span-7 lg:h-[600px]'
         src={photoUrl}
         alt={name}
+        width={0}
+        height={0}
+        sizes='100vw'
       />
     </div>
   );
