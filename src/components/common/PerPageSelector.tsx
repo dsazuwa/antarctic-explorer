@@ -22,7 +22,7 @@ export default function PerPageSelector({
     <div className='flex flex-row items-center space-x-2'>
       <Label
         htmlFor='items_per_page'
-        className='text-xs font-semibold text-slate-500'
+        className='pb-0.5 text-xs font-semibold text-slate-500'
       >
         Items per page
       </Label>

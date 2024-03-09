@@ -19,7 +19,7 @@ export default function PaginationControls() {
   } = useAppSelector((s) => s.expeditionState);
 
   return (
-    <div className='absolute bottom-0 left-0 flex w-full flex-col-reverse items-center p-4 text-xs sm:grid sm:grid-cols-3 lg:px-0'>
+    <div className='mt-auto flex h-20 w-full flex-col-reverse items-center gap-2 text-xs sm:grid sm:h-10 sm:grid-cols-3 md:gap-0'>
       <PerPageSelector
         options={itemsPerPageOptions}
         itemsPerPage={selectedItemsPerPage}

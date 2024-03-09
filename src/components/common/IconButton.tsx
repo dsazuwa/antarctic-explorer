@@ -9,14 +9,14 @@ type Props = {
   onClick?: () => void;
 };
 
-function IconButton({ Icon, disabled, onClick }: Props) {
+export default function IconButton({ Icon, disabled, onClick }: Props) {
   return (
     <button
       disabled={disabled}
       onClick={onClick}
       className={clsx(
         'group flex h-6 max-h-6 w-6 items-center justify-center rounded-full',
-        { 'hover:bg-primary/90': !disabled, 'bg-white': disabled },
+        { 'hover:bg-primary/90': !disabled },
       )}
     >
       <i
@@ -31,5 +31,3 @@ function IconButton({ Icon, disabled, onClick }: Props) {
     </button>
   );
 }
-
-export default IconButton;

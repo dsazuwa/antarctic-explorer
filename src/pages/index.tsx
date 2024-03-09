@@ -37,7 +37,7 @@ export default function ExpeditionPage() {
 
           <div
             id='main-panel'
-            className='relative col-span-4 min-h-[calc(100vh-148px)] px-4 lg:col-span-2 lg:space-y-0 lg:px-0'
+            className='col-span-4 flex h-full min-h-[calc(100vh-148px)] w-full flex-col gap-1 px-4 lg:col-span-2 lg:space-y-0 lg:px-0'
           >
             <MobileFilterPanel />
 
@@ -45,7 +45,9 @@ export default function ExpeditionPage() {
 
             <PaginationHeader />
 
-            {isLoading ? <Loader className='h-40' /> : <Expeditions />}
+            <div className='flex grow items-start'>
+              {isLoading ? <Loader className='h-40 w-full' /> : <Expeditions />}
+            </div>
 
             <PaginationControls />
           </div>
