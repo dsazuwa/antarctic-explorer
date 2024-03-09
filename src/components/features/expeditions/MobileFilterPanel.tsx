@@ -1,5 +1,4 @@
 import { Cross2Icon, MixerHorizontalIcon } from '@radix-ui/react-icons';
-import clsx from 'clsx';
 import { useEffect, useState } from 'react';
 
 import { Button } from '@/components/ui/button';
@@ -25,24 +24,23 @@ function MobileFilterPanel() {
     <div className='flex flex-row justify-between py-2 text-xxs font-semibold sm:text-xs lg:hidden'>
       <Sheet open={open} onOpenChange={setOpen}>
         <SheetTrigger asChild>
-          <Button variant='white' size='xs'>
-            <MixerHorizontalIcon className='mr-2 text-muted-foreground' />
-            <span className='text-muted-foreground'>Filter</span>
+          <Button
+            variant='outline'
+            className='h-[32px] w-20 gap-2 rounded-md capitalize'
+          >
+            <MixerHorizontalIcon />
+            <span>Filter</span>
           </Button>
         </SheetTrigger>
 
         <SheetContent
           side='custom'
-          className={clsx('flex w-screen flex-col', {
-            'inset-x-0 bottom-0 border-t data-[state=closed]:slide-out-to-bottom data-[state=open]:slide-in-from-bottom':
-              windowWidth !== undefined && windowWidth < 640,
-            'inset-y-0 left-0 h-full w-3/4 border-r data-[state=closed]:slide-out-to-left data-[state=open]:slide-in-from-left sm:max-w-sm':
-              windowWidth !== undefined && windowWidth >= 640,
-          })}
+          className='inset-y-0 left-0 flex h-full w-3/4 w-screen flex-col border-r data-[state=closed]:slide-out-to-left data-[state=open]:slide-in-from-left sm:max-w-sm'
         >
           <div>
             <div className='text-md flex items-center justify-between bg-primary-foreground p-4 font-semibold'>
-              Filter
+              <span>Filter</span>
+
               <SheetClose className='rounded-sm opacity-70 transition-opacity hover:opacity-100'>
                 <Cross2Icon className='h-4 w-4' />
                 <span className='sr-only'>Close</span>
