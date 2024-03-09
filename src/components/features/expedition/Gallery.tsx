@@ -1,24 +1,53 @@
 import { ChevronLeftIcon, ChevronRightIcon } from '@radix-ui/react-icons';
-import Image from 'next/image';
 import clsx from 'clsx';
-import { HTMLProps } from 'react';
+import { EmblaCarouselType } from 'embla-carousel';
+import useEmblaCarousel from 'embla-carousel-react';
+import { useCallback, useEffect, useState } from 'react';
+import Image from 'next/image';
 
-import useCarousel from '@/hooks/useCarousel';
 import { TGallery } from '@/lib/type';
 
-type Props = {
-  gallery: TGallery[];
-} & HTMLProps<HTMLDivElement>;
+type Props = { gallery: TGallery[]; className: string };
 
 export default function Gallery({ gallery, className }: Props) {
-  const {
-    index,
-    isPrevDisabled,
-    isNextDisabled,
-    emblaRef,
-    slideToPrev,
-    slideToNext,
-  } = useCarousel(gallery.length);
+  const total = gallery.length;
+  const [index, setIndex] = useState(0);
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
+  const [isPrevDisabled, setPrevBDisabled] = useState(true);
+  const [isNextDisabled, setNextDisabled] = useState(true);
+
+  const onPrevButtonClick = useCallback(() => {
+    if (!emblaApi) return;
+    emblaApi.scrollPrev();
+  }, [emblaApi]);
+
+  const onNextButtonClick = useCallback(() => {
+    if (!emblaApi) return;
+    emblaApi.scrollNext();
+  }, [emblaApi]);
+
+  const slideToPrev = () => {
+    setIndex(index === 0 ? total - 1 : index - 1);
+    onPrevButtonClick();
+  };
+
+  const slideToNext = () => {
+    setIndex(index === total - 1 ? 0 : index + 1);
+    onNextButtonClick();
+  };
+
+  const onSelect = useCallback((emblaApi: EmblaCarouselType) => {
+    setPrevBDisabled(!emblaApi.canScrollPrev());
+    setNextDisabled(!emblaApi.canScrollNext());
+  }, []);
+
+  useEffect(() => {
+    if (!emblaApi) return;
+
+    onSelect(emblaApi);
+    emblaApi.on('reInit', onSelect);
+    emblaApi.on('select', onSelect);
+  }, [emblaApi, onSelect]);
 
   return (
     <div

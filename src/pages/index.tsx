@@ -10,10 +10,12 @@ import {
   PaginationHeader,
   SideFilterPanel,
 } from '@/components/features/expeditions';
-import useInitializeData from '@/hooks/useGetData';
+import { useGetDataQuery } from '@/store';
 
 export default function ExpeditionPage() {
-  const isLoading = useInitializeData();
+  const { data, isFetching, isLoading } = useGetDataQuery();
+
+  const loading = data === undefined || isFetching || isLoading;
 
   return (
     <Layout>
@@ -46,7 +48,7 @@ export default function ExpeditionPage() {
             <PaginationHeader />
 
             <div className='flex grow items-start'>
-              {isLoading ? <Loader className='h-40 w-full' /> : <Expeditions />}
+              {loading ? <Loader className='h-40 w-full' /> : <Expeditions />}
             </div>
 
             <PaginationControls />
