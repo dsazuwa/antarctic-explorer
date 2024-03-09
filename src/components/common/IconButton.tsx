@@ -15,19 +15,14 @@ export default function IconButton({ Icon, disabled, onClick }: Props) {
       disabled={disabled}
       onClick={onClick}
       className={clsx(
-        'group flex h-6 max-h-6 w-6 items-center justify-center rounded-full',
-        { 'hover:bg-primary/90': !disabled },
+        'group flex h-6 max-h-6 w-6 items-center justify-center rounded-full transition-colors',
+        {
+          'hover:bg-primary/40 hover:text-white': !disabled,
+          'text-gray-400': disabled,
+        },
       )}
     >
-      <i
-        className={clsx('flex items-center justify-center fill-current', {
-          'text-black hover:text-primary-foreground group-hover:text-primary-foreground':
-            !disabled,
-          'text-gray-400': disabled,
-        })}
-      >
-        <Icon className='h-3 w-3' />
-      </i>
+      <Icon className='h-3 w-3' />
     </button>
   );
 }
