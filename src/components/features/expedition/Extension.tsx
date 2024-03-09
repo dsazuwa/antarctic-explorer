@@ -10,7 +10,7 @@ export default function Extension({ extension }: Props) {
   const { name, startingPrice, duration, photoUrl, website } = extension;
 
   return (
-    <div className='group relative h-full rounded-xl bg-white hover:shadow-lg'>
+    <li className='group relative h-full rounded-xl bg-white hover:shadow-lg'>
       <img
         className='h-[270px] w-full rounded-t-xl object-cover'
         src={photoUrl}
@@ -61,6 +61,6 @@ export default function Extension({ extension }: Props) {
           )}
         </div>
       </div>
-    </div>
+    </li>
   );
 }

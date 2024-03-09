@@ -33,7 +33,7 @@ export default function Departure({ departure }: { departure: TDeparture }) {
   };
 
   return (
-    <div className='flex flex-col space-y-4 rounded-r-sm border border-l-amber-400 bg-white p-4 shadow-sm md:flex-row md:space-y-0'>
+    <li className='flex flex-col space-y-4 rounded-r-sm border border-l-amber-400 bg-white p-4 shadow-sm md:flex-row md:space-y-0'>
       <div className='flex flex-col justify-center space-y-3 md:w-9/12'>
         <div className='font-bold'>
           {itinerary}
@@ -79,6 +79,6 @@ export default function Departure({ departure }: { departure: TDeparture }) {
 
         <LinkButton variant='secondary' label='Book Now' website={website} />
       </div>
-    </div>
+    </li>
   );
 }

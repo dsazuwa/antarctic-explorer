@@ -43,11 +43,11 @@ export default function Departures({ id }: { id: number }) {
 
         <PaginationHeader />
 
-        <div className='space-y-4'>
+        <ol className='space-y-4'>
           {data.map((departure, i) => (
             <Departure key={`departure-${i}`} departure={departure} />
           ))}
-        </div>
+        </ol>
 
         <PaginationControls />
       </div>

@@ -15,13 +15,13 @@ export default function Expeditions() {
       </span>
     </div>
   ) : (
-    <div
+    <ol
       id='expeditions-list'
       className='grid w-full grid-cols-1 gap-4 sm:grid-cols-2'
     >
       {data.map((expedition, index) => (
         <Expedition key={'expedition' + index} expedition={expedition} />
       ))}
-    </div>
+    </ol>
   );
 }

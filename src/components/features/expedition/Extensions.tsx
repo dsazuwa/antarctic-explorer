@@ -11,11 +11,11 @@ export default function Extensions({ extensions }: Props) {
           Exedition Extensions
         </h2>
 
-        <div className='mt-auto grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3'>
+        <ul className='mt-auto grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3'>
           {extensions.map((extension, i) => (
             <Extension key={`extension-${i}`} extension={extension} />
           ))}
-        </div>
+        </ul>
       </div>
     </section>
   );

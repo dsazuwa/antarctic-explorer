@@ -14,11 +14,11 @@ export default function Expeditions({ expeditions }: Props) {
           Other Expeditions
         </h2>
 
-        <div className='grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3'>
+        <ul className='grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3'>
           {expeditions.map((expedition, i) => (
             <Expedition key={`other-expedition-${i}`} expedition={expedition} />
           ))}
-        </div>
+        </ul>
 
         <span className='flex justify-center'>
           <Button className='mt-8 gap-2 gap-2 rounded-[32px] text-sm font-bold'>
