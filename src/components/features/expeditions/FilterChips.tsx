@@ -53,7 +53,7 @@ function FilterChips() {
   return (
     <div
       className={clsx(
-        { 'mb-1 flex flex-row flex-wrap': isFiltered },
+        { 'mb-1 flex flex-row flex-wrap gap-2': isFiltered },
         { hidden: !isFiltered },
       )}
     >
