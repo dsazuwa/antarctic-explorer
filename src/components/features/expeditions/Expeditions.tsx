@@ -1,88 +1,20 @@
-import { useEffect } from 'react';
+import { ValueNoneIcon } from '@radix-ui/react-icons';
 
-import {
-  capacityOptions,
-  durationOptions,
-  itemsPerPageOptions,
-  sortOptions,
-} from '@/lib/constants';
-import { formatDate } from '@/lib/utils';
-import { useAppSelector, useLazyGetExpeditionsQuery } from '@/store';
+import useExpeditions from '@/hooks/useExpeditions';
 import Expedition from './Expedition';
 
 export default function Expeditions() {
-  const {
-    expeditions: { data, currentPage },
-    cruiseLineOptions,
-    selectedItemsPerPage,
-    selectedSort,
-    filters,
-  } = useAppSelector((s) => s.expeditionState);
+  const data = useExpeditions();
 
-  const [fetchExpeditions] = useLazyGetExpeditionsQuery();
+  return data.length === 0 ? (
+    <div className='flex flex-row items-center justify-center gap-3 p-4 font-semibold text-gray-300'>
+      <ValueNoneIcon className='h-10 w-10' />
 
-  useEffect(() => {
-    const {
-      startDate,
-      endDate,
-      cruiseLines: linesFilter,
-      capacity,
-      duration,
-    } = filters;
-
-    const startFilter =
-      startDate !== null
-        ? { startDate: encodeURIComponent(formatDate(startDate, 'yyyy-MM-dd')) }
-        : {};
-
-    const endFilter =
-      endDate !== null
-        ? { endDate: encodeURIComponent(formatDate(endDate, 'yyyy-MM-dd')) }
-        : {};
-
-    const capacityFillter =
-      capacity !== capacityOptions.length - 1
-        ? {
-            'capacity.min': capacityOptions[capacity].min,
-            'capacity.max': capacityOptions[capacity].max,
-          }
-        : {};
-
-    const durationFilter =
-      duration !== durationOptions.length - 1
-        ? {
-            'duration.min': durationOptions[duration].min,
-            'duration.max': durationOptions[duration].max,
-          }
-        : {};
-
-    fetchExpeditions({
-      page: currentPage,
-      size: itemsPerPageOptions[selectedItemsPerPage],
-      sort: selectedSort === 0 ? '' : sortOptions[selectedSort].sort,
-      dir: sortOptions[selectedSort].dir === 'asc' ? '' : 'desc',
-      cruiseLines: linesFilter
-        .map((x) => cruiseLineOptions[x].displayName)
-        .join(','),
-      ...startFilter,
-      ...endFilter,
-      ...capacityFillter,
-      ...durationFilter,
-    });
-  }, [
-    currentPage,
-    selectedItemsPerPage,
-    selectedSort,
-    filters,
-    cruiseLineOptions,
-    fetchExpeditions,
-  ]);
-
-  useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }, [currentPage, selectedItemsPerPage]);
-
-  return (
+      <span className='max-w-64 lg:text-lg'>
+        No results. Try adjusting your search by removing filters.
+      </span>
+    </div>
+  ) : (
     <div
       id='expeditions-list'
       className='grid grid-cols-1 gap-4 py-1 sm:grid-cols-2'
