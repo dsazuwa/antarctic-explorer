@@ -37,19 +37,17 @@ function MobileFilterPanel() {
           side='custom'
           className='inset-y-0 left-0 flex h-full w-3/4 w-screen flex-col border-r data-[state=closed]:slide-out-to-left data-[state=open]:slide-in-from-left sm:max-w-sm'
         >
-          <div>
-            <div className='text-md flex items-center justify-between bg-primary-foreground p-4 font-semibold'>
-              <span>Filter</span>
+          <div className='text-md flex items-center justify-between bg-primary-foreground p-4 font-semibold'>
+            <span>Filter</span>
 
-              <SheetClose className='rounded-sm opacity-70 transition-opacity hover:opacity-100'>
-                <Cross2Icon className='h-4 w-4' />
-                <span className='sr-only'>Close</span>
-              </SheetClose>
-            </div>
+            <SheetClose className='rounded-sm opacity-70 transition-opacity hover:opacity-100'>
+              <Cross2Icon className='h-4 w-4' />
+              <span className='sr-only'>Close</span>
+            </SheetClose>
+          </div>
 
-            <div className='px-2 pb-4'>
-              <FilterPanel />
-            </div>
+          <div className='px-2 pb-4'>
+            <FilterPanel />
           </div>
         </SheetContent>
       </Sheet>

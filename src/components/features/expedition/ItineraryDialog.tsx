@@ -49,7 +49,7 @@ export default function ItineraryDialog({
       <SheetContent
         side='custom'
         className={clsx(
-          'flex max-h-screen w-screen flex-col gap-0 overflow-y-scroll bg-white',
+          'flex max-h-screen w-screen flex-col overflow-y-scroll bg-white',
           {
             'inset-y-0 right-0 border-l data-[state=closed]:slide-out-to-right data-[state=open]:slide-in-from-right':
               windowWidth !== undefined && windowWidth <= maxWidth,
