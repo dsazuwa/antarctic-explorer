@@ -6,7 +6,7 @@ import DurationIcon from '@/assets/icons/DurationIcon';
 import PriceTagIcon from '@/assets/icons/PriceTagIcon';
 import { TExpedition } from '@/lib/type';
 import { formatPrice } from '@/lib/utils';
-import InfoDisplay from './InfoDisplay';
+import InfoDisplay from '../features/expeditions/InfoDisplay';
 
 type ExpeditionProps = {
   expedition: TExpedition;

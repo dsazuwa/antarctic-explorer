@@ -1,6 +1,7 @@
 import { ValueNoneIcon } from '@radix-ui/react-icons';
 import { useEffect } from 'react';
 
+import Expedition from '@/components/common/Expedition';
 import {
   capacityOptions,
   durationOptions,
@@ -9,7 +10,6 @@ import {
 } from '@/lib/constants';
 import { formatDate } from '@/lib/utils';
 import { useAppSelector, useLazyGetExpeditionsQuery } from '@/store';
-import Expedition from './Expedition';
 
 export default function Expeditions() {
   const {
