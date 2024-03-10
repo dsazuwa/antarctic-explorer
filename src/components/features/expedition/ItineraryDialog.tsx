@@ -1,11 +1,10 @@
-import { Cross1Icon } from '@radix-ui/react-icons';
 import clsx from 'clsx';
 import { useEffect, useState } from 'react';
 
 import { Sheet, SheetContent } from '@/components/ui/sheet';
 import useWindowWidth from '@/hooks/useWindowWidth';
 import { TItinerary } from '@/lib/type';
-import Itinerary from './Itinerary';
+import Content from './ItemDialogContent';
 import Tab from './ItineraryTab';
 
 type Props = {
@@ -20,6 +19,7 @@ export default function ItineraryDialog({
   handleClick,
 }: Props) {
   const [open, setOpen] = useState(false);
+
   const windowWidth = useWindowWidth();
   const maxWidth = 768;
 
@@ -49,25 +49,19 @@ export default function ItineraryDialog({
       <SheetContent
         side='custom'
         className={clsx(
-          'flex max-h-screen w-screen flex-col overflow-y-scroll bg-white',
+          'flex max-h-screen w-screen flex-col gap-0 overflow-y-scroll bg-white',
           {
             'inset-y-0 right-0 border-l data-[state=closed]:slide-out-to-right data-[state=open]:slide-in-from-right':
               windowWidth !== undefined && windowWidth <= maxWidth,
           },
         )}
       >
-        <div className='px-4'>
-          <div className='fixed top-0 z-10 flex w-full items-center bg-white py-6'>
-            <button onClick={() => setOpen(false)}>
-              <Cross1Icon className='h-4 w-4' />
-            </button>
-          </div>
-
-          <Itinerary
-            className='mt-[64px] space-y-4 py-2 pb-6'
+        {open && (
+          <Content
+            handleClose={() => setOpen(false)}
             itinerary={itineraries[index]}
           />
-        </div>
+        )}
       </SheetContent>
     </Sheet>
   );

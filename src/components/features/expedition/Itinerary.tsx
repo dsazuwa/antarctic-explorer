@@ -8,9 +8,14 @@ import Map from './ItineraryMap';
 type Props = {
   itinerary: TItinerary;
   className?: string;
+  nameElementId?: string;
 };
 
-export default function Itinerary({ itinerary, className }: Props) {
+export default function Itinerary({
+  itinerary,
+  className,
+  nameElementId,
+}: Props) {
   const { id, name, startPort, endPort, duration, mapUrl, schedules } =
     itinerary;
 
@@ -18,7 +23,9 @@ export default function Itinerary({ itinerary, className }: Props) {
     <article className={clsx(className)}>
       <div className='grid grid-cols-1 gap-4 md:grid-cols-3'>
         <div className='space-y-4'>
-          <h3 className='font-black text-sky-800'>{name}</h3>
+          <h3 id={nameElementId} className='h-6 font-black text-sky-800'>
+            {name}
+          </h3>
 
           <ul className='grid grid-cols-3 gap-4 md:grid-cols-1'>
             <InfoDisplay label='Origin Port' value={startPort} />
