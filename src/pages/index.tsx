@@ -14,7 +14,6 @@ import { useGetDataQuery } from '@/store';
 
 export default function ExpeditionPage() {
   const { data, isFetching, isLoading } = useGetDataQuery();
-
   const loading = data === undefined || isFetching || isLoading;
 
   return (
@@ -29,17 +28,17 @@ export default function ExpeditionPage() {
         <link rel='icon' href='/favicon.ico' />
       </Head>
 
-      <div className='bg-warm-gray-1 mx-auto h-full h-full min-h-[calc(100vh-104px)] w-full max-w-screen-lg'>
+      <div className='mx-auto flex h-full h-full w-full max-w-screen-lg flex-grow flex-col bg-white'>
         <div className='flex h-10 items-center justify-center text-base font-bold text-navy sm:mb-1 sm:text-lg md:text-xl'>
           Expeditions
         </div>
 
-        <div className='grid min-h-[calc(100vh-148px)] grid-cols-1 grid-cols-3 gap-4 lg:px-2'>
+        <div className='grid flex-grow grid-cols-1 grid-cols-3 gap-4 lg:px-2'>
           <SideFilterPanel />
 
           <div
             id='main-panel'
-            className='col-span-4 flex h-full min-h-[calc(100vh-148px)] w-full flex-col gap-1 px-4 lg:col-span-2 lg:space-y-0 lg:px-0'
+            className='col-span-4 flex h-full w-full flex-col gap-1 px-4 lg:col-span-2 lg:space-y-0 lg:px-0'
           >
             <MobileFilterPanel />
 
