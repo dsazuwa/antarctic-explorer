@@ -7,9 +7,9 @@ import Image from 'next/image';
 
 import { TGallery } from '@/lib/type';
 
-type Props = { gallery: TGallery[]; className: string };
+type Props = { id: number; gallery: TGallery[]; className: string };
 
-export default function Gallery({ gallery, className }: Props) {
+export default function Gallery({ id, gallery, className }: Props) {
   const total = gallery.length;
   const [index, setIndex] = useState(0);
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
@@ -48,6 +48,11 @@ export default function Gallery({ gallery, className }: Props) {
     emblaApi.on('reInit', onSelect);
     emblaApi.on('select', onSelect);
   }, [emblaApi, onSelect]);
+
+  useEffect(() => {
+    setIndex(0);
+    emblaApi?.scrollTo(0, true);
+  }, [id]);
 
   return (
     <div

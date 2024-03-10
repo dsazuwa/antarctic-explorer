@@ -31,6 +31,7 @@ export default function Expedition({ expedition }: Props) {
   return (
     <main className='[&>*:nth-child(even)]:bg-muted/80 [&>*:nth-child(odd):not(:first-child)]:bg-white'>
       <Hero
+        id={id}
         name={name}
         duration={duration}
         startingPrice={startingPrice}
@@ -43,13 +44,13 @@ export default function Expedition({ expedition }: Props) {
 
       <Overview description={description} highlights={highlights} />
 
-      <Itineraries itineraries={itineraries} />
+      <Itineraries id={id} itineraries={itineraries} />
 
       <Departures id={id} />
 
       {numVessels > 0 && <Vessels vessels={vessels} />}
 
-      {extensions.length > 0 && <Extensions extensions={extensions} />}
+      {extensions.length > 0 && <Extensions id={id} extensions={extensions} />}
 
       <Expeditions expeditions={otherExpeditions} />
     </main>
