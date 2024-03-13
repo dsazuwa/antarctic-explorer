@@ -2,14 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: [
-      'res.cloudinary.com',
-      'assets.lindblad.com',
-      'www.aurora-expeditions.com',
-      'images.ctfassets.net',
-      'kaptiotravel.s3.amazonaws.com',
-      'www.auroraexpeditions.com.au',
-    ],
+    remotePatterns: [{ protocol: 'https', hostname: '**' }],
   },
 };
 
