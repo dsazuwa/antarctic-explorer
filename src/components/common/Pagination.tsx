@@ -25,7 +25,7 @@ export default function Pagination({
   navigateToPrevious,
 }: Props) {
   return (
-    <div className='flex flex-row justify-center space-x-1'>
+    <div className='flex flex-row justify-center gap-1'>
       <IconButton
         Icon={DoubleArrowLeftIcon}
         disabled={currentPage === 0}

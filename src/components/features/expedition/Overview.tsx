@@ -26,7 +26,7 @@ export default function Overview({ description, highlights }: Props) {
         <div className='lg:w-5/12'>
           <h3 className='mb-2 font-bold text-navy md:text-lg'>Highlights</h3>
 
-          <ul className='flex flex-col space-y-3'>
+          <ul className='flex flex-col gap-3'>
             {highlights.map((x, i) => (
               <li key={`highlight-${i}`} className='flex w-full flex-row'>
                 <StarFilledIcon className='mr-1 h-5 w-4 p-1 text-primary' />

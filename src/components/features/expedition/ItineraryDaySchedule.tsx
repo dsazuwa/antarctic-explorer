@@ -11,7 +11,7 @@ export default function DaySchedule({ schedule }: { schedule: TSchedule }) {
   return (
     <li>
       <button
-        className='flex w-full flex-col space-y-0.5 border-b py-2.5 pr-2 text-start'
+        className='flex w-full flex-col gap-0.5 border-b py-2.5 pr-2 text-start'
         onClick={() => setIsOpen((x) => !x)}
       >
         <span className='text-sm font-semibold text-gray-500'>{day}</span>

@@ -30,7 +30,7 @@ export default function Tab({
         onClick={handleClick}
         className='flex w-full flex-row items-center justify-between'
       >
-        <span className='flex flex-col space-y-1 py-4 pl-4 text-start font-semibold'>
+        <span className='flex flex-col gap-1 py-4 pl-4 text-start font-semibold'>
           <span className='text-base'>{name}</span>
 
           {startPort && (

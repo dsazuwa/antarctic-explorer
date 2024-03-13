@@ -33,8 +33,8 @@ export default function Departure({ departure }: { departure: TDeparture }) {
   };
 
   return (
-    <li className='flex flex-col space-y-4 rounded-r-sm border border-l-amber-400 bg-white p-4 shadow-sm md:flex-row md:space-y-0'>
-      <div className='flex flex-col justify-center space-y-3 md:w-9/12'>
+    <li className='flex flex-col gap-4 rounded-r-sm border border-l-amber-400 bg-white p-4 shadow-sm md:flex-row md:space-y-0'>
+      <div className='flex flex-col justify-center gap-3 md:w-9/12'>
         <div className='font-bold'>
           {itinerary}
           {name !== null && (
@@ -55,7 +55,7 @@ export default function Departure({ departure }: { departure: TDeparture }) {
         </ul>
       </div>
 
-      <div className='flex flex-col items-center justify-center space-y-2 border-t md:w-3/12 md:border-l md:border-t-0'>
+      <div className='flex flex-col items-center justify-center gap-2 border-t md:w-3/12 md:border-l md:border-t-0'>
         <div className='mt-4 text-xxs/[10px] font-semibold text-slate-400 md:mt-0 md:text-xs/[12px]'>
           Starting from
         </div>
