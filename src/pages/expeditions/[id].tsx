@@ -27,9 +27,7 @@ export const getServerSideProps: GetServerSideProps =
     },
   );
 
-type Props = {
-  pageProps: { expedition: ExpeditionResponse };
-};
+type Props = { pageProps: { expedition: ExpeditionResponse } };
 
 export default function ExpeditionPage({ pageProps: { expedition } }: Props) {
   const { name, description } = expedition;
@@ -47,26 +45,3 @@ export default function ExpeditionPage({ pageProps: { expedition } }: Props) {
     </Layout>
   );
 }
-
-// export async function getStaticProps(context: GetStaticPropsContext) {
-//   const id = context.params ? context.params.id : undefined;
-
-//   if (
-//     id === undefined ||
-//     typeof id !== 'string' ||
-//     Number.isNaN(Number.parseInt(id, 10))
-//   )
-//     return { notFound: true };
-
-//   const url = `${process.env.NEXT_PUBLIC_API_URL}/expeditions/${id}`;
-//   const res = await fetch(url);
-//   const expedition: ExpeditionResponse = await res.json();
-
-//   if (!res.ok)
-//     throw new Error(`Failed to fetch posts, received status ${res.status}`);
-
-//   return {
-//     props: { expedition },
-//     revalidate: 10,
-//   };
-// }
