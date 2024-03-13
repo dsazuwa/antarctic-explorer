@@ -4,13 +4,8 @@ import LinkButton from '@/components/common/LinkButton';
 import { TVessel } from '@/lib/type';
 import VesselDetail from './VesselDetail';
 
-type VesselProps = {
-  id: number;
-  vessel: TVessel;
-};
-
-export default function Vessel({ id, vessel }: VesselProps) {
-  const { name, cabins, capacity, description, photoUrl, website } = vessel;
+export default function Vessel({ vessel }: { vessel: TVessel }) {
+  const { id, name, cabins, capacity, description, photoUrl, website } = vessel;
 
   return (
     <div className='grid w-full grid-cols-1 gap-4 lg:grid-cols-12'>

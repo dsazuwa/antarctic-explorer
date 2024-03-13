@@ -1,13 +1,7 @@
 import { TVessel } from '@/lib/type';
 import Vessel from './Vessel';
 
-type VesselsProps = {
-  vessels: {
-    [id: number]: TVessel;
-  };
-};
-
-export default function Vessels({ vessels }: VesselsProps) {
+export default function Vessels({ vessels }: { vessels: TVessel[] }) {
   return (
     <section className='w-full' aria-label='Ships'>
       <div className='mx-auto flex max-w-screen-lg flex-col px-4 py-8 md:py-12'>
@@ -16,8 +10,8 @@ export default function Vessels({ vessels }: VesselsProps) {
         </h2>
 
         <div className='space-y-10'>
-          {Object.entries(vessels).map(([id, vessel]) => (
-            <Vessel key={id} id={Number(id)} vessel={vessel} />
+          {vessels.map((vessel) => (
+            <Vessel key={`vessel-${vessel.id}`} vessel={vessel} />
           ))}
         </div>
       </div>

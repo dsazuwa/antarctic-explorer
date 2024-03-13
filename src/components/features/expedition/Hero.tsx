@@ -10,7 +10,7 @@ type Props = {
   cruiseLine: string;
   departures: { startDate: Date; endDate: Date }[];
   numVessels: number;
-  vessels: { [id: number]: TVessel };
+  vessels: TVessel[];
   gallery: TGallery[];
 };
 
@@ -42,7 +42,7 @@ export default function Hero({
   return (
     <section className='w-full bg-navy text-white' aria-label='Hero'>
       <div className='mx-auto flex max-w-screen-lg flex-col sm:flex-row sm:py-8'>
-        <div className='flex flex-col space-y-3 p-4 sm:w-2/5'>
+        <div className='flex flex-col gap-3 p-4 sm:w-2/5'>
           <div className='flex flex-col'>
             <div className='text-xs font-medium text-gray-400'>
               {cruiseLine}
@@ -62,18 +62,16 @@ export default function Hero({
             <div className='font-medium'>{getDepartureDatesLabel()}</div>
           </div>
 
-          <div className='flex flex-row space-x-8 text-xxs'>
+          <div className='flex flex-row gap-8 text-xxs'>
             {numVessels > 0 && (
               <div>
                 <div className='text-gray-200'>Ship</div>
 
-                {Object.values(vessels)
-                  .map((vessel) => vessel.name)
-                  .map((v, i) => (
-                    <div key={'vessel' + i} className='font-medium'>
-                      {v}
-                    </div>
-                  ))}
+                {vessels.map((v) => (
+                  <div key={`vessel-${v.id}-name`} className='font-medium'>
+                    {v.name}
+                  </div>
+                ))}
               </div>
             )}
 
