@@ -7,7 +7,7 @@ import {
   durationOptions,
   itemsPerPageOptions,
 } from '@/lib/constants';
-import { ExpeditionsResponse, MainResponse, TCruiseLines } from '@/lib/type';
+import { ExpeditionsResponse, MainResponse } from '@/lib/type';
 import { toggleIndex } from '@/lib/utils';
 
 export type FilterState = {
@@ -19,8 +19,7 @@ export type FilterState = {
 };
 
 export type ExpeditionsState = {
-  cruiseLines: TCruiseLines;
-  cruiseLineOptions: { displayName: string }[];
+  cruiseLines: string[];
   expeditions: ExpeditionsResponse;
   selectedItemsPerPage: number;
   selectedSort: number;
@@ -43,8 +42,7 @@ export const expeditionsSlice = createSlice({
   name: 'expeditionsSlice',
 
   initialState: {
-    cruiseLines: {},
-    cruiseLineOptions: [],
+    cruiseLines: [],
 
     expeditions: {
       data: [],
@@ -65,10 +63,6 @@ export const expeditionsSlice = createSlice({
       const { expeditions, cruiseLines } = action.payload;
 
       state.cruiseLines = cruiseLines;
-      state.cruiseLineOptions = Object.keys(cruiseLines).map((x) => {
-        return { displayName: x };
-      });
-
       state.expeditions = expeditions;
       state.selectedItemsPerPage = itemsPerPageOptions.findIndex(
         (x) => x == state.expeditions.itemsPerPage,
@@ -121,7 +115,7 @@ export const expeditionsSlice = createSlice({
           break;
 
         case 'cruiseLines':
-          if (value < 0 || value > state.cruiseLineOptions.length - 1) return;
+          if (value < 0 || value > state.cruiseLines.length - 1) return;
 
           state.expeditions.currentPage = 0;
           state.filters = {

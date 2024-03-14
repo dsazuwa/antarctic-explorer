@@ -1,7 +1,10 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+
+import { GetServerSideProps, GetServerSidePropsContext } from 'next';
 import Head from 'next/head';
+import { useDispatch } from 'react-redux';
 
 import Layout from '@/Layout';
-import Loader from '@/components/common/Loader';
 import {
   Expeditions,
   FilterChips,
@@ -10,11 +13,28 @@ import {
   PaginationHeader,
   SideFilterPanel,
 } from '@/components/features/expeditions';
-import { useGetDataQuery } from '@/store';
+import { MainResponse } from '@/lib/type';
+import { dataApi, expeditionApi, setData, wrapper } from '@/store';
 
-export default function ExpeditionPage() {
-  const { data, isFetching, isLoading } = useGetDataQuery();
-  const loading = data === undefined || isFetching || isLoading;
+export const getServerSideProps: GetServerSideProps =
+  wrapper.getServerSideProps(
+    (store) => async (context: GetServerSidePropsContext) => {
+      const { dispatch } = store;
+
+      const response = await dispatch(dataApi.endpoints.getData.initiate());
+      await Promise.all(dispatch(expeditionApi.util.getRunningQueriesThunk()));
+
+      return response.isError
+        ? { notFound: true }
+        : { props: { data: response.data } };
+    },
+  );
+
+type Props = { pageProps: { data: MainResponse } };
+
+export default function ExpeditionPage({ pageProps: { data } }: Props) {
+  const dispatch = useDispatch();
+  dispatch(setData(data));
 
   return (
     <Layout>
@@ -46,9 +66,7 @@ export default function ExpeditionPage() {
 
             <PaginationHeader />
 
-            <div className='flex grow items-start'>
-              {loading ? <Loader className='h-40 w-full' /> : <Expeditions />}
-            </div>
+            <Expeditions />
 
             <PaginationControls />
           </div>

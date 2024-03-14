@@ -8,7 +8,7 @@ import OptionsSelector from './OptionsSelector';
 
 function FilterPanel() {
   const dispatch = useAppDispatch();
-  const { cruiseLineOptions, filters } = useAppSelector(
+  const { cruiseLines, filters } = useAppSelector(
     (store) => store.expeditionState,
   );
 
@@ -30,7 +30,7 @@ function FilterPanel() {
       <OptionsSelector
         label='Cruise lines'
         type='checkbox'
-        options={cruiseLineOptions}
+        options={cruiseLines.map((x) => ({ displayName: x }))}
         isChecked={(i: number) => filters.cruiseLines.includes(i)}
         handleChange={(e) => handleFilterChange('cruiseLines', e)}
       />

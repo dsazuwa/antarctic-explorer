@@ -6,8 +6,7 @@ import { HYDRATE } from 'next-redux-wrapper';
 import { Action } from 'redux';
 
 import { MainResponse } from '@/lib/type';
-import { RootState } from '..';
-import { setData } from '../slice/expeditions.slice';
+import { RootState } from '../store';
 
 const BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 
@@ -28,15 +27,6 @@ export const dataApi = createApi({
     getData: builder.query<MainResponse, void>({
       query() {
         return { url: '' };
-      },
-
-      async onQueryStarted(arg, api) {
-        try {
-          const { data } = await api.queryFulfilled;
-          api.dispatch(setData(data));
-        } catch (e) {
-          console.error(e);
-        }
       },
     }),
   }),

@@ -116,7 +116,7 @@ export type DeparturesResponse = {
 
 export type MainResponse = {
   expeditions: ExpeditionsResponse;
-  cruiseLines: TCruiseLines;
+  cruiseLines: string[];
 };
 
 export type BasicFilterOption = { displayName: string }[];

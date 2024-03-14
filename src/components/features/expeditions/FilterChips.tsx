@@ -14,8 +14,14 @@ import {
 function FilterChips() {
   const dispatch = useAppDispatch();
   const {
-    cruiseLineOptions,
-    filters: { startDate, endDate, cruiseLines, capacity, duration },
+    cruiseLines,
+    filters: {
+      startDate,
+      endDate,
+      cruiseLines: linesFilter,
+      capacity,
+      duration,
+    },
   } = useAppSelector((s) => s.expeditionState);
 
   const handleDate = () => {
@@ -40,7 +46,7 @@ function FilterChips() {
 
   const isFilteredByStartDate = startDate !== null;
   const isFilteredByEndDate = endDate !== null;
-  const isFilteredByCruise = cruiseLines.length > 0;
+  const isFilteredByCruise = linesFilter.length > 0;
   const isFIlteredByCapacity = capacity !== capacityOptions.length - 1;
   const isFIlteredByDuration = duration !== durationOptions.length - 1;
   const isFiltered =
@@ -65,10 +71,10 @@ function FilterChips() {
       )}
 
       {isFilteredByCruise &&
-        cruiseLines.map((x, i) => (
+        linesFilter.map((x, i) => (
           <Chip
             key={`cruiseLineChip${i}`}
-            label={cruiseLineOptions[x].displayName}
+            label={cruiseLines[x]}
             handleClick={() => handleCruiseLine(x)}
           />
         ))}
