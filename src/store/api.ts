@@ -7,50 +7,43 @@ import { Action } from 'redux';
 
 import {
   DeparturesResponse,
+  ExpeditionParams,
   ExpeditionResponse,
   ExpeditionsResponse,
+  MainResponse,
 } from '@/lib/type';
-import { setDepartures } from '../slice/departures.slice';
-import { setExpeditions } from '../slice/expeditions.slice';
-import { RootState } from '../store';
+import { setDepartures } from './slice/departures.slice';
+import { setExpeditions } from './slice/expeditions.slice';
+import { RootState } from './store';
 
 const BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 
 const isHydrateAction = (action: Action): action is PayloadAction<RootState> =>
   action.type === HYDRATE;
 
-export const expeditionApi = createApi({
-  reducerPath: 'expeditionApi',
-  tagTypes: ['Expeditions'],
+export const api = createApi({
+  reducerPath: 'api',
+  tagTypes: ['Expeditions', 'CruiseLines'],
 
   extractRehydrationInfo(action, { reducerPath }): any {
     if (isHydrateAction(action)) return action.payload[reducerPath];
   },
 
-  baseQuery: fetchBaseQuery({ baseUrl: `${BASE_URL}/expeditions` }),
+  baseQuery: fetchBaseQuery({ baseUrl: BASE_URL }),
 
   endpoints: (builder) => ({
-    getExpeditions: builder.query<
-      ExpeditionsResponse,
-      {
-        page?: number;
-        size?: number;
-        sort?: string;
-        dir?: string;
-        cruiseLines?: string;
-        startDate?: string;
-        endDate?: string;
-        'capacity.min'?: number | null;
-        'capacity.max'?: number | null;
-        'duration.min'?: number | null;
-        'duration.max'?: number | null;
-      }
-    >({
+    getCruiseLines: builder.query<MainResponse, void>({
+      query() {
+        return { url: '/cruise-lines/names' };
+      },
+    }),
+
+    getExpeditions: builder.query<ExpeditionsResponse, ExpeditionParams>({
       query: (args) => {
         const { sort, dir, cruiseLines, ...rest } = args;
 
         return {
-          url: '',
+          url: '/expeditions',
           method: 'GET',
           params: {
             ...(sort && { sort }),
@@ -74,7 +67,7 @@ export const expeditionApi = createApi({
     getExpedition: builder.query<ExpeditionResponse, number>({
       query: (id) => {
         return {
-          url: `/${id}`,
+          url: `/expeditions/${id}`,
           method: 'GET',
         };
       },
@@ -94,7 +87,7 @@ export const expeditionApi = createApi({
         const { id, ...rest } = args;
 
         return {
-          url: `/${id}/departures`,
+          url: `/expeditions/${id}/departures`,
           method: 'GET',
           params: { ...rest },
         };
@@ -113,9 +106,10 @@ export const expeditionApi = createApi({
 });
 
 export const {
+  useGetCruiseLinesQuery,
   useGetExpeditionQuery,
   useGetExpeditionsQuery,
   useLazyGetExpeditionsQuery,
   useGetDeparturesQuery,
   useLazyGetDeparturesQuery,
-} = expeditionApi;
+} = api;

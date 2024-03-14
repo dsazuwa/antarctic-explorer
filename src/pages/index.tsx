@@ -13,28 +13,46 @@ import {
   PaginationHeader,
   SideFilterPanel,
 } from '@/components/features/expeditions';
-import { MainResponse } from '@/lib/type';
-import { dataApi, expeditionApi, setData, wrapper } from '@/store';
+import { ExpeditionsResponse } from '@/lib/type';
+import { api, setCruiseLines, setExpeditions, wrapper } from '@/store';
 
 export const getServerSideProps: GetServerSideProps =
   wrapper.getServerSideProps(
     (store) => async (context: GetServerSidePropsContext) => {
       const { dispatch } = store;
 
-      const response = await dispatch(dataApi.endpoints.getData.initiate());
-      await Promise.all(dispatch(expeditionApi.util.getRunningQueriesThunk()));
+      const cruiseLines = await dispatch(
+        api.endpoints.getCruiseLines.initiate(),
+      );
 
-      return response.isError
+      const expeditions = await dispatch(
+        api.endpoints.getExpeditions.initiate({}),
+      );
+
+      await Promise.all(dispatch(api.util.getRunningQueriesThunk()));
+
+      return cruiseLines.isError || expeditions.isError
         ? { notFound: true }
-        : { props: { data: response.data } };
+        : {
+            props: {
+              cruiseLines: cruiseLines.data?.cruiseLines,
+              expeditions: expeditions.data,
+            },
+          };
     },
   );
 
-type Props = { pageProps: { data: MainResponse } };
+type Props = {
+  pageProps: { cruiseLines: string[]; expeditions: ExpeditionsResponse };
+};
 
-export default function ExpeditionPage({ pageProps: { data } }: Props) {
+export default function ExpeditionPage({
+  pageProps: { cruiseLines, expeditions },
+}: Props) {
   const dispatch = useDispatch();
-  dispatch(setData(data));
+
+  dispatch(setCruiseLines(cruiseLines));
+  dispatch(setExpeditions(expeditions));
 
   return (
     <Layout>

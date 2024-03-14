@@ -3,13 +3,7 @@ import { useEffect, useState } from 'react';
 
 import Expedition from '@/components/common/Expedition';
 import Loader from '@/components/common/Loader';
-import {
-  capacityOptions,
-  durationOptions,
-  itemsPerPageOptions,
-  sortOptions,
-} from '@/lib/constants';
-import { formatDate } from '@/lib/utils';
+import { getExpeditionParams } from '@/lib/utils';
 import { useAppSelector, useLazyGetExpeditionsQuery } from '@/store';
 
 export default function Expeditions() {
@@ -35,48 +29,23 @@ export default function Expeditions() {
     const {
       startDate,
       endDate,
-      cruiseLines: cruiseLinesFilter,
       capacity,
       duration,
+      cruiseLines: cruiseLinesFilter,
     } = filters;
 
-    const startFilter =
-      startDate !== null
-        ? { startDate: encodeURIComponent(formatDate(startDate, 'yyyy-MM-dd')) }
-        : {};
-
-    const endFilter =
-      endDate !== null
-        ? { endDate: encodeURIComponent(formatDate(endDate, 'yyyy-MM-dd')) }
-        : {};
-
-    const capacityFillter =
-      capacity !== capacityOptions.length - 1
-        ? {
-            'capacity.min': capacityOptions[capacity].min,
-            'capacity.max': capacityOptions[capacity].max,
-          }
-        : {};
-
-    const durationFilter =
-      duration !== durationOptions.length - 1
-        ? {
-            'duration.min': durationOptions[duration].min,
-            'duration.max': durationOptions[duration].max,
-          }
-        : {};
-
-    fetchExpeditions({
-      page: currentPage,
-      size: itemsPerPageOptions[selectedItemsPerPage],
-      sort: selectedSort === 0 ? '' : sortOptions[selectedSort].sort,
-      dir: sortOptions[selectedSort].dir === 'asc' ? '' : 'desc',
-      cruiseLines: cruiseLinesFilter.map((x) => cruiseLines[x]).join(','),
-      ...startFilter,
-      ...endFilter,
-      ...capacityFillter,
-      ...durationFilter,
-    });
+    fetchExpeditions(
+      getExpeditionParams(
+        currentPage,
+        selectedItemsPerPage,
+        selectedSort,
+        cruiseLinesFilter.map((x) => cruiseLines[x]).join(','),
+        startDate,
+        endDate,
+        capacity,
+        duration,
+      ),
+    );
   }, [
     currentPage,
     selectedItemsPerPage,

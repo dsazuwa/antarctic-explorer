@@ -2,26 +2,21 @@ import { configureStore } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/query';
 import { createWrapper } from 'next-redux-wrapper';
 
-import { dataApi } from './api/data.api';
-import { expeditionsReducer } from './slice/expeditions.slice';
+import { api } from './api';
 import { departureReducer } from './slice/departures.slice';
-import { expeditionApi } from './api/expedition.api';
+import { expeditionsReducer } from './slice/expeditions.slice';
 
 export const store = configureStore({
   devTools: process.env.NODE_ENV === 'development',
 
   reducer: {
-    [dataApi.reducerPath]: dataApi.reducer,
-    [expeditionApi.reducerPath]: expeditionApi.reducer,
+    [api.reducerPath]: api.reducer,
     expeditionState: expeditionsReducer,
     departureState: departureReducer,
   },
 
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware({}).concat([
-      dataApi.middleware,
-      expeditionApi.middleware,
-    ]),
+    getDefaultMiddleware({}).concat([api.middleware]),
 });
 
 setupListeners(store.dispatch);

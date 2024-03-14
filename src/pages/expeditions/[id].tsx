@@ -4,7 +4,7 @@ import Head from 'next/head';
 import Layout from '@/Layout';
 import Expedition from '@/components/features/expedition';
 import { ExpeditionResponse } from '@/lib/type';
-import { expeditionApi, wrapper } from '@/store';
+import { api, wrapper } from '@/store';
 
 export const getServerSideProps: GetServerSideProps =
   wrapper.getServerSideProps(
@@ -16,10 +16,10 @@ export const getServerSideProps: GetServerSideProps =
         return { notFound: true };
 
       const expedition = await dispatch(
-        expeditionApi.endpoints.getExpedition.initiate(Number.parseInt(id, 10)),
+        api.endpoints.getExpedition.initiate(Number.parseInt(id, 10)),
       );
 
-      await Promise.all(dispatch(expeditionApi.util.getRunningQueriesThunk()));
+      await Promise.all(dispatch(api.util.getRunningQueriesThunk()));
 
       return expedition.isError
         ? { notFound: true }

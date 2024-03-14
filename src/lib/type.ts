@@ -80,6 +80,20 @@ export type TExtension = {
   website: string | null;
 };
 
+export type ExpeditionParams = {
+  page?: number;
+  size?: number;
+  sort?: string;
+  dir?: string;
+  cruiseLines?: string;
+  startDate?: string;
+  endDate?: string;
+  'capacity.min'?: number | null;
+  'capacity.max'?: number | null;
+  'duration.min'?: number | null;
+  'duration.max'?: number | null;
+};
+
 export type ExpeditionResponse = {
   id: number;
   name: string;

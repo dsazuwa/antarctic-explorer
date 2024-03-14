@@ -59,20 +59,12 @@ export const expeditionsSlice = createSlice({
   } as ExpeditionsState,
 
   reducers: {
-    setData: (state, action: PayloadAction<MainResponse>) => {
-      const { expeditions, cruiseLines } = action.payload;
-
-      state.cruiseLines = cruiseLines;
-      state.expeditions = expeditions;
-      state.selectedItemsPerPage = itemsPerPageOptions.findIndex(
-        (x) => x == state.expeditions.itemsPerPage,
-      );
+    setCruiseLines: (state, action: PayloadAction<string[]>) => {
+      state.cruiseLines = action.payload;
     },
 
     setExpeditions: (state, action: PayloadAction<ExpeditionsResponse>) => {
-      const expeditions = action.payload;
-
-      state.expeditions = expeditions;
+      state.expeditions = action.payload;
     },
 
     setSortOption: (state, action: PayloadAction<number>) => {
@@ -150,7 +142,7 @@ export const expeditionsSlice = createSlice({
 export const expeditionsReducer = expeditionsSlice.reducer;
 
 export const {
-  setData,
+  setCruiseLines,
   setExpeditions,
   setSortOption,
   setItemsPerPage,
