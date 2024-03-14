@@ -83,7 +83,7 @@ export default function Gallery({ id, gallery, className }: Props) {
 
       <button
         aria-label='previous image'
-        className='absolute left-2 top-2/4 flex h-6 w-6 items-center justify-center rounded-[4px] bg-primary/60 bg-opacity-60 font-semibold shadow-icon md:h-7 md:w-7'
+        className='absolute left-2 top-2/4 flex h-6 w-6 items-center justify-center rounded-sm bg-primary/60 bg-opacity-60 font-semibold shadow-icon md:h-7 md:w-7'
         onClick={slideToPrev}
         disabled={isPrevDisabled}
       >
@@ -93,7 +93,7 @@ export default function Gallery({ id, gallery, className }: Props) {
 
       <button
         aria-label='next image'
-        className='absolute right-2 top-2/4 flex h-6 w-6 items-center justify-center rounded-[4px] bg-primary/60 bg-opacity-60 font-semibold shadow-icon md:h-7 md:w-7'
+        className='absolute right-2 top-2/4 flex h-6 w-6 items-center justify-center rounded-sm bg-primary/60 bg-opacity-60 font-semibold shadow-icon md:h-7 md:w-7'
         onClick={slideToNext}
         disabled={isNextDisabled}
       >
@@ -101,7 +101,7 @@ export default function Gallery({ id, gallery, className }: Props) {
         <span className='sr-only'>Next</span>
       </button>
 
-      <div className='absolute right-2 top-2 flex h-8 w-10 items-center justify-center rounded-[4px] bg-primary/60 bg-opacity-60 text-xxs font-semibold text-white shadow-icon'>{`${index + 1}/${gallery.length}`}</div>
+      <div className='absolute right-2 top-2 flex h-8 w-10 items-center justify-center rounded-sm bg-primary/60 bg-opacity-60 text-xxs font-semibold text-white shadow-icon'>{`${index + 1}/${gallery.length}`}</div>
     </div>
   );
 }

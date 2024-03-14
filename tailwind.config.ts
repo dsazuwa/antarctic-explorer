@@ -75,9 +75,9 @@ const config = {
       },
 
       borderRadius: {
-        lg: 'var(--radius)',
-        md: 'calc(var(--radius) - 4px)',
-        sm: 'calc(var(--radius) - 8px)',
+        lg: '16px',
+        md: '8px',
+        sm: '4px',
       },
 
       keyframes: {
