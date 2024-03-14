@@ -1,19 +1,10 @@
-import { CalendarIcon } from '@radix-ui/react-icons';
 import { DateRange } from 'react-day-picker';
 
-import { Button } from '@/components/ui/button';
-import { Calendar } from '@/components/ui/calendar';
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from '@/components/ui/popover';
-import { cn, formatDate } from '@/lib/utils';
+import { formatDate } from '@/lib/utils';
 import { filterExpeditions, useAppDispatch, useAppSelector } from '@/store';
+import { FullDatePicker, MobileDatePicker } from './DatePickers';
 
-export default function DatePicker({
-  className,
-}: React.HTMLAttributes<HTMLDivElement>) {
+export default function DatePicker() {
   const dispatch = useAppDispatch();
   const { startDate, endDate } = useAppSelector(
     (s) => s.expeditionState.filters,
@@ -42,44 +33,18 @@ export default function DatePicker({
   };
 
   return (
-    <div className={cn('grid gap-2', className)}>
-      <Popover>
-        <PopoverTrigger asChild>
-          <Button
-            variant='outline'
-            className={cn(
-              'w-full justify-start text-left font-normal',
-              !(startDate && endDate) && 'text-muted-foreground',
-            )}
-          >
-            <CalendarIcon className='mr-2 h-4 w-4' />
+    <>
+      <MobileDatePicker
+        startDate={startDate}
+        endDate={endDate}
+        handleSelectDate={handleSelectDate}
+      />
 
-            {startDate ? (
-              endDate ? (
-                `${formatDate(startDate, 'LLL dd, y')} - ${formatDate(endDate, 'LLL dd, y')}`
-              ) : (
-                formatDate(startDate, 'LLL dd, y')
-              )
-            ) : (
-              <span>Pick a date</span>
-            )}
-          </Button>
-        </PopoverTrigger>
-
-        <PopoverContent className='w-auto p-0' align='start'>
-          <Calendar
-            initialFocus
-            mode='range'
-            defaultMonth={startDate || undefined}
-            selected={{
-              from: startDate || undefined,
-              to: endDate || undefined,
-            }}
-            onSelect={handleSelectDate}
-            numberOfMonths={2}
-          />
-        </PopoverContent>
-      </Popover>
-    </div>
+      <FullDatePicker
+        startDate={startDate}
+        endDate={endDate}
+        handleSelectDate={handleSelectDate}
+      />
+    </>
   );
 }

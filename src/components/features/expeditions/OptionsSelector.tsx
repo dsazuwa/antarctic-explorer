@@ -28,18 +28,19 @@ function OptionsSelector({
 
   return (
     <div className='p-2'>
-      <OptionHeader>
-        {label}
-        <button
-          className={clsx(
-            'rounded-full p-0.5 transition-transform ease-in-out hover:bg-gray-200 hover:shadow',
-            { 'rotate-180': !isExpanded },
-          )}
-          onClick={handleClick}
-        >
-          <ExpandLess />
-        </button>
-      </OptionHeader>
+      <button className='w-full' onClick={handleClick}>
+        <OptionHeader>
+          {label}
+          <div
+            className={clsx(
+              'rounded-full p-0.5 transition-transform ease-in-out hover:bg-gray-200 hover:shadow',
+              { 'rotate-180': !isExpanded },
+            )}
+          >
+            <ExpandLess />
+          </div>
+        </OptionHeader>
+      </button>
 
       <form
         className={clsx('ml-1 transition-transform ease-in-out', {
@@ -49,7 +50,7 @@ function OptionsSelector({
         {options.map((o, i) => (
           <label
             key={i}
-            className='my-2 flex items-center text-xxs font-medium leading-3'
+            className='my-2 flex items-center text-xs font-medium leading-4 lg:text-sm'
           >
             <input
               type={type}

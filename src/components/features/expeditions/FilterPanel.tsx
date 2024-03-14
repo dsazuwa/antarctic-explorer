@@ -2,9 +2,9 @@ import { ChangeEvent } from 'react';
 
 import { capacityOptions, durationOptions } from '@/lib/constants';
 import { filterExpeditions, useAppDispatch, useAppSelector } from '@/store';
+import DatePicker from './DatePicker';
 import OptionHeader from './OptionHeader';
 import OptionsSelector from './OptionsSelector';
-import DatePicker from './DatePicker';
 
 function FilterPanel() {
   const dispatch = useAppDispatch();

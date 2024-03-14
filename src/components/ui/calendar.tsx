@@ -16,16 +16,17 @@ function Calendar({
   return (
     <DayPicker
       showOutsideDays={showOutsideDays}
-      className={cn('p-3', className)}
+      className={cn('flex items-center p-3', className)}
       classNames={{
-        months: 'flex flex-col sm:flex-row space-y-4 sm:space-x-4 sm:space-y-0',
+        months:
+          'flex flex-col sm:flex-row space-y-4 sm:space-x-4 sm:space-y-0 mx-auto',
         month: 'space-y-4',
-        caption: 'flex justify-center pt-1 relative items-center',
-        caption_label: 'text-sm font-medium',
+        caption: 'flex justify-center relative items-center pt-1',
+        caption_label: 'text-xs font-medium',
         nav: 'space-x-1 flex items-center',
         nav_button: cn(
-          buttonVariants({ variant: 'outline' }),
-          'h-7 w-7 bg-transparent p-0 opacity-50 hover:opacity-100',
+          buttonVariants({ variant: 'outline', size: 'none' }),
+          'h-7 w-7 bg-transparent opacity-50 hover:opacity-100 rounded-sm',
         ),
         nav_button_previous: 'absolute left-1',
         nav_button_next: 'absolute right-1',
@@ -41,15 +42,14 @@ function Calendar({
             : '[&:has([aria-selected])]:rounded-md',
         ),
         day: cn(
-          buttonVariants({ variant: 'ghost' }),
-          'h-8 w-8 p-0 font-normal aria-selected:opacity-100',
+          buttonVariants({ variant: 'ghost', size: 'none' }),
+          'h-8 w-8 font-normal text-xs lg:text-sm aria-selected:opacity-100',
         ),
         day_range_start: 'day-range-start',
         day_range_end: 'day-range-end',
         day_selected:
           'bg-slate-900 text-slate-50 hover:bg-slate-900 hover:text-slate-50 focus:bg-slate-900 focus:text-slate-50 dark:bg-slate-50 dark:text-slate-900 dark:hover:bg-slate-50 dark:hover:text-slate-900 dark:focus:bg-slate-50 dark:focus:text-slate-900',
-        day_today:
-          'bg-slate-100 text-slate-900 dark:bg-slate-800 dark:text-slate-50',
+        day_today: 'bg-slate-100 dark:bg-slate-800 dark:text-slate-50',
         day_outside:
           'day-outside text-slate-500 opacity-50  aria-selected:bg-slate-100/50 aria-selected:text-slate-500 aria-selected:opacity-30 dark:text-slate-400 dark:aria-selected:bg-slate-800/50 dark:aria-selected:text-slate-400',
         day_disabled: 'text-slate-500 opacity-50 dark:text-slate-400',
@@ -59,8 +59,8 @@ function Calendar({
         ...classNames,
       }}
       components={{
-        IconLeft: () => <ChevronLeftIcon className='h-4 w-4 bg-primary' />,
-        IconRight: () => <ChevronRightIcon className='h-4 w-4 bg-primary' />,
+        IconLeft: () => <ChevronLeftIcon className='h-4 w-4' />,
+        IconRight: () => <ChevronRightIcon className='h-4 w-4' />,
       }}
       {...props}
     />

@@ -29,13 +29,13 @@ function MobileFilterPanel() {
             className='h-[32px] w-20 gap-2 rounded-md capitalize'
           >
             <MixerHorizontalIcon />
-            <span>Filter</span>
+            <span className='mt-[2px]'>Filter</span>
           </Button>
         </SheetTrigger>
 
         <SheetContent
           side='custom'
-          className='inset-y-0 left-0 flex h-full w-3/4 w-screen flex-col border-r data-[state=closed]:slide-out-to-left data-[state=open]:slide-in-from-left sm:max-w-sm'
+          className='inset-y-0 left-0 flex max-h-screen w-screen flex-col overflow-y-auto border-r bg-white data-[state=closed]:slide-out-to-left data-[state=open]:slide-in-from-left sm:w-1/2'
         >
           <div className='text-md flex items-center justify-between bg-primary-foreground p-4 font-semibold'>
             <span>Filter</span>
