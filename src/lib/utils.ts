@@ -1,5 +1,6 @@
 import { clsx, type ClassValue } from 'clsx';
 import { format } from 'date-fns';
+import { twMerge } from 'tailwind-merge';
 
 import {
   capacityOptions,
@@ -10,8 +11,7 @@ import {
 import { ExpeditionParams } from '@/lib/type';
 
 export function cn(...inputs: ClassValue[]) {
-  // return twMerge(clsx(inputs));
-  return clsx(inputs);
+  return twMerge(clsx(inputs));
 }
 
 export const toggleIndex = (index: number, selectedIndices: number[]) =>

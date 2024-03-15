@@ -17,7 +17,7 @@ export default function ClearFilterButton() {
         duration === durationOptions.length - 1
       }
       size='xs'
-      className='h-[32px] rounded-md px-4 capitalize'
+      className='h-[32px] rounded-md px-4 capitalize text-white'
       onClick={() => dispatch(resetFilters())}
     >
       Clear all filters
