@@ -26,7 +26,7 @@ export type TExpedition = {
 };
 
 export type TGallery = {
-  alt: string;
+  alt: string | null;
   url: string;
 };
 

@@ -70,7 +70,7 @@ export default function Gallery({ id, gallery, className }: Props) {
             >
               <Image
                 className='h-full w-full object-cover'
-                alt={alt}
+                alt={alt || `gallery-image-${i}`}
                 src={url}
                 width={0}
                 height={0}
