@@ -1,38 +1,43 @@
+import { useRouter } from 'next/router';
+
 import Pagination from '@/components/common/Pagination';
 import PerPageSelector from '@/components/common/PerPageSelector';
 import { itemsPerPageOptions } from '@/lib/constants';
-import {
-  navigateToFirst,
-  navigateToLast,
-  navigateToNext,
-  navigateToPrevious,
-  setItemsPerPage,
-  useAppDispatch,
-  useAppSelector,
-} from '@/store';
+import { updateQueryParam } from '@/lib/param.utils';
+import { useAppSelector } from '@/store';
 
 export default function PaginationControls() {
-  const dispatch = useAppDispatch();
-  const {
-    expeditions: { currentPage, totalPages },
-    selectedItemsPerPage,
-  } = useAppSelector((s) => s.expeditionState);
+  const router = useRouter();
+
+  const { currentPage, itemsPerPage, totalPages } = useAppSelector(
+    (s) => s.expeditionState.expeditions,
+  );
+
+  const handleClick = (param: string, value: number) => {
+    updateQueryParam(router, param, value);
+  };
 
   return (
     <div className='mt-auto flex h-20 w-full flex-col-reverse items-center gap-2 text-xs sm:grid sm:h-10 sm:grid-cols-3 md:gap-0'>
       <PerPageSelector
         options={itemsPerPageOptions}
-        itemsPerPage={selectedItemsPerPage}
-        setItemsPerPage={(i) => dispatch(setItemsPerPage(i))}
+        itemsPerPage={
+          itemsPerPageOptions.findIndex((x) => x === itemsPerPage) || 0
+        }
+        setItemsPerPage={(i) => handleClick('itemsPerPage', i)}
       />
 
       <Pagination
         currentPage={currentPage}
         totalPages={totalPages}
-        navigateToFirst={() => dispatch(navigateToFirst())}
-        navigateToPrevious={() => dispatch(navigateToPrevious())}
-        navigateToNext={() => dispatch(navigateToNext())}
-        navigateToLast={() => dispatch(navigateToLast())}
+        navigateToFirst={() => handleClick('page', 0)}
+        navigateToPrevious={() =>
+          handleClick('page', Math.max(0, currentPage - 1))
+        }
+        navigateToNext={() =>
+          handleClick('page', Math.min(currentPage + 1, totalPages - 1))
+        }
+        navigateToLast={() => handleClick('page', Math.max(totalPages - 1, 0))}
       />
     </div>
   );

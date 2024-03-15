@@ -1,19 +1,18 @@
 import { ValueNoneIcon } from '@radix-ui/react-icons';
+import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 
 import Expedition from '@/components/common/Expedition';
 import Loader from '@/components/common/Loader';
-import { getExpeditionParams } from '@/lib/utils';
+import { getExpeditionsParams } from '@/lib/param.utils';
 import { useAppSelector, useLazyGetExpeditionsQuery } from '@/store';
 
 export default function Expeditions() {
-  const {
-    expeditions: { data, currentPage },
-    cruiseLines,
-    selectedItemsPerPage,
-    selectedSort,
-    filters,
-  } = useAppSelector((s) => s.expeditionState);
+  const router = useRouter();
+
+  const { data, currentPage } = useAppSelector(
+    (s) => s.expeditionState.expeditions,
+  );
 
   const [fetchExpeditions, { isLoading, isFetching }] =
     useLazyGetExpeditionsQuery();
@@ -26,38 +25,21 @@ export default function Expeditions() {
       return;
     }
 
-    const {
-      startDate,
-      endDate,
-      capacity,
-      duration,
-      cruiseLines: cruiseLinesFilter,
-    } = filters;
+    const refetchExpeditions = () => {
+      const params = getExpeditionsParams(router.query);
+      fetchExpeditions(params);
+    };
 
-    fetchExpeditions(
-      getExpeditionParams(
-        currentPage,
-        selectedItemsPerPage,
-        selectedSort,
-        cruiseLinesFilter.map((x) => cruiseLines[x]).join(','),
-        startDate,
-        endDate,
-        capacity,
-        duration,
-      ),
-    );
-  }, [
-    currentPage,
-    selectedItemsPerPage,
-    selectedSort,
-    filters,
-    cruiseLines,
-    fetchExpeditions,
-  ]);
+    router.events.on('routeChangeComplete', refetchExpeditions);
+
+    return () => {
+      router.events.off('routeChangeComplete', refetchExpeditions);
+    };
+  }, [fetchExpeditions]);
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
-  }, [currentPage, selectedItemsPerPage]);
+  }, [currentPage]);
 
   return (
     <>

@@ -1,14 +1,18 @@
+import { useRouter } from 'next/router';
+
 import HeaderSelect from '@/components/common/HeaderSelect';
 import HeaderSummary from '@/components/common/HeaderSummary';
 import { sortOptions } from '@/lib/constants';
-import { setSortOption, useAppDispatch, useAppSelector } from '@/store';
+import { getNumericalParam, updateQueryParam } from '@/lib/param.utils';
+import { useAppSelector } from '@/store';
 
 export default function PaginationHeader() {
-  const dispatch = useAppDispatch();
-  const {
-    expeditions: { currentPage, totalItems, itemsPerPage },
-    selectedSort,
-  } = useAppSelector((s) => s.expeditionState);
+  const router = useRouter();
+  const sortOption = getNumericalParam(router.query.sort, 0);
+
+  const { currentPage, totalItems, itemsPerPage } = useAppSelector(
+    (s) => s.expeditionState.expeditions,
+  );
 
   return (
     <div className='flex h-10 items-center justify-between sm:text-xs'>
@@ -21,8 +25,8 @@ export default function PaginationHeader() {
 
       <HeaderSelect
         sortOptions={sortOptions}
-        selectedSort={selectedSort}
-        setSortOption={(i: number) => dispatch(setSortOption(i))}
+        selectedSort={Math.min(Math.max(sortOption, 0), sortOptions.length - 1)}
+        setSortOption={(i: number) => updateQueryParam(router, 'sort', i)}
       />
     </div>
   );

@@ -2,12 +2,8 @@
 
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import {
-  capacityOptions,
-  durationOptions,
-  itemsPerPageOptions,
-} from '@/lib/constants';
-import { ExpeditionsResponse, MainResponse } from '@/lib/type';
+import { capacityOptions, durationOptions } from '@/lib/constants';
+import { ExpeditionsResponse } from '@/lib/type';
 import { toggleIndex } from '@/lib/utils';
 
 export type FilterState = {
@@ -21,7 +17,6 @@ export type FilterState = {
 export type ExpeditionsState = {
   cruiseLines: string[];
   expeditions: ExpeditionsResponse;
-  selectedItemsPerPage: number;
   selectedSort: number;
   filters: FilterState;
 };
@@ -52,7 +47,6 @@ export const expeditionsSlice = createSlice({
       totalPages: 0,
     },
 
-    selectedItemsPerPage: 0,
     selectedSort: 0,
 
     filters: initalFilterState,
@@ -65,35 +59,6 @@ export const expeditionsSlice = createSlice({
 
     setExpeditions: (state, action: PayloadAction<ExpeditionsResponse>) => {
       state.expeditions = action.payload;
-    },
-
-    setSortOption: (state, action: PayloadAction<number>) => {
-      state.selectedSort = action.payload;
-      state.expeditions.currentPage = 0;
-    },
-
-    setItemsPerPage: (state, action: PayloadAction<number>) => {
-      state.selectedItemsPerPage = action.payload;
-      state.expeditions.currentPage = 0;
-    },
-
-    navigateToFirst: (state) => {
-      state.expeditions.currentPage = 0;
-    },
-
-    navigateToPrevious: (state) => {
-      if (state.expeditions.currentPage === 0) return;
-      state.expeditions.currentPage = state.expeditions.currentPage - 1;
-    },
-
-    navigateToNext: (state) => {
-      if (state.expeditions.currentPage + 1 === state.expeditions.totalPages)
-        return;
-      state.expeditions.currentPage = state.expeditions.currentPage + 1;
-    },
-
-    navigateToLast: (state) => {
-      state.expeditions.currentPage = state.expeditions.totalPages - 1;
     },
 
     filterExpeditions: (state, action: PayloadAction<FilterAction>) => {
@@ -144,12 +109,6 @@ export const expeditionsReducer = expeditionsSlice.reducer;
 export const {
   setCruiseLines,
   setExpeditions,
-  setSortOption,
-  setItemsPerPage,
-  navigateToFirst,
-  navigateToPrevious,
-  navigateToNext,
-  navigateToLast,
   filterExpeditions,
   resetFilters,
   resetDateFilters,

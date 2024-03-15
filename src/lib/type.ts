@@ -80,7 +80,7 @@ export type TExtension = {
   website: string | null;
 };
 
-export type ExpeditionParams = {
+export type ExpeditionsParams = {
   page?: number;
   size?: number;
   sort?: string;
@@ -92,6 +92,14 @@ export type ExpeditionParams = {
   'capacity.max'?: number | null;
   'duration.min'?: number | null;
   'duration.max'?: number | null;
+};
+
+export type ExpeditionsResponse = {
+  data: TExpedition[];
+  itemsPerPage: number;
+  totalItems: number;
+  totalPages: number;
+  currentPage: number;
 };
 
 export type ExpeditionResponse = {
@@ -110,14 +118,6 @@ export type ExpeditionResponse = {
   departures: { startDate: Date; endDate: Date }[];
   extensions: TExtension[];
   otherExpeditions: TExpedition[];
-};
-
-export type ExpeditionsResponse = {
-  data: TExpedition[];
-  itemsPerPage: number;
-  totalItems: number;
-  totalPages: number;
-  currentPage: number;
 };
 
 export type DeparturesResponse = {
