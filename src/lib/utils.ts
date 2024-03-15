@@ -1,5 +1,5 @@
 import { clsx, type ClassValue } from 'clsx';
-import { format } from 'date-fns';
+import { format, isValid, parseISO } from 'date-fns';
 import { twMerge } from 'tailwind-merge';
 
 import {
@@ -35,9 +35,9 @@ export const formatDate = (
 };
 
 export const getExpeditionParams = (
-  currentPage: number,
-  selectedItemsPerPage: number,
-  selectedSort: number,
+  page: number,
+  itemsPerPage: number,
+  sort: number,
   cruiseLines: string,
   startDate: Date | null,
   endDate: Date | null,
@@ -71,14 +71,38 @@ export const getExpeditionParams = (
       : {};
 
   return {
-    page: currentPage,
-    size: itemsPerPageOptions[selectedItemsPerPage],
-    sort: selectedSort === 0 ? '' : sortOptions[selectedSort].sort,
-    dir: sortOptions[selectedSort].dir === 'asc' ? '' : 'desc',
+    page,
+    size: itemsPerPageOptions[itemsPerPage],
+    sort: sort === 0 ? '' : sortOptions[sort].sort,
+    dir: sortOptions[sort].dir === 'asc' ? '' : 'desc',
     cruiseLines,
     ...startFilter,
     ...endFilter,
     ...capacityFillter,
     ...durationFilter,
   };
+};
+
+export const getNumbericalParam = (
+  param: string | string[] | undefined,
+  defaultValue: number,
+) => {
+  return typeof param === 'string' && !isNaN(parseInt(param, 10))
+    ? parseInt(param, 10)
+    : defaultValue;
+};
+
+export const getCruiseLinesParam = (param: string | string[] | undefined) => {
+  if (Array.isArray(param)) return param.join(',');
+  return typeof param === 'string' ? param : '';
+};
+
+export const getDateParam = (param: string | string[] | undefined) => {
+  if (typeof param !== 'string') return null;
+
+  const dateFormatRegex = /^\d{4}-\d{2}-\d{2}$/;
+  if (!dateFormatRegex.test(param)) return null;
+
+  const parsedDate = parseISO(param);
+  return isValid(parsedDate) ? parsedDate : null;
 };

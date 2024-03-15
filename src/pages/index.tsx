@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-
 import { GetServerSideProps, GetServerSidePropsContext } from 'next';
 import Head from 'next/head';
 import { useDispatch } from 'react-redux';
@@ -13,34 +11,15 @@ import {
   PaginationHeader,
   SideFilterPanel,
 } from '@/components/features/expeditions';
+import { capacityOptions, durationOptions } from '@/lib/constants';
 import { ExpeditionsResponse } from '@/lib/type';
+import {
+  getCruiseLinesParam,
+  getDateParam,
+  getExpeditionParams,
+  getNumbericalParam,
+} from '@/lib/utils';
 import { api, setCruiseLines, setExpeditions, wrapper } from '@/store';
-
-export const getServerSideProps: GetServerSideProps =
-  wrapper.getServerSideProps(
-    (store) => async (context: GetServerSidePropsContext) => {
-      const { dispatch } = store;
-
-      const cruiseLines = await dispatch(
-        api.endpoints.getCruiseLines.initiate(),
-      );
-
-      const expeditions = await dispatch(
-        api.endpoints.getExpeditions.initiate({}),
-      );
-
-      await Promise.all(dispatch(api.util.getRunningQueriesThunk()));
-
-      return cruiseLines.isError || expeditions.isError
-        ? { notFound: true }
-        : {
-            props: {
-              cruiseLines: cruiseLines.data?.cruiseLines,
-              expeditions: expeditions.data,
-            },
-          };
-    },
-  );
 
 type Props = {
   pageProps: { cruiseLines: string[]; expeditions: ExpeditionsResponse };
@@ -93,3 +72,58 @@ export default function ExpeditionPage({
     </Layout>
   );
 }
+
+export const getServerSideProps: GetServerSideProps =
+  wrapper.getServerSideProps(
+    (store) => async (context: GetServerSidePropsContext) => {
+      const { dispatch } = store;
+      const { query } = context;
+
+      const cruiseLineResponse = await dispatch(
+        api.endpoints.getCruiseLines.initiate(),
+      );
+
+      const page = getNumbericalParam(query.page, 0);
+      const itemsPerPage = getNumbericalParam(query.itemsPerPage, 0);
+      const sort = getNumbericalParam(query.sort, 0);
+      const cruiseLines = getCruiseLinesParam(query.cruiseLines);
+      const startDate = getDateParam(query.startDate);
+      const endDate = getDateParam(query.endDate);
+
+      const capacity = getNumbericalParam(
+        query.capacity,
+        Math.max(0, capacityOptions.length - 1),
+      );
+
+      const duration = getNumbericalParam(
+        query.duration,
+        Math.max(0, durationOptions.length - 1),
+      );
+
+      const expeditionResponse = await dispatch(
+        api.endpoints.getExpeditions.initiate(
+          getExpeditionParams(
+            page,
+            itemsPerPage,
+            sort,
+            cruiseLines,
+            startDate,
+            endDate,
+            capacity,
+            duration,
+          ),
+        ),
+      );
+
+      await Promise.all(dispatch(api.util.getRunningQueriesThunk()));
+
+      return cruiseLineResponse.isError || expeditionResponse.isError
+        ? { notFound: true }
+        : {
+            props: {
+              cruiseLines: cruiseLineResponse.data?.cruiseLines,
+              expeditions: expeditionResponse.data,
+            },
+          };
+    },
+  );
