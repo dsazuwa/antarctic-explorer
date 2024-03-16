@@ -6,11 +6,6 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export const toggleIndex = (index: number, selectedIndices: number[]) =>
-  selectedIndices.includes(index)
-    ? selectedIndices.filter((i) => i !== index)
-    : [...selectedIndices, index];
-
 export const formatPrice = (price: number) => {
   return price.toLocaleString('en-US', {
     style: 'currency',

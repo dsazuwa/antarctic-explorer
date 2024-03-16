@@ -8,7 +8,7 @@ import OptionHeader from './OptionHeader';
 type OptionsSelectorProps = {
   type: 'checkbox' | 'radio';
   label: string;
-  options: BasicFilterOption | RangedFilterOption;
+  options: (BasicFilterOption | RangedFilterOption)[];
   isChecked: (i: number) => boolean;
   handleChange: ChangeEventHandler<HTMLInputElement>;
 };
@@ -60,7 +60,7 @@ function OptionsSelector({
               checked={isChecked(i)}
               onChange={handleChange}
             />
-            {o.displayName}
+            {o.displayText}
           </label>
         ))}
       </form>

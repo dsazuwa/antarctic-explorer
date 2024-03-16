@@ -1,41 +1,26 @@
+import { useRouter } from 'next/router';
 import { DateRange } from 'react-day-picker';
 
-import { formatDate } from '@/lib/utils';
-import { filterExpeditions, useAppDispatch, useAppSelector } from '@/store';
+import { getDateParam, updateDateParam } from '@/lib/param.utils';
 import { FullDatePicker, MobileDatePicker } from './DatePickers';
+import OptionHeader from './OptionHeader';
 
 export default function DatePicker() {
-  const dispatch = useAppDispatch();
-  const { startDate, endDate } = useAppSelector(
-    (s) => s.expeditionState.filters,
-  );
+  const router = useRouter();
+
+  const startDate = getDateParam(router.query.startDate);
+  const endDate = getDateParam(router.query.endDate);
 
   const handleSelectDate = (range?: DateRange) => {
-    dispatch(
-      filterExpeditions({
-        filterType: 'startDate',
-        value:
-          range && range.from
-            ? encodeURIComponent(formatDate(range.from, 'yyyy-MM-dd'))
-            : null,
-      }),
-    );
-
-    dispatch(
-      filterExpeditions({
-        filterType: 'endDate',
-        value:
-          range && range.to
-            ? encodeURIComponent(formatDate(range.to, 'yyyy-MM-dd'))
-            : null,
-      }),
-    );
+    updateDateParam(router, range?.from, range?.to);
   };
 
   return (
-    <>
+    <div className='p-2'>
+      <OptionHeader>Departure Dates</OptionHeader>
+
       <MobileDatePicker
-        startDate={startDate}
+        startDate={getDateParam(router.query.startDate)}
         endDate={endDate}
         handleSelectDate={handleSelectDate}
       />
@@ -45,6 +30,6 @@ export default function DatePicker() {
         endDate={endDate}
         handleSelectDate={handleSelectDate}
       />
-    </>
+    </div>
   );
 }

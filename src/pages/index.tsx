@@ -19,7 +19,7 @@ type Props = {
   pageProps: { cruiseLines: string[]; expeditions: ExpeditionsResponse };
 };
 
-export default function ExpeditionPage({
+export default function ExpeditionsPage({
   pageProps: { cruiseLines, expeditions },
 }: Props) {
   const dispatch = useDispatch();
@@ -57,7 +57,7 @@ export default function ExpeditionPage({
 
             <PaginationHeader />
 
-            <Expeditions />
+            <Expeditions expeditions={expeditions.data} />
 
             <PaginationControls />
           </div>

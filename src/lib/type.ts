@@ -133,13 +133,18 @@ export type MainResponse = {
   cruiseLines: string[];
 };
 
-export type BasicFilterOption = { displayName: string }[];
+export type BasicFilterOption = { displayText: string };
 
-export type RangedFilterOption = {
-  displayName: string;
-  min: number | null;
-  max: number | null;
-}[];
+export type RangedFilterOption =
+  | {
+      displayText: string;
+      min: number;
+      max: number;
+    }
+  | {
+      displayText: string;
+      min: number;
+    };
 
 export type SortType = {
   displayText: string;

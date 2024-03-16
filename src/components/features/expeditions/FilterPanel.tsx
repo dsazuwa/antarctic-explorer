@@ -1,37 +1,44 @@
+import { useRouter } from 'next/router';
 import { ChangeEvent } from 'react';
 
 import { capacityOptions, durationOptions } from '@/lib/constants';
-import { filterExpeditions, useAppDispatch, useAppSelector } from '@/store';
+import {
+  getCapacityParam,
+  getCruiseLinesParam,
+  getDurationParam,
+  toggleCruiseLine,
+  updateQueryParam,
+} from '@/lib/param.utils';
+import { useAppSelector } from '@/store';
 import DatePicker from './DatePicker';
-import OptionHeader from './OptionHeader';
 import OptionsSelector from './OptionsSelector';
 
 function FilterPanel() {
-  const dispatch = useAppDispatch();
-  const { cruiseLines, filters } = useAppSelector(
-    (store) => store.expeditionState,
-  );
+  const router = useRouter();
+  const { query } = router;
+
+  const { cruiseLines } = useAppSelector((store) => store.expeditionState);
+  const selectedCruiseLines = getCruiseLinesParam(query.cruiseLines);
 
   const handleFilterChange = (
-    filterType: 'cruiseLines' | 'capacity' | 'duration',
+    param: 'cruiseLines' | 'capacity' | 'duration',
     event: ChangeEvent<HTMLInputElement>,
   ) => {
     const value = Number.parseInt(event.target.value);
-    dispatch(filterExpeditions({ filterType, value }));
+
+    if (param === 'cruiseLines') toggleCruiseLine(router, cruiseLines[value]);
+    else updateQueryParam(router, { param, value });
   };
 
   return (
     <>
-      <div className='p-2'>
-        <OptionHeader>Departure Dates</OptionHeader>
-        <DatePicker />
-      </div>
+      <DatePicker />
 
       <OptionsSelector
         label='Cruise lines'
         type='checkbox'
-        options={cruiseLines.map((x) => ({ displayName: x }))}
-        isChecked={(i: number) => filters.cruiseLines.includes(i)}
+        options={cruiseLines.map((x) => ({ displayText: x }))}
+        isChecked={(i: number) => selectedCruiseLines.includes(cruiseLines[i])}
         handleChange={(e) => handleFilterChange('cruiseLines', e)}
       />
 
@@ -39,7 +46,7 @@ function FilterPanel() {
         label='Ship capacity'
         type='radio'
         options={capacityOptions}
-        isChecked={(i: number) => filters.capacity === i}
+        isChecked={(i: number) => getCapacityParam(query) === i}
         handleChange={(e) => handleFilterChange('capacity', e)}
       />
 
@@ -47,7 +54,7 @@ function FilterPanel() {
         label='Duration'
         type='radio'
         options={durationOptions}
-        isChecked={(i: number) => filters.duration === i}
+        isChecked={(i: number) => getDurationParam(query) === i}
         handleChange={(e) => handleFilterChange('duration', e)}
       />
     </>

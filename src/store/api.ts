@@ -7,10 +7,9 @@ import { Action } from 'redux';
 
 import {
   DeparturesResponse,
-  ExpeditionParams,
   ExpeditionResponse,
+  ExpeditionsParams,
   ExpeditionsResponse,
-  MainResponse,
 } from '@/lib/type';
 import { setDepartures } from './slice/departures.slice';
 import { setExpeditions } from './slice/expeditions.slice';
@@ -32,13 +31,13 @@ export const api = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: BASE_URL }),
 
   endpoints: (builder) => ({
-    getCruiseLines: builder.query<MainResponse, void>({
+    getCruiseLines: builder.query<{ cruiseLines: string[] }, void>({
       query() {
         return { url: '/cruise-lines/names' };
       },
     }),
 
-    getExpeditions: builder.query<ExpeditionsResponse, ExpeditionParams>({
+    getExpeditions: builder.query<ExpeditionsResponse, ExpeditionsParams>({
       query: (args) => {
         const { sort, dir, cruiseLines, ...rest } = args;
 

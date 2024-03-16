@@ -1,24 +1,24 @@
+import { useRouter } from 'next/router';
+
 import { Button } from '@/components/ui/button';
-import { capacityOptions, durationOptions } from '@/lib/constants';
-import { resetFilters, useAppDispatch, useAppSelector } from '@/store';
 
 export default function ClearFilterButton() {
-  const dispatch = useAppDispatch();
-  const { startDate, endDate, cruiseLines, capacity, duration } =
-    useAppSelector((s) => s.expeditionState.filters);
+  const router = useRouter();
+
+  const { startDate, endDate, cruiseLines, capacity, duration } = router.query;
 
   return (
     <Button
       disabled={
-        startDate === null &&
-        endDate === null &&
-        cruiseLines.length === 0 &&
-        capacity === capacityOptions.length - 1 &&
-        duration === durationOptions.length - 1
+        startDate === undefined &&
+        endDate === undefined &&
+        cruiseLines === undefined &&
+        capacity === undefined &&
+        duration === undefined
       }
       size='xs'
       className='h-[32px] rounded-md px-4 capitalize text-white'
-      onClick={() => dispatch(resetFilters())}
+      onClick={() => router.push('/')}
     >
       Clear all filters
     </Button>

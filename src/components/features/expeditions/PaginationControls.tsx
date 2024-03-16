@@ -13,8 +13,8 @@ export default function PaginationControls() {
     (s) => s.expeditionState.expeditions,
   );
 
-  const handleClick = (param: string, value: number) => {
-    updateQueryParam(router, param, value);
+  const handleClick = (param: 'page' | 'itemsPerPage', value: number) => {
+    updateQueryParam(router, { param, value });
   };
 
   return (
