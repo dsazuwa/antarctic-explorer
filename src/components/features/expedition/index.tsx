@@ -13,6 +13,7 @@ export default function Expedition({ expedition }: Props) {
   const {
     id,
     name,
+    website,
     description,
     highlights,
     duration,
@@ -33,6 +34,7 @@ export default function Expedition({ expedition }: Props) {
       <Hero
         id={id}
         name={name}
+        website={website}
         duration={duration}
         startingPrice={startingPrice}
         cruiseLine={cruiseLine.name}

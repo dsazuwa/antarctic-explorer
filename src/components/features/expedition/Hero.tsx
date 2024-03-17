@@ -5,6 +5,7 @@ import Gallery from './Gallery';
 type Props = {
   id: number;
   name: string;
+  website: string;
   duration: string;
   startingPrice: number;
   cruiseLine: string;
@@ -17,6 +18,7 @@ type Props = {
 export default function Hero({
   id,
   name,
+  website,
   duration,
   startingPrice,
   cruiseLine,
@@ -47,7 +49,15 @@ export default function Hero({
             <div className='text-xs font-medium text-gray-400'>
               {cruiseLine}
             </div>
-            <h1 className='text-2xl font-semibold'>{name}</h1>
+
+            <a
+              href={website}
+              target='_blank'
+              rel='noopener noreferrer'
+              className='hover:underline'
+            >
+              <h1 className='text-2xl font-semibold'>{name}</h1>
+            </a>
           </div>
 
           <div>
