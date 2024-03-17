@@ -1,41 +1,73 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<h1 align="center">Antarctica Explorer App</h1>
+
+![antarctica-explorer-cover](https://github.com/dsazuwa/antarctica-explorer-app/assets/89839770/19c2a83a-5877-49ce-a736-9b32747863cb)
+
+
+<div align="center">We're going to Antarctica!</div>
+
+
+
+
+## Tech Stack
+- TypeScript
+- Next.js 13 with Pages Router
+- Tailwind CSS
+- Shadcn-ui and Radix-ui
+- Redux (might have been a bit overpowered for this app)
+
+## Features
+- Filtering on date, cruise line, capacity, and duration
+- Sorting and pagination functionality
+- State management with URL parameters
+- Responsive layout for various screen sizes
+
+## Views
+<details>
+  <summary>Expedition View</summary>
+
+ ![expedition-view](https://github.com/dsazuwa/antarctica-explorer-app/assets/89839770/99da187c-5fb7-401f-b9d9-b60105196a56)
+
+</details>
+
+<details>
+  <summary>Mobile Home View</summary>
+
+ ![mobile-home-view](https://github.com/dsazuwa/antarctica-explorer-app/assets/89839770/d94ed916-b63f-44c0-9b54-4b54462e1a83)
+
+
+</details>
+
+<details>
+  <summary>Mobile Expedition View</summary>
+
+ ![mobile-expedition-view](https://github.com/dsazuwa/antarctica-explorer-app/assets/89839770/5e40e9e5-2dbf-4c38-9aac-0d0794a4cd7f)
+
+
+</details>
 
 ## Getting Started
-
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
-# antarctica-explorer-app
+1. Clone the repo
+    ```bash
+    git clone https://github.com/dsazuwa/antarctic-explorer-app
+    ```
+    
+2. Go to the project folder
+    ```bash
+    cd antarctic-explorer-app
+    ```
+    
+3. Set up your .env file
+    - Duplicate the `.env.sample` to `.env`
+    - Fill in the missing variables
+      <br/><br/>
+      
+4. Install dependencies
+    ```bash
+    npm install
+    ```
+    
+5. Run the development server
+   ```bash
+    npm run dev
+    ```
+6. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
