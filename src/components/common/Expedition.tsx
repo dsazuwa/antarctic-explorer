@@ -13,16 +13,8 @@ type ExpeditionProps = {
 };
 
 export default function Expedition({ expedition }: ExpeditionProps) {
-  const {
-    id,
-    cruiseLine,
-    logo,
-    name,
-    duration,
-    startingPrice,
-    nearestDate,
-    photoUrl,
-  } = expedition;
+  const { cruiseLine, name, duration, startingPrice, nearestDate, photoUrl } =
+    expedition;
 
   return (
     <li className='group relative rounded-xl bg-white hover:shadow-lg'>
@@ -39,15 +31,15 @@ export default function Expedition({ expedition }: ExpeditionProps) {
         <div className='flex flex-row p-4 pt-6'>
           <Image
             className='mr-2 h-6 w-auto sm:h-8'
-            src={logo}
-            alt={`${cruiseLine} logo`}
+            src={cruiseLine.logo}
+            alt={`${cruiseLine.name} logo`}
             width={0}
             height={0}
             sizes='100vw'
           />
 
           <Link
-            href={`/expeditions/${id}`}
+            href={`/cruise-lines/${cruiseLine.id}/expeditions/${encodeURIComponent(name)}`}
             className='line-clamp-2 text-sm/[1rem] font-semibold text-primary after:absolute after:bottom-[-3px] after:left-[-3px] after:right-[-3px] after:top-[-3px] after:block after:rounded-xl group-hover:underline'
           >
             {name}

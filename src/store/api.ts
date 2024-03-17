@@ -63,10 +63,13 @@ export const api = createApi({
       },
     }),
 
-    getExpedition: builder.query<ExpeditionResponse, number>({
-      query: (id) => {
+    getExpedition: builder.query<
+      ExpeditionResponse,
+      { id: number; name: string }
+    >({
+      query: ({ id, name }) => {
         return {
-          url: `/expeditions/${id}`,
+          url: `/cruise-lines/${id}/expeditions/${name}`,
           method: 'GET',
         };
       },
@@ -76,6 +79,7 @@ export const api = createApi({
       DeparturesResponse,
       {
         id: number;
+        name: string;
         page?: number;
         size?: number;
         sort?: 'startDate' | 'price';
@@ -83,10 +87,10 @@ export const api = createApi({
       }
     >({
       query: (args) => {
-        const { id, ...rest } = args;
+        const { id, name, ...rest } = args;
 
         return {
-          url: `/expeditions/${id}/departures`,
+          url: `/cruise-lines/${id}/expeditions/${name}/departures`,
           method: 'GET',
           params: { ...rest },
         };

@@ -9,14 +9,21 @@ import { api, wrapper } from '@/store';
 export const getServerSideProps: GetServerSideProps =
   wrapper.getServerSideProps(
     (store) => async (context: GetServerSidePropsContext) => {
-      const { id } = context.query;
+      const { id, name } = context.query;
       const { dispatch } = store;
 
-      if (typeof id !== 'string' || Number.isNaN(Number.parseInt(id, 10)))
+      if (
+        typeof name !== 'string' ||
+        typeof id !== 'string' ||
+        Number.isNaN(Number.parseInt(id, 10))
+      )
         return { notFound: true };
 
       const expedition = await dispatch(
-        api.endpoints.getExpedition.initiate(Number.parseInt(id, 10)),
+        api.endpoints.getExpedition.initiate({
+          id: Number.parseInt(id, 10),
+          name: encodeURIComponent(name),
+        }),
       );
 
       await Promise.all(dispatch(api.util.getRunningQueriesThunk()));

@@ -48,13 +48,15 @@ export default function Expedition({ expedition }: Props) {
 
       <Itineraries id={id} itineraries={itineraries} />
 
-      <Departures id={id} />
+      <Departures id={cruiseLine.id} name={name} />
 
       {numVessels > 0 && <Vessels vessels={vessels} />}
 
       {extensions.length > 0 && <Extensions id={id} extensions={extensions} />}
 
-      <Expeditions expeditions={otherExpeditions} />
+      <Expeditions
+        expeditions={otherExpeditions.map((x) => ({ ...x, cruiseLine }))}
+      />
     </main>
   );
 }

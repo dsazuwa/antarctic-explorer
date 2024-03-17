@@ -9,7 +9,7 @@ import Departure from './Departure';
 import PaginationControls from './PaginationControls';
 import PaginationHeader from './PaginationHeader';
 
-export default function Departures({ id }: { id: number }) {
+export default function Departures({ id, name }: { id: number; name: string }) {
   const {
     departures: { data, currentPage },
     selectedItemsPerPage,
@@ -21,6 +21,7 @@ export default function Departures({ id }: { id: number }) {
   useEffect(() => {
     fetchDepartures({
       id,
+      name,
       page: currentPage,
       size: departuresPerPageOptions[selectedItemsPerPage],
       sort:

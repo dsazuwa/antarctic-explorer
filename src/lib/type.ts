@@ -1,28 +1,20 @@
 export type TCruiseLine = {
   id: number;
   name: string;
-  website: string;
-  expeditionWebsite: string;
   logo: string;
 };
 
-export type TCruiseLineWithExpeditions = TCruiseLine & {
-  expeditions: TExpedition[];
-};
-
-export type TCruiseLines = {
-  [key: string]: TCruiseLine;
-};
-
-export type TExpedition = {
+type BaseExpedition = {
   id: number;
-  cruiseLine: string;
-  logo: string;
   name: string;
   duration: string;
   nearestDate: string | null;
   startingPrice: number | null;
   photoUrl: string;
+};
+
+export type TExpedition = BaseExpedition & {
+  cruiseLine: TCruiseLine;
 };
 
 export type TGallery = {
@@ -111,13 +103,13 @@ export type ExpeditionResponse = {
   startingPrice: number;
   photoUrl: string;
   website: string;
-  cruiseLine: { name: string; logo: string };
+  cruiseLine: TCruiseLine;
   gallery: TGallery[];
   vessels: TVessel[];
   itineraries: TItinerary[];
   departures: { startDate: Date; endDate: Date }[];
   extensions: TExtension[];
-  otherExpeditions: TExpedition[];
+  otherExpeditions: BaseExpedition[];
 };
 
 export type DeparturesResponse = {
