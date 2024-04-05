@@ -1,23 +1,117 @@
-import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useEffect, useReducer } from 'react';
 
 import {
   departureSortOptions,
   departuresPerPageOptions,
 } from '@/lib/constants';
-import { setDepartures, useAppSelector } from '@/store';
+import { DeparturesResponse } from '@/lib/type';
 import Departure from './Departure';
-import PaginationControls from './PaginationControls';
-import PaginationHeader from './PaginationHeader';
+import Controls from './DeparturesControls';
+import Header from './DeparturesHeader';
+
+type DepartureState = {
+  departures: DeparturesResponse;
+  selectedItemsPerPage: number;
+  selectedSort: number;
+};
+
+export type DepartureAction =
+  | { type: 'SET_DEPARTURES'; payload: DeparturesResponse }
+  | { type: 'SET_DEPARTURE_SORT'; payload: number }
+  | { type: 'SET_DEPARTURES_PER_PAGE'; payload: number }
+  | { type: 'NAVIGATE_TO_FIRST_DEPARTURE' }
+  | { type: 'NAVIGATE_TO_PREVIOUS_DEPARTURE' }
+  | { type: 'NAVIGATE_TO_NEXT_DEPARTURE' }
+  | { type: 'NAVIGATE_TO_LAST_DEPARTURE' };
+
+const initialState: DepartureState = {
+  departures: {
+    data: [],
+    currentPage: 0,
+    itemsPerPage: 6,
+    totalItems: 0,
+    totalPages: 0,
+  },
+  selectedItemsPerPage: 0,
+  selectedSort: 0,
+};
+
+const departureReducer = (
+  state: DepartureState,
+  action: DepartureAction,
+): DepartureState => {
+  switch (action.type) {
+    case 'SET_DEPARTURES':
+      return {
+        ...state,
+        departures: action.payload,
+        selectedItemsPerPage:
+          state.departures.itemsPerPage === action.payload.itemsPerPage
+            ? state.selectedItemsPerPage
+            : departuresPerPageOptions.findIndex(
+                (x) => x === action.payload.itemsPerPage,
+              ),
+      };
+
+    case 'SET_DEPARTURE_SORT':
+      return {
+        ...state,
+        selectedSort: action.payload,
+        departures: { ...state.departures, currentPage: 0 },
+      };
+
+    case 'SET_DEPARTURES_PER_PAGE':
+      return {
+        ...state,
+        selectedItemsPerPage: action.payload,
+        departures: { ...state.departures, currentPage: 0 },
+      };
+
+    case 'NAVIGATE_TO_FIRST_DEPARTURE':
+      return { ...state, departures: { ...state.departures, currentPage: 0 } };
+
+    case 'NAVIGATE_TO_PREVIOUS_DEPARTURE':
+      return {
+        ...state,
+        departures: {
+          ...state.departures,
+          currentPage: Math.max(0, state.departures.currentPage - 1),
+        },
+      };
+
+    case 'NAVIGATE_TO_NEXT_DEPARTURE':
+      return {
+        ...state,
+        departures: {
+          ...state.departures,
+          currentPage: Math.min(
+            state.departures.totalPages - 1,
+            state.departures.currentPage + 1,
+          ),
+        },
+      };
+
+    case 'NAVIGATE_TO_LAST_DEPARTURE':
+      return {
+        ...state,
+        departures: {
+          ...state.departures,
+          currentPage: state.departures.totalPages - 1,
+        },
+      };
+
+    default:
+      return state;
+  }
+};
 
 export default function Departures({ id, name }: { id: number; name: string }) {
-  const dispatch = useDispatch();
-
+  const [state, dispatch] = useReducer(departureReducer, initialState);
   const {
-    departures: { data, currentPage },
+    departures: { data, currentPage, totalPages, itemsPerPage, totalItems },
     selectedItemsPerPage,
     selectedSort,
-  } = useAppSelector((s) => s.departureState);
+  } = state;
 
   useEffect(() => {
     const params = {
@@ -37,8 +131,11 @@ export default function Departures({ id, name }: { id: number; name: string }) {
 
     fetch(url.toString())
       .then((response) => response.json())
-      .then((data) => dispatch(setDepartures(data)));
-  }, [id, currentPage, selectedItemsPerPage, selectedSort, dispatch]);
+      .then((data) => dispatch({ type: 'SET_DEPARTURES', payload: data }));
+  }, [id, currentPage, selectedItemsPerPage, selectedSort]);
+
+  const setSortOption = (i: number) =>
+    dispatch({ type: 'SET_DEPARTURE_SORT', payload: i });
 
   return data === undefined || data.length === 0 ? (
     <></>
@@ -49,7 +146,13 @@ export default function Departures({ id, name }: { id: number; name: string }) {
           Departures
         </h2>
 
-        <PaginationHeader />
+        <Header
+          currentPage={currentPage}
+          itemsPerPage={itemsPerPage}
+          totalItems={totalItems}
+          selectedSort={selectedSort}
+          setSortOption={setSortOption}
+        />
 
         <ol className='space-y-4'>
           {data.map((departure, i) => (
@@ -57,7 +160,12 @@ export default function Departures({ id, name }: { id: number; name: string }) {
           ))}
         </ol>
 
-        <PaginationControls />
+        <Controls
+          currentPage={currentPage}
+          totalPages={totalPages}
+          selectedItemsPerPage={selectedItemsPerPage}
+          dispatch={dispatch}
+        />
       </div>
     </section>
   );

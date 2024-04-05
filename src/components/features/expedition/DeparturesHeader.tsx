@@ -1,15 +1,22 @@
 import HeaderSelect from '@/components/common/HeaderSelect';
 import HeaderSummary from '@/components/common/HeaderSummary';
 import { departureSortOptions } from '@/lib/constants';
-import { setDepartureSort, useAppDispatch, useAppSelector } from '@/store';
 
-export default function PaginationHeader() {
-  const dispatch = useAppDispatch();
-  const {
-    departures: { currentPage, itemsPerPage, totalItems },
-    selectedSort,
-  } = useAppSelector((s) => s.departureState);
+type Props = {
+  currentPage: number;
+  itemsPerPage: number;
+  totalItems: number;
+  selectedSort: number;
+  setSortOption: (i: number) => void;
+};
 
+export default function DeparturesHeader({
+  currentPage,
+  itemsPerPage,
+  totalItems,
+  selectedSort,
+  setSortOption,
+}: Props) {
   return (
     <div className='flex flex-row items-center justify-between'>
       <HeaderSummary
@@ -22,7 +29,7 @@ export default function PaginationHeader() {
       <HeaderSelect
         sortOptions={departureSortOptions}
         selectedSort={selectedSort}
-        setSortOption={(i: number) => dispatch(setDepartureSort(i))}
+        setSortOption={setSortOption}
       />
     </div>
   );
