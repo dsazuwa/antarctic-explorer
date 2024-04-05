@@ -201,7 +201,7 @@ export const updateDateParam = (
   updateRouterQuery(router, query);
 };
 
-const updateRouterQuery = (
+export const updateRouterQuery = (
   router: NextRouter,
   query: string | ParsedUrlQueryInput | null | undefined,
 ) => {
