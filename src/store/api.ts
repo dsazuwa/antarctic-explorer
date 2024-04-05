@@ -31,12 +31,6 @@ export const api = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: BASE_URL }),
 
   endpoints: (builder) => ({
-    getCruiseLines: builder.query<{ cruiseLines: string[] }, void>({
-      query() {
-        return { url: '/cruise-lines/names' };
-      },
-    }),
-
     getExpeditions: builder.query<ExpeditionsResponse, ExpeditionsParams>({
       query: (args) => {
         const { sort, dir, cruiseLines, ...rest } = args;
@@ -109,10 +103,7 @@ export const api = createApi({
 });
 
 export const {
-  useGetCruiseLinesQuery,
-  useGetExpeditionQuery,
   useGetExpeditionsQuery,
-  useLazyGetExpeditionsQuery,
   useGetDeparturesQuery,
   useLazyGetDeparturesQuery,
 } = api;

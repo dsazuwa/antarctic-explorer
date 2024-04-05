@@ -11,20 +11,16 @@ import {
   PaginationHeader,
   SideFilterPanel,
 } from '@/components/features/expeditions';
-import { ExpeditionsResponse } from '@/lib/type';
 import { getExpeditionsParams } from '@/lib/param.utils';
-import { api, setCruiseLines, setExpeditions, wrapper } from '@/store';
+import { ExpeditionsResponse } from '@/lib/type';
+import { api, setExpeditions, wrapper } from '@/store';
 
 type Props = {
-  pageProps: { cruiseLines: string[]; expeditions: ExpeditionsResponse };
+  pageProps: { expeditions: ExpeditionsResponse };
 };
 
-export default function ExpeditionsPage({
-  pageProps: { cruiseLines, expeditions },
-}: Props) {
+export default function ExpeditionsPage({ pageProps: { expeditions } }: Props) {
   const dispatch = useDispatch();
-
-  dispatch(setCruiseLines(cruiseLines));
   dispatch(setExpeditions(expeditions));
 
   return (

@@ -1,7 +1,11 @@
 import { useRouter } from 'next/router';
 import { ChangeEvent } from 'react';
 
-import { capacityOptions, durationOptions } from '@/lib/constants';
+import {
+  capacityOptions,
+  cruiseLineOptions,
+  durationOptions,
+} from '@/lib/constants';
 import {
   getCapacityParam,
   getCruiseLinesParam,
@@ -9,7 +13,6 @@ import {
   toggleCruiseLine,
   updateQueryParam,
 } from '@/lib/param.utils';
-import { useAppSelector } from '@/store';
 import DatePicker from './DatePicker';
 import OptionsSelector from './OptionsSelector';
 
@@ -17,7 +20,6 @@ function FilterPanel() {
   const router = useRouter();
   const { query } = router;
 
-  const { cruiseLines } = useAppSelector((store) => store.expeditionState);
   const selectedCruiseLines = getCruiseLinesParam(query.cruiseLines);
 
   const handleFilterChange = (
@@ -26,7 +28,8 @@ function FilterPanel() {
   ) => {
     const value = Number.parseInt(event.target.value);
 
-    if (param === 'cruiseLines') toggleCruiseLine(router, cruiseLines[value]);
+    if (param === 'cruiseLines')
+      toggleCruiseLine(router, cruiseLineOptions[value]);
     else updateQueryParam(router, { param, value });
   };
 
@@ -37,8 +40,10 @@ function FilterPanel() {
       <OptionsSelector
         label='Cruise lines'
         type='checkbox'
-        options={cruiseLines.map((x) => ({ displayText: x }))}
-        isChecked={(i: number) => selectedCruiseLines.includes(cruiseLines[i])}
+        options={cruiseLineOptions.map((x) => ({ displayText: x }))}
+        isChecked={(i: number) =>
+          selectedCruiseLines.includes(cruiseLineOptions[i])
+        }
         handleChange={(e) => handleFilterChange('cruiseLines', e)}
       />
 

@@ -8,6 +8,12 @@ import {
 export const itemsPerPageOptions = [6, 12, 18, 24];
 export const departuresPerPageOptions = [5, 10, 15, 20];
 
+export const cruiseLineOptions = [
+  'Aurora Expeditions',
+  'Hurtigruten Expeditions',
+  'Lindblad Expeditions',
+];
+
 export const durationOptions: (BasicFilterOption | RangedFilterOption)[] = [
   { displayText: '1 - 7 days', min: 1, max: 7 },
   { displayText: '8 - 14 days', min: 8, max: 14 },
