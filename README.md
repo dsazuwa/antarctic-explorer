@@ -9,17 +9,16 @@
 
 
 ## Tech Stack
-- TypeScript
+- React.js
 - Next.js 13 with Pages Router
-- Tailwind CSS
-- Shadcn-ui and Radix-ui
-- Redux (might have been a bit overpowered for this app)
+- Tailwind CSS and Shadcn-ui
+- TypeScript
 
 ## Features
 - Filtering on date, cruise line, capacity, and duration
 - Sorting and pagination functionality
 - State management with URL parameters
-- Responsive layout for various screen sizes
+- Responsive design
 
 ## Views
 <details>
