@@ -4,14 +4,19 @@ import HeaderSelect from '@/components/common/HeaderSelect';
 import HeaderSummary from '@/components/common/HeaderSummary';
 import { sortOptions } from '@/lib/constants';
 import { getSortParam, updateQueryParam } from '@/lib/param.utils';
-import { useAppSelector } from '@/store';
 
-export default function PaginationHeader() {
+type Props = {
+  currentPage: number;
+  totalItems: number;
+  itemsPerPage: number;
+};
+
+export default function PaginationHeader({
+  currentPage,
+  totalItems,
+  itemsPerPage,
+}: Props) {
   const router = useRouter();
-
-  const { currentPage, totalItems, itemsPerPage } = useAppSelector(
-    (s) => s.expeditionState.expeditions,
-  );
 
   return (
     <div className='flex h-10 items-center justify-between sm:text-xs'>

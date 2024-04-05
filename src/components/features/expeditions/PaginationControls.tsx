@@ -4,14 +4,19 @@ import Pagination from '@/components/common/Pagination';
 import PerPageSelector from '@/components/common/PerPageSelector';
 import { itemsPerPageOptions } from '@/lib/constants';
 import { updateQueryParam } from '@/lib/param.utils';
-import { useAppSelector } from '@/store';
 
-export default function PaginationControls() {
+type Props = {
+  currentPage: number;
+  totalPages: number;
+  itemsPerPage: number;
+};
+
+export default function PaginationControls({
+  currentPage,
+  totalPages,
+  itemsPerPage,
+}: Props) {
   const router = useRouter();
-
-  const { currentPage, itemsPerPage, totalPages } = useAppSelector(
-    (s) => s.expeditionState.expeditions,
-  );
 
   const handleClick = (param: 'page' | 'itemsPerPage', value: number) => {
     updateQueryParam(router, { param, value });

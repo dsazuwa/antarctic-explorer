@@ -3,13 +3,11 @@ import { setupListeners } from '@reduxjs/toolkit/query';
 import { createWrapper } from 'next-redux-wrapper';
 
 import { departureReducer } from './slice/departures.slice';
-import { expeditionsReducer } from './slice/expeditions.slice';
 
 export const store = configureStore({
   devTools: process.env.NODE_ENV === 'development',
 
   reducer: {
-    expeditionState: expeditionsReducer,
     departureState: departureReducer,
   },
 

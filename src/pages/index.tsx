@@ -1,6 +1,5 @@
 import { GetServerSidePropsContext } from 'next';
 import Head from 'next/head';
-import { useDispatch } from 'react-redux';
 
 import Layout from '@/Layout';
 import {
@@ -13,15 +12,14 @@ import {
 } from '@/components/features/expeditions';
 import { getExpeditionsParams } from '@/lib/param.utils';
 import { ExpeditionsParams, ExpeditionsResponse } from '@/lib/type';
-import { setExpeditions } from '@/store';
 
 type Props = {
   pageProps: { expeditions: ExpeditionsResponse };
 };
 
 export default function ExpeditionsPage({ pageProps: { expeditions } }: Props) {
-  const dispatch = useDispatch();
-  dispatch(setExpeditions(expeditions));
+  const { currentPage, totalPages, totalItems, itemsPerPage, data } =
+    expeditions;
 
   return (
     <Layout>
@@ -51,11 +49,19 @@ export default function ExpeditionsPage({ pageProps: { expeditions } }: Props) {
 
             <FilterChips />
 
-            <PaginationHeader />
+            <PaginationHeader
+              currentPage={currentPage}
+              totalItems={totalItems}
+              itemsPerPage={itemsPerPage}
+            />
 
-            <Expeditions expeditions={expeditions.data} />
+            <Expeditions expeditions={data} />
 
-            <PaginationControls />
+            <PaginationControls
+              currentPage={currentPage}
+              totalPages={totalPages}
+              itemsPerPage={itemsPerPage}
+            />
           </div>
         </div>
       </div>
