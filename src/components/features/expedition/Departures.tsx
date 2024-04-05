@@ -24,18 +24,6 @@ export type DepartureAction =
   | { type: 'NAVIGATE_TO_NEXT_DEPARTURE' }
   | { type: 'NAVIGATE_TO_LAST_DEPARTURE' };
 
-const initialState: DepartureState = {
-  departures: {
-    data: [],
-    currentPage: 0,
-    itemsPerPage: 6,
-    totalItems: 0,
-    totalPages: 0,
-  },
-  selectedItemsPerPage: 0,
-  selectedSort: 0,
-};
-
 const departureReducer = (
   state: DepartureState,
   action: DepartureAction,
@@ -105,8 +93,19 @@ const departureReducer = (
   }
 };
 
-export default function Departures({ id, name }: { id: number; name: string }) {
-  const [state, dispatch] = useReducer(departureReducer, initialState);
+type Props = {
+  id: number;
+  name: string;
+  departures: DeparturesResponse;
+};
+
+export default function Departures({ id, name, departures }: Props) {
+  const [state, dispatch] = useReducer(departureReducer, {
+    departures,
+    selectedItemsPerPage: 0,
+    selectedSort: 0,
+  });
+
   const {
     departures: { data, currentPage, totalPages, itemsPerPage, totalItems },
     selectedItemsPerPage,
@@ -132,7 +131,7 @@ export default function Departures({ id, name }: { id: number; name: string }) {
     fetch(url.toString())
       .then((response) => response.json())
       .then((data) => dispatch({ type: 'SET_DEPARTURES', payload: data }));
-  }, [id, currentPage, selectedItemsPerPage, selectedSort]);
+  }, [currentPage, selectedItemsPerPage, selectedSort]);
 
   const setSortOption = (i: number) =>
     dispatch({ type: 'SET_DEPARTURE_SORT', payload: i });

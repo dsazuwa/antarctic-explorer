@@ -3,11 +3,18 @@ import Head from 'next/head';
 
 import Layout from '@/Layout';
 import Expedition from '@/components/features/expedition';
-import { ExpeditionResponse } from '@/lib/type';
+import { DeparturesResponse, ExpeditionResponse } from '@/lib/type';
 
-type Props = { pageProps: { expedition: ExpeditionResponse } };
+type Props = {
+  pageProps: {
+    expedition: ExpeditionResponse;
+    departures: DeparturesResponse;
+  };
+};
 
-export default function ExpeditionPage({ pageProps: { expedition } }: Props) {
+export default function ExpeditionPage({
+  pageProps: { expedition, departures },
+}: Props) {
   const { name, description } = expedition;
 
   return (
@@ -19,7 +26,7 @@ export default function ExpeditionPage({ pageProps: { expedition } }: Props) {
         <link rel='icon' href='/favicon.ico' />
       </Head>
 
-      <Expedition expedition={expedition} />
+      <Expedition expedition={expedition} departures={departures} />
     </Layout>
   );
 }
@@ -36,11 +43,16 @@ export const getServerSideProps = async (
   )
     return { notFound: true };
 
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/cruise-lines/${Number.parseInt(id, 10)}/expeditions/${encodeURIComponent(name)}`,
-  );
+  const baseUrl = `${process.env.NEXT_PUBLIC_API_URL}/cruise-lines/${Number.parseInt(id, 10)}/expeditions/${encodeURIComponent(name)}`;
 
-  return res.status === 200
-    ? { props: { expedition: (await res.json()) as ExpeditionResponse } }
-    : { notFound: true };
+  const expeditionRes = await fetch(baseUrl);
+  const departuresRes = await fetch(`${baseUrl}/departures?size=5`);
+
+  if (expeditionRes.status !== 200 || departuresRes.status !== 200)
+    return { notFound: true };
+
+  const expedition = (await expeditionRes.json()) as ExpeditionResponse;
+  const departures = (await departuresRes.json()) as DeparturesResponse;
+
+  return { props: { expedition, departures } };
 };
