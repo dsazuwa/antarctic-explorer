@@ -4,7 +4,7 @@ function Footer() {
   return (
     <footer className='mt-auto bg-primary-foreground py-4 text-center'>
       <span className='flex flex-row justify-center text-xxs font-medium md:text-xs'>
-        This project is open source. The code can be found on
+        The source code for this app can be found on
         <a
           href='https://github.com/dsazuwa/antarctica-explorer-app'
           target='_blank'
