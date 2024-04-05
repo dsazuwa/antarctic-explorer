@@ -28,6 +28,10 @@ export default function ItemDialogContent({ itinerary, handleClose }: Props) {
     );
 
     observer.observe(observedElement);
+
+    return () => {
+      observer.disconnect();
+    };
   }, [ready]);
 
   return (
