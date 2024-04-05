@@ -5,7 +5,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { HYDRATE } from 'next-redux-wrapper';
 import { Action } from 'redux';
 
-import { DeparturesResponse, ExpeditionResponse } from '@/lib/type';
+import { DeparturesResponse } from '@/lib/type';
 import { setDepartures } from './slice/departures.slice';
 import { RootState } from './store';
 
@@ -25,18 +25,6 @@ export const api = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: BASE_URL }),
 
   endpoints: (builder) => ({
-    getExpedition: builder.query<
-      ExpeditionResponse,
-      { id: number; name: string }
-    >({
-      query: ({ id, name }) => {
-        return {
-          url: `/cruise-lines/${id}/expeditions/${name}`,
-          method: 'GET',
-        };
-      },
-    }),
-
     getDepartures: builder.query<
       DeparturesResponse,
       {
