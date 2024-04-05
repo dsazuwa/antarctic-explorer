@@ -154,17 +154,21 @@ export const updateQueryParam = (
 
   switch (param) {
     case 'cruiseLines':
-      updatedParam = value.length === 0 ? {} : { [param]: value };
+      updatedParam = value.length === 0 ? {} : { page: 0, [param]: value };
       break;
 
     case 'capacity':
       updatedParam =
-        value === capacityOptions.length - 1 ? {} : { [param]: value };
+        value === capacityOptions.length - 1 ? {} : { page: 0, [param]: value };
       break;
 
     case 'duration':
       updatedParam =
-        value === durationOptions.length - 1 ? {} : { [param]: value };
+        value === durationOptions.length - 1 ? {} : { page: 0, [param]: value };
+      break;
+
+    case 'itemsPerPage':
+      updatedParam = { page: 0, [param]: value };
       break;
 
     default:
@@ -192,7 +196,7 @@ export const updateDateParam = (
   const query =
     from === undefined && to === undefined
       ? { ...remainingParams }
-      : { ...remainingParams, ...updatedParams };
+      : { ...remainingParams, page: 0, ...updatedParams };
 
   updateRouterQuery(router, query);
 };
@@ -201,10 +205,14 @@ const updateRouterQuery = (
   router: NextRouter,
   query: string | ParsedUrlQueryInput | null | undefined,
 ) => {
-  router.push(
-    { pathname: router.pathname, query },
-    //   undefined, {
-    //   shallow: true,
-    // }
-  );
+  const { page, itemsPerPage, sort, ...rest } = query as ParsedUrlQueryInput;
+
+  const updatedQuery = {
+    ...(page && { page }),
+    ...(itemsPerPage && { itemsPerPage }),
+    ...(sort && { sort }),
+    ...rest,
+  };
+
+  router.push({ pathname: router.pathname, query: updatedQuery });
 };
