@@ -94,12 +94,12 @@ const departureReducer = (
 };
 
 type Props = {
-  id: number;
+  cruiseLine: string;
   name: string;
   departures: DeparturesResponse;
 };
 
-export default function Departures({ id, name, departures }: Props) {
+export default function Departures({ cruiseLine, name, departures }: Props) {
   const [state, dispatch] = useReducer(departureReducer, {
     departures,
     selectedItemsPerPage: 0,
@@ -121,22 +121,21 @@ export default function Departures({ id, name, departures }: Props) {
     };
 
     const url = new URL(
-      `${process.env.NEXT_PUBLIC_API_URL}/cruise-lines/${id}/expeditions/${name}/departures`,
+      `${process.env.NEXT_PUBLIC_API_URL}/cruise-lines/${encodeURIComponent(cruiseLine)}/expeditions/${encodeURIComponent(name)}/departures`,
     );
 
-    for (const [key, value] of Object.entries(params)) {
+    for (const [key, value] of Object.entries(params))
       url.searchParams.append(key, String(value));
-    }
 
     fetch(url.toString())
       .then((response) => response.json())
       .then((data) => dispatch({ type: 'SET_DEPARTURES', payload: data }));
-  }, [currentPage, selectedItemsPerPage, selectedSort]);
+  }, [cruiseLine, name, currentPage, selectedItemsPerPage, selectedSort]);
 
   const setSortOption = (i: number) =>
     dispatch({ type: 'SET_DEPARTURE_SORT', payload: i });
 
-  return data === undefined || data.length === 0 ? (
+  return data.length === 0 ? (
     <></>
   ) : (
     <section className='w-full' aria-label='Departure Date & Rates'>

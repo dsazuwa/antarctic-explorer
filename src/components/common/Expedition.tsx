@@ -39,7 +39,7 @@ export default function Expedition({ expedition }: ExpeditionProps) {
           />
 
           <Link
-            href={`/cruise-lines/${cruiseLine.id}/expeditions/${encodeURIComponent(name)}`}
+            href={`/cruise-lines/${encodeURIComponent(cruiseLine.name)}/expeditions/${encodeURIComponent(name)}`}
             className='line-clamp-2 text-sm/[1rem] font-semibold text-primary after:absolute after:bottom-[-3px] after:left-[-3px] after:right-[-3px] after:top-[-3px] after:block after:rounded-xl group-hover:underline'
           >
             {name}

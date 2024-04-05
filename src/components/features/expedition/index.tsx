@@ -45,7 +45,11 @@ export default function Expedition({ expedition, departures }: Props) {
 
       <Itineraries itineraries={itineraries} />
 
-      <Departures id={cruiseLine.id} name={name} departures={departures} />
+      <Departures
+        cruiseLine={cruiseLine.name}
+        name={name}
+        departures={departures}
+      />
 
       {numVessels > 0 && <Vessels vessels={vessels} />}
 

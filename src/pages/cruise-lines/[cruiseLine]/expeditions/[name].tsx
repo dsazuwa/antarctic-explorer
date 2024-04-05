@@ -3,6 +3,10 @@ import Head from 'next/head';
 
 import Layout from '@/Layout';
 import Expedition from '@/components/features/expedition';
+import {
+  departureSortOptions,
+  departuresPerPageOptions,
+} from '@/lib/constants';
 import { DeparturesResponse, ExpeditionResponse } from '@/lib/type';
 
 type Props = {
@@ -38,25 +42,33 @@ export default function ExpeditionPage({
 export const getServerSideProps = async (
   context: GetServerSidePropsContext,
 ) => {
-  const { id, name } = context.query;
+  const { cruiseLine, name } = context.query;
 
-  if (
-    typeof name !== 'string' ||
-    typeof id !== 'string' ||
-    Number.isNaN(Number.parseInt(id, 10))
-  )
+  if (typeof name !== 'string' || typeof cruiseLine !== 'string')
     return { notFound: true };
 
-  const baseUrl = `${process.env.NEXT_PUBLIC_API_URL}/cruise-lines/${Number.parseInt(id, 10)}/expeditions/${encodeURIComponent(name)}`;
+  const url = new URL(
+    `${process.env.NEXT_PUBLIC_API_URL}/cruise-lines/${encodeURIComponent(cruiseLine)}/expeditions/${encodeURIComponent(name)}`,
+  );
 
-  const expeditionRes = await fetch(baseUrl);
-  const departuresRes = await fetch(`${baseUrl}/departures?size=5`);
+  const params = {
+    page: 0,
+    size: departuresPerPageOptions[0],
+    sort: departureSortOptions[0].sort,
+    dir: departureSortOptions[0].dir,
+  };
 
-  if (expeditionRes.status !== 200 || departuresRes.status !== 200)
-    return { notFound: true };
+  for (const [key, value] of Object.entries(params))
+    url.searchParams.append(key, String(value));
 
-  const expedition = (await expeditionRes.json()) as ExpeditionResponse;
-  const departures = (await departuresRes.json()) as DeparturesResponse;
+  const res = await fetch(url.toString());
 
-  return { props: { expedition, departures } };
+  if (res.status !== 200) return { notFound: true };
+
+  const data = (await res.json()) as {
+    expedition: ExpeditionResponse;
+    departures: DeparturesResponse;
+  };
+
+  return { props: { ...data } };
 };
