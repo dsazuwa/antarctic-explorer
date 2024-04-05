@@ -1,18 +1,14 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import { TItinerary } from '@/lib/type';
 import Itinerary from './Itinerary';
 import Dialog from './ItineraryDialog';
 import Tab from './ItineraryTab';
 
-type Props = { id: number; itineraries: TItinerary[] };
+type Props = { itineraries: TItinerary[] };
 
-export default function Itineraries({ id, itineraries }: Props) {
+export default function Itineraries({ itineraries }: Props) {
   const [index, setIndex] = useState(0);
-
-  useEffect(() => {
-    setIndex(0);
-  }, [id]);
 
   return (
     <section className='w-full' aria-label='Itineraries'>

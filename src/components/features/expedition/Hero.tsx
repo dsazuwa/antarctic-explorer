@@ -3,7 +3,6 @@ import { formatDate, formatPrice } from '@/lib/utils';
 import Gallery from './Gallery';
 
 type Props = {
-  id: number;
   name: string;
   website: string;
   duration: string;
@@ -16,7 +15,6 @@ type Props = {
 };
 
 export default function Hero({
-  id,
   name,
   website,
   duration,
@@ -92,11 +90,7 @@ export default function Hero({
           </div>
         </div>
 
-        <Gallery
-          id={id}
-          gallery={gallery}
-          className='sm:mr-4 sm:w-3/5 lg:mr-0'
-        />
+        <Gallery gallery={gallery} className='sm:mr-4 sm:w-3/5 lg:mr-0' />
       </div>
     </section>
   );

@@ -1,18 +1,14 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import { TExtension } from '@/lib/type';
 import { ArrowDownIcon } from '@radix-ui/react-icons';
 import Extension from './Extension';
 
-type Props = { id: number; extensions: TExtension[] };
+type Props = { extensions: TExtension[] };
 
-export default function Extensions({ id, extensions }: Props) {
+export default function Extensions({ extensions }: Props) {
   const [showAll, setShowAll] = useState(false);
   const renderedData = showAll ? extensions : extensions.slice(0, 3);
-
-  useEffect(() => {
-    setShowAll(false);
-  }, [id]);
 
   return (
     <section aria-label='Expedition Extensions'>

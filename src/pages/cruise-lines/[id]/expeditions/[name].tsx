@@ -26,7 +26,11 @@ export default function ExpeditionPage({
         <link rel='icon' href='/favicon.ico' />
       </Head>
 
-      <Expedition expedition={expedition} departures={departures} />
+      <Expedition
+        key={expedition.id}
+        expedition={expedition}
+        departures={departures}
+      />
     </Layout>
   );
 }

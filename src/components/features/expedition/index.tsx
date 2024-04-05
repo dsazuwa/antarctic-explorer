@@ -11,7 +11,6 @@ type Props = { expedition: ExpeditionResponse; departures: DeparturesResponse };
 
 export default function Expedition({ expedition, departures }: Props) {
   const {
-    id,
     name,
     website,
     description,
@@ -31,7 +30,6 @@ export default function Expedition({ expedition, departures }: Props) {
   return (
     <main className='[&>*:nth-child(even)]:bg-muted/80 [&>*:nth-child(odd):not(:first-child)]:bg-white'>
       <Hero
-        id={id}
         name={name}
         website={website}
         duration={duration}
@@ -45,13 +43,13 @@ export default function Expedition({ expedition, departures }: Props) {
 
       <Overview description={description} highlights={highlights} />
 
-      <Itineraries id={id} itineraries={itineraries} />
+      <Itineraries itineraries={itineraries} />
 
       <Departures id={cruiseLine.id} name={name} departures={departures} />
 
       {numVessels > 0 && <Vessels vessels={vessels} />}
 
-      {extensions.length > 0 && <Extensions id={id} extensions={extensions} />}
+      {extensions.length > 0 && <Extensions extensions={extensions} />}
 
       <Expeditions
         expeditions={otherExpeditions.map((x) => ({ ...x, cruiseLine }))}
