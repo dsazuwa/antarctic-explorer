@@ -1,4 +1,4 @@
-import { GetServerSideProps, GetServerSidePropsContext } from 'next';
+import { GetServerSidePropsContext } from 'next';
 import Head from 'next/head';
 import { useDispatch } from 'react-redux';
 
@@ -12,8 +12,8 @@ import {
   SideFilterPanel,
 } from '@/components/features/expeditions';
 import { getExpeditionsParams } from '@/lib/param.utils';
-import { ExpeditionsResponse } from '@/lib/type';
-import { api, setExpeditions, wrapper } from '@/store';
+import { ExpeditionsParams, ExpeditionsResponse } from '@/lib/type';
+import { setExpeditions } from '@/store';
 
 type Props = {
   pageProps: { expeditions: ExpeditionsResponse };
@@ -63,30 +63,20 @@ export default function ExpeditionsPage({ pageProps: { expeditions } }: Props) {
   );
 }
 
-export const getServerSideProps: GetServerSideProps =
-  wrapper.getServerSideProps(
-    (store) => async (context: GetServerSidePropsContext) => {
-      const { dispatch } = store;
+export const getServerSideProps = async (
+  context: GetServerSidePropsContext,
+) => {
+  const url = new URL(`${process.env.NEXT_PUBLIC_API_URL}/expeditions`);
+  const params = getExpeditionsParams(context.query);
 
-      const cruiseLineResponse = await dispatch(
-        api.endpoints.getCruiseLines.initiate(),
-      );
+  Object.keys(params).forEach((key) => {
+    const paramKey = key as keyof ExpeditionsParams;
+    url.searchParams.append(paramKey, String(params[paramKey]));
+  });
 
-      const expeditionResponse = await dispatch(
-        api.endpoints.getExpeditions.initiate(
-          getExpeditionsParams(context.query),
-        ),
-      );
+  const res = await fetch(url.toString());
 
-      await Promise.all(dispatch(api.util.getRunningQueriesThunk()));
+  const expeditions: ExpeditionsResponse = await res.json();
 
-      return cruiseLineResponse.isError || expeditionResponse.isError
-        ? { notFound: true }
-        : {
-            props: {
-              cruiseLines: cruiseLineResponse.data?.cruiseLines,
-              expeditions: expeditionResponse.data,
-            },
-          };
-    },
-  );
+  return { props: { expeditions } };
+};
