@@ -3,9 +3,9 @@ import clsx from 'clsx';
 import { EmblaCarouselType } from 'embla-carousel';
 import useEmblaCarousel from 'embla-carousel-react';
 import { useCallback, useEffect, useState } from 'react';
-import Image from 'next/image';
 
 import { TGallery } from '@/lib/type';
+import Image from '@/components/common/Image';
 
 type Props = { gallery: TGallery[]; className: string };
 
@@ -64,12 +64,14 @@ export default function Gallery({ gallery, className }: Props) {
               className='embla__slide shrink-0 grow-0 basis-full'
             >
               <Image
+                isSkeletonDark={true}
                 className='h-full w-full object-cover'
                 alt={alt || `gallery-image-${i}`}
                 src={url}
                 width={0}
                 height={0}
                 sizes='100vw'
+                priority={i === 0}
               />
             </div>
           ))}
