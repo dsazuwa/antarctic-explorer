@@ -8,11 +8,12 @@ import { TExpedition } from '@/lib/type';
 import { formatPrice } from '@/lib/utils';
 import InfoDisplay from '../features/expeditions/InfoDisplay';
 
-type ExpeditionProps = {
-  expedition: TExpedition;
-};
+type ExpeditionProps = { expedition: TExpedition; isImgPriority?: boolean };
 
-export default function Expedition({ expedition }: ExpeditionProps) {
+export default function Expedition({
+  expedition,
+  isImgPriority,
+}: ExpeditionProps) {
   const { cruiseLine, name, duration, startingPrice, nearestDate, photoUrl } =
     expedition;
 
@@ -25,6 +26,7 @@ export default function Expedition({ expedition }: ExpeditionProps) {
         width={0}
         height={0}
         sizes='100vw'
+        priority={!!isImgPriority}
       />
 
       <div className='flex h-[calc(100%-270px)] flex-col rounded-b-xl border sm:flex-1'>

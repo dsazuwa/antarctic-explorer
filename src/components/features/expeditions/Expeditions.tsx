@@ -20,7 +20,11 @@ export default function Expeditions({ expeditions }: Props) {
       className='grid w-full grid-cols-1 gap-4 sm:grid-cols-2'
     >
       {expeditions.map((expedition, index) => (
-        <Expedition key={'expedition' + index} expedition={expedition} />
+        <Expedition
+          key={'expedition' + index}
+          expedition={expedition}
+          isImgPriority={true}
+        />
       ))}
     </ol>
   );
