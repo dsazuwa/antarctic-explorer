@@ -24,7 +24,7 @@ export default function ExpeditionsPage({ pageProps: { expeditions } }: Props) {
   return (
     <Layout>
       <Head>
-        <title>Antarctica Explorer</title>
+        <title>Antarctic Explorer</title>
         <meta
           name='description'
           content='Embark on an Antarctic adventure with Antarctica Explorer. Discover curated expeditions to Antarctica sourced from renowned expedition cruise lines, such as Lindblad and Quark Expeditions. Explore the wonders of the icy continent through our comprehensive selection of voyages, offering unforgettable experiences amidst breathtaking landscapes and unique wildlife encounters.'

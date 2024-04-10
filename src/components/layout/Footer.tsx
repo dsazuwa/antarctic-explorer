@@ -6,7 +6,7 @@ function Footer() {
       <span className='flex flex-row justify-center text-xxs font-medium md:text-xs'>
         The source code for this app can be found on
         <a
-          href='https://github.com/dsazuwa/antarctica-explorer-app'
+          href='https://github.com/dsazuwa/antarctic-explorer-app'
           target='_blank'
           rel='noopener noreferrer'
           className='ml-1 flex flex-row items-center font-semibold text-primary underline'

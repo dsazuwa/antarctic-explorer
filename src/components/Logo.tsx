@@ -37,7 +37,7 @@ function Logo({ size, className, ...props }: Props) {
       <span
         className={clsx('flex flex-col text-left font-extrabold', fontSize)}
       >
-        <span className='text-navy'>Antarctica</span>
+        <span className='text-navy'>Antarctic</span>
         <span className='text-sky_blue'>Explorer</span>
       </span>
     </div>
