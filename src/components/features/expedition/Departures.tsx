@@ -96,12 +96,17 @@ const departureReducer = (
 type Props = {
   cruiseLine: string;
   name: string;
-  departures: DeparturesResponse;
 };
 
-export default function Departures({ cruiseLine, name, departures }: Props) {
+export default function Departures({ cruiseLine, name }: Props) {
   const [state, dispatch] = useReducer(departureReducer, {
-    departures,
+    departures: {
+      data: [],
+      itemsPerPage: 0,
+      totalItems: 0,
+      totalPages: 0,
+      currentPage: 0,
+    },
     selectedItemsPerPage: 0,
     selectedSort: 0,
   });

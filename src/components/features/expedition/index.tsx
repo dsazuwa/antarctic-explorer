@@ -1,4 +1,4 @@
-import { DeparturesResponse, ExpeditionResponse } from '@/lib/type';
+import { ExpeditionResponse } from '@/lib/type';
 import Departures from './Departures';
 import Extensions from './Extensions';
 import Hero from './Hero';
@@ -7,9 +7,9 @@ import Expeditions from './OtherExpeditions';
 import Overview from './Overview';
 import Vessels from './Vessels';
 
-type Props = { expedition: ExpeditionResponse; departures: DeparturesResponse };
+type Props = { expedition: ExpeditionResponse };
 
-export default function Expedition({ expedition, departures }: Props) {
+export default function Expedition({ expedition }: Props) {
   const {
     name,
     website,
@@ -45,11 +45,7 @@ export default function Expedition({ expedition, departures }: Props) {
 
       <Itineraries itineraries={itineraries} />
 
-      <Departures
-        cruiseLine={cruiseLine.name}
-        name={name}
-        departures={departures}
-      />
+      <Departures cruiseLine={cruiseLine.name} name={name} />
 
       {numVessels > 0 && <Vessels vessels={vessels} />}
 

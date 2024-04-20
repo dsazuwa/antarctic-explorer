@@ -10,15 +10,10 @@ import {
 import { DeparturesResponse, ExpeditionResponse } from '@/lib/type';
 
 type Props = {
-  pageProps: {
-    expedition: ExpeditionResponse;
-    departures: DeparturesResponse;
-  };
+  pageProps: { expedition: ExpeditionResponse };
 };
 
-export default function ExpeditionPage({
-  pageProps: { expedition, departures },
-}: Props) {
+export default function ExpeditionPage({ pageProps: { expedition } }: Props) {
   const { name, description } = expedition;
 
   return (
@@ -30,11 +25,7 @@ export default function ExpeditionPage({
         <link rel='icon' href='/favicon.ico' />
       </Head>
 
-      <Expedition
-        key={expedition.id}
-        expedition={expedition}
-        departures={departures}
-      />
+      <Expedition key={expedition.id} expedition={expedition} />
     </Layout>
   );
 }
