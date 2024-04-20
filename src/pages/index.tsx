@@ -34,10 +34,6 @@ export default function ExpeditionsPage({ pageProps: { expeditions } }: Props) {
       </Head>
 
       <div className='mx-auto flex h-full w-full max-w-screen-lg flex-grow flex-col bg-white'>
-        <div className='flex h-10 items-center justify-center text-base font-bold text-navy sm:mb-1 sm:text-lg md:text-xl'>
-          Expeditions
-        </div>
-
         <div className='grid flex-grow grid-cols-3 gap-4 lg:px-2'>
           <SideFilterPanel />
 
