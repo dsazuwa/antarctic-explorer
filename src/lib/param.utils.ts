@@ -214,5 +214,8 @@ export const updateRouterQuery = (
     ...rest,
   };
 
-  router.push({ pathname: router.pathname, query: updatedQuery });
+  router.push({ pathname: router.pathname, query: updatedQuery }, undefined, {
+    // shallow: true,
+    scroll: true,
+  });
 };
