@@ -2,14 +2,7 @@ import { GetServerSidePropsContext } from 'next';
 import Head from 'next/head';
 
 import Layout from '@/Layout';
-import {
-  Expeditions,
-  FilterChips,
-  MobileFilterPanel,
-  PaginationControls,
-  PaginationHeader,
-  SideFilterPanel,
-} from '@/components/features/expeditions';
+import Expeditions from '@/components/features/expeditions';
 import { getExpeditionsParams } from '@/lib/param.utils';
 import { ExpeditionsParams, ExpeditionsResponse } from '@/lib/type';
 
@@ -18,9 +11,6 @@ type Props = {
 };
 
 export default function ExpeditionsPage({ pageProps: { expeditions } }: Props) {
-  const { currentPage, totalPages, totalItems, itemsPerPage, data } =
-    expeditions;
-
   return (
     <Layout>
       <Head>
@@ -33,34 +23,7 @@ export default function ExpeditionsPage({ pageProps: { expeditions } }: Props) {
         <link rel='icon' href='/favicon.ico' />
       </Head>
 
-      <div className='mx-auto flex h-full w-full max-w-screen-lg flex-grow flex-col bg-white'>
-        <div className='grid flex-grow grid-cols-3 gap-4 lg:px-2'>
-          <SideFilterPanel />
-
-          <div
-            id='main-panel'
-            className='col-span-4 flex h-full w-full flex-col gap-1 px-4 lg:col-span-2 lg:px-0'
-          >
-            <MobileFilterPanel />
-
-            <FilterChips />
-
-            <PaginationHeader
-              currentPage={currentPage}
-              totalItems={totalItems}
-              itemsPerPage={itemsPerPage}
-            />
-
-            <Expeditions expeditions={data} />
-
-            <PaginationControls
-              currentPage={currentPage}
-              totalPages={totalPages}
-              itemsPerPage={itemsPerPage}
-            />
-          </div>
-        </div>
-      </div>
+      <Expeditions expeditions={expeditions} />
     </Layout>
   );
 }

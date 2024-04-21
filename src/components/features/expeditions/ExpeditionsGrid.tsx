@@ -5,7 +5,7 @@ import { TExpedition } from '@/lib/type';
 
 type Props = { expeditions: TExpedition[] };
 
-export default function Expeditions({ expeditions }: Props) {
+export default function ExpeditionsGrid({ expeditions }: Props) {
   return expeditions.length === 0 ? (
     <div className='flex w-full flex-col items-center justify-center gap-3 p-4 text-center font-semibold text-gray-300 sm:flex-row'>
       <ValueNoneIcon className='h-10 w-10' />
@@ -17,7 +17,7 @@ export default function Expeditions({ expeditions }: Props) {
   ) : (
     <ol
       id='expeditions-list'
-      className='grid w-full grid-cols-1 gap-4 sm:grid-cols-2'
+      className='grid w-full grid-cols-1 gap-6 sm:grid-cols-2'
     >
       {expeditions.map((expedition, index) => (
         <Expedition
