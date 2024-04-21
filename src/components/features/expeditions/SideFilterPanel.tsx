@@ -3,8 +3,11 @@ import FilterPanel from './FilterPanel';
 
 function SideFilterPanel() {
   return (
-    <div id='side-panel' className='col-span-1 hidden h-full text-xxs lg:block'>
-      <div className='flex w-full justify-end p-2'>
+    <div
+      id='side-panel'
+      className='col-span-1 hidden h-full text-xxs lg:flex lg:flex-col lg:gap-4'
+    >
+      <div className='flex w-full justify-end'>
         <ClearFilterButton />
       </div>
 

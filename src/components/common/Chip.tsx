@@ -7,7 +7,7 @@ type ChipProps = {
 
 function Chip({ label, handleClick }: ChipProps) {
   return (
-    <div className='inline-flex items-center rounded-md border border-solid border-primary/50 px-4 py-2 text-xxs font-bold text-primary/75 hover:shadow'>
+    <div className='inline-flex h-10 items-center rounded-md border border-solid border-primary/50 px-4 py-2 text-xs font-bold text-primary/75 hover:shadow'>
       {label}
       <button
         className='ml-2 rounded-full bg-muted-foreground/35 p-1 transition-colors hover:bg-muted-foreground/45 hover:shadow-sm'

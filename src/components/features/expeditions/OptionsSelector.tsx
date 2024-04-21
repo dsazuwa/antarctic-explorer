@@ -27,7 +27,7 @@ function OptionsSelector({
   };
 
   return (
-    <div className='p-2'>
+    <div>
       <button className='w-full' onClick={handleClick}>
         <OptionHeader>
           {label}

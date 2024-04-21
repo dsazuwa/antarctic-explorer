@@ -33,8 +33,8 @@ export default function ClearFilterButton() {
         capacity === undefined &&
         duration === undefined
       }
-      size='xs'
-      className='h-[32px] rounded-md px-4 capitalize text-white'
+      size='none'
+      className='h-10 rounded-md px-4 py-2 text-xs capitalize text-white'
       onClick={clearFilter}
     >
       Clear all filters

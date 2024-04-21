@@ -16,7 +16,7 @@ export default function DatePicker() {
   };
 
   return (
-    <div className='p-2'>
+    <div>
       <OptionHeader>Departure Dates</OptionHeader>
 
       <MobileDatePicker

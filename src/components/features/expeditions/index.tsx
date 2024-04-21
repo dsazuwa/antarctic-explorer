@@ -14,7 +14,7 @@ export default function Expeditions({ expeditions }: Props) {
 
   return (
     <main className='mx-auto flex h-full w-full max-w-screen-lg flex-grow flex-col bg-white'>
-      <div className='grid flex-grow grid-cols-3 gap-4 lg:px-2'>
+      <div className='grid flex-grow grid-cols-3 gap-4 lg:p-2'>
         <SideFilterPanel />
 
         <div
