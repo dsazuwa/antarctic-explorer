@@ -2,7 +2,12 @@ import clsx from 'clsx';
 import { useRouter } from 'next/router';
 
 import Chip from '@/components/common/Chip';
-import { capacityOptions, durationOptions } from '@/lib/constants';
+import {
+  capacityOptions,
+  defaultCapacity,
+  defaultDuration,
+  durationOptions,
+} from '@/lib/constants';
 import {
   getCapacityParam,
   getCruiseLinesParam,
@@ -27,8 +32,8 @@ function FilterChips() {
   const isFilteredByStartDate = startDate !== null;
   const isFilteredByEndDate = endDate !== null;
   const isFilteredByCruise = cruiseLine.length !== 0;
-  const isFIlteredByCapacity = capacity !== capacityOptions.length - 1;
-  const isFIlteredByDuration = duration !== durationOptions.length - 1;
+  const isFIlteredByCapacity = capacity !== defaultCapacity;
+  const isFIlteredByDuration = duration !== defaultDuration;
   const isFiltered =
     isFilteredByStartDate ||
     isFilteredByEndDate ||
@@ -65,7 +70,7 @@ function FilterChips() {
           handleClick={() =>
             updateQueryParam(router, {
               param: 'capacity',
-              value: Math.max(capacityOptions.length - 1, 0),
+              value: defaultCapacity,
             })
           }
         />
@@ -77,7 +82,7 @@ function FilterChips() {
           handleClick={() =>
             updateQueryParam(router, {
               param: 'duration',
-              value: Math.max(durationOptions.length - 1, 0),
+              value: defaultDuration,
             })
           }
         />

@@ -5,6 +5,8 @@ import { ParsedUrlQuery, ParsedUrlQueryInput } from 'querystring';
 
 import {
   capacityOptions,
+  defaultCapacity,
+  defaultDuration,
   durationOptions,
   itemsPerPageOptions,
   sortOptions,
@@ -64,7 +66,7 @@ export const getSortParam = (query: ParsedUrlQuery) =>
 export const getCapacityParam = (query: ParsedUrlQuery) =>
   getParamInRange(
     query.capacity,
-    capacityOptions.length - 1,
+    defaultCapacity,
     0,
     capacityOptions.length - 1,
   );
@@ -72,7 +74,7 @@ export const getCapacityParam = (query: ParsedUrlQuery) =>
 export const getDurationParam = (query: ParsedUrlQuery) =>
   getParamInRange(
     query.duration,
-    durationOptions.length - 1,
+    defaultDuration,
     0,
     durationOptions.length - 1,
   );
@@ -159,12 +161,12 @@ export const updateQueryParam = (
 
     case 'capacity':
       updatedParam =
-        value === capacityOptions.length - 1 ? {} : { page: 0, [param]: value };
+        value === defaultCapacity ? {} : { page: 0, [param]: value };
       break;
 
     case 'duration':
       updatedParam =
-        value === durationOptions.length - 1 ? {} : { page: 0, [param]: value };
+        value === defaultDuration ? {} : { page: 0, [param]: value };
       break;
 
     case 'itemsPerPage':
@@ -215,8 +217,7 @@ export const updateRouterQuery = (
   };
 
   router.push({ pathname: router.pathname, query: updatedQuery }, undefined, {
-    // shallow: true,
-    // scroll: true,
+    shallow: true,
   });
 };
 

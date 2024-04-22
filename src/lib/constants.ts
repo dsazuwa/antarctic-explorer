@@ -22,6 +22,8 @@ export const durationOptions: (BasicFilterOption | RangedFilterOption)[] = [
   { displayText: 'All' },
 ];
 
+export const defaultDuration = durationOptions.length - 1;
+
 export const capacityOptions: (BasicFilterOption | RangedFilterOption)[] = [
   { displayText: '1 - 100', min: 1, max: 100 },
   { displayText: '100 - 200', min: 100, max: 200 },
@@ -29,6 +31,8 @@ export const capacityOptions: (BasicFilterOption | RangedFilterOption)[] = [
   { displayText: '500+', min: 500 },
   { displayText: 'All' },
 ];
+
+export const defaultCapacity = capacityOptions.length - 1;
 
 export const sortOptions: ExpeditionSortType[] = [
   {
