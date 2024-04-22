@@ -5,6 +5,7 @@ import { parse } from 'querystring';
 import { useEffect } from 'react';
 
 import Layout from '@/Layout';
+import Loader from '@/components/common/Loader';
 import Expeditions from '@/components/features/expeditions';
 import { getExpeditionsUrl } from '@/lib/param.utils';
 import { ExpeditionsResponse } from '@/lib/type';
@@ -15,6 +16,7 @@ type Props = {
 };
 
 export default function ExpeditionsPage({ pageProps: { expeditions } }: Props) {
+  const isLoading = useExpeditionsStore((state) => state.isLoading);
   const setExpeditions = useExpeditionsStore((state) => state.setExpeditions);
   const setIsLoading = useExpeditionsStore((state) => state.setIsLoading);
 
@@ -58,6 +60,12 @@ export default function ExpeditionsPage({ pageProps: { expeditions } }: Props) {
       </Head>
 
       <Expeditions />
+
+      {isLoading && (
+        <div className='fixed bottom-0 left-0 right-0 top-0 z-50 flex bg-[hsla(0,0%,100%,0.5)]'>
+          <Loader className='my-auto' />
+        </div>
+      )}
     </Layout>
   );
 }
