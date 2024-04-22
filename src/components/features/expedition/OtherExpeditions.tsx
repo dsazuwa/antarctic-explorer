@@ -14,7 +14,7 @@ export default function Expeditions({ expeditions }: Props) {
           Other Expeditions
         </h2>
 
-        <ul className='grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3'>
+        <ul className='flex flex-col gap-6 sm:grid sm:grid-cols-2 lg:grid-cols-3'>
           {expeditions.map((expedition, i) => (
             <Expedition key={`other-expedition-${i}`} expedition={expedition} />
           ))}

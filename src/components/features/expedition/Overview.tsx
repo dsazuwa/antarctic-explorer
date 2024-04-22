@@ -28,10 +28,20 @@ export default function Overview({ description, highlights }: Props) {
 
           <ul className='flex flex-col gap-3'>
             {highlights.map((x, i) => (
-              <li key={`highlight-${i}`} className='flex w-full flex-row'>
-                <StarFilledIcon className='mr-1 h-5 w-4 p-1 text-primary' />
+              // <li
+              //   key={`highlight-${i}`}
+              //   className='inline-flex text-base/[1.75em]'
+              // >
+              //   <StarFilledIcon className='mr-1 h-5 w-4 flex-shrink-0 p-1 text-primary' />
 
-                <div className='w-full text-base/[1.75em]'>{x}</div>
+              //   {x}
+              // </li>
+              <li
+                key={`highlight-${i}`}
+                className='inline-flex w-full whitespace-break-spaces break-words text-base/[1.75em]'
+              >
+                <StarFilledIcon className='mr-2 h-5 w-4 flex-shrink-0 p-1 text-primary' />
+                {x}
               </li>
             ))}
           </ul>

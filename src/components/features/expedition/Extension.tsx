@@ -23,7 +23,7 @@ export default function Extension({ extension }: Props) {
 
       <div className='flex h-[calc(100%-270px)] flex-col rounded-b-xl border'>
         <div className='inline-flex justify-between gap-4 p-4'>
-          <h3 className='line-clamp-2text-sm/[1rem] font-bold text-primary group-hover:underline'>
+          <h3 className='line-clamp-2 text-sm/[1rem] font-bold text-primary group-hover:underline'>
             {name}
           </h3>
 
@@ -34,7 +34,7 @@ export default function Extension({ extension }: Props) {
           )}
         </div>
 
-        <div className='mx-4 mb-6 mt-auto flex justify-between gap-4 border-t-2 border-solid border-gray-200 pt-4'>
+        <div className='mx-4 mb-6 mt-auto inline-flex flex-wrap justify-between gap-4 border-t-2 border-solid border-gray-200 pt-4'>
           {startingPrice && (
             <div className='text-sm'>
               <p className='font-bold'>From</p>

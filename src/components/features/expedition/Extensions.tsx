@@ -17,7 +17,7 @@ export default function Extensions({ extensions }: Props) {
           Expedition Extensions
         </h2>
 
-        <ul className='mt-auto grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3'>
+        <ul className='mt-auto flex flex-col gap-6 sm:grid sm:grid-cols-2 lg:grid-cols-3'>
           {renderedData.map((extension, i) => (
             <Extension key={`extension-${i}`} extension={extension} />
           ))}
