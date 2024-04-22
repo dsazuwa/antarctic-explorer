@@ -1,14 +1,14 @@
 import { GetServerSidePropsContext } from 'next';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
+import { parse } from 'querystring';
 import { useEffect } from 'react';
 
 import Layout from '@/Layout';
 import Expeditions from '@/components/features/expeditions';
-import { getExpeditionsParams } from '@/lib/param.utils';
-import { ExpeditionsParams, ExpeditionsResponse } from '@/lib/type';
+import { getExpeditionsUrl } from '@/lib/param.utils';
+import { ExpeditionsResponse } from '@/lib/type';
 import { useExpeditionsStore } from '@/store';
-import { parse } from 'querystring';
 
 type Props = {
   pageProps: { expeditions: ExpeditionsResponse };
@@ -30,15 +30,7 @@ export default function ExpeditionsPage({ pageProps: { expeditions } }: Props) {
 
       const parsedRoute = parse(route.split('?')[1]);
 
-      const url = new URL(`${process.env.NEXT_PUBLIC_API_URL}/expeditions`);
-      const params = getExpeditionsParams(parsedRoute);
-
-      Object.keys(params).forEach((key) => {
-        const paramKey = key as keyof ExpeditionsParams;
-        url.searchParams.append(paramKey, String(params[paramKey]));
-      });
-
-      fetch(url.toString())
+      fetch(getExpeditionsUrl(parsedRoute))
         .then((res) => res.json())
         .then((data) => {
           window.scroll({ top: 0, behavior: 'smooth' });
@@ -73,15 +65,7 @@ export default function ExpeditionsPage({ pageProps: { expeditions } }: Props) {
 export const getServerSideProps = async (
   context: GetServerSidePropsContext,
 ) => {
-  const url = new URL(`${process.env.NEXT_PUBLIC_API_URL}/expeditions`);
-  const params = getExpeditionsParams(context.query);
-
-  Object.keys(params).forEach((key) => {
-    const paramKey = key as keyof ExpeditionsParams;
-    url.searchParams.append(paramKey, String(params[paramKey]));
-  });
-
-  const res = await fetch(url.toString());
+  const res = await fetch(getExpeditionsUrl(context.query));
 
   const expeditions: ExpeditionsResponse = await res.json();
 

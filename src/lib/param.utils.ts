@@ -203,9 +203,9 @@ export const updateDateParam = (
 
 export const updateRouterQuery = (
   router: NextRouter,
-  query: string | ParsedUrlQueryInput | null | undefined,
+  query: ParsedUrlQueryInput,
 ) => {
-  const { page, itemsPerPage, sort, ...rest } = query as ParsedUrlQueryInput;
+  const { page, itemsPerPage, sort, ...rest } = query;
 
   const updatedQuery = {
     ...(page && { page }),
@@ -215,7 +215,19 @@ export const updateRouterQuery = (
   };
 
   router.push({ pathname: router.pathname, query: updatedQuery }, undefined, {
-    shallow: true,
+    // shallow: true,
     // scroll: true,
   });
+};
+
+export const getExpeditionsUrl = (query: ParsedUrlQuery) => {
+  const url = new URL(`${process.env.NEXT_PUBLIC_API_URL}/expeditions`);
+  const params = getExpeditionsParams(query);
+
+  Object.keys(params).forEach((key) => {
+    const paramKey = key as keyof ExpeditionsParams;
+    url.searchParams.append(paramKey, String(params[paramKey]));
+  });
+
+  return url.toString();
 };
