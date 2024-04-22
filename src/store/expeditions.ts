@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 
-import { itemsPerPageOptions } from './lib/constants';
-import { ExpeditionsResponse } from './lib/type';
+import { itemsPerPageOptions } from '../lib/constants';
+import { ExpeditionsResponse } from '../lib/type';
 
 export type FilterState = {
   startDate: Date | null;

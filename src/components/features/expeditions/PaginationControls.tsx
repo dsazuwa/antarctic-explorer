@@ -4,7 +4,7 @@ import Pagination from '@/components/common/Pagination';
 import PerPageSelector from '@/components/common/PerPageSelector';
 import { itemsPerPageOptions } from '@/lib/constants';
 import { updateQueryParam } from '@/lib/param.utils';
-import { useExpeditionsStore } from '@/store';
+import { useExpeditionsStore } from '@/store/expeditions';
 
 export default function PaginationControls() {
   const router = useRouter();

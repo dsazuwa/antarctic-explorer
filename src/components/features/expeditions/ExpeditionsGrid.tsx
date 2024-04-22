@@ -1,7 +1,7 @@
 import { ValueNoneIcon } from '@radix-ui/react-icons';
 
 import Expedition from '@/components/common/Expedition';
-import { useExpeditionsStore } from '@/store';
+import { useExpeditionsStore } from '@/store/expeditions';
 
 export default function ExpeditionsGrid() {
   const expeditions = useExpeditionsStore((state) => state.expeditions.data);

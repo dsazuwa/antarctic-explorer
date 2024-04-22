@@ -1,97 +1,13 @@
-import { useEffect, useReducer } from 'react';
+import { useEffect } from 'react';
 
 import {
   departureSortOptions,
   departuresPerPageOptions,
 } from '@/lib/constants';
-import { DeparturesResponse } from '@/lib/type';
+import { useDeparturesStore } from '@/store/departures';
 import Departure from './Departure';
 import Controls from './DeparturesControls';
 import Header from './DeparturesHeader';
-
-type DepartureState = {
-  departures: DeparturesResponse;
-  selectedItemsPerPage: number;
-  selectedSort: number;
-};
-
-export type DepartureAction =
-  | { type: 'SET_DEPARTURES'; payload: DeparturesResponse }
-  | { type: 'SET_DEPARTURE_SORT'; payload: number }
-  | { type: 'SET_DEPARTURES_PER_PAGE'; payload: number }
-  | { type: 'NAVIGATE_TO_FIRST_DEPARTURE' }
-  | { type: 'NAVIGATE_TO_PREVIOUS_DEPARTURE' }
-  | { type: 'NAVIGATE_TO_NEXT_DEPARTURE' }
-  | { type: 'NAVIGATE_TO_LAST_DEPARTURE' };
-
-const departureReducer = (
-  state: DepartureState,
-  action: DepartureAction,
-): DepartureState => {
-  switch (action.type) {
-    case 'SET_DEPARTURES':
-      return {
-        ...state,
-        departures: action.payload,
-        selectedItemsPerPage:
-          state.departures.itemsPerPage === action.payload.itemsPerPage
-            ? state.selectedItemsPerPage
-            : departuresPerPageOptions.findIndex(
-                (x) => x === action.payload.itemsPerPage,
-              ),
-      };
-
-    case 'SET_DEPARTURE_SORT':
-      return {
-        ...state,
-        selectedSort: action.payload,
-        departures: { ...state.departures, currentPage: 0 },
-      };
-
-    case 'SET_DEPARTURES_PER_PAGE':
-      return {
-        ...state,
-        selectedItemsPerPage: action.payload,
-        departures: { ...state.departures, currentPage: 0 },
-      };
-
-    case 'NAVIGATE_TO_FIRST_DEPARTURE':
-      return { ...state, departures: { ...state.departures, currentPage: 0 } };
-
-    case 'NAVIGATE_TO_PREVIOUS_DEPARTURE':
-      return {
-        ...state,
-        departures: {
-          ...state.departures,
-          currentPage: Math.max(0, state.departures.currentPage - 1),
-        },
-      };
-
-    case 'NAVIGATE_TO_NEXT_DEPARTURE':
-      return {
-        ...state,
-        departures: {
-          ...state.departures,
-          currentPage: Math.min(
-            state.departures.totalPages - 1,
-            state.departures.currentPage + 1,
-          ),
-        },
-      };
-
-    case 'NAVIGATE_TO_LAST_DEPARTURE':
-      return {
-        ...state,
-        departures: {
-          ...state.departures,
-          currentPage: state.departures.totalPages - 1,
-        },
-      };
-
-    default:
-      return state;
-  }
-};
 
 type Props = {
   cruiseLine: string;
@@ -99,30 +15,17 @@ type Props = {
 };
 
 export default function Departures({ cruiseLine, name }: Props) {
-  const [state, dispatch] = useReducer(departureReducer, {
-    departures: {
-      data: [],
-      itemsPerPage: 0,
-      totalItems: 0,
-      totalPages: 0,
-      currentPage: 0,
-    },
-    selectedItemsPerPage: 0,
-    selectedSort: 0,
-  });
-
-  const {
-    departures: { data, currentPage, totalPages, itemsPerPage, totalItems },
-    selectedItemsPerPage,
-    selectedSort,
-  } = state;
+  const { data, currentPage, selectedSize, selectedSort, setDepartures } =
+    useDeparturesStore();
 
   useEffect(() => {
+    const { sort, dir } = departureSortOptions[selectedSort];
+
     const params = {
       page: currentPage,
-      size: departuresPerPageOptions[selectedItemsPerPage],
-      sort: departureSortOptions[selectedSort].sort,
-      dir: departureSortOptions[selectedSort].dir,
+      size: departuresPerPageOptions[selectedSize],
+      sort,
+      dir,
     };
 
     const url = new URL(
@@ -134,11 +37,8 @@ export default function Departures({ cruiseLine, name }: Props) {
 
     fetch(url.toString())
       .then((response) => response.json())
-      .then((data) => dispatch({ type: 'SET_DEPARTURES', payload: data }));
-  }, [cruiseLine, name, currentPage, selectedItemsPerPage, selectedSort]);
-
-  const setSortOption = (i: number) =>
-    dispatch({ type: 'SET_DEPARTURE_SORT', payload: i });
+      .then((data) => setDepartures(data));
+  }, [cruiseLine, name, currentPage, selectedSize, selectedSort]);
 
   return data.length === 0 ? (
     <></>
@@ -149,13 +49,7 @@ export default function Departures({ cruiseLine, name }: Props) {
           Departures
         </h2>
 
-        <Header
-          currentPage={currentPage}
-          itemsPerPage={itemsPerPage}
-          totalItems={totalItems}
-          selectedSort={selectedSort}
-          setSortOption={setSortOption}
-        />
+        <Header />
 
         <ol className='space-y-4'>
           {data.map((departure, i) => (
@@ -163,12 +57,7 @@ export default function Departures({ cruiseLine, name }: Props) {
           ))}
         </ol>
 
-        <Controls
-          currentPage={currentPage}
-          totalPages={totalPages}
-          selectedItemsPerPage={selectedItemsPerPage}
-          dispatch={dispatch}
-        />
+        <Controls />
       </div>
     </section>
   );

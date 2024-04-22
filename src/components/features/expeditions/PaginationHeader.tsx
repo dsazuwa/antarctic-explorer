@@ -4,7 +4,7 @@ import HeaderSelect from '@/components/common/HeaderSelect';
 import HeaderSummary from '@/components/common/HeaderSummary';
 import { sortOptions } from '@/lib/constants';
 import { getSortParam, updateQueryParam } from '@/lib/param.utils';
-import { useExpeditionsStore } from '@/store';
+import { useExpeditionsStore } from '@/store/expeditions';
 
 export default function PaginationHeader() {
   const router = useRouter();

@@ -9,7 +9,7 @@ import Loader from '@/components/common/Loader';
 import Expeditions from '@/components/features/expeditions';
 import { getExpeditionsUrl } from '@/lib/param.utils';
 import { ExpeditionsResponse } from '@/lib/type';
-import { useExpeditionsStore } from '@/store';
+import { useExpeditionsStore } from '@/store/expeditions';
 
 type Props = {
   pageProps: { expeditions: ExpeditionsResponse };
