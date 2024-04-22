@@ -1,4 +1,3 @@
-import { ExpeditionsResponse } from '@/lib/type';
 import ExpeditionsGrid from './ExpeditionsGrid';
 import FilterChips from './FilterChips';
 import MobileFilterPanel from './MobileFilterPanel';
@@ -6,12 +5,7 @@ import PaginationControls from './PaginationControls';
 import PaginationHeader from './PaginationHeader';
 import SideFilterPanel from './SideFilterPanel';
 
-type Props = { expeditions: ExpeditionsResponse };
-
-export default function Expeditions({ expeditions }: Props) {
-  const { currentPage, totalPages, totalItems, itemsPerPage, data } =
-    expeditions;
-
+export default function Expeditions() {
   return (
     <main className='mx-auto flex h-full w-full max-w-screen-lg flex-grow flex-col bg-white'>
       <div className='grid flex-grow grid-cols-3 gap-4 lg:p-2'>
@@ -25,19 +19,11 @@ export default function Expeditions({ expeditions }: Props) {
 
           <FilterChips />
 
-          <PaginationHeader
-            currentPage={currentPage}
-            totalItems={totalItems}
-            itemsPerPage={itemsPerPage}
-          />
+          <PaginationHeader />
 
-          <ExpeditionsGrid expeditions={data} />
+          <ExpeditionsGrid />
 
-          <PaginationControls
-            currentPage={currentPage}
-            totalPages={totalPages}
-            itemsPerPage={itemsPerPage}
-          />
+          <PaginationControls />
         </div>
       </div>
     </main>

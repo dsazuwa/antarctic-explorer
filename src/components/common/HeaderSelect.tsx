@@ -23,7 +23,7 @@ export default function HeaderSelect({
     <div className='flex flex-row items-center'>
       <Label
         htmlFor='select_sort_option'
-        className='mr-1 text-xxs font-semibold text-slate-500 md:text-xs'
+        className='mr-1 text-xs font-semibold text-slate-500'
       >
         Sort
       </Label>
@@ -35,7 +35,7 @@ export default function HeaderSelect({
       >
         <SelectTrigger
           id='select_sort_option'
-          className='h-[28px] w-[144px] p-1 font-semibold md:w-[168px]'
+          className='h-7 w-[144px] p-1 font-semibold md:w-[168px]'
         >
           <SelectValue defaultValue={selectedSort} />
         </SelectTrigger>

@@ -4,19 +4,14 @@ import HeaderSelect from '@/components/common/HeaderSelect';
 import HeaderSummary from '@/components/common/HeaderSummary';
 import { sortOptions } from '@/lib/constants';
 import { getSortParam, updateQueryParam } from '@/lib/param.utils';
+import { useExpeditionsStore } from '@/store';
 
-type Props = {
-  currentPage: number;
-  totalItems: number;
-  itemsPerPage: number;
-};
-
-export default function PaginationHeader({
-  currentPage,
-  totalItems,
-  itemsPerPage,
-}: Props) {
+export default function PaginationHeader() {
   const router = useRouter();
+
+  const { currentPage, totalItems, itemsPerPage } = useExpeditionsStore(
+    (state) => state.expeditions,
+  );
 
   return (
     <div className='flex h-10 items-center justify-between sm:text-xs'>

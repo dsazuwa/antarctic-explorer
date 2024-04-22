@@ -1,16 +1,58 @@
 import { GetServerSidePropsContext } from 'next';
 import Head from 'next/head';
+import { useRouter } from 'next/router';
+import { useEffect } from 'react';
 
 import Layout from '@/Layout';
 import Expeditions from '@/components/features/expeditions';
 import { getExpeditionsParams } from '@/lib/param.utils';
 import { ExpeditionsParams, ExpeditionsResponse } from '@/lib/type';
+import { useExpeditionsStore } from '@/store';
+import { parse } from 'querystring';
 
 type Props = {
   pageProps: { expeditions: ExpeditionsResponse };
 };
 
 export default function ExpeditionsPage({ pageProps: { expeditions } }: Props) {
+  const setExpeditions = useExpeditionsStore((state) => state.setExpeditions);
+  const setIsLoading = useExpeditionsStore((state) => state.setIsLoading);
+
+  const router = useRouter();
+
+  useEffect(() => {
+    setExpeditions(expeditions);
+  }, []);
+
+  useEffect(() => {
+    const handleRouteChange = (route: string) => {
+      setIsLoading(true);
+
+      const parsedRoute = parse(route.split('?')[1]);
+
+      const url = new URL(`${process.env.NEXT_PUBLIC_API_URL}/expeditions`);
+      const params = getExpeditionsParams(parsedRoute);
+
+      Object.keys(params).forEach((key) => {
+        const paramKey = key as keyof ExpeditionsParams;
+        url.searchParams.append(paramKey, String(params[paramKey]));
+      });
+
+      fetch(url.toString())
+        .then((res) => res.json())
+        .then((data) => {
+          window.scroll({ top: 0, behavior: 'smooth' });
+          setExpeditions(data);
+        });
+    };
+
+    router.events.on('routeChangeComplete', handleRouteChange);
+
+    return () => {
+      router.events.off('routeChangeComplete', handleRouteChange);
+    };
+  }, []);
+
   return (
     <Layout>
       <Head>
@@ -23,7 +65,7 @@ export default function ExpeditionsPage({ pageProps: { expeditions } }: Props) {
         <link rel='icon' href='/favicon.ico' />
       </Head>
 
-      <Expeditions expeditions={expeditions} />
+      <Expeditions />
     </Layout>
   );
 }

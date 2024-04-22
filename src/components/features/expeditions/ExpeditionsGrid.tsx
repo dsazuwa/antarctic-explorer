@@ -1,11 +1,11 @@
 import { ValueNoneIcon } from '@radix-ui/react-icons';
 
 import Expedition from '@/components/common/Expedition';
-import { TExpedition } from '@/lib/type';
+import { useExpeditionsStore } from '@/store';
 
-type Props = { expeditions: TExpedition[] };
+export default function ExpeditionsGrid() {
+  const expeditions = useExpeditionsStore((state) => state.expeditions.data);
 
-export default function ExpeditionsGrid({ expeditions }: Props) {
   return expeditions.length === 0 ? (
     <div className='flex w-full flex-col items-center justify-center gap-3 p-4 text-center font-semibold text-gray-300 sm:flex-row'>
       <ValueNoneIcon className='h-10 w-10' />

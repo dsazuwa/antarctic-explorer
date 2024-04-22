@@ -26,7 +26,7 @@ function MobileFilterPanel() {
         <SheetTrigger asChild>
           <Button
             variant='outline'
-            className='h-[32px] w-20 gap-2 rounded-md capitalize'
+            className='h-10 w-20 gap-2 rounded-md capitalize'
           >
             <MixerHorizontalIcon />
             <span className='mt-[2px]'>Filter</span>
