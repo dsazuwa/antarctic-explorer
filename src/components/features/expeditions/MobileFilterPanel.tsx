@@ -21,7 +21,7 @@ function MobileFilterPanel() {
   }, [windowWidth]);
 
   return (
-    <div className='flex flex-row justify-between py-2 text-xxs font-semibold sm:text-xs lg:hidden'>
+    <div className='inline-flex flex-wrap justify-between gap-2 py-2 text-xxs font-semibold sm:text-xs lg:hidden'>
       <Sheet open={open} onOpenChange={setOpen}>
         <SheetTrigger asChild>
           <Button

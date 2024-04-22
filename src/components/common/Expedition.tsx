@@ -48,7 +48,12 @@ export default function Expedition({
           </Link>
         </div>
 
-        <div className='mx-4 mb-6 mt-auto grid grid-cols-3 border-t-2 border-solid border-gray-200 pt-4'>
+        <div
+          className='mx-4 mb-6 mt-auto grid gap-1 border-t-2 border-solid border-gray-200 pt-4'
+          style={{
+            gridTemplateColumns: 'repeat(auto-fit, minmax(80px, 1fr))',
+          }}
+        >
           <InfoDisplay
             Icon={DurationIcon}
             primaryLabel='Duration'
@@ -83,3 +88,5 @@ export default function Expedition({
     </li>
   );
 }
+
+// grid-cols-3 grid-flow-row

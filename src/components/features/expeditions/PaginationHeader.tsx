@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 
-import HeaderSelect from '@/components/common/HeaderSelect';
+import SortSelect from '@/components/common/SortSelect';
 import HeaderSummary from '@/components/common/HeaderSummary';
 import { sortOptions } from '@/lib/constants';
 import { getSortParam, updateQueryParam } from '@/lib/param.utils';
@@ -14,7 +14,7 @@ export default function PaginationHeader() {
   );
 
   return (
-    <div className='flex h-10 items-center justify-between sm:text-xs'>
+    <div className='inline-flex min-h-10 flex-wrap items-center justify-between gap-2 sm:text-xs'>
       <HeaderSummary
         currentPage={currentPage}
         itemsPerPage={itemsPerPage}
@@ -22,7 +22,7 @@ export default function PaginationHeader() {
         itemType='expeditions'
       />
 
-      <HeaderSelect
+      <SortSelect
         sortOptions={sortOptions}
         selectedSort={getSortParam(router.query)}
         setSortOption={(i: number) =>

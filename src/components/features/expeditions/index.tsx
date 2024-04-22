@@ -8,12 +8,16 @@ import SideFilterPanel from './SideFilterPanel';
 export default function Expeditions() {
   return (
     <main className='mx-auto flex h-full w-full max-w-screen-lg flex-grow flex-col bg-white'>
-      <div className='grid flex-grow grid-cols-3 gap-4 lg:p-2'>
+      <h1 className='my-2.5 text-center font-bold text-navy sm:text-lg'>
+        Expeditions
+      </h1>
+
+      <div className='flex flex-grow flex-col gap-4 md:grid md:grid-cols-3 lg:p-2'>
         <SideFilterPanel />
 
         <div
           id='main-panel'
-          className='col-span-4 flex h-full w-full flex-col gap-1 px-4 lg:col-span-2 lg:px-0'
+          className='col-span-4 flex h-full w-full flex-col gap-2 px-4 lg:col-span-2 lg:px-0'
         >
           <MobileFilterPanel />
 

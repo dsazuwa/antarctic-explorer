@@ -1,5 +1,5 @@
-import HeaderSelect from '@/components/common/HeaderSelect';
 import HeaderSummary from '@/components/common/HeaderSummary';
+import SortSelect from '@/components/common/SortSelect';
 import { departureSortOptions } from '@/lib/constants';
 import { useDeparturesStore } from '@/store/departures';
 
@@ -16,7 +16,7 @@ export default function DeparturesHeader() {
         totalItems={totalItems}
       />
 
-      <HeaderSelect
+      <SortSelect
         sortOptions={departureSortOptions}
         selectedSort={selectedSort}
         setSortOption={setSort}

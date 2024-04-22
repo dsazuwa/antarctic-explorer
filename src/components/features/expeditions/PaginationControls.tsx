@@ -18,7 +18,7 @@ export default function PaginationControls() {
   };
 
   return (
-    <div className='mt-auto flex h-20 w-full flex-col-reverse items-center gap-2 text-xs sm:grid sm:h-10 sm:grid-cols-3 md:gap-0'>
+    <div className='mt-auto flex w-full flex-col-reverse items-center gap-2 text-xs sm:grid sm:h-10 sm:grid-cols-3'>
       <PerPageSelector
         options={itemsPerPageOptions}
         itemsPerPage={

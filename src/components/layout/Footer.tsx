@@ -3,7 +3,7 @@ import React from 'react';
 function Footer() {
   return (
     <footer className='mt-auto bg-primary-foreground py-4 text-center'>
-      <span className='flex flex-row justify-center text-xxs font-medium md:text-xs'>
+      <span className='inline-flex flex-wrap justify-center text-xxs font-medium md:text-xs'>
         The source code for this app can be found on
         <a
           href='https://github.com/dsazuwa/antarctic-explorer-app'

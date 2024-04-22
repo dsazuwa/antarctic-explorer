@@ -14,16 +14,16 @@ type Props = {
   setSortOption: (i: number) => void;
 };
 
-export default function HeaderSelect({
+export default function SortSelect({
   sortOptions,
   selectedSort,
   setSortOption,
 }: Props) {
   return (
-    <div className='flex flex-row items-center'>
+    <div className='inline-flex flex-wrap items-center'>
       <Label
         htmlFor='select_sort_option'
-        className='mr-1 text-xs font-semibold text-slate-500'
+        className='mr-1 text-[0.625rem] font-semibold text-slate-500 md:text-xs'
       >
         Sort
       </Label>
@@ -35,9 +35,12 @@ export default function HeaderSelect({
       >
         <SelectTrigger
           id='select_sort_option'
-          className='h-7 w-[144px] p-1 font-semibold md:w-[168px]'
+          className='min-h-7 flex-wrap gap-1 p-1 font-semibold md:w-44'
         >
-          <SelectValue defaultValue={selectedSort} />
+          <SelectValue
+            defaultValue={selectedSort}
+            className='whitespace-pre-wrap'
+          />
         </SelectTrigger>
 
         <SelectContent>
