@@ -70,7 +70,7 @@ export default function Hero({
             <div className='font-medium'>{getDepartureDatesLabel()}</div>
           </div>
 
-          <div className='flex flex-row gap-8 text-xxs'>
+          <div className='inline-flex gap-8 text-xxs'>
             {numVessels > 0 && (
               <div>
                 <div className='text-gray-200'>Ship</div>

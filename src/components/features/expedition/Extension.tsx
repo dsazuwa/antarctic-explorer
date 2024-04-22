@@ -22,7 +22,7 @@ export default function Extension({ extension }: Props) {
       />
 
       <div className='flex h-[calc(100%-270px)] flex-col rounded-b-xl border'>
-        <div className='flex flex-row justify-between gap-4 p-4'>
+        <div className='inline-flex justify-between gap-4 p-4'>
           <h3 className='line-clamp-2text-sm/[1rem] font-bold text-primary group-hover:underline'>
             {name}
           </h3>

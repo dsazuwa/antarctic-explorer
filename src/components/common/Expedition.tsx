@@ -30,7 +30,7 @@ export default function Expedition({
       />
 
       <div className='flex h-[calc(100%-270px)] flex-col rounded-b-xl border sm:flex-1'>
-        <div className='flex flex-row p-4 pt-6'>
+        <div className='inline-flex p-4 pt-6'>
           <Image
             className='mr-2 h-6 w-auto sm:h-8'
             src={cruiseLine.logo}

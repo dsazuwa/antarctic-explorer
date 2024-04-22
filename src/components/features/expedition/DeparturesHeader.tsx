@@ -8,7 +8,7 @@ export default function DeparturesHeader() {
     useDeparturesStore();
 
   return (
-    <div className='flex flex-row items-center justify-between'>
+    <div className='inline-flex w-full flex-wrap items-center justify-between'>
       <HeaderSummary
         itemType='departures'
         currentPage={currentPage}

@@ -27,7 +27,7 @@ export default function Vessel({ vessel }: { vessel: TVessel }) {
           ))}
         </div>
 
-        <div className='mt-3 flex flex-row justify-end pt-2 lg:mt-auto'>
+        <div className='mt-3 inline-flex justify-end pt-2 lg:mt-auto'>
           <LinkButton label='Explore Ship' website={website} />
         </div>
       </div>

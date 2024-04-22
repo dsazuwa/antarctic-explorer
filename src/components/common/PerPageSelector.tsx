@@ -19,7 +19,7 @@ export default function PerPageSelector({
   setItemsPerPage,
 }: Props) {
   return (
-    <div className='flex flex-row items-center gap-2'>
+    <div className='inline-flex items-center gap-2'>
       <Label
         htmlFor='items_per_page'
         className='pb-0.5 text-xs font-semibold text-slate-500'

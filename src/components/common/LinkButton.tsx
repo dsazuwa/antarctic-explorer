@@ -3,7 +3,7 @@ import { type VariantProps, cva } from 'class-variance-authority';
 import clsx from 'clsx';
 
 const variants = cva(
-  'group flex flex-row items-center text-center gap-2 rounded-[32px] py-2 text-xs font-extrabold transition-colors md:text-sm',
+  'group inline-flex items-center text-center gap-2 rounded-[32px] py-2 text-xs font-extrabold transition-colors md:text-sm',
   {
     variants: {
       variant: {
