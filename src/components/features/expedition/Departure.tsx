@@ -42,7 +42,12 @@ export default function Departure({ departure }: { departure: TDeparture }) {
           )}
         </div>
 
-        <ul className='grid grid-flow-row grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4'>
+        <ul
+          className='grid gap-6'
+          style={{
+            gridTemplateColumns: 'repeat(auto-fit, minmax(152px, 1fr))',
+          }}
+        >
           <InfoDisplay label='Departure Date' value={formatDateRange()} />
 
           <InfoDisplay label='Duration' value={duration + ' days'} />

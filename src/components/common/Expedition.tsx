@@ -50,9 +50,7 @@ export default function Expedition({
 
         <div
           className='mx-4 mb-6 mt-auto grid gap-1 border-t-2 border-solid border-gray-200 pt-4'
-          style={{
-            gridTemplateColumns: 'repeat(auto-fit, minmax(80px, 1fr))',
-          }}
+          style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(80px, 1fr))' }}
         >
           <InfoDisplay
             Icon={DurationIcon}
