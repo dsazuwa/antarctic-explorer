@@ -10,7 +10,6 @@ export default function DeparturesHeader() {
   const { currentPage, totalItems, selectedSort, selectedSize, setSort } =
     useDeparturesStore();
 
-  console.log({ currentPage, totalItems, selectedSort, selectedSize });
   return (
     <div className='inline-flex w-full flex-wrap items-center justify-between'>
       <HeaderSummary

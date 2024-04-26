@@ -12,6 +12,7 @@
 - React.js
 - Next.js 13 with Pages Router
 - Tailwind CSS and Shadcn-ui
+- Zustand
 - TypeScript
 
 ## Features
