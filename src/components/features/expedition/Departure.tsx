@@ -33,8 +33,8 @@ export default function Departure({ departure }: { departure: TDeparture }) {
   };
 
   return (
-    <li className='flex flex-col gap-4 rounded-r-sm border border-l-amber-400 bg-white p-4 shadow-sm md:flex-row md:space-y-0'>
-      <div className='flex flex-col justify-center gap-3 md:w-9/12'>
+    <li className='flex flex-col gap-4 rounded-r-sm border border-l-amber-400 bg-white p-4 shadow-sm sm:flex-row sm:space-y-0'>
+      <div className='flex flex-col justify-center gap-3 sm:w-9/12'>
         <div className='font-bold'>
           {itinerary}
           {name !== null && (
@@ -45,7 +45,7 @@ export default function Departure({ departure }: { departure: TDeparture }) {
         <ul
           className='grid gap-6'
           style={{
-            gridTemplateColumns: 'repeat(auto-fit, minmax(152px, 1fr))',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(144px, 1fr))',
           }}
         >
           <InfoDisplay label='Departure Date' value={formatDateRange()} />
@@ -60,23 +60,23 @@ export default function Departure({ departure }: { departure: TDeparture }) {
         </ul>
       </div>
 
-      <div className='flex flex-col items-center justify-center gap-2 border-t md:w-3/12 md:border-l md:border-t-0'>
-        <div className='mt-4 text-xxs/[10px] font-semibold text-slate-400 md:mt-0 md:text-xs/[12px]'>
+      <div className='flex flex-col items-center justify-center gap-2 border-t sm:w-3/12 sm:border-l sm:border-t-0'>
+        <div className='mt-4 text-xxs/[10px] font-semibold text-slate-400 sm:mt-0 sm:text-xs/[12px]'>
           Starting from
         </div>
 
         <div className='flex flex-col items-center'>
           <div
             className={clsx({
-              'text-xs/[12px] line-through md:text-sm/[16px]': isDiscounted,
-              'text-lg/[20px] font-bold md:text-xl/[22px]': !isDiscounted,
+              'text-xs/[12px] line-through sm:text-sm/[16px]': isDiscounted,
+              'text-lg/[20px] font-bold sm:text-xl/[22px]': !isDiscounted,
             })}
           >
             {formatPrice(startingPrice)}
           </div>
 
           {isDiscounted && (
-            <div className='text-lg font-bold text-emerald-600 md:text-xl'>
+            <div className='text-lg font-bold text-emerald-600 sm:text-xl'>
               {formatPrice(discountedPrice)}
             </div>
           )}
