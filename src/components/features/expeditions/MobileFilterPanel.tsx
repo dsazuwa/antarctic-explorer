@@ -46,7 +46,7 @@ function MobileFilterPanel() {
             </SheetClose>
           </div>
 
-          <div className='px-2 pb-4'>
+          <div className='p-4'>
             <FilterPanel />
           </div>
         </SheetContent>
