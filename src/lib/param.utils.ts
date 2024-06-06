@@ -1,7 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
+
 import { isValid, parseISO } from 'date-fns';
-import { NextRouter } from 'next/router';
-import { ParsedUrlQuery, ParsedUrlQueryInput } from 'querystring';
+import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime';
+import { ReadonlyURLSearchParams } from 'next/navigation';
 
 import {
   capacityOptions,
@@ -16,7 +17,7 @@ import { BasicFilterOption, RangedFilterOption } from './type';
 import { formatDate } from './utils';
 
 export const getNumericalParam = (
-  param: string | string[] | undefined,
+  param: string | string[] | undefined | null,
   defaultValue: number,
 ) => {
   return typeof param === 'string' && !isNaN(parseInt(param, 10))
@@ -31,19 +32,20 @@ export const getCruiseLinesParam = (param: string | string[] | undefined) => {
 };
 
 export const toggleCruiseLine = (
-  router: NextRouter,
+  router: AppRouterInstance,
+  searchParams: ReadonlyURLSearchParams,
   selectedCruiseLine: string,
 ) => {
-  const selectedCruiseLines = getCruiseLinesParam(router.query.cruiseLines);
+  const selectedCruiseLines = searchParams.getAll('cruiseLines');
 
   const value = selectedCruiseLines.includes(selectedCruiseLine)
     ? selectedCruiseLines.filter((x) => x !== selectedCruiseLine)
     : [...selectedCruiseLines, selectedCruiseLine];
 
-  updateQueryParam(router, { param: 'cruiseLines', value });
+  updateQueryParam(router, searchParams, { param: 'cruiseLines', value });
 };
 
-export const getDateParam = (param: string | string[] | undefined) => {
+export const getDateParam = (param: string | null) => {
   if (typeof param !== 'string') return null;
 
   const dateFormatRegex = /^\d{4}-\d{2}-\d{2}$/;
@@ -54,46 +56,43 @@ export const getDateParam = (param: string | string[] | undefined) => {
 };
 
 export const getParamInRange = (
-  param: string | string[] | undefined,
+  param: string | null,
   defaultValue: number,
   min: number,
   max: number,
 ) => Math.min(Math.max(getNumericalParam(param, defaultValue), min), max);
 
-export const getSortParam = (query: ParsedUrlQuery) =>
-  getParamInRange(query.sort, 0, 0, sortOptions.length - 1);
+export const getCapacityParam = (capacity: string | null) =>
+  getParamInRange(capacity, defaultCapacity, 0, capacityOptions.length - 1);
 
-export const getCapacityParam = (query: ParsedUrlQuery) =>
-  getParamInRange(
-    query.capacity,
-    defaultCapacity,
-    0,
-    capacityOptions.length - 1,
-  );
+export const getDurationParam = (duration: string | null) =>
+  getParamInRange(duration, defaultDuration, 0, durationOptions.length - 1);
 
-export const getDurationParam = (query: ParsedUrlQuery) =>
-  getParamInRange(
-    query.duration,
-    defaultDuration,
-    0,
-    durationOptions.length - 1,
-  );
+export const getSortParam = (sort: string | null) =>
+  getParamInRange(sort, 0, 0, sortOptions.length - 1);
 
-export const getExpeditionsParams = (
-  query: ParsedUrlQuery,
-): ExpeditionsParams => {
-  const page = getNumericalParam(query.page, 0);
-  const itemsPerPage = getNumericalParam(query.itemsPerPage, 0);
+const getParamValue = (
+  params: { [key: string]: string | string[] | undefined },
+  param: string,
+) => {
+  const value = params[param];
+  return typeof value === 'string' ? value : null;
+};
 
-  const sort = getSortParam(query);
+const getExpeditionsParams = (params: {
+  [key: string]: string | string[] | undefined;
+}): ExpeditionsParams => {
+  const page = getNumericalParam(params.page, 0);
+  const itemsPerPage = getNumericalParam(params.itemsPerPage, 0);
 
-  const cruiseLines = getCruiseLinesParam(query.cruiseLines).join(',');
+  const sort = getSortParam(getParamValue(params, 'sort'));
+  const cruiseLines = getCruiseLinesParam(params.cruiseLines).join(',');
 
-  const startDate = getDateParam(query.startDate);
-  const endDate = getDateParam(query.endDate);
+  const startDate = getDateParam(getParamValue(params, 'startDate'));
+  const endDate = getDateParam(getParamValue(params, 'endDate'));
 
-  const capacity = getCapacityParam(query);
-  const duration = getDurationParam(query);
+  const capacity = getCapacityParam(getParamValue(params, 'capacity'));
+  const duration = getDurationParam(getParamValue(params, 'duration'));
 
   const capacityFilter = buildRangeFilter(
     capacityOptions[capacity],
@@ -141,7 +140,8 @@ const buildRangeFilter = (
 };
 
 export const updateQueryParam = (
-  router: NextRouter,
+  router: AppRouterInstance,
+  searchParams: ReadonlyURLSearchParams,
   payload:
     | { param: 'cruiseLines'; value: string[] }
     | {
@@ -149,81 +149,72 @@ export const updateQueryParam = (
         value: number;
       },
 ) => {
+  const params = new URLSearchParams(searchParams.toString());
   const { param, value } = payload;
-  const { [param]: _, ...remainingParams } = router.query;
-
-  let updatedParam;
 
   switch (param) {
     case 'cruiseLines':
-      updatedParam = value.length === 0 ? {} : { page: 0, [param]: value };
+      // params.set('page', '0');
+      params.delete('page');
+      if (value.length === 0) params.delete(param);
+      else params.set(param, value.join(','));
       break;
 
     case 'capacity':
-      updatedParam =
-        value === defaultCapacity ? {} : { page: 0, [param]: value };
+      params.delete('page');
+      if (value === defaultCapacity) params.delete(param);
+      else params.set(param, value.toString());
       break;
 
     case 'duration':
-      updatedParam =
-        value === defaultDuration ? {} : { page: 0, [param]: value };
+      params.delete('page');
+      if (value === defaultDuration) params.delete(param);
+      else params.set(param, value.toString());
       break;
 
     case 'itemsPerPage':
-      updatedParam = { page: 0, [param]: value };
+      params.delete('page');
+      params.set(param, value.toString());
       break;
 
+    case 'sort':
+      params.delete('page');
+      params.set(param, value.toString());
+
     default:
-      updatedParam = value === 0 ? {} : { [param]: value };
+      if (value === 0) params.delete(param);
+      params.set(param, value.toString());
       break;
   }
 
-  updateRouterQuery(router, { ...remainingParams, ...updatedParam });
+  router.push(`/?${params.toString()}`);
 };
 
 export const updateDateParam = (
-  router: NextRouter,
+  router: AppRouterInstance,
+  searchParams: ReadonlyURLSearchParams,
   from: Date | undefined,
   to: Date | undefined,
 ) => {
-  const { startDate: _, endDate: __, ...remainingParams } = router.query;
+  const params = new URLSearchParams(searchParams.toString());
 
-  const updatedParams: Record<string, string> = {};
+  params.delete('page');
 
   if (from !== undefined)
-    updatedParams['startDate'] = formatDate(from, 'yyyy-MM-dd');
+    params.set('startDate', formatDate(from, 'yyyy-MM-dd'));
+  else params.delete('startDate');
 
-  if (to !== undefined) updatedParams['endDate'] = formatDate(to, 'yyyy-MM-dd');
+  if (to !== undefined) params.set('endDate', formatDate(to, 'yyyy-MM-dd'));
+  else params.delete('endDate');
 
-  const query =
-    from === undefined && to === undefined
-      ? { ...remainingParams }
-      : { ...remainingParams, page: 0, ...updatedParams };
-
-  updateRouterQuery(router, query);
+  router.push(`/?${params.toString()}`, { scroll: true });
 };
 
-export const updateRouterQuery = (
-  router: NextRouter,
-  query: ParsedUrlQueryInput,
-) => {
-  const { page, itemsPerPage, sort, ...rest } = query;
-
-  const updatedQuery = {
-    ...(page && { page }),
-    ...(itemsPerPage && { itemsPerPage }),
-    ...(sort && { sort }),
-    ...rest,
-  };
-
-  router.push({ pathname: router.pathname, query: updatedQuery }, undefined, {
-    shallow: true,
-  });
-};
-
-export const getExpeditionsUrl = (query: ParsedUrlQuery) => {
+export const getExpeditionsUrl = (searchParams: {
+  [key: string]: string | string[] | undefined;
+}) => {
   const url = new URL(`${process.env.NEXT_PUBLIC_API_URL}/expeditions`);
-  const params = getExpeditionsParams(query);
+  const params = getExpeditionsParams(searchParams);
 
   Object.keys(params).forEach((key) => {
     const paramKey = key as keyof ExpeditionsParams;

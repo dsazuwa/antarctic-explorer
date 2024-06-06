@@ -1,3 +1,7 @@
+export type SearchParams =
+  | { [key: string]: string | string[] | undefined }
+  | undefined;
+
 export type TCruiseLine = {
   id: number;
   name: string;
