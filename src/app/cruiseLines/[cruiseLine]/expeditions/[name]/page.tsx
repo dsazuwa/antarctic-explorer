@@ -1,5 +1,7 @@
 import { Metadata } from 'next';
 
+import Footer from '@/components/Footer';
+import Navbar from '@/components/Navbar';
 import Expedition from '@/components/expedition';
 import { fetchExpedition } from '@/lib/data';
 
@@ -21,5 +23,11 @@ export default async function ExpeditionPage({
 }: Props) {
   const { expedition } = await fetchExpedition(cruiseLine, name);
 
-  return <Expedition key={expedition.id} expedition={expedition} />;
+  return (
+    <>
+      <Navbar />
+      <Expedition key={expedition.id} expedition={expedition} />
+      <Footer />
+    </>
+  );
 }

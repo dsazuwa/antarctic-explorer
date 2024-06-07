@@ -1,8 +1,8 @@
 import React from 'react';
 
-function Footer() {
+export default function Footer() {
   return (
-    <footer className='mt-auto bg-primary-foreground py-4 text-center'>
+    <footer className='mt-auto py-4 text-center'>
       <span className='inline-flex flex-wrap justify-center text-xxs font-medium md:text-xs'>
         The source code for this app can be found on
         <a
@@ -17,5 +17,3 @@ function Footer() {
     </footer>
   );
 }
-
-export default Footer;

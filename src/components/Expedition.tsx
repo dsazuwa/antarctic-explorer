@@ -19,17 +19,19 @@ export default function Expedition({
 
   return (
     <li className='group relative rounded-xl bg-white hover:shadow-lg'>
-      <Image
-        className='h-[270px] w-full rounded-t-xl object-cover object-bottom'
-        src={photoUrl}
-        alt={name}
-        width={0}
-        height={0}
-        sizes='100vw'
-        priority={!!isImgPriority}
-      />
+      <div className='aspect-[4/3]'>
+        <Image
+          className='h-full w-full rounded-t-xl object-cover object-bottom'
+          src={photoUrl}
+          alt={name}
+          width={0}
+          height={0}
+          sizes='100vw'
+          priority={!!isImgPriority}
+        />
+      </div>
 
-      <div className='flex h-[calc(100%-270px)] flex-col rounded-b-xl border sm:flex-1'>
+      <div className='flex flex-col rounded-b-xl border sm:flex-1'>
         <div className='inline-flex p-4 pt-6'>
           <Image
             className='mr-2 h-6 w-auto sm:h-8'
@@ -49,8 +51,8 @@ export default function Expedition({
         </div>
 
         <div
-          className='mx-4 mb-6 mt-auto grid gap-1 border-t-2 border-solid border-gray-200 pt-4'
-          style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(80px, 1fr))' }}
+          className='mx-4 mb-6 mt-auto grid grid-cols-3 gap-1 border-t-2 border-solid border-gray-200 pt-4'
+          // style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(80px, 1fr))' }}
         >
           <InfoDisplay
             Icon={DurationIcon}
@@ -86,5 +88,3 @@ export default function Expedition({
     </li>
   );
 }
-
-// grid-cols-3 grid-flow-row

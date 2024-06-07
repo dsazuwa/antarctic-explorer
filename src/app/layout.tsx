@@ -21,7 +21,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en'>
-      <body className={cn(font.className, 'bg-white text-neutral-600')}>
+      <body
+        className={cn(
+          font.className,
+          'flex min-h-screen w-full flex-col bg-white text-neutral-600',
+        )}
+      >
         {children}
       </body>
     </html>
