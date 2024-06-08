@@ -1,13 +1,13 @@
-import ClearFilterButton from './ClearFilterButton';
-import ExpeditionsGrid from './ExpeditionsGrid';
-import FilterChips from './FilterChips';
-import FilterPanel from './FilterPanel';
-import MobileFilterPanel from './MobileFilterPanel';
-import PaginationControls from './PaginationControls';
-import PaginationHeader from './PaginationHeader';
+import ClearFilters from './clear-filters';
+import ExpeditionsGrid from './expeditions-grid';
+import FilterChips from './filter-chips';
+import FilterPanel from './filter-panel';
+import MobileFilterPanel from './filter-panel-mobile';
+import PaginationControls from './pagination-controls';
+import PaginationHeader from './pagination-header';
 
 export {
-  ClearFilterButton,
+  ClearFilters,
   ExpeditionsGrid,
   FilterChips,
   FilterPanel,

@@ -1,6 +1,6 @@
 import Image from 'next/image';
 
-import LinkButton from '@/components/LinkButton';
+import LinkButton from '@/components/link-btn';
 import { TVessel } from '@/lib/type';
 
 export default function Vessels({ vessels }: { vessels: TVessel[] }) {

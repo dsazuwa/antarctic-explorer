@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-
 import { isValid, parseISO } from 'date-fns';
 import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime';
 import { ReadonlyURLSearchParams } from 'next/navigation';
@@ -180,6 +178,7 @@ export const updateQueryParam = (
     case 'sort':
       params.delete('page');
       params.set(param, value.toString());
+      break;
 
     default:
       if (value === 0) params.delete(param);

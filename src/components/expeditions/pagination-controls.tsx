@@ -2,8 +2,8 @@
 
 import { useRouter, useSearchParams } from 'next/navigation';
 
-import Pagination from '@/components/Pagination';
-import PerPageSelector from '@/components/PerPageSelector';
+import Pagination from '@/components/pagination';
+import PerPageSelector from '@/components/per-page-selector';
 import { itemsPerPageOptions } from '@/lib/constants';
 import { updateQueryParam } from '@/lib/param.utils';
 

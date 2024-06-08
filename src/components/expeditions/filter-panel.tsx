@@ -14,7 +14,7 @@ import {
   toggleCruiseLine,
   updateQueryParam,
 } from '@/lib/param.utils';
-import DatePicker from './DatePicker';
+import DatePicker from './date-picker';
 import { OptionsSelector } from './Option';
 
 export default function FilterPanel() {

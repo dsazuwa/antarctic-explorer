@@ -3,11 +3,11 @@
 import { format, isSameMonth, isSameYear } from 'date-fns';
 import { useEffect } from 'react';
 
-import HeaderSummary from '@/components/HeaderSummary';
-import LinkButton from '@/components/LinkButton';
-import Pagination from '@/components/Pagination';
-import PerPageSelector from '@/components/PerPageSelector';
-import SortSelect from '@/components/SortSelect';
+import HeaderSummary from '@/components/header-summary';
+import LinkButton from '@/components/link-btn';
+import Pagination from '@/components/pagination';
+import PerPageSelector from '@/components/per-page-selector';
+import SortSelector from '@/components/sort-selector';
 import {
   departureSortOptions,
   departuresPerPageOptions,
@@ -15,7 +15,7 @@ import {
 import { TDeparture } from '@/lib/type';
 import { cn, formatPrice } from '@/lib/utils';
 import { useDeparturesStore } from '@/store/departures';
-import InfoDisplay from './InfoDisplay';
+import InfoDisplay from './info-diaplay';
 
 type Props = { cruiseLine: string; name: string };
 
@@ -79,7 +79,7 @@ function Header() {
         totalItems={totalItems}
       />
 
-      <SortSelect
+      <SortSelector
         sortOptions={departureSortOptions}
         selectedSort={selectedSort}
         setSortOption={setSort}

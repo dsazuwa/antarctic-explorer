@@ -1,10 +1,10 @@
-import Departures from './Departures';
-import Extensions from './Extensions';
-import Hero from './Hero';
-import Itineraries from './Itineraries';
-import Expeditions from './OtherExpeditions';
-import Overview from './Overview';
-import Vessels from './Vessels';
+import Departures from './departures';
+import Extensions from './extensions';
+import Hero from './hero';
+import Itineraries from './itineraries';
+import Expeditions from './other-expeditions';
+import Overview from './overview';
+import Vessels from './vessels';
 
 export {
   Departures,

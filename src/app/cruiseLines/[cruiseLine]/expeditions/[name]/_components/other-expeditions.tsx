@@ -1,7 +1,7 @@
 import { ArrowRightIcon } from '@radix-ui/react-icons';
 import Link from 'next/link';
 
-import Expedition from '@/components/Expedition';
+import Expedition from '@/components/expedition';
 import { TExpedition } from '@/lib/type';
 
 type Props = { expeditions: TExpedition[] };

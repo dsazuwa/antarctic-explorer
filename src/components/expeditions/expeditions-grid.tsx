@@ -1,6 +1,6 @@
 import { ValueNoneIcon } from '@radix-ui/react-icons';
 
-import Expedition from '@/components/Expedition';
+import Expedition from '@/components/expedition';
 import { fetchExpeditions } from '@/lib/data';
 import { SearchParams } from '@/lib/type';
 

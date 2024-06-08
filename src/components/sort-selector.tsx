@@ -14,7 +14,7 @@ type Props = {
   setSortOption: (i: number) => void;
 };
 
-export default function SortSelect({
+export default function SortSelector({
   sortOptions,
   selectedSort,
   setSortOption,

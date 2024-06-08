@@ -1,9 +1,9 @@
 import { Metadata } from 'next';
 
-import Footer from '@/components/Footer';
-import Navbar from '@/components/Navbar';
+import Footer from '@/components/layout/footer';
+import Navbar from '@/components/layout/nav';
 import {
-  ClearFilterButton,
+  ClearFilters,
   ExpeditionsGrid,
   FilterChips,
   FilterPanel,
@@ -27,7 +27,7 @@ export default async function HomePage({ searchParams }: Props) {
       <div className='grid h-full flex-grow bg-white px-6 lg:container lg:grid-cols-3 lg:gap-24 xl:grid-cols-4'>
         <div className='hidden h-full py-4 text-xxs lg:sticky lg:top-16 lg:col-span-1 lg:flex lg:h-[calc(100vh-64px)] lg:flex-col lg:gap-6 lg:overflow-y-auto lg:py-8 xl:col-span-1'>
           <div className='flex w-full justify-end'>
-            <ClearFilterButton />
+            <ClearFilters />
           </div>
 
           <FilterPanel />

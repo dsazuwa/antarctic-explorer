@@ -3,7 +3,7 @@
 import { ChevronRightIcon, Cross1Icon, ImageIcon } from '@radix-ui/react-icons';
 import { useEffect, useState } from 'react';
 
-import Image from '@/components/Image';
+import Image from '@/components/image';
 import {
   Accordion,
   AccordionContent,
@@ -11,10 +11,10 @@ import {
   AccordionTrigger,
 } from '@/components/ui/accordion';
 import { Sheet, SheetContent } from '@/components/ui/sheet';
-import useWindowWidth from '@/hooks/useWindowWidth';
+import useWindowWidth from '@/hooks/use-window-width';
 import { TItinerary } from '@/lib/type';
 import { cn } from '@/lib/utils';
-import InfoDisplay from './InfoDisplay';
+import InfoDisplay from './info-diaplay';
 import { Button } from '@/components/ui/button';
 
 type ItinerariesProps = { itineraries: TItinerary[] };

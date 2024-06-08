@@ -5,7 +5,7 @@ import { EmblaCarouselType } from 'embla-carousel';
 import useEmblaCarousel from 'embla-carousel-react';
 import { useCallback, useEffect, useState } from 'react';
 
-import Image from '@/components/Image';
+import Image from '@/components/image';
 import { TGallery } from '@/lib/type';
 import { cn } from '@/lib/utils';
 

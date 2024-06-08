@@ -2,7 +2,7 @@
 
 import { Metadata } from 'next';
 
-import Error from '@/components/Error';
+import Error from '@/components/error';
 
 export const metadata: Metadata = {
   title: 'Internal Server Error | Antarctic Explorer',

@@ -1,6 +1,6 @@
 import { TGallery, TVessel } from '@/lib/type';
 import { formatDate, formatPrice } from '@/lib/utils';
-import Gallery from './Gallery';
+import Gallery from './gallery';
 
 type Props = {
   name: string;

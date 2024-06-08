@@ -13,7 +13,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from '@/components/ui/popover';
-import useWindowWidth from '@/hooks/useWindowWidth';
+import useWindowWidth from '@/hooks/use-window-width';
 import { getDateParam, updateDateParam } from '@/lib/param.utils';
 import { cn, formatDate } from '@/lib/utils';
 import { OptionHeader } from './Option';

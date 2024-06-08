@@ -2,8 +2,8 @@
 
 import { useRouter, useSearchParams } from 'next/navigation';
 
-import HeaderSummary from '@/components/HeaderSummary';
-import SortSelect from '@/components/SortSelect';
+import HeaderSummary from '@/components/header-summary';
+import SortSelector from '@/components/sort-selector';
 import { sortOptions } from '@/lib/constants';
 import { getSortParam, updateQueryParam } from '@/lib/param.utils';
 
@@ -26,7 +26,7 @@ export default function PaginationHeader({
         itemType='expeditions'
       />
 
-      <SortSelect
+      <SortSelector
         sortOptions={sortOptions}
         selectedSort={getSortParam(searchParams.get('sort'))}
         setSortOption={(i: number) =>

@@ -4,7 +4,7 @@ import { ArrowDownIcon } from '@radix-ui/react-icons';
 import Image from 'next/image';
 import { useState } from 'react';
 
-import LinkButton from '@/components/LinkButton';
+import LinkButton from '@/components/link-btn';
 import { TExtension } from '@/lib/type';
 import { cn, formatPrice } from '@/lib/utils';
 
