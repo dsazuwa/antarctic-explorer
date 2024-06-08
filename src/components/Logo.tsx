@@ -1,4 +1,4 @@
-import clsx from 'clsx';
+import { cn } from '@/lib/utils';
 import { HTMLAttributes } from 'react';
 
 type Props = { size: 'sm' | 'md' | 'lg' } & HTMLAttributes<HTMLDivElement>;
@@ -18,7 +18,7 @@ function Logo({ size, className, ...props }: Props) {
   const { height, width, fontSize } = getSize();
 
   return (
-    <div className={clsx('inline-flex items-center', className)} {...props}>
+    <div className={cn('inline-flex items-center', className)} {...props}>
       <span className='p-2'>
         <svg
           xmlns='http://www.w3.org/2000/svg'
@@ -34,9 +34,7 @@ function Logo({ size, className, ...props }: Props) {
         </svg>
       </span>
 
-      <span
-        className={clsx('flex flex-col text-left font-extrabold', fontSize)}
-      >
+      <span className={cn('flex flex-col text-left font-extrabold', fontSize)}>
         <span className='text-navy'>Antarctic</span>
         <span className='text-sky_blue'>Explorer</span>
       </span>

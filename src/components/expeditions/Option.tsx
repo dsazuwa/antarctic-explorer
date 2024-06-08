@@ -1,9 +1,8 @@
-import clsx from 'clsx';
-import { ChangeEventHandler, useState } from 'react';
+import { ChangeEventHandler, ReactNode, useState } from 'react';
 
 import ExpandLess from '@/assets/icons/ExpandLess';
 import { BasicFilterOption, RangedFilterOption } from '@/lib/type';
-import OptionHeader from './OptionHeader';
+import { cn } from '@/lib/utils';
 
 type OptionsSelectorProps = {
   type: 'checkbox' | 'radio';
@@ -13,7 +12,7 @@ type OptionsSelectorProps = {
   handleChange: ChangeEventHandler<HTMLInputElement>;
 };
 
-function OptionsSelector({
+export function OptionsSelector({
   type,
   label,
   options,
@@ -32,7 +31,7 @@ function OptionsSelector({
         <OptionHeader>
           {label}
           <div
-            className={clsx(
+            className={cn(
               'rounded-full p-0.5 transition-transform ease-in-out hover:bg-gray-200 hover:shadow',
               { 'rotate-180': !isExpanded },
             )}
@@ -43,14 +42,14 @@ function OptionsSelector({
       </button>
 
       <form
-        className={clsx('ml-1 transition-transform ease-in-out', {
+        className={cn('ml-1 transition-transform ease-in-out', {
           hidden: !isExpanded,
         })}
       >
         {options.map((o, i) => (
           <label
             key={i}
-            className='my-2 flex items-center text-xs font-medium leading-4 lg:text-sm'
+            className='body-sm lg:body my-1 flex items-center font-medium'
           >
             <input
               type={type}
@@ -68,4 +67,17 @@ function OptionsSelector({
   );
 }
 
-export default OptionsSelector;
+type OptionsHeaderProps = { children?: ReactNode; className?: string };
+
+export function OptionHeader({ children, className }: OptionsHeaderProps) {
+  return (
+    <div
+      className={cn(
+        'body lg:body-lg mb-2 inline-flex w-full items-center justify-between border-b-2 border-solid border-gray-200 pb-1 font-semibold text-primary',
+        className,
+      )}
+    >
+      {children}
+    </div>
+  );
+}

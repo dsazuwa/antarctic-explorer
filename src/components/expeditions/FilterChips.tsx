@@ -1,9 +1,8 @@
 'use client';
 
-import clsx from 'clsx';
 import { useRouter, useSearchParams } from 'next/navigation';
+import { Cross2Icon } from '@radix-ui/react-icons';
 
-import Chip from '@/components/Chip';
 import {
   capacityOptions,
   defaultCapacity,
@@ -18,7 +17,7 @@ import {
   updateDateParam,
   updateQueryParam,
 } from '@/lib/param.utils';
-import { formatDate } from '@/lib/utils';
+import { cn, formatDate } from '@/lib/utils';
 
 export default function FilterChips() {
   const router = useRouter();
@@ -27,8 +26,8 @@ export default function FilterChips() {
   const startDate = getDateParam(searchParams.get('startDate'));
   const endDate = getDateParam(searchParams.get('endDate'));
   const cruiseLine = searchParams.getAll('cruiseLines');
-  const capacity = getCapacityParam(searchParams);
-  const duration = getDurationParam(searchParams);
+  const capacity = getCapacityParam(searchParams.get('capacity'));
+  const duration = getDurationParam(searchParams.get('duration'));
 
   const isFilteredByStartDate = startDate !== null;
   const isFilteredByEndDate = endDate !== null;
@@ -44,7 +43,7 @@ export default function FilterChips() {
 
   return (
     <div
-      className={clsx(
+      className={cn(
         { 'inline-flex flex-wrap gap-2': isFiltered },
         { hidden: !isFiltered },
       )}
@@ -90,6 +89,25 @@ export default function FilterChips() {
           }
         />
       )}
+    </div>
+  );
+}
+
+type ChipProps = {
+  label: string;
+  handleClick: () => void;
+};
+
+function Chip({ label, handleClick }: ChipProps) {
+  return (
+    <div className='inline-flex min-h-10 items-center rounded-md border border-solid border-primary/50 px-4 py-2 text-xs font-bold text-primary/75 hover:shadow'>
+      {label}
+      <button
+        className='ml-2 rounded-full bg-muted-foreground/35 p-1 transition-colors hover:bg-muted-foreground/45 hover:shadow-sm'
+        onClick={handleClick}
+      >
+        <Cross2Icon className='h-3 w-3 text-white' />
+      </button>
     </div>
   );
 }

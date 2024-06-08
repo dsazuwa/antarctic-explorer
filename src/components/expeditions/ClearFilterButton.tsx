@@ -30,7 +30,7 @@ export default function ClearFilterButton() {
         searchParams.get('duration') === null
       }
       size='none'
-      className='h-10 rounded-md px-4 py-2 text-xs capitalize text-white'
+      className='body-sm h-10 rounded-md px-4 py-2 capitalize text-white'
       onClick={clearFilter}
     >
       Clear all filters

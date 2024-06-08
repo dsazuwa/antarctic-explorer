@@ -23,14 +23,15 @@ export default function MobileFilterPanel() {
   }, [windowWidth]);
 
   return (
-    <div className='inline-flex flex-wrap justify-between gap-2 py-2 text-xxs font-semibold sm:text-xs lg:hidden'>
+    <div className='inline-flex flex-wrap justify-between gap-2 py-2 font-semibold lg:hidden'>
       <Sheet open={open} onOpenChange={setOpen}>
         <SheetTrigger asChild>
           <Button
             variant='outline'
-            className='h-10 w-20 gap-2 rounded-md capitalize'
+            className='h-10 gap-2 rounded-md px-4 capitalize'
           >
-            <MixerHorizontalIcon />
+            <MixerHorizontalIcon className='shrink-0' />
+
             <span className='mt-[2px]'>Filter</span>
           </Button>
         </SheetTrigger>
@@ -39,7 +40,7 @@ export default function MobileFilterPanel() {
           side='custom'
           className='inset-y-0 left-0 flex max-h-screen w-screen flex-col overflow-y-auto border-r bg-white data-[state=closed]:slide-out-to-left data-[state=open]:slide-in-from-left sm:w-1/2'
         >
-          <div className='text-md flex items-center justify-between bg-primary-foreground p-4 font-semibold'>
+          <div className='body-sm flex items-center justify-between bg-primary-foreground p-4 font-semibold'>
             <span>Filter</span>
 
             <SheetClose className='rounded-sm opacity-70 transition-opacity hover:opacity-100'>
@@ -48,7 +49,7 @@ export default function MobileFilterPanel() {
             </SheetClose>
           </div>
 
-          <div className='p-4'>
+          <div className='space-y-6 p-4'>
             <FilterPanel />
           </div>
         </SheetContent>

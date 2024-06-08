@@ -1,9 +1,10 @@
 import { ArrowRightIcon } from '@radix-ui/react-icons';
-import { type VariantProps, cva } from 'class-variance-authority';
-import clsx from 'clsx';
+import { cva, type VariantProps } from 'class-variance-authority';
+
+import { cn } from '@/lib/utils';
 
 const variants = cva(
-  'group inline-flex items-center text-center gap-2 rounded-[32px] py-2 text-xs font-extrabold transition-colors md:text-sm',
+  'body-sm group inline-flex items-center text-center gap-2 rounded-[32px] py-2 font-extrabold transition-colors',
   {
     variants: {
       variant: {
@@ -50,13 +51,13 @@ export default function LinkButton({
       href={website}
       target='_blank'
       rel='noopener noreferrer'
-      className={clsx(variants({ variant, className }))}
+      className={cn(variants({ variant, className }))}
     >
       <span>{label}</span>
 
       <span className='transition-transform group-hover:rotate-[-35deg]'>
         <ArrowRightIcon
-          className={clsx(iconVariants({ variant }))}
+          className={cn(iconVariants({ variant }))}
           strokeWidth={1.2}
         />
       </span>

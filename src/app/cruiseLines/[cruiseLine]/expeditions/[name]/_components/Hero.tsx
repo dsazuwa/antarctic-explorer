@@ -42,7 +42,7 @@ export default function Hero({
   return (
     <section className='w-full bg-navy text-white' aria-label='Hero'>
       <div className='mx-auto flex max-w-screen-lg flex-col sm:flex-row sm:py-8'>
-        <div className='flex flex-col gap-3 p-4 sm:w-2/5'>
+        <div className='flex flex-col gap-6 p-4 sm:w-2/5'>
           <div className='flex flex-col'>
             <div className='text-xs font-medium text-gray-400'>
               {cruiseLine}
@@ -54,38 +54,40 @@ export default function Hero({
               rel='noopener noreferrer'
               className='hover:underline'
             >
-              <h1 className='text-2xl font-semibold'>{name}</h1>
+              <h1 className='heading-3 font-semibold'>{name}</h1>
             </a>
           </div>
 
-          <div>
-            <div className='text-xxs text-gray-200'>Price from</div>
-            <div className='text-md font-medium'>
-              {formatPrice(startingPrice)}
+          <div className='space-y-2'>
+            <div className='text-sm text-gray-200'>Price from</div>
+            <div className='body font-medium'>{formatPrice(startingPrice)}</div>
+          </div>
+
+          <div className='space-y-2'>
+            <div className='text-sm text-gray-200'>{`Departure Date(s)`}</div>
+            <div className='text-xs font-medium'>
+              {getDepartureDatesLabel()}
             </div>
           </div>
 
-          <div className='text-xxs'>
-            <div className='text-gray-200'>{`Departure Date(s)`}</div>
-            <div className='font-medium'>{getDepartureDatesLabel()}</div>
-          </div>
-
-          <div className='inline-flex gap-8 text-xxs'>
+          <div className='inline-flex flex-wrap gap-6'>
             {numVessels > 0 && (
-              <div>
-                <div className='text-gray-200'>Ship</div>
+              <div className='space-y-2'>
+                <div className='text-sm text-gray-200'>Ship</div>
 
-                {vessels.map((v) => (
-                  <div key={`vessel-${v.id}-name`} className='font-medium'>
-                    {v.name}
-                  </div>
-                ))}
+                <div className='space-y-0.5 text-xs'>
+                  {vessels.map((v) => (
+                    <div key={`vessel-${v.id}-name`} className='font-medium'>
+                      {v.name}
+                    </div>
+                  ))}
+                </div>
               </div>
             )}
 
-            <div>
-              <div className='text-xxs text-gray-200'>Duration</div>
-              <div className='font-medium'>{`${duration} days`}</div>
+            <div className='space-y-2'>
+              <div className='text-sm text-gray-200'>Duration</div>
+              <div className='text-xs font-medium'>{`${duration} days`}</div>
             </div>
           </div>
         </div>

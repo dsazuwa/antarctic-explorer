@@ -1,13 +1,13 @@
 'use client';
 
 import { ChevronLeftIcon, ChevronRightIcon } from '@radix-ui/react-icons';
-import clsx from 'clsx';
 import { EmblaCarouselType } from 'embla-carousel';
 import useEmblaCarousel from 'embla-carousel-react';
 import { useCallback, useEffect, useState } from 'react';
 
-import { TGallery } from '@/lib/type';
 import Image from '@/components/Image';
+import { TGallery } from '@/lib/type';
+import { cn } from '@/lib/utils';
 
 type Props = { gallery: TGallery[]; className: string };
 
@@ -56,7 +56,7 @@ export default function Gallery({ gallery, className }: Props) {
       role='group'
       aria-label='highlights images carousel'
       aria-roledescription='carousel'
-      className={clsx('relative aspect-video h-[300px] sm:h-auto', className)}
+      className={cn('relative aspect-video h-[300px] sm:h-auto', className)}
     >
       <div className='embla h-full w-full overflow-hidden' ref={emblaRef}>
         <div className='embla__container flex h-full w-full flex-row'>

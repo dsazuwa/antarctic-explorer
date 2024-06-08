@@ -23,7 +23,7 @@ export default function SortSelect({
     <div className='inline-flex flex-wrap items-center'>
       <Label
         htmlFor='select_sort_option'
-        className='mr-1 text-[0.625rem] font-semibold text-slate-500 md:text-xs'
+        className='body-sm lg:body mr-1 font-semibold text-slate-500'
       >
         Sort
       </Label>
@@ -35,7 +35,7 @@ export default function SortSelect({
       >
         <SelectTrigger
           id='select_sort_option'
-          className='min-h-7 flex-wrap gap-1 p-1 font-semibold md:w-44'
+          className='min-h-7 flex-wrap gap-1 p-1 font-semibold'
         >
           <SelectValue
             defaultValue={selectedSort}

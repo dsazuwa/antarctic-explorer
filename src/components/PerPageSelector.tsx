@@ -22,7 +22,7 @@ export default function PerPageSelector({
     <div className='inline-flex items-center gap-2'>
       <Label
         htmlFor='items_per_page'
-        className='pb-0.5 text-xs font-semibold text-slate-500'
+        className='body-sm lg:body pb-0.5 font-semibold text-slate-500'
       >
         Items per page
       </Label>
@@ -34,14 +34,14 @@ export default function PerPageSelector({
       >
         <SelectTrigger
           id='items_per_page'
-          className='h-[28px] w-8 text-xs font-semibold md:w-10'
+          className='body-sm lg:body mt-0.5 h-[28px] w-8 font-semibold md:w-10'
         >
           <SelectValue defaultValue={itemsPerPage} />
         </SelectTrigger>
 
         <SelectContent>
           {options.map((o, i) => (
-            <SelectItem key={`option${i}`} value={i + ''}>
+            <SelectItem key={`option${i}`} value={i + ''} className='body'>
               {o}
             </SelectItem>
           ))}

@@ -1,21 +1,19 @@
-type Props = {
-  currentPage: number;
-  itemsPerPage: number;
-  totalItems: number;
-  itemType: string;
-};
-
 export default function HeaderSummary({
   currentPage,
   itemsPerPage,
   totalItems,
   itemType,
-}: Props) {
+}: {
+  currentPage: number;
+  itemsPerPage: number;
+  totalItems: number;
+  itemType: string;
+}) {
   const start = currentPage * itemsPerPage;
   const end = Math.min(start + itemsPerPage, totalItems);
 
   return (
-    <div className='mr-2 inline-flex flex-wrap space-x-0.5 text-xxs font-semibold text-slate-500 md:space-x-[3px] md:text-xs'>
+    <div className='body-sm lg:body mr-2 inline-flex flex-wrap space-x-1 font-semibold text-slate-500'>
       <span>Showing</span>
 
       {totalItems === 0 && <span>0</span>}

@@ -1,16 +1,18 @@
 import { Metadata } from 'next';
 
 import Footer from '@/components/Footer';
-import ClearFilterButton from '@/components/expeditions/ClearFilterButton';
-import ExpeditionsGrid from '@/components/expeditions/ExpeditionsGrid';
-import FilterChips from '@/components/expeditions/FilterChips';
-import FilterPanel from '@/components/expeditions/FilterPanel';
-import MobileFilterPanel from '@/components/expeditions/MobileFilterPanel';
-import PaginationControls from '@/components/expeditions/PaginationControls';
-import PaginationHeader from '@/components/expeditions/PaginationHeader';
+import Navbar from '@/components/Navbar';
+import {
+  ClearFilterButton,
+  ExpeditionsGrid,
+  FilterChips,
+  FilterPanel,
+  MobileFilterPanel,
+  PaginationControls,
+  PaginationHeader,
+} from '@/components/expeditions';
 import { fetchExpeditions } from '@/lib/data';
 import { SearchParams } from '@/lib/type';
-import Navbar from '@/components/Navbar';
 
 type Props = { searchParams?: SearchParams };
 
@@ -23,7 +25,7 @@ export default async function HomePage({ searchParams }: Props) {
       <Navbar className='lg:fixed lg:z-10' />
 
       <div className='grid h-full flex-grow bg-white px-6 lg:container lg:grid-cols-3 lg:gap-24 xl:grid-cols-4'>
-        <div className='hidden h-full py-4 text-xxs lg:sticky lg:top-16 lg:col-span-1 lg:flex lg:h-[calc(100vh-64px)] lg:flex-col lg:gap-4 lg:overflow-y-auto lg:py-8 xl:col-span-1'>
+        <div className='hidden h-full py-4 text-xxs lg:sticky lg:top-16 lg:col-span-1 lg:flex lg:h-[calc(100vh-64px)] lg:flex-col lg:gap-6 lg:overflow-y-auto lg:py-8 xl:col-span-1'>
           <div className='flex w-full justify-end'>
             <ClearFilterButton />
           </div>
@@ -32,7 +34,7 @@ export default async function HomePage({ searchParams }: Props) {
         </div>
 
         <div className='col-span-4 flex h-full w-full flex-col gap-2 py-4 lg:col-span-2 lg:pt-16 xl:col-span-3'>
-          <h1 className='my-2.5 text-center font-bold text-navy sm:text-lg'>
+          <h1 className='heading-2 my-2.5 text-center font-bold text-navy'>
             Expeditions
           </h1>
 

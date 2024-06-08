@@ -1,14 +1,17 @@
 import { CalendarIcon } from '@radix-ui/react-icons';
 import Image from 'next/image';
 import Link from 'next/link';
+import { ComponentType } from 'react';
 
 import DurationIcon from '@/assets/icons/DurationIcon';
 import PriceTagIcon from '@/assets/icons/PriceTagIcon';
 import { TExpedition } from '@/lib/type';
-import { formatPrice } from '@/lib/utils';
-import InfoDisplay from './expeditions/InfoDisplay';
+import { cn, formatPrice } from '@/lib/utils';
 
-type ExpeditionProps = { expedition: TExpedition; isImgPriority?: boolean };
+type ExpeditionProps = {
+  expedition: TExpedition;
+  isImgPriority?: boolean;
+};
 
 export default function Expedition({
   expedition,
@@ -18,7 +21,7 @@ export default function Expedition({
     expedition;
 
   return (
-    <li className='group relative rounded-xl bg-white hover:shadow-lg'>
+    <li className='group relative h-full rounded-xl bg-white hover:shadow-md'>
       <div className='aspect-[4/3]'>
         <Image
           className='h-full w-full rounded-t-xl object-cover object-bottom'
@@ -32,9 +35,9 @@ export default function Expedition({
       </div>
 
       <div className='flex flex-col rounded-b-xl border sm:flex-1'>
-        <div className='inline-flex p-4 pt-6'>
+        <div className='inline-flex items-center p-4 pt-6'>
           <Image
-            className='mr-2 h-6 w-auto sm:h-8'
+            className='mr-2 h-6 w-auto shrink-0 sm:h-8'
             src={cruiseLine.logo}
             alt={`${cruiseLine.name} logo`}
             width={0}
@@ -44,7 +47,9 @@ export default function Expedition({
 
           <Link
             href={`/cruiseLines/${encodeURIComponent(cruiseLine.name)}/expeditions/${encodeURIComponent(name)}`}
-            className='line-clamp-2 text-sm/[1rem] font-semibold text-primary after:absolute after:bottom-[-3px] after:left-[-3px] after:right-[-3px] after:top-[-3px] after:block after:rounded-xl group-hover:underline'
+            className={cn(
+              'heading-5 line-clamp-2 font-semibold text-primary after:absolute after:bottom-[-3px] after:left-[-3px] after:right-[-3px] after:top-[-3px] after:block after:rounded-xl group-hover:underline',
+            )}
           >
             {name}
           </Link>
@@ -86,5 +91,41 @@ export default function Expedition({
         </div>
       </div>
     </li>
+  );
+}
+
+interface InfoDisplayProps {
+  Icon: ComponentType<{ className?: string }>;
+  primaryLabel: string;
+  secondaryLabel?: string;
+  value: string | null;
+}
+
+function InfoDisplay({
+  Icon,
+  primaryLabel,
+  secondaryLabel,
+  value,
+}: InfoDisplayProps) {
+  return (
+    <div className='inline-flex items-center'>
+      <div className='mr-2 flex h-6 w-6 items-center justify-center rounded-full bg-muted sm:h-7 sm:w-7'>
+        <Icon className='text-muted-foregound h-3 w-3 flex-shrink-0 sm:h-4 sm:w-4' />
+      </div>
+
+      <div className='text-[8px] font-semibold text-gray-400'>
+        <div>{primaryLabel}</div>
+
+        <div className='items-baseline'>
+          {value === null ? (
+            <span>Unavailable</span>
+          ) : (
+            <span className='mr-1 text-[10px] text-black'>{value}</span>
+          )}
+
+          {secondaryLabel && <span>{secondaryLabel}</span>}
+        </div>
+      </div>
+    </div>
   );
 }

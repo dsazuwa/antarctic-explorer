@@ -38,7 +38,7 @@ export default function Pagination({
         onClick={() => navigateToPrevious()}
       />
 
-      <div className='flex items-center px-1 text-center text-xs font-semibold leading-none text-slate-500'>
+      <div className='body-sm lg:body flex items-center px-1 text-center font-semibold leading-none text-slate-500'>
         {`Page ${totalPages == 0 ? 0 : currentPage + 1} of ${totalPages}`}
       </div>
 

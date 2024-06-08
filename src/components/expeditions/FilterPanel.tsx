@@ -15,7 +15,7 @@ import {
   updateQueryParam,
 } from '@/lib/param.utils';
 import DatePicker from './DatePicker';
-import OptionsSelector from './OptionsSelector';
+import { OptionsSelector } from './Option';
 
 export default function FilterPanel() {
   const router = useRouter();

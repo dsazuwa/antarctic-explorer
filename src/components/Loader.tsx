@@ -1,8 +1,8 @@
-import clsx from 'clsx';
+import { cn } from '@/lib/utils';
 
 export default function Loader({ className }: { className?: string }) {
   return (
-    <div className={clsx('flex w-full items-center justify-center', className)}>
+    <div className={cn('flex w-full items-center justify-center', className)}>
       <svg
         aria-hidden='true'
         className='h-16 w-16 animate-spin fill-primary text-gray-100'
