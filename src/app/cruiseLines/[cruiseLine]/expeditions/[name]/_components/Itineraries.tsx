@@ -1,17 +1,18 @@
 'use client';
 
-import {
-  ChevronDownIcon,
-  ChevronRightIcon,
-  Cross1Icon,
-  ImageIcon,
-} from '@radix-ui/react-icons';
+import { ChevronRightIcon, Cross1Icon, ImageIcon } from '@radix-ui/react-icons';
 import { useEffect, useState } from 'react';
 
 import Image from '@/components/Image';
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from '@/components/ui/accordion';
 import { Sheet, SheetContent } from '@/components/ui/sheet';
 import useWindowWidth from '@/hooks/useWindowWidth';
-import { TItinerary, TSchedule } from '@/lib/type';
+import { TItinerary } from '@/lib/type';
 import { cn } from '@/lib/utils';
 import InfoDisplay from './InfoDisplay';
 
@@ -139,14 +140,29 @@ function Itinerary({ itinerary, className, nameElementId }: ItineraryProps) {
         <Map alt={`${name} map`} url={mapUrl} />
       </div>
 
-      <ol className='space-y-2'>
-        {schedules.map((schedule, i) => (
-          <DaySchedule
-            key={`itinerary_${id}_schedule_${i}`}
-            schedule={schedule}
-          />
+      <Accordion type='multiple'>
+        {schedules.map(({ day, header, content }, i) => (
+          <AccordionItem key={`itinerary_${id}_schedule_${i}`} value={day}>
+            <AccordionTrigger className='group'>
+              <div className='flex flex-col gap-1 text-start'>
+                <span className='body-sm font-semibold text-gray-500'>
+                  {day}
+                </span>
+
+                <span className='heading-6 flex-grow font-bold group-hover:underline'>
+                  {header}
+                </span>
+              </div>
+            </AccordionTrigger>
+
+            <AccordionContent className='body space-y-6 pb-7 pt-3'>
+              {content.map((paragraph, i) => (
+                <p key={`p-${i}`}>{paragraph}</p>
+              ))}
+            </AccordionContent>
+          </AccordionItem>
         ))}
-      </ol>
+      </Accordion>
     </article>
   );
 }
@@ -170,41 +186,6 @@ function Map({ alt, url }: { url: string; alt: string }) {
         />
       )}
     </div>
-  );
-}
-
-function DaySchedule({ schedule }: { schedule: TSchedule }) {
-  const { day, header, content } = schedule;
-  const [isOpen, setIsOpen] = useState(false);
-
-  return (
-    <li>
-      <button
-        className='flex w-full flex-col gap-1 border-b py-2.5 pr-2 text-start'
-        onClick={() => setIsOpen((x) => !x)}
-      >
-        <span className='body-sm font-semibold text-gray-500'>{day}</span>
-
-        <span className='flex w-full flex-row items-center justify-between gap-4'>
-          <span className='heading-6 flex-grow font-bold'>{header}</span>
-
-          <span
-            className={cn(
-              'mt-auto rounded-full p-0.5 transition-transform ease-in-out hover:bg-primary/10 hover:shadow-md',
-              { 'rotate-[-180deg]': isOpen },
-            )}
-          >
-            <ChevronDownIcon className='h-6 w-6 p-1' />
-          </span>
-        </span>
-      </button>
-
-      <div className='body space-y-6 py-7' hidden={!isOpen}>
-        {content.map((paragraph, i) => (
-          <p key={`p-${i}`}>{paragraph}</p>
-        ))}
-      </div>
-    </li>
   );
 }
 
