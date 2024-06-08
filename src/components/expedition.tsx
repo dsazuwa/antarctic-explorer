@@ -21,20 +21,18 @@ export default function Expedition({
     expedition;
 
   return (
-    <li className='group relative h-full rounded-xl bg-white hover:shadow-md'>
-      <div className='aspect-[4/3]'>
-        <Image
-          className='h-full w-full rounded-t-xl object-cover object-bottom'
-          src={photoUrl}
-          alt={name}
-          width={0}
-          height={0}
-          sizes='100vw'
-          priority={!!isImgPriority}
-        />
-      </div>
+    <li className='group relative flex h-full flex-col rounded-xl bg-white hover:shadow-md'>
+      <Image
+        className='aspect-[4/3] h-full w-full rounded-t-xl object-cover object-bottom'
+        src={photoUrl}
+        alt={name}
+        width={0}
+        height={0}
+        sizes='100vw'
+        priority={!!isImgPriority}
+      />
 
-      <div className='flex flex-col rounded-b-xl border sm:flex-1'>
+      <div className='flex flex-1 flex-col rounded-b-xl border'>
         <div className='inline-flex items-center p-4 pt-6'>
           <Image
             className='mr-2 h-6 w-auto shrink-0 sm:h-8'
@@ -48,7 +46,7 @@ export default function Expedition({
           <Link
             href={`/cruiseLines/${encodeURIComponent(cruiseLine.name)}/expeditions/${encodeURIComponent(name)}`}
             className={cn(
-              'heading-5 line-clamp-2 font-semibold text-primary after:absolute after:bottom-[-3px] after:left-[-3px] after:right-[-3px] after:top-[-3px] after:block after:rounded-xl group-hover:underline',
+              'heading-6 lg:heading-5 line-clamp-2 font-semibold text-primary after:absolute after:bottom-[-3px] after:left-[-3px] after:right-[-3px] after:top-[-3px] after:block after:rounded-xl group-hover:underline',
             )}
           >
             {name}

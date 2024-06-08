@@ -10,17 +10,17 @@ import {
   SheetContent,
   SheetTrigger,
 } from '@/components/ui/sheet';
-import useWindowWidth from '@/hooks/use-window-width';
+import { useMediaQuery } from '@/hooks/use-media-query';
 import ClearFilters from './clear-filters';
 import FilterPanel from './filter-panel';
 
 export default function MobileFilterPanel() {
   const [open, setOpen] = useState(false);
-  const windowWidth = useWindowWidth();
+  const isDesktop = useMediaQuery('(min-width: 1024px)');
 
   useEffect(() => {
-    if (windowWidth && windowWidth >= 1024) setOpen(false);
-  }, [windowWidth]);
+    if (isDesktop) setOpen(false);
+  }, [isDesktop]);
 
   return (
     <div className='inline-flex flex-wrap justify-between gap-2 py-2 font-semibold lg:hidden'>

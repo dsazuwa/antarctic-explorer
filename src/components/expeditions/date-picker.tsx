@@ -13,7 +13,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from '@/components/ui/popover';
-import useWindowWidth from '@/hooks/use-window-width';
+import { useMediaQuery } from '@/hooks/use-media-query';
 import { getDateParam, updateDateParam } from '@/lib/param.utils';
 import { cn, formatDate } from '@/lib/utils';
 import { OptionHeader } from './Option';
@@ -88,11 +88,11 @@ function MobileDatePicker({
 
 function FullDatePicker({ startDate, endDate, handleSelectDate }: PickerProps) {
   const [open, setOpen] = useState(false);
+  const isMobile = useMediaQuery('(max-width: 1024px)');
 
-  const windowWidth = useWindowWidth();
   useEffect(() => {
-    if (windowWidth && windowWidth <= 1024) setOpen(false);
-  }, [windowWidth]);
+    if (isMobile) setOpen(false);
+  }, [isMobile]);
 
   const range = { from: startDate || undefined, to: endDate || undefined };
 

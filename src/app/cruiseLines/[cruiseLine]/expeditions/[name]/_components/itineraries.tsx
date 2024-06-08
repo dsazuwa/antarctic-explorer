@@ -10,12 +10,12 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from '@/components/ui/accordion';
+import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent } from '@/components/ui/sheet';
-import useWindowWidth from '@/hooks/use-window-width';
+import { useMediaQuery } from '@/hooks/use-media-query';
 import { TItinerary } from '@/lib/type';
 import { cn } from '@/lib/utils';
 import InfoDisplay from './info-diaplay';
-import { Button } from '@/components/ui/button';
 
 type ItinerariesProps = { itineraries: TItinerary[] };
 
@@ -198,13 +198,11 @@ type DialogProps = {
 
 function Dialog({ itineraries, index, handleClick }: DialogProps) {
   const [open, setOpen] = useState(false);
-
-  const windowWidth = useWindowWidth();
-  const maxWidth = 768;
+  const isDialog = useMediaQuery('(max-width: 768px)');
 
   useEffect(() => {
-    if (windowWidth && windowWidth > maxWidth) setOpen(false);
-  }, [windowWidth]);
+    if (!isDialog) setOpen(false);
+  }, [isDialog]);
 
   return (
     <Sheet open={open} onOpenChange={setOpen}>
@@ -231,7 +229,7 @@ function Dialog({ itineraries, index, handleClick }: DialogProps) {
           'flex max-h-screen w-screen flex-col overflow-y-scroll bg-white',
           {
             'inset-y-0 right-0 border-l data-[state=closed]:slide-out-to-right data-[state=open]:slide-in-from-right':
-              windowWidth !== undefined && windowWidth <= maxWidth,
+              !isDialog,
           },
         )}
       >
