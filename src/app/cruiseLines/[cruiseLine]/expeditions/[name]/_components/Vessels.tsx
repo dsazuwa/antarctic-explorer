@@ -47,7 +47,7 @@ function Vessel({ vessel }: { vessel: TVessel }) {
         </div>
 
         <Image
-          className='w-auto rounded-sm object-cover lg:order-2 lg:col-span-6 lg:h-[600px]'
+          className='w-full rounded-sm object-cover lg:order-2 lg:col-span-6 lg:h-[600px]'
           src={photoUrl}
           alt={name}
           width={0}

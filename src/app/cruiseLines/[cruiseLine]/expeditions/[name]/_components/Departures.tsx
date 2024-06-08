@@ -147,8 +147,8 @@ function Departure({ departure }: { departure: TDeparture }) {
   };
 
   return (
-    <li className='flex flex-col gap-4 rounded-r-sm border border-l-amber-400 bg-white p-4 shadow-sm sm:flex-row sm:space-y-0'>
-      <div className='flex flex-col justify-center gap-3 sm:w-9/12'>
+    <li className='flex flex-col rounded-r-sm border border-l-amber-400 bg-white p-6 shadow-sm max-sm:gap-6 sm:flex-row sm:space-y-0'>
+      <div className='flex flex-1 flex-col justify-center gap-3'>
         <div className='font-bold'>
           {itinerary}
           {name !== null && (
@@ -174,8 +174,8 @@ function Departure({ departure }: { departure: TDeparture }) {
         </ul>
       </div>
 
-      <div className='flex flex-col items-center justify-center gap-2 border-t sm:w-3/12 sm:border-l sm:border-t-0'>
-        <div className='mt-4 text-xxs/[10px] font-semibold text-slate-400 sm:mt-0 sm:text-xs/[12px]'>
+      <div className='flex shrink-0 flex-col items-center justify-center gap-2 border-t max-sm:pt-6 sm:border-l sm:border-t-0 sm:pl-6'>
+        <div className='text-xxs font-semibold text-slate-400 sm:mt-0 sm:text-xs'>
           Starting from
         </div>
 

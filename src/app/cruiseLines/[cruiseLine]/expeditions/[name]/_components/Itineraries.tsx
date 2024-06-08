@@ -15,6 +15,7 @@ import useWindowWidth from '@/hooks/useWindowWidth';
 import { TItinerary } from '@/lib/type';
 import { cn } from '@/lib/utils';
 import InfoDisplay from './InfoDisplay';
+import { Button } from '@/components/ui/button';
 
 type ItinerariesProps = { itineraries: TItinerary[] };
 
@@ -93,11 +94,11 @@ function Tab({
         onClick={handleClick}
         className='flex w-full flex-row items-center justify-between'
       >
-        <span className='flex flex-col gap-1.5 py-4 pl-4 text-start font-semibold'>
-          <span className='body'>{name}</span>
+        <span className='flex flex-col gap-1.5 py-4 pl-4 text-start'>
+          <span className='body font-bold'>{name}</span>
 
           {startPort && (
-            <span className='body-sm'>
+            <span className='body-sm font-semibold'>
               <span className='mr-1 font-light'>FROM</span>
               {startPort}
             </span>
@@ -282,13 +283,18 @@ function Content({ itinerary, handleClose }: ContentProps) {
       <div
         id='dialog-app-bar'
         className={cn(
-          'fixed flex w-full flex-row items-center gap-2 bg-white px-3 py-5',
+          'fixed flex w-full flex-row items-center gap-2 bg-white p-4',
           { 'border-b-2 border-solid border-gray-100': scrolledPast },
         )}
       >
-        <button aria-label='close' onClick={handleClose}>
-          <Cross1Icon className='h-7 w-7 stroke-sky-900 p-2' />
-        </button>
+        <Button
+          size='icon'
+          variant='ghost'
+          aria-label='close'
+          onClick={handleClose}
+        >
+          <Cross1Icon className='h-4 w-4 text-black' />
+        </Button>
 
         {scrolledPast && (
           <span className='body-sm mt-0.5 font-black text-sky-900'>
@@ -298,7 +304,7 @@ function Content({ itinerary, handleClose }: ContentProps) {
       </div>
 
       <Itinerary
-        className='mt-[64px] space-y-4 px-5 pb-6'
+        className='mt-[72px] space-y-4 px-6 pb-6'
         itinerary={itinerary}
         nameElementId='scroll-anchor'
       />

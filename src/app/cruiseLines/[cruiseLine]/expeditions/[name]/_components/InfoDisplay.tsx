@@ -5,13 +5,13 @@ type Props = {
 
 export default function InfoDisplay({ label, value }: Props) {
   return (
-    <li className='flex max-w-36 flex-col gap-1 font-semibold'>
-      <span className='body-sm text-slate-400'>{label}</span>
+    <li className='flex max-w-36 flex-col gap-1 text-sm/5 font-semibold'>
+      <span className='text-xs text-slate-400'>{label}</span>
 
       {value ? (
-        <span className='body'>{value}</span>
+        <span>{value}</span>
       ) : (
-        <span className='body text-slate-400'>Unavailable</span>
+        <span className='text-slate-400'>Unavailable</span>
       )}
     </li>
   );
