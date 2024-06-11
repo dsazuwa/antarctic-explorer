@@ -14,8 +14,9 @@ import {
   toggleCruiseLine,
   updateQueryParam,
 } from '@/lib/param.utils';
+import { Accordion } from '../ui/accordion';
 import DatePicker from './date-picker';
-import { OptionsSelector } from './Option';
+import { OptionsSelector } from './option';
 
 export default function FilterPanel() {
   const router = useRouter();
@@ -36,35 +37,41 @@ export default function FilterPanel() {
     <>
       <DatePicker />
 
-      <OptionsSelector
-        label='Cruise lines'
-        type='checkbox'
-        options={cruiseLineOptions.map((x) => ({ displayText: x }))}
-        isChecked={(i: number) =>
-          searchParams.getAll('cruiseLines').includes(cruiseLineOptions[i])
-        }
-        handleChange={(e) => handleFilterChange('cruiseLines', e)}
-      />
+      <Accordion
+        type='multiple'
+        className='flex flex-col gap-6'
+        defaultValue={['Cruise lines', 'Ship capacity', 'Duration']}
+      >
+        <OptionsSelector
+          label='Cruise lines'
+          type='checkbox'
+          options={cruiseLineOptions.map((x) => ({ displayText: x }))}
+          isChecked={(i: number) =>
+            searchParams.getAll('cruiseLines').includes(cruiseLineOptions[i])
+          }
+          handleChange={(e) => handleFilterChange('cruiseLines', e)}
+        />
 
-      <OptionsSelector
-        label='Ship capacity'
-        type='radio'
-        options={capacityOptions}
-        isChecked={(i: number) =>
-          getCapacityParam(searchParams.get('capacity')) === i
-        }
-        handleChange={(e) => handleFilterChange('capacity', e)}
-      />
+        <OptionsSelector
+          label='Ship capacity'
+          type='radio'
+          options={capacityOptions}
+          isChecked={(i: number) =>
+            getCapacityParam(searchParams.get('capacity')) === i
+          }
+          handleChange={(e) => handleFilterChange('capacity', e)}
+        />
 
-      <OptionsSelector
-        label='Duration'
-        type='radio'
-        options={durationOptions}
-        isChecked={(i: number) =>
-          getDurationParam(searchParams.get('duration')) === i
-        }
-        handleChange={(e) => handleFilterChange('duration', e)}
-      />
+        <OptionsSelector
+          label='Duration'
+          type='radio'
+          options={durationOptions}
+          isChecked={(i: number) =>
+            getDurationParam(searchParams.get('duration')) === i
+          }
+          handleChange={(e) => handleFilterChange('duration', e)}
+        />
+      </Accordion>
     </>
   );
 }

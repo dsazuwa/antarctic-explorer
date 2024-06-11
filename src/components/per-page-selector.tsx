@@ -5,7 +5,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { Label } from './ui/label';
 
 type Props = {
   options: number[];
@@ -19,34 +18,30 @@ export default function PerPageSelector({
   setItemsPerPage,
 }: Props) {
   return (
-    <div className='inline-flex items-center gap-2'>
-      <Label
-        htmlFor='items_per_page'
-        className='body-sm lg:body pb-0.5 font-semibold text-slate-500'
+    <Select
+      onValueChange={(i) => setItemsPerPage(Number.parseInt(i, 10))}
+      value={itemsPerPage + ''}
+      defaultValue={itemsPerPage + ''}
+    >
+      <SelectTrigger
+        className='max-w-fit items-center gap-2 bg-inherit text-sm font-semibold text-black lg:text-base'
+        aria-label='Items per page:'
       >
-        Items per page
-      </Label>
+        <span className='font-normal text-neutral-500'>Items per page:</span>
 
-      <Select
-        onValueChange={(i) => setItemsPerPage(Number.parseInt(i, 10))}
-        value={itemsPerPage + ''}
-        defaultValue={itemsPerPage + ''}
-      >
-        <SelectTrigger
-          id='items_per_page'
-          className='body-sm lg:body mt-0.5 h-[28px] w-8 font-semibold md:w-10'
-        >
-          <SelectValue defaultValue={itemsPerPage} />
-        </SelectTrigger>
+        <SelectValue
+          defaultValue={itemsPerPage}
+          className='text-sm lg:text-base'
+        />
+      </SelectTrigger>
 
-        <SelectContent>
-          {options.map((o, i) => (
-            <SelectItem key={`option${i}`} value={i + ''} className='body'>
-              {o}
-            </SelectItem>
-          ))}
-        </SelectContent>
-      </Select>
-    </div>
+      <SelectContent>
+        {options.map((o, i) => (
+          <SelectItem key={`option${i}`} value={i + ''} className='body'>
+            {o}
+          </SelectItem>
+        ))}
+      </SelectContent>
+    </Select>
   );
 }

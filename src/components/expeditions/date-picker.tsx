@@ -16,7 +16,7 @@ import {
 import { useMediaQuery } from '@/hooks/use-media-query';
 import { getDateParam, updateDateParam } from '@/lib/param.utils';
 import { cn, formatDate } from '@/lib/utils';
-import { OptionHeader } from './Option';
+import { OptionHeader } from './option';
 
 export default function DatePicker() {
   const router = useRouter();
@@ -30,7 +30,7 @@ export default function DatePicker() {
   };
 
   return (
-    <div>
+    <div className='border-b pb-4'>
       <OptionHeader className='mb-2.5'>Departure Dates</OptionHeader>
 
       <MobileDatePicker
@@ -122,17 +122,17 @@ function FullDatePicker({ startDate, endDate, handleSelectDate }: PickerProps) {
   );
 }
 
-type Props = {
+type LabelProps = {
   startDate: Date | null;
   endDate: Date | null;
   handleClick?: () => void;
 };
 
-export function DateLabel({ startDate, endDate, handleClick }: Props) {
+export function DateLabel({ startDate, endDate, handleClick }: LabelProps) {
   return (
     <Button
       variant='outline'
-      className='w-full rounded-sm'
+      className='w-full bg-inherit'
       onClick={handleClick}
     >
       <CalendarIcon className='mr-2 h-4 w-4' />

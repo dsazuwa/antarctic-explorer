@@ -49,7 +49,7 @@ export default function Departures({ cruiseLine, name }: Props) {
     <></>
   ) : (
     <section className='w-full' aria-label='Departure Date & Rates'>
-      <div className='mx-auto flex max-w-screen-lg flex-col gap-4 px-4 py-8 md:py-12'>
+      <div className='mx-auto flex max-w-screen-lg flex-col gap-6 px-6 py-8 md:py-12'>
         <h2 className='heading-3 font-bold text-sky-900'>Departures</h2>
 
         <Header />
@@ -71,7 +71,7 @@ function Header() {
     useDeparturesStore();
 
   return (
-    <div className='inline-flex w-full flex-wrap items-center justify-between'>
+    <div className='inline-flex w-full flex-wrap items-center justify-between gap-4'>
       <HeaderSummary
         itemType='departures'
         currentPage={currentPage}
@@ -94,14 +94,13 @@ function Controls() {
     selectedSize,
     totalPages,
     setSize,
-    navigateToFirst,
+    navigateTo,
     navigateToPrevious,
     navigateToNext,
-    navigateToLast,
   } = useDeparturesStore();
 
   return (
-    <div className='flex flex-col-reverse items-center text-xs sm:grid sm:grid-cols-3'>
+    <div className='flex flex-col-reverse items-center justify-between gap-4 md:flex-row'>
       <PerPageSelector
         options={departuresPerPageOptions}
         itemsPerPage={selectedSize}
@@ -111,10 +110,9 @@ function Controls() {
       <Pagination
         currentPage={currentPage}
         totalPages={totalPages}
-        navigateToFirst={navigateToFirst}
+        navigateTo={navigateTo}
         navigateToPrevious={navigateToPrevious}
         navigateToNext={navigateToNext}
-        navigateToLast={navigateToLast}
       />
     </div>
   );

@@ -6,7 +6,7 @@ import { TVessel } from '@/lib/type';
 export default function Vessels({ vessels }: { vessels: TVessel[] }) {
   return (
     <section className='w-full' aria-label='Ships'>
-      <div className='mx-auto flex max-w-screen-lg flex-col gap-4 px-4 py-8 md:py-12'>
+      <div className='container flex max-w-screen-lg flex-col gap-6 py-8 md:py-12'>
         <h2 className='heading-3 font-bold text-sky-900'>Ships</h2>
 
         <div className='space-y-10'>

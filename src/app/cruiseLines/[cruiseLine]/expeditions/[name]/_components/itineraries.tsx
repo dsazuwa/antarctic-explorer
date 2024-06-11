@@ -24,8 +24,8 @@ export default function Itineraries({ itineraries }: ItinerariesProps) {
 
   return (
     <section className='w-full' aria-label='Itineraries'>
-      <div className='mx-auto flex max-w-screen-lg flex-col px-4 py-8 md:pb-12 md:pt-16'>
-        <h2 className='heading-3 mb-2 font-bold text-sky-900'>
+      <div className='mx-auto flex max-w-screen-lg flex-col gap-6 px-6 py-8 md:pb-12 md:pt-16'>
+        <h2 className='heading-3 font-bold text-sky-900'>
           Available Itineraries
         </h2>
 

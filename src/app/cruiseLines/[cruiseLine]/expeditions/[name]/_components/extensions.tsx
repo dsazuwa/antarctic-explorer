@@ -16,7 +16,7 @@ export default function Extensions({ extensions }: Props) {
 
   return (
     <section aria-label='Expedition Extensions'>
-      <div className='mx-auto flex max-w-screen-lg flex-col gap-4 px-4 py-8 md:py-12'>
+      <div className='container flex max-w-screen-lg flex-col gap-6 py-8 md:py-12'>
         <h2 className='heading-3 font-bold text-sky-900'>
           Expedition Extensions
         </h2>
@@ -30,7 +30,7 @@ export default function Extensions({ extensions }: Props) {
         {!showAll && extensions.length > 3 && (
           <div className='flex justify-center'>
             <button
-              className='body-sm ms:body group inline-flex items-center justify-center gap-2 rounded-[32px] border border-sky-800/50 stroke-sky-800 px-4 py-2 text-center font-extrabold text-sky-800 transition-colors hover:border-sky-800 hover:shadow-md focus:bg-sky-800 focus:stroke-white focus:text-white'
+              className='body-sm ms:body group inline-flex items-center justify-center gap-2 rounded-[32px] border border-sky-800/50 fill-sky-800 px-4 py-2 text-center font-extrabold text-sky-800 transition-colors hover:border-sky-800 hover:shadow-md focus:bg-sky-800 focus:fill-white focus:text-white'
               onClick={() => setShowAll(true)}
             >
               Show All
@@ -47,9 +47,9 @@ function Extension({ extension }: { extension: TExtension }) {
   const { name, startingPrice, duration, photoUrl, website } = extension;
 
   return (
-    <li className='group relative h-full rounded-xl bg-white hover:shadow-md'>
+    <li className='group relative h-full rounded-sm bg-white hover:shadow-sm'>
       <Image
-        className='h-[270px] w-full rounded-t-xl object-cover'
+        className='h-[270px] w-full rounded-t-sm object-cover'
         src={photoUrl}
         alt={name}
         width={0}
@@ -57,9 +57,9 @@ function Extension({ extension }: { extension: TExtension }) {
         sizes='100vw'
       />
 
-      <div className='flex h-[calc(100%-270px)] flex-col rounded-b-xl border'>
-        <div className='inline-flex justify-between gap-4 p-4'>
-          <h3 className='heading-6 line-clamp-2 font-bold text-primary group-hover:underline'>
+      <div className='flex h-[calc(100%-270px)] flex-col rounded-b-sm border'>
+        <div className='inline-flex justify-between gap-4 p-6'>
+          <h3 className='heading-6 font-bold text-primary group-hover:underline'>
             {name}
           </h3>
 
@@ -70,7 +70,7 @@ function Extension({ extension }: { extension: TExtension }) {
           )}
         </div>
 
-        <div className='mx-4 mb-6 mt-auto inline-flex flex-wrap justify-between gap-4 border-t-2 border-solid border-gray-200 pt-4'>
+        <div className='mx-6 mb-6 mt-auto inline-flex flex-wrap justify-between gap-4 border-t-2 border-solid border-gray-200 pt-6'>
           {startingPrice && (
             <div className='body-sm'>
               <p className='font-bold'>From</p>

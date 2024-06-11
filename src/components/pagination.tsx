@@ -1,87 +1,89 @@
-import {
-  ChevronLeftIcon,
-  ChevronRightIcon,
-  DoubleArrowLeftIcon,
-  DoubleArrowRightIcon,
-} from '@radix-ui/react-icons';
-import { IconProps } from '@radix-ui/react-icons/dist/types';
+import { ChevronLeftIcon, ChevronRightIcon } from '@radix-ui/react-icons';
 
+import {
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationItem,
+  Pagination as PaginationUI,
+} from '@/components/ui/pagination';
 import { cn } from '@/lib/utils';
+import { Button, buttonVariants } from './ui/button';
 
 type Props = {
   currentPage: number;
   totalPages: number;
-  navigateToFirst: () => void;
-  navigateToPrevious: () => void;
+  navigateTo: (page: number) => void;
   navigateToNext: () => void;
-  navigateToLast: () => void;
+  navigateToPrevious: () => void;
 };
 
 export default function Pagination({
   currentPage,
   totalPages,
-  navigateToFirst,
-  navigateToLast,
+  navigateTo,
   navigateToNext,
   navigateToPrevious,
 }: Props) {
   return (
-    <div className='inline-flex flex-wrap justify-center gap-1'>
-      <IconButton
-        Icon={DoubleArrowLeftIcon}
-        disabled={currentPage === 0}
-        onClick={() => navigateToFirst()}
-      />
+    <PaginationUI className='items-center'>
+      <PaginationContent className='flex-wrap justify-center'>
+        {currentPage !== 0 && (
+          <PaginationItem>
+            <PaginationButton
+              className='gap-1 pl-2.5'
+              onClick={navigateToPrevious}
+            >
+              <ChevronLeftIcon className='h-4 w-4 shrink-0' />
+              <span>Previous</span>
+            </PaginationButton>
+          </PaginationItem>
+        )}
 
-      <IconButton
-        Icon={ChevronLeftIcon}
-        disabled={currentPage === 0}
-        onClick={() => navigateToPrevious()}
-      />
+        {currentPage !== 0 && (
+          <PaginationButton onClick={() => navigateTo(0)}>{1}</PaginationButton>
+        )}
 
-      <div className='body-sm lg:body flex items-center px-1 text-center font-semibold leading-none text-slate-500'>
-        {`Page ${totalPages == 0 ? 0 : currentPage + 1} of ${totalPages}`}
-      </div>
+        {currentPage >= 2 && <PaginationEllipsis />}
 
-      <IconButton
-        Icon={ChevronRightIcon}
-        disabled={currentPage === totalPages - 1}
-        onClick={() => navigateToNext()}
-      />
+        <PaginationButton isActive>{currentPage + 1}</PaginationButton>
 
-      <IconButton
-        Icon={DoubleArrowRightIcon}
-        disabled={currentPage === totalPages - 1}
-        onClick={() => navigateToLast()}
-      />
-    </div>
+        {currentPage <= totalPages - 3 && <PaginationEllipsis />}
+
+        {currentPage + 1 !== totalPages && (
+          <PaginationButton onClick={() => navigateTo(totalPages)}>
+            {totalPages}
+          </PaginationButton>
+        )}
+
+        {currentPage !== totalPages - 1 && (
+          <PaginationItem>
+            <PaginationButton className='gap-1 pl-2.5' onClick={navigateToNext}>
+              <span>Next</span>
+              <ChevronRightIcon className='h-4 w-4 shrink-0' />
+            </PaginationButton>
+          </PaginationItem>
+        )}
+      </PaginationContent>
+    </PaginationUI>
   );
 }
 
-function IconButton({
-  Icon,
-  disabled,
-  onClick,
-}: {
-  Icon: React.ForwardRefExoticComponent<
-    IconProps & React.RefAttributes<SVGSVGElement>
-  >;
-  disabled: boolean;
-  onClick?: () => void;
-}) {
+function PaginationButton({
+  isActive,
+  children,
+  className,
+  ...props
+}: React.ComponentProps<typeof Button> & { isActive?: boolean }) {
   return (
     <button
-      disabled={disabled}
-      onClick={onClick}
       className={cn(
-        'group flex h-6 max-h-6 w-6 items-center justify-center rounded-full transition-colors',
-        {
-          'hover:bg-primary/40 hover:text-white': !disabled,
-          'text-gray-400': disabled,
-        },
+        buttonVariants({ variant: isActive ? 'outline' : 'ghost' }),
+        'bg-inherit text-sm lg:text-base',
+        className,
       )}
+      {...props}
     >
-      <Icon className='h-3 w-3' />
+      {children}
     </button>
   );
 }

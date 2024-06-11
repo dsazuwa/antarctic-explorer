@@ -18,6 +18,7 @@ import {
   updateQueryParam,
 } from '@/lib/param.utils';
 import { cn, formatDate } from '@/lib/utils';
+import { buttonVariants } from '../ui/button';
 
 export default function FilterChips() {
   const router = useRouter();
@@ -100,7 +101,12 @@ type ChipProps = {
 
 function Chip({ label, handleClick }: ChipProps) {
   return (
-    <div className='inline-flex min-h-10 items-center rounded-md border border-solid border-primary/50 px-4 py-2 text-xs font-bold text-primary/75 hover:shadow'>
+    <div
+      className={buttonVariants({
+        variant: 'outline',
+        className: 'bg-inherit',
+      })}
+    >
       {label}
       <button
         className='ml-2 rounded-full bg-muted-foreground/35 p-1 transition-colors hover:bg-muted-foreground/45 hover:shadow-sm'

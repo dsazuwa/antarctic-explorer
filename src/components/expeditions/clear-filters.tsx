@@ -29,11 +29,10 @@ export default function ClearFilters() {
         searchParams.get('capacity') === null &&
         searchParams.get('duration') === null
       }
-      size='none'
-      className='body-sm h-10 rounded-md px-4 py-2 capitalize text-white'
+      className='body-sm text-white'
       onClick={clearFilter}
     >
-      Clear all filters
+      Clear All Filters
     </Button>
   );
 }

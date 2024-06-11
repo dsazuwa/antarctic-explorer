@@ -12,10 +12,9 @@ type ExpeditionsStore = DeparturesResponse & {
   setDepartures: (data: DeparturesResponse) => void;
   setSort: (value: number) => void;
   setSize: (value: number) => void;
-  navigateToFirst: () => void;
+  navigateTo: (page: number) => void;
   navigateToPrevious: () => void;
   navigateToNext: () => void;
-  navigateToLast: () => void;
 };
 
 export const useDeparturesStore = create<ExpeditionsStore>((set) => ({
@@ -52,8 +51,10 @@ export const useDeparturesStore = create<ExpeditionsStore>((set) => ({
     set({ currentPage: 0, selectedSort: val });
   },
 
-  navigateToFirst: () => {
-    set({ currentPage: 0 });
+  navigateTo: (page: number) => {
+    set((state) => ({
+      currentPage: Math.min(Math.max(0, page), state.totalPages - 1),
+    }));
   },
 
   navigateToPrevious: () => {
@@ -64,9 +65,5 @@ export const useDeparturesStore = create<ExpeditionsStore>((set) => ({
     set((state) => ({
       currentPage: Math.min(state.totalPages - 1, state.currentPage + 1),
     }));
-  },
-
-  navigateToLast: () => {
-    set((state) => ({ currentPage: state.totalPages - 1 }));
   },
 }));

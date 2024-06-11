@@ -22,7 +22,7 @@ export default function PaginationControls({
   };
 
   return (
-    <div className='mt-auto flex w-full flex-col-reverse items-center gap-2 text-xs sm:grid sm:h-10 sm:grid-cols-3'>
+    <div className='mt-auto flex w-full flex-col-reverse items-center justify-between gap-4 sm:flex-row'>
       <PerPageSelector
         options={itemsPerPageOptions}
         itemsPerPage={
@@ -34,14 +34,15 @@ export default function PaginationControls({
       <Pagination
         currentPage={currentPage}
         totalPages={totalPages}
-        navigateToFirst={() => handleClick('page', 0)}
+        navigateTo={(page: number) =>
+          handleClick('page', Math.min(Math.max(0, page), totalPages - 1))
+        }
         navigateToPrevious={() =>
           handleClick('page', Math.max(0, currentPage - 1))
         }
         navigateToNext={() =>
           handleClick('page', Math.min(currentPage + 1, totalPages - 1))
         }
-        navigateToLast={() => handleClick('page', Math.max(totalPages - 1, 0))}
       />
     </div>
   );

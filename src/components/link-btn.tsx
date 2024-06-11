@@ -24,8 +24,8 @@ const variants = cva(
 const iconVariants = cva('', {
   variants: {
     variant: {
-      primary: 'stroke-sky-800 group-focus:stroke-white',
-      secondary: 'stroke-gray-700',
+      primary: 'fill-sky-800 group-focus:fill-white',
+      secondary: 'fill-gray-700',
       white: undefined,
     },
   },

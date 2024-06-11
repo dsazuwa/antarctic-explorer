@@ -42,7 +42,7 @@ export default function Hero({
   return (
     <section className='w-full bg-navy text-white' aria-label='Hero'>
       <div className='mx-auto flex max-w-screen-lg flex-col sm:flex-row sm:py-8'>
-        <div className='flex flex-col gap-6 p-4 sm:w-2/5'>
+        <div className='flex flex-col gap-6 p-6 sm:w-2/5'>
           <div className='flex flex-col'>
             <div className='text-xs font-medium text-gray-400'>
               {cruiseLine}
