@@ -23,16 +23,12 @@ export default function MobileFilterPanel() {
   }, [isDesktop]);
 
   return (
-    <div className='inline-flex flex-wrap justify-between gap-2 py-2 font-semibold lg:hidden'>
+    <div className='inline-flex flex-wrap justify-between gap-2 font-semibold lg:hidden'>
       <Sheet open={open} onOpenChange={setOpen}>
         <SheetTrigger asChild>
-          <Button
-            variant='outline'
-            className='h-10 gap-2 rounded-md px-4 capitalize'
-          >
-            <MixerHorizontalIcon className='shrink-0' />
-
-            <span className='mt-[2px]'>Filter</span>
+          <Button variant='outline' className='gap-2'>
+            <MixerHorizontalIcon className='h-4 w-4 shrink-0' />
+            <span className='mt-0.5'>Filter</span>
           </Button>
         </SheetTrigger>
 

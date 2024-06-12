@@ -18,7 +18,7 @@ export default function PaginationHeader({
   const searchParams = useSearchParams();
 
   return (
-    <div className='inline-flex min-h-10 flex-wrap-reverse items-center justify-between gap-2'>
+    <div className='inline-flex flex-wrap-reverse items-center justify-between gap-4'>
       <HeaderSummary
         currentPage={currentPage}
         itemsPerPage={itemsPerPage}

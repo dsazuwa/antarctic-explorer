@@ -30,7 +30,7 @@ export default function DatePicker() {
   };
 
   return (
-    <div className='border-b pb-4'>
+    <div className='border-b pb-5'>
       <OptionHeader className='mb-2.5'>Departure Dates</OptionHeader>
 
       <MobileDatePicker

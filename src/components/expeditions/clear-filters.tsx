@@ -29,7 +29,6 @@ export default function ClearFilters() {
         searchParams.get('capacity') === null &&
         searchParams.get('duration') === null
       }
-      className='body-sm text-white'
       onClick={clearFilter}
     >
       Clear All Filters

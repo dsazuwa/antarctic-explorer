@@ -26,8 +26,8 @@ export default async function HomePage({ searchParams }: Props) {
       <div className='grid h-full flex-grow px-6 lg:container lg:grid-cols-3 lg:gap-12 xl:grid-cols-4'>
         <SideFilterPanel />
 
-        <main className='col-span-4 flex h-full w-full flex-col gap-2 py-6 lg:col-span-2 lg:pt-24 xl:col-span-3'>
-          <h1 className='heading-2 my-4 text-center font-bold text-navy'>
+        <main className='col-span-4 flex h-full w-full flex-col gap-4 py-6 lg:col-span-2 lg:pt-24 xl:col-span-3'>
+          <h1 className='heading-2 text-center font-bold text-navy'>
             Expeditions
           </h1>
 

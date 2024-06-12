@@ -20,7 +20,7 @@ export default async function ExpeditionsGrid({ searchParams }: Props) {
   ) : (
     <ol
       id='expeditions-list'
-      className='flex w-full flex-col gap-8 py-4 sm:grid sm:grid-cols-2'
+      className='flex w-full flex-col gap-8 sm:grid sm:grid-cols-2'
     >
       {data.map((expedition, index) => (
         <Expedition
