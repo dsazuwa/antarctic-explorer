@@ -11,7 +11,7 @@ import {
   Itineraries,
   Overview,
   Vessels,
-} from './_components';
+} from './components';
 
 type Props = { params: { cruiseLine: string; name: string } };
 
