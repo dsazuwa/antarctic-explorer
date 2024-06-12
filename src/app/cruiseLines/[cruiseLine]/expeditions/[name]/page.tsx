@@ -16,8 +16,6 @@ import {
 type Props = { params: { cruiseLine: string; name: string } };
 
 export default async function ExpeditionPage({ params }: Props) {
-  const { expedition } = await fetchExpedition(params.cruiseLine, params.name);
-
   const {
     name,
     cruiseLine,
@@ -31,7 +29,8 @@ export default async function ExpeditionPage({ params }: Props) {
     gallery,
     extensions,
     otherExpeditions,
-  } = expedition;
+    departures,
+  } = await fetchExpedition(params.cruiseLine, params.name);
 
   const numVessels = Object.keys(vessels).length;
 
@@ -45,7 +44,7 @@ export default async function ExpeditionPage({ params }: Props) {
           duration={duration}
           startingPrice={startingPrice}
           cruiseLine={cruiseLine.name}
-          departures={expedition.departures}
+          departures={departures}
           numVessels={numVessels}
           vessels={vessels}
           gallery={gallery}
@@ -77,6 +76,6 @@ export async function generateMetadata({
 
   return {
     title: `${decodeURIComponent(name)} | Antarctic Explorer`,
-    description: data.expedition.description[0],
+    description: data.description[0],
   };
 }

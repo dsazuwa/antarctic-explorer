@@ -15,7 +15,7 @@ export default function Expedition({
   expedition: TExpedition;
   isImgPriority?: boolean;
 }) {
-  const { cruiseLine, name, duration, startingPrice, nearestDate, photoUrl } =
+  const { cruiseLine, name, duration, startingPrice, startDate, photoUrl } =
     expedition;
 
   return (
@@ -64,9 +64,9 @@ export default function Expedition({
               Icon={CalendarIcon}
               primaryLabel='Next Sailing'
               value={
-                nearestDate === null
+                startDate === null
                   ? null
-                  : new Date(nearestDate).toLocaleDateString('en-US', {
+                  : new Date(startDate).toLocaleDateString('en-US', {
                       year: '2-digit',
                       month: '2-digit',
                       day: '2-digit',

@@ -37,12 +37,12 @@ export const defaultCapacity = capacityOptions.length - 1;
 export const sortOptions: ExpeditionSortType[] = [
   {
     displayText: 'Date (Upcoming to Later)',
-    sort: 'nearestDate',
+    sort: 'startDate',
     dir: 'asc',
   },
   {
     displayText: 'Date (Later to Upcoming)',
-    sort: 'nearestDate',
+    sort: 'startDate',
     dir: 'desc',
   },
   {

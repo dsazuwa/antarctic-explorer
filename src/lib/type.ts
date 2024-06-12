@@ -12,7 +12,7 @@ type BaseExpedition = {
   id: number;
   name: string;
   duration: string;
-  nearestDate: string | null;
+  startDate: string | null;
   startingPrice: number | null;
   photoUrl: string;
 };
@@ -150,7 +150,7 @@ export type SortType = {
 
 export type ExpeditionSortType = {
   displayText: string;
-  sort: 'cruiseLine' | 'name' | 'nearestDate' | 'startingPrice';
+  sort: 'cruiseLine' | 'name' | 'startDate' | 'startingPrice';
   dir: 'asc' | 'desc';
 };
 
