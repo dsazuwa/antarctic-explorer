@@ -20,8 +20,8 @@ type ExpeditionsStore = DeparturesResponse & {
 export const useDeparturesStore = create<ExpeditionsStore>((set) => ({
   isLoading: false,
 
-  data: [],
-  currentPage: 0,
+  departures: [],
+  currentPage: 1,
   itemsPerPage: 0,
   totalItems: 0,
   totalPages: 0,
@@ -44,26 +44,26 @@ export const useDeparturesStore = create<ExpeditionsStore>((set) => ({
   },
 
   setSort: (val) => {
-    set({ currentPage: 0, selectedSort: val });
+    set({ currentPage: 1, selectedSort: val });
   },
 
   setSize: (val) => {
-    set({ currentPage: 0, selectedSort: val });
+    set({ currentPage: 1, selectedSort: val });
   },
 
   navigateTo: (page: number) => {
     set((state) => ({
-      currentPage: Math.min(Math.max(0, page), state.totalPages - 1),
+      currentPage: Math.min(Math.max(1, page), state.totalPages),
     }));
   },
 
   navigateToPrevious: () => {
-    set((state) => ({ currentPage: Math.max(0, state.currentPage - 1) }));
+    set((state) => ({ currentPage: Math.max(1, state.currentPage) }));
   },
 
   navigateToNext: () => {
     set((state) => ({
-      currentPage: Math.min(state.totalPages - 1, state.currentPage + 1),
+      currentPage: Math.min(state.totalPages, state.currentPage + 1),
     }));
   },
 }));

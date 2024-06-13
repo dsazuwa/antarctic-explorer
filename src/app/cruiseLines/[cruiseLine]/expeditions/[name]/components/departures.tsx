@@ -20,7 +20,7 @@ import InfoDisplay from './info-diaplay';
 type Props = { cruiseLine: string; name: string };
 
 export default function Departures({ cruiseLine, name }: Props) {
-  const { data, currentPage, selectedSize, selectedSort, setDepartures } =
+  const { departures, currentPage, selectedSize, selectedSort, setDepartures } =
     useDeparturesStore();
 
   useEffect(() => {
@@ -34,7 +34,7 @@ export default function Departures({ cruiseLine, name }: Props) {
     };
 
     const url = new URL(
-      `${process.env.NEXT_PUBLIC_API_URL}/cruise-lines/${encodeURIComponent(cruiseLine)}/expeditions/${encodeURIComponent(name)}/departures`,
+      `${process.env.NEXT_PUBLIC_API_URL}/cruiseLines/${encodeURIComponent(cruiseLine)}/expeditions/${encodeURIComponent(name)}/departures`,
     );
 
     for (const [key, value] of Object.entries(params))
@@ -45,7 +45,7 @@ export default function Departures({ cruiseLine, name }: Props) {
       .then((data) => setDepartures(data));
   }, [cruiseLine, name, currentPage, selectedSize, selectedSort]);
 
-  return data.length === 0 ? (
+  return departures.length === 0 ? (
     <></>
   ) : (
     <section className='w-full' aria-label='Departure Date & Rates'>
@@ -55,7 +55,7 @@ export default function Departures({ cruiseLine, name }: Props) {
         <Header />
 
         <ol className='space-y-4'>
-          {data.map((departure, i) => (
+          {departures.map((departure, i) => (
             <Departure key={`departure-${i}`} departure={departure} />
           ))}
         </ol>

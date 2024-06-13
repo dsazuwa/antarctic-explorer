@@ -117,7 +117,7 @@ export type ExpeditionResponse = {
 };
 
 export type DeparturesResponse = {
-  data: TDeparture[];
+  departures: TDeparture[];
   itemsPerPage: number;
   totalItems: number;
   totalPages: number;
