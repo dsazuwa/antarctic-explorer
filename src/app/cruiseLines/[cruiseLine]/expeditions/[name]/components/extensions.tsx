@@ -57,7 +57,7 @@ function Extension({ extension }: { extension: TExtension }) {
         sizes='100vw'
       />
 
-      <div className='flex h-[calc(100%-270px)] flex-col rounded-b-sm border'>
+      <div className='flex h-[calc(100%-270px)] flex-col rounded-b-sm border-x border-b'>
         <div className='inline-flex justify-between gap-4 p-6'>
           <h3 className='heading-6 font-bold text-primary group-hover:underline'>
             {name}
