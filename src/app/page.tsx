@@ -13,10 +13,12 @@ import Navbar from '@/components/layout/nav';
 import { fetchExpeditions } from '@/lib/data';
 import { SearchParams } from '@/lib/type';
 
-type Props = { searchParams?: SearchParams };
-
-export default async function HomePage({ searchParams }: Props) {
-  const { currentPage, totalPages, itemsPerPage, totalItems } =
+export default async function HomePage({
+  searchParams,
+}: {
+  searchParams?: SearchParams;
+}) {
+  const { expeditions, currentPage, totalPages, itemsPerPage, totalItems } =
     await fetchExpeditions(searchParams);
 
   return (
@@ -41,7 +43,7 @@ export default async function HomePage({ searchParams }: Props) {
             totalItems={totalItems}
           />
 
-          <ExpeditionsGrid searchParams={searchParams} />
+          <ExpeditionsGrid expeditions={expeditions} />
 
           <div className='mt-auto'>
             <PaginationControls

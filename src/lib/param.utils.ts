@@ -14,11 +14,26 @@ import { ExpeditionsParams } from '@/lib/type';
 import { BasicFilterOption, RangedFilterOption } from './type';
 import { formatDate } from './utils';
 
+export const getEnumParam = (
+  param: string | string[] | undefined | null,
+  values: string[],
+  defaultValue: string,
+): string => {
+  if (param === undefined || param === null) return defaultValue;
+
+  const paramArray = Array.isArray(param) ? param : [param];
+  const validParam = paramArray.find((p) => values.includes(p));
+
+  return validParam || defaultValue;
+};
+
 export const getNumericalParam = (
   param: string | string[] | undefined | null,
   defaultValue: number,
 ) => {
-  return typeof param === 'string' && !isNaN(parseInt(param, 10))
+  return typeof param === 'string' &&
+    !isNaN(parseInt(param, 10)) &&
+    parseInt(param, 10) >= 0
     ? parseInt(param, 10)
     : defaultValue;
 };
@@ -77,10 +92,10 @@ const getParamValue = (
   return typeof value === 'string' ? value : null;
 };
 
-const getExpeditionsParams = (params: {
+export const getExpeditionsParams = (params: {
   [key: string]: string | string[] | undefined;
 }): ExpeditionsParams => {
-  const page = getNumericalParam(params.page, 0);
+  const page = getNumericalParam(params.page, 1);
   const itemsPerPage = getNumericalParam(params.itemsPerPage, 0);
 
   const sort = getSortParam(getParamValue(params, 'sort'));
@@ -181,7 +196,7 @@ export const updateQueryParam = (
       break;
 
     default:
-      if (value === 0) params.delete(param);
+      if (value === 1) params.delete(param);
       params.set(param, value.toString());
       break;
   }
@@ -207,18 +222,4 @@ export const updateDateParam = (
   else params.delete('endDate');
 
   router.push(`/?${params.toString()}`, { scroll: true });
-};
-
-export const getExpeditionsUrl = (searchParams: {
-  [key: string]: string | string[] | undefined;
-}) => {
-  const url = new URL(`${process.env.NEXT_PUBLIC_API_URL}/expeditions`);
-  const params = getExpeditionsParams(searchParams);
-
-  Object.keys(params).forEach((key) => {
-    const paramKey = key as keyof ExpeditionsParams;
-    url.searchParams.append(paramKey, String(params[paramKey]));
-  });
-
-  return url.toString();
 };

@@ -35,13 +35,13 @@ export default function PaginationControls({
         currentPage={currentPage}
         totalPages={totalPages}
         navigateTo={(page: number) =>
-          handleClick('page', Math.min(Math.max(0, page), totalPages - 1))
+          handleClick('page', Math.min(Math.max(1, page), totalPages))
         }
         navigateToPrevious={() =>
-          handleClick('page', Math.max(0, currentPage - 1))
+          handleClick('page', Math.max(1, currentPage - 1))
         }
         navigateToNext={() =>
-          handleClick('page', Math.min(currentPage + 1, totalPages - 1))
+          handleClick('page', Math.min(currentPage + 1, totalPages))
         }
       />
     </div>

@@ -9,7 +9,7 @@ export default function HeaderSummary({
   totalItems: number;
   itemType: string;
 }) {
-  const start = currentPage * itemsPerPage;
+  const start = (currentPage - 1) * itemsPerPage;
   const end = Math.min(start + itemsPerPage, totalItems);
 
   return (

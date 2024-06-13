@@ -27,7 +27,7 @@ export default function Pagination({
   return (
     <PaginationUI className='items-center'>
       <PaginationContent className='flex-wrap justify-center'>
-        {currentPage !== 0 && (
+        {currentPage !== 1 && (
           <PaginationItem>
             <PaginationButton
               className='gap-1 pl-2.5'
@@ -39,23 +39,23 @@ export default function Pagination({
           </PaginationItem>
         )}
 
-        {currentPage !== 0 && (
-          <PaginationButton onClick={() => navigateTo(0)}>{1}</PaginationButton>
+        {currentPage !== 1 && (
+          <PaginationButton onClick={() => navigateTo(1)}>{1}</PaginationButton>
         )}
 
-        {currentPage >= 2 && <PaginationEllipsis />}
+        {currentPage >= 3 && <PaginationEllipsis />}
 
-        <PaginationButton isActive>{currentPage + 1}</PaginationButton>
+        <PaginationButton isActive>{currentPage}</PaginationButton>
 
-        {currentPage <= totalPages - 3 && <PaginationEllipsis />}
+        {currentPage <= totalPages - 2 && <PaginationEllipsis />}
 
-        {currentPage + 1 !== totalPages && (
+        {currentPage !== totalPages && (
           <PaginationButton onClick={() => navigateTo(totalPages)}>
             {totalPages}
           </PaginationButton>
         )}
 
-        {currentPage !== totalPages - 1 && (
+        {currentPage !== totalPages && (
           <PaginationItem>
             <PaginationButton className='gap-1 pl-2.5' onClick={navigateToNext}>
               <span>Next</span>

@@ -91,7 +91,7 @@ export type ExpeditionsParams = {
 };
 
 export type ExpeditionsResponse = {
-  data: TExpedition[];
+  expeditions: TExpedition[];
   itemsPerPage: number;
   totalItems: number;
   totalPages: number;
