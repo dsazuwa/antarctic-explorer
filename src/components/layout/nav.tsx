@@ -7,7 +7,7 @@ export default function Navbar({ className }: { className?: string }) {
   return (
     <nav
       className={cn(
-        'z-50 w-full border-b border-neutral-200/60 bg-white',
+        'z-50 w-full border-b border-border/60 bg-white',
         className,
       )}
     >
