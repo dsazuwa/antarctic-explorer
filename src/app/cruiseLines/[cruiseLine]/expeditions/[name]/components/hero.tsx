@@ -53,6 +53,7 @@ export default function Hero({
               target='_blank'
               rel='noopener noreferrer'
               className='hover:underline'
+              aria-label={`Go to external page: ${name}`}
             >
               <h1 className='heading-3 font-semibold'>{name}</h1>
             </a>

@@ -13,7 +13,7 @@ export default function HeaderSummary({
   const end = Math.min(start + itemsPerPage, totalItems);
 
   return (
-    <div className='body-sm lg:body mr-2 inline-flex flex-wrap space-x-1 font-semibold text-slate-500'>
+    <div className='body-sm lg:body mr-2 inline-flex flex-wrap space-x-1 font-semibold'>
       <span>Showing</span>
 
       {totalItems === 0 && <span>0</span>}

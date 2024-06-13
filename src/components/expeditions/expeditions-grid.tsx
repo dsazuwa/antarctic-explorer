@@ -23,7 +23,7 @@ export default async function ExpeditionsGrid({ expeditions }: Props) {
         <Expedition
           key={'expedition' + index}
           expedition={expedition}
-          isImgPriority={true}
+          priority={true}
         />
       ))}
     </ol>

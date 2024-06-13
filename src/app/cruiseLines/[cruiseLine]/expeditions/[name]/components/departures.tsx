@@ -15,7 +15,7 @@ import {
 import { TDeparture } from '@/lib/type';
 import { cn, formatPrice } from '@/lib/utils';
 import { useDeparturesStore } from '@/store/departures';
-import InfoDisplay from './info-diaplay';
+import InfoDisplay from './info-display';
 
 type Props = { cruiseLine: string; name: string };
 
@@ -173,7 +173,7 @@ function Departure({ departure }: { departure: TDeparture }) {
       </div>
 
       <div className='flex shrink-0 flex-col items-center justify-center gap-2 border-t max-sm:pt-6 sm:border-l sm:border-t-0 sm:pl-6'>
-        <div className='text-xxs font-semibold text-slate-400 sm:mt-0 sm:text-xs'>
+        <div className='text-xxs font-normal sm:mt-0 sm:text-xs'>
           Starting from
         </div>
 
@@ -188,7 +188,7 @@ function Departure({ departure }: { departure: TDeparture }) {
           </div>
 
           {isDiscounted && (
-            <div className='body font-bold text-emerald-600'>
+            <div className='body font-bold text-emerald-700'>
               {formatPrice(discountedPrice)}
             </div>
           )}
@@ -199,6 +199,7 @@ function Departure({ departure }: { departure: TDeparture }) {
           label='Book Now'
           className='mt-1'
           website={website}
+          aria-label={`Go to external booking page`}
         />
       </div>
     </li>

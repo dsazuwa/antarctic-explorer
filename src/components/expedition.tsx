@@ -10,10 +10,10 @@ import { formatPrice } from '@/lib/utils';
 
 export default function Expedition({
   expedition,
-  isImgPriority,
+  priority,
 }: {
   expedition: TExpedition;
-  isImgPriority?: boolean;
+  priority?: boolean;
 }) {
   const { cruiseLine, name, duration, startingPrice, startDate, photoUrl } =
     expedition;
@@ -32,7 +32,7 @@ export default function Expedition({
             width={0}
             height={0}
             sizes='100vw'
-            priority={!!isImgPriority}
+            priority={priority}
           />
         </div>
 
@@ -106,7 +106,7 @@ function InfoDisplay({
         <Icon className='h-3 w-3 flex-shrink-0 fill-black sm:h-4 sm:w-4' />
       </div>
 
-      <div className='text-[0.9rem] font-semibold text-gray-400'>
+      <div className='text-[0.9rem] font-semibold'>
         <div>{primaryLabel}</div>
 
         <div className='inline-flex flex-wrap items-baseline gap-1'>

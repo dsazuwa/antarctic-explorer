@@ -42,7 +42,11 @@ function Vessel({ vessel }: { vessel: TVessel }) {
           </div>
 
           <div className='inline-flex justify-end pt-2 lg:mt-auto'>
-            <LinkButton label='Explore Ship' website={website} />
+            <LinkButton
+              label='Explore Ship'
+              website={website}
+              aria-label={`Go to external page: ${name}`}
+            />
           </div>
         </div>
 

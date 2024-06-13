@@ -33,7 +33,7 @@ export default function Extensions({ extensions }: Props) {
               className='body-sm ms:body group inline-flex items-center justify-center gap-2 rounded-[32px] border border-sky-800/50 fill-sky-800 px-4 py-2 text-center font-extrabold text-sky-800 transition-colors hover:border-sky-800 hover:shadow-md focus:bg-sky-800 focus:fill-white focus:text-white'
               onClick={() => setShowAll(true)}
             >
-              Show All
+              Show All Extensions
               <ArrowDownIcon />
             </button>
           </div>
@@ -64,7 +64,7 @@ function Extension({ extension }: { extension: TExtension }) {
           </h3>
 
           {duration && (
-            <p className='whitespace-nowrap text-xs font-semibold text-gray-400'>
+            <p className='whitespace-nowrap text-xs font-semibold'>
               {duration} days
             </p>
           )}
@@ -79,9 +79,7 @@ function Extension({ extension }: { extension: TExtension }) {
                 <span className='mr-1 font-extrabold'>
                   {formatPrice(startingPrice)}
                 </span>
-                <span className='text-xs font-semibold text-gray-400'>
-                  / per person
-                </span>
+                <span className='text-xs'>/ per person</span>
               </p>
             </div>
           )}

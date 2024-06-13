@@ -40,19 +40,35 @@ export default function Pagination({
         )}
 
         {currentPage !== 1 && (
-          <PaginationButton onClick={() => navigateTo(1)}>{1}</PaginationButton>
+          <PaginationItem>
+            <PaginationButton onClick={() => navigateTo(1)}>
+              {1}
+            </PaginationButton>
+          </PaginationItem>
         )}
 
-        {currentPage >= 3 && <PaginationEllipsis />}
+        {currentPage >= 3 && (
+          <PaginationItem>
+            <PaginationEllipsis />
+          </PaginationItem>
+        )}
 
-        <PaginationButton isActive>{currentPage}</PaginationButton>
+        <PaginationItem>
+          <PaginationButton isActive>{currentPage}</PaginationButton>
+        </PaginationItem>
 
-        {currentPage <= totalPages - 2 && <PaginationEllipsis />}
+        {currentPage <= totalPages - 2 && (
+          <PaginationItem>
+            <PaginationEllipsis />
+          </PaginationItem>
+        )}
 
         {currentPage !== totalPages && (
-          <PaginationButton onClick={() => navigateTo(totalPages)}>
-            {totalPages}
-          </PaginationButton>
+          <PaginationItem>
+            <PaginationButton onClick={() => navigateTo(totalPages)}>
+              {totalPages}
+            </PaginationButton>
+          </PaginationItem>
         )}
 
         {currentPage !== totalPages && (

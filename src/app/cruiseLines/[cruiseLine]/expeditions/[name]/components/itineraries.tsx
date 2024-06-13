@@ -15,7 +15,7 @@ import { Sheet, SheetContent } from '@/components/ui/sheet';
 import { useMediaQuery } from '@/hooks/use-media-query';
 import { TItinerary } from '@/lib/type';
 import { cn } from '@/lib/utils';
-import InfoDisplay from './info-diaplay';
+import InfoDisplay from './info-display';
 
 type ItinerariesProps = { itineraries: TItinerary[] };
 

@@ -38,6 +38,7 @@ type Props = {
   className?: string;
   website: string;
   label: string;
+  'aria-label'?: string;
 } & VariantProps<typeof variants>;
 
 export default function LinkButton({
@@ -45,12 +46,14 @@ export default function LinkButton({
   variant,
   website,
   label,
+  ...props
 }: Props) {
   return (
     <a
       href={website}
       target='_blank'
       rel='noopener noreferrer'
+      {...props}
       className={cn(variants({ variant, className }))}
     >
       <span>{label}</span>
