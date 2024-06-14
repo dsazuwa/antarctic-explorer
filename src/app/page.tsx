@@ -28,7 +28,7 @@ export default async function HomePage({
       <div className='grid h-full flex-grow px-6 lg:container lg:grid-cols-3 lg:gap-12 xl:grid-cols-4'>
         <SideFilterPanel />
 
-        <main className='col-span-4 flex h-full w-full flex-col gap-4 pt-6 lg:col-span-2 lg:pt-24 xl:col-span-3'>
+        <main className='col-span-4 flex h-full w-full flex-col gap-6 pt-6 lg:col-span-2 lg:pt-24 xl:col-span-3'>
           <h1 className='heading-2 text-center font-bold text-navy'>
             Expeditions
           </h1>
@@ -45,7 +45,7 @@ export default async function HomePage({
 
           <ExpeditionsGrid expeditions={expeditions} />
 
-          <div className='mt-auto space-y-8'>
+          <div className='mt-auto space-y-8 pt-2'>
             <PaginationControls
               currentPage={currentPage}
               totalPages={totalPages}

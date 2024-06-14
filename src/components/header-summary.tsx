@@ -36,7 +36,7 @@ export default function HeaderSummary({
         </>
       )}
 
-      <span>{itemType}</span>
+      <span className='capitalize'>{itemType}</span>
     </div>
   );
 }

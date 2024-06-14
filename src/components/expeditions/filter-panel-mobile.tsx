@@ -23,7 +23,7 @@ export default function MobileFilterPanel() {
   }, [isDesktop]);
 
   return (
-    <div className='inline-flex flex-wrap justify-between gap-2 font-semibold lg:hidden'>
+    <div className='inline-flex flex-wrap justify-between gap-6 font-semibold lg:hidden'>
       <Sheet open={open} onOpenChange={setOpen}>
         <SheetTrigger asChild>
           <Button variant='outline' className='gap-2'>

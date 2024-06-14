@@ -38,7 +38,7 @@ export function OptionsSelector({
             >
               <input
                 type={type}
-                className='mr-2 rounded-none'
+                className='mr-2 rounded-none accent-primary'
                 value={i}
                 name={label + ' options'}
                 checked={isChecked(i)}

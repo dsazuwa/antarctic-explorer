@@ -30,7 +30,7 @@ export default function Extensions({ extensions }: Props) {
         {!showAll && extensions.length > 3 && (
           <div className='flex justify-center'>
             <button
-              className='body-sm ms:body group inline-flex items-center justify-center gap-2 rounded-[32px] border border-sky-800/50 fill-sky-800 px-4 py-2 text-center font-extrabold text-sky-800 transition-colors hover:border-sky-800 hover:shadow-md focus:bg-sky-800 focus:fill-white focus:text-white'
+              className='body-sm ms:body group inline-flex items-center justify-center gap-2 rounded-sm border border-sky-800/50 fill-sky-800 px-4 py-2 text-center font-extrabold text-sky-800 transition-colors hover:border-sky-800 hover:shadow-md focus:bg-sky-800 focus:fill-white focus:text-white'
               onClick={() => setShowAll(true)}
             >
               Show All Extensions

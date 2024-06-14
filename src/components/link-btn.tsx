@@ -4,7 +4,7 @@ import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '@/lib/utils';
 
 const variants = cva(
-  'body-sm group inline-flex items-center text-center gap-2 rounded-[32px] py-2 font-extrabold transition-colors',
+  'body-sm group inline-flex items-center text-center gap-2 rounded-sm py-2 font-extrabold transition-colors',
   {
     variants: {
       variant: {
