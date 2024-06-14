@@ -18,6 +18,9 @@ export default function Expedition({
   const { cruiseLine, name, duration, startingPrice, startDate, photoUrl } =
     expedition;
 
+  const width = photoInfo[cruiseLine.name]?.width ?? 50;
+  const height = photoInfo[cruiseLine.name]?.height ?? 50;
+
   return (
     <li>
       <Link
@@ -25,15 +28,17 @@ export default function Expedition({
         className='group relative flex h-full flex-col rounded-sm bg-white hover:shadow-sm'
       >
         <div>
-          <Image
-            className='aspect-[4/3] h-full w-full rounded-t-sm object-cover object-bottom'
-            src={photoUrl}
-            alt={name}
-            width={0}
-            height={0}
-            sizes='100vw'
-            priority={priority}
-          />
+          <div className='aspect-[4/3]'>
+            <Image
+              className='h-full w-full rounded-t-sm object-cover object-bottom'
+              src={photoUrl}
+              alt={name}
+              width={0}
+              height={0}
+              sizes='100vw'
+              priority={priority}
+            />
+          </div>
         </div>
 
         <div className='flex flex-1 flex-col rounded-b-sm border-x border-b'>
@@ -42,8 +47,8 @@ export default function Expedition({
               className='h-6 w-auto shrink-0 sm:h-8'
               src={cruiseLine.logo}
               alt={`${cruiseLine.name} logo`}
-              width={0}
-              height={0}
+              width={width}
+              height={height}
               sizes='100vw'
             />
 
@@ -63,15 +68,7 @@ export default function Expedition({
             <InfoDisplay
               Icon={CalendarIcon}
               primaryLabel='Next Sailing'
-              value={
-                startDate === null
-                  ? null
-                  : new Date(startDate).toLocaleDateString('en-US', {
-                      year: '2-digit',
-                      month: '2-digit',
-                      day: '2-digit',
-                    })
-              }
+              value={startDate}
             />
 
             {startingPrice && (
@@ -101,7 +98,7 @@ function InfoDisplay({
   value: string | null;
 }) {
   return (
-    <div className='inline-flex flex-wrap items-center gap-2'>
+    <div className='inline-flex items-center gap-2'>
       <div className='rounded-full bg-primary/10 p-2'>
         <Icon className='h-3 w-3 flex-shrink-0 fill-black sm:h-4 sm:w-4' />
       </div>
@@ -122,3 +119,9 @@ function InfoDisplay({
     </div>
   );
 }
+
+const photoInfo: Record<string, { width: number; height: number }> = {
+  'Aurora Expeditions': { width: 100, height: 100 },
+  'Hurtigruten Expeditions': { width: 187, height: 269 },
+  'Lindblad Expeditions': { width: 225, height: 225 },
+};
