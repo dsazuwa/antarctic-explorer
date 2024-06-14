@@ -81,8 +81,13 @@ export const getCapacityParam = (capacity: string | null) =>
 export const getDurationParam = (duration: string | null) =>
   getParamInRange(duration, defaultDuration, 0, durationOptions.length - 1);
 
-export const getSortParam = (sort: string | null) =>
-  getParamInRange(sort, 0, 0, sortOptions.length - 1);
+export const getSortParam = (sort: string | null, order: string | null) => {
+  const index = sortOptions.findIndex(
+    (x) => x.sort === sort && x.order === order,
+  );
+
+  return index < 0 ? 0 : index;
+};
 
 const getParamValue = (
   params: { [key: string]: string | string[] | undefined },
@@ -98,7 +103,12 @@ export const getExpeditionsParams = (params: {
   const page = getNumericalParam(params.page, 1);
   const size = getNumericalParam(params.size, 6);
 
-  const sort = getSortParam(getParamValue(params, 'sort'));
+  const sortOption = getSortParam(
+    getParamValue(params, 'sort'),
+    getParamValue(params, 'order'),
+  );
+  const { sort, order } = sortOptions[sortOption];
+
   const cruiseLines = getCruiseLinesParam(params.cruiseLines).join(',');
 
   const startDate = getDateParam(getParamValue(params, 'startDate'));
@@ -130,8 +140,8 @@ export const getExpeditionsParams = (params: {
   return {
     page,
     size,
-    sort: sortOptions[sort].sort,
-    order: sortOptions[sort].order,
+    sort,
+    order,
     ...(cruiseLines.length === 0 ? {} : { cruiseLines }),
     ...startFilter,
     ...endFilter,
@@ -192,8 +202,14 @@ export const updateQueryParam = (
 
     case 'sort':
       params.delete('page');
-      if (value === 0) params.delete(param);
-      else params.set(param, value.toString());
+      if (value === 0) {
+        params.delete('sort');
+        params.delete('order');
+      } else {
+        const { sort, order } = sortOptions[value];
+        params.set('sort', sort);
+        params.set('order', order);
+      }
       break;
 
     default:

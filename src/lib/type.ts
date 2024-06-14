@@ -142,15 +142,9 @@ export type RangedFilterOption =
       min: number;
     };
 
-export type SortType = {
-  displayText: string;
-  sort: string;
-  order: 'asc' | 'desc';
-};
-
 export type ExpeditionSortType = {
   displayText: string;
-  sort: 'cruiseLine' | 'name' | 'startDate' | 'startingPrice';
+  sort: 'cruiseLine' | 'name' | 'startDate' | 'price';
   order: 'asc' | 'desc';
 };
 
@@ -159,3 +153,5 @@ export type DepartureSortType = {
   sort: 'startDate' | 'price';
   order: 'asc' | 'desc';
 };
+
+export type SortType = ExpeditionSortType | DepartureSortType;

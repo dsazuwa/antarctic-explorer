@@ -24,7 +24,10 @@ export default function PaginationHeader({ page, size, totalItems }: Props) {
 
       <SortSelector
         sortOptions={sortOptions}
-        selectedSort={getSortParam(searchParams.get('sort'))}
+        selectedSort={getSortParam(
+          searchParams.get('sort'),
+          searchParams.get('order'),
+        )}
         setSortOption={(i: number) =>
           updateQueryParam(router, searchParams, { param: 'sort', value: i })
         }

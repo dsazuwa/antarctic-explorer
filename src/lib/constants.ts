@@ -57,12 +57,12 @@ export const sortOptions: ExpeditionSortType[] = [
   },
   {
     displayText: 'Price (Low to High)',
-    sort: 'startingPrice',
+    sort: 'price',
     order: 'asc',
   },
   {
     displayText: 'Price (High to Low)',
-    sort: 'startingPrice',
+    sort: 'price',
     order: 'desc',
   },
 ];
