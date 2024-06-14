@@ -167,10 +167,9 @@ export const updateQueryParam = (
 
   switch (param) {
     case 'cruiseLines':
-      // params.set('page', '0');
       params.delete('page');
-      if (value.length === 0) params.delete(param);
-      else params.set(param, value.join(','));
+      params.delete(param);
+      if (value.length > 0) value.forEach((v) => params.append(param, v));
       break;
 
     case 'capacity':

@@ -103,7 +103,9 @@ const getQueryParams = (request: NextRequest) => {
   const minCapacity = getNumericalParam(queryParams[8], 0);
   const maxCapacity = getNumericalParam(queryParams[9], 2147483647);
 
-  const cruiseLines = request.nextUrl.searchParams.getAll('cruiseLines');
+  const getCruiseLinesParam = request.nextUrl.searchParams.get('cruiseLines');
+  const cruiseLines =
+    getCruiseLinesParam === null ? [] : getCruiseLinesParam.split(',');
 
   return {
     page,

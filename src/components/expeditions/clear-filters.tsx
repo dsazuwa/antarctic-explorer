@@ -1,10 +1,11 @@
 'use client';
 
-import { useSearchParams } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 
 import { Button } from '@/components/ui/button';
 
 export default function ClearFilters() {
+  const router = useRouter();
   const searchParams = useSearchParams();
 
   const clearFilter = () => {
@@ -17,7 +18,7 @@ export default function ClearFilters() {
     params.delete('capacity');
     params.delete('duration');
 
-    return params.toString();
+    router.push(`/?${params.toString()}`);
   };
 
   return (
