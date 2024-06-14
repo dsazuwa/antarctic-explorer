@@ -111,6 +111,7 @@ function Chip({ label, handleClick }: ChipProps) {
       <button
         className='ml-2 rounded-full bg-muted-foreground/35 p-1 transition-colors hover:bg-muted-foreground/45 hover:shadow-sm'
         onClick={handleClick}
+        aria-label={`Remove filter: ${label}`}
       >
         <Cross2Icon className='h-3 w-3 text-white' />
       </button>

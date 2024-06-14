@@ -28,15 +28,10 @@ export async function GET(
     },
   );
 
-  const { data, error } = await supabase
-    .schema('antarctic')
-    .rpc('get_expedition', {
-      p_cruise_line: cruiseLine,
-      p_name: name,
-    });
-
-  // TODO: handle error
-  console.log(error);
+  const { data } = await supabase.schema('antarctic').rpc('get_expedition', {
+    p_cruise_line: cruiseLine,
+    p_name: name,
+  });
 
   return NextResponse.json({ ...data[0] }, { status: 200 });
 }
