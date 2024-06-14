@@ -1,11 +1,9 @@
 import { create } from 'zustand';
 
-import { departuresSizeOptions } from '../lib/constants';
 import { DeparturesResponse } from '../lib/type';
 
 type ExpeditionsStore = DeparturesResponse & {
   isLoading: boolean;
-  selectedSize: number;
   selectedSort: number;
 
   setIsLoading: (isLoading: boolean) => void;
@@ -22,11 +20,10 @@ export const useDeparturesStore = create<ExpeditionsStore>((set) => ({
 
   departures: [],
   currentPage: 1,
-  size: 0,
+  size: 5,
   totalItems: 0,
   totalPages: 0,
 
-  selectedSize: 0,
   selectedSort: 0,
 
   setIsLoading: (isLoading: boolean) => {
@@ -37,7 +34,6 @@ export const useDeparturesStore = create<ExpeditionsStore>((set) => ({
     set({
       ...data,
       isLoading: false,
-      selectedSize: departuresSizeOptions.findIndex((x) => x === data.size),
     });
   },
 
@@ -46,7 +42,7 @@ export const useDeparturesStore = create<ExpeditionsStore>((set) => ({
   },
 
   setSize: (val) => {
-    set({ currentPage: 1, selectedSort: val });
+    set({ currentPage: 1, size: val });
   },
 
   navigateTo: (page: number) => {

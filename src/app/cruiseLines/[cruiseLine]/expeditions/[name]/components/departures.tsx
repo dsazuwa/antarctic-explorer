@@ -17,7 +17,7 @@ import InfoDisplay from './info-display';
 type Props = { cruiseLine: string; name: string };
 
 export default function Departures({ cruiseLine, name }: Props) {
-  const { departures, currentPage, selectedSize, selectedSort, setDepartures } =
+  const { departures, currentPage, size, selectedSort, setDepartures } =
     useDeparturesStore();
 
   useEffect(() => {
@@ -25,7 +25,7 @@ export default function Departures({ cruiseLine, name }: Props) {
 
     const params = {
       page: currentPage,
-      size: departuresSizeOptions[selectedSize],
+      size,
       sort,
       dir,
     };
@@ -40,7 +40,7 @@ export default function Departures({ cruiseLine, name }: Props) {
     fetch(url.toString())
       .then((response) => response.json())
       .then((data) => setDepartures(data));
-  }, [cruiseLine, name, currentPage, selectedSize, selectedSort]);
+  }, [cruiseLine, name, currentPage, size, selectedSort]);
 
   return departures.length === 0 ? (
     <></>
@@ -64,7 +64,7 @@ export default function Departures({ cruiseLine, name }: Props) {
 }
 
 function Header() {
-  const { currentPage, totalItems, selectedSort, selectedSize, setSort } =
+  const { currentPage, totalItems, selectedSort, size, setSort } =
     useDeparturesStore();
 
   return (
@@ -72,7 +72,7 @@ function Header() {
       <HeaderSummary
         itemType='departures'
         currentPage={currentPage}
-        size={departuresSizeOptions[selectedSize]}
+        size={size}
         totalItems={totalItems}
       />
 
@@ -88,7 +88,7 @@ function Header() {
 function Controls() {
   const {
     currentPage,
-    selectedSize,
+    size,
     totalPages,
     setSize,
     navigateTo,
@@ -100,7 +100,7 @@ function Controls() {
     <div className='flex flex-col-reverse items-center justify-between gap-4 md:flex-row'>
       <SizeSelector
         options={departuresSizeOptions}
-        size={selectedSize}
+        size={size}
         setSize={setSize}
       />
 
