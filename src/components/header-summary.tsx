@@ -1,15 +1,15 @@
 export default function HeaderSummary({
-  currentPage,
+  page,
   size,
   totalItems,
   itemType,
 }: {
-  currentPage: number;
+  page: number;
   size: number;
   totalItems: number;
   itemType: string;
 }) {
-  const start = (currentPage - 1) * size;
+  const start = (page - 1) * size;
   const end = Math.min(start + size, totalItems);
 
   return (

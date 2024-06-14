@@ -10,7 +10,7 @@ import { cn } from '@/lib/utils';
 import { Button, buttonVariants } from './ui/button';
 
 type Props = {
-  currentPage: number;
+  page: number;
   totalPages: number;
   navigateTo: (page: number) => void;
   navigateToNext: () => void;
@@ -18,7 +18,7 @@ type Props = {
 };
 
 export default function Pagination({
-  currentPage,
+  page,
   totalPages,
   navigateTo,
   navigateToNext,
@@ -29,7 +29,7 @@ export default function Pagination({
   return (
     <PaginationUI className='items-center'>
       <PaginationContent className='flex-wrap justify-center'>
-        {currentPage !== 1 && (
+        {page !== 1 && (
           <PaginationItem>
             <PaginationButton
               className='gap-1 pl-2.5'
@@ -41,7 +41,7 @@ export default function Pagination({
           </PaginationItem>
         )}
 
-        {currentPage !== 1 && (
+        {page !== 1 && (
           <PaginationItem>
             <PaginationButton onClick={() => navigateTo(1)}>
               {1}
@@ -49,23 +49,23 @@ export default function Pagination({
           </PaginationItem>
         )}
 
-        {currentPage >= 3 && (
+        {page >= 3 && (
           <PaginationItem>
             <PaginationEllipsis />
           </PaginationItem>
         )}
 
         <PaginationItem>
-          <PaginationButton isActive>{currentPage}</PaginationButton>
+          <PaginationButton isActive>{page}</PaginationButton>
         </PaginationItem>
 
-        {currentPage <= totalPages - 2 && (
+        {page <= totalPages - 2 && (
           <PaginationItem>
             <PaginationEllipsis />
           </PaginationItem>
         )}
 
-        {currentPage !== totalPages && (
+        {page !== totalPages && (
           <PaginationItem>
             <PaginationButton onClick={() => navigateTo(totalPages)}>
               {totalPages}
@@ -73,7 +73,7 @@ export default function Pagination({
           </PaginationItem>
         )}
 
-        {currentPage !== totalPages && (
+        {page !== totalPages && (
           <PaginationItem>
             <PaginationButton className='gap-1 pl-2.5' onClick={navigateToNext}>
               <span>Next</span>

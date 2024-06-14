@@ -80,7 +80,7 @@ export type ExpeditionsParams = {
   page?: number;
   size?: number;
   sort?: string;
-  dir?: string;
+  order?: string;
   cruiseLines?: string;
   startDate?: string;
   endDate?: string;
@@ -95,7 +95,7 @@ export type ExpeditionsResponse = {
   size: number;
   totalItems: number;
   totalPages: number;
-  currentPage: number;
+  page: number;
 };
 
 export type ExpeditionResponse = {
@@ -121,7 +121,7 @@ export type DeparturesResponse = {
   size: number;
   totalItems: number;
   totalPages: number;
-  currentPage: number;
+  page: number;
 };
 
 export type MainResponse = {
@@ -145,17 +145,17 @@ export type RangedFilterOption =
 export type SortType = {
   displayText: string;
   sort: string;
-  dir: 'asc' | 'desc';
+  order: 'asc' | 'desc';
 };
 
 export type ExpeditionSortType = {
   displayText: string;
   sort: 'cruiseLine' | 'name' | 'startDate' | 'startingPrice';
-  dir: 'asc' | 'desc';
+  order: 'asc' | 'desc';
 };
 
 export type DepartureSortType = {
   displayText: string;
   sort: 'startDate' | 'price';
-  dir: 'asc' | 'desc';
+  order: 'asc' | 'desc';
 };

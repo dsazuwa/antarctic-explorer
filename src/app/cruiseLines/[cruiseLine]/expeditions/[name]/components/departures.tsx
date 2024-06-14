@@ -17,18 +17,12 @@ import InfoDisplay from './info-display';
 type Props = { cruiseLine: string; name: string };
 
 export default function Departures({ cruiseLine, name }: Props) {
-  const { departures, currentPage, size, selectedSort, setDepartures } =
+  const { departures, page, size, selectedSort, setDepartures } =
     useDeparturesStore();
 
   useEffect(() => {
-    const { sort, dir } = departureSortOptions[selectedSort];
-
-    const params = {
-      page: currentPage,
-      size,
-      sort,
-      dir,
-    };
+    const { sort, order } = departureSortOptions[selectedSort];
+    const params = { page, size, sort, order };
 
     const url = new URL(
       `${process.env.NEXT_PUBLIC_API_URL}/cruiseLines/${encodeURIComponent(cruiseLine)}/expeditions/${encodeURIComponent(name)}/departures`,
@@ -40,7 +34,7 @@ export default function Departures({ cruiseLine, name }: Props) {
     fetch(url.toString())
       .then((response) => response.json())
       .then((data) => setDepartures(data));
-  }, [cruiseLine, name, currentPage, size, selectedSort]);
+  }, [cruiseLine, name, page, size, selectedSort]);
 
   return departures.length === 0 ? (
     <></>
@@ -64,14 +58,14 @@ export default function Departures({ cruiseLine, name }: Props) {
 }
 
 function Header() {
-  const { currentPage, totalItems, selectedSort, size, setSort } =
+  const { page, totalItems, selectedSort, size, setSort } =
     useDeparturesStore();
 
   return (
     <div className='inline-flex w-full flex-wrap items-center justify-between gap-4'>
       <HeaderSummary
         itemType='departures'
-        currentPage={currentPage}
+        page={page}
         size={size}
         totalItems={totalItems}
       />
@@ -87,7 +81,7 @@ function Header() {
 
 function Controls() {
   const {
-    currentPage,
+    page,
     size,
     totalPages,
     setSize,
@@ -105,7 +99,7 @@ function Controls() {
       />
 
       <Pagination
-        currentPage={currentPage}
+        page={page}
         totalPages={totalPages}
         navigateTo={navigateTo}
         navigateToPrevious={navigateToPrevious}

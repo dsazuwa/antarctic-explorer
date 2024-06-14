@@ -7,13 +7,9 @@ import SizeSelector from '@/components/size-selector';
 import { sizeOptions } from '@/lib/constants';
 import { updateQueryParam } from '@/lib/param.utils';
 
-type Props = { size: number; currentPage: number; totalPages: number };
+type Props = { size: number; page: number; totalPages: number };
 
-export default function PaginationControls({
-  currentPage,
-  totalPages,
-  size,
-}: Props) {
+export default function PaginationControls({ page, totalPages, size }: Props) {
   const router = useRouter();
   const searchParams = useSearchParams();
 
@@ -30,16 +26,14 @@ export default function PaginationControls({
       />
 
       <Pagination
-        currentPage={currentPage}
+        page={page}
         totalPages={totalPages}
         navigateTo={(page: number) =>
           handleClick('page', Math.min(Math.max(1, page), totalPages))
         }
-        navigateToPrevious={() =>
-          handleClick('page', Math.max(1, currentPage - 1))
-        }
+        navigateToPrevious={() => handleClick('page', Math.max(1, page - 1))}
         navigateToNext={() =>
-          handleClick('page', Math.min(currentPage + 1, totalPages))
+          handleClick('page', Math.min(page + 1, totalPages))
         }
       />
     </div>

@@ -18,7 +18,7 @@ export default async function HomePage({
 }: {
   searchParams?: SearchParams;
 }) {
-  const { expeditions, currentPage, totalPages, size, totalItems } =
+  const { expeditions, page, totalPages, size, totalItems } =
     await fetchExpeditions(searchParams);
 
   return (
@@ -37,17 +37,13 @@ export default async function HomePage({
 
           <FilterChips />
 
-          <PaginationHeader
-            currentPage={currentPage}
-            size={size}
-            totalItems={totalItems}
-          />
+          <PaginationHeader page={page} size={size} totalItems={totalItems} />
 
           <ExpeditionsGrid expeditions={expeditions} />
 
           <div className='mt-auto space-y-8 pt-2'>
             <PaginationControls
-              currentPage={currentPage}
+              page={page}
               totalPages={totalPages}
               size={size}
             />

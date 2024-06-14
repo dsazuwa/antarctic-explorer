@@ -11,7 +11,7 @@ export async function GET(
     params: { cruiseLine, name },
   }: { params: { cruiseLine: string; name: string } },
 ) {
-  const { page, size, sort, dir } = getQueryParams(request);
+  const { page, size, sort, order } = getQueryParams(request);
 
   const cookieStore = cookies();
 
@@ -40,32 +40,32 @@ export async function GET(
       p_name: name,
       p_page: page,
       p_size: size,
-      p_order: sort,
-      p_sort: dir,
+      p_sort: sort,
+      p_order: order,
     });
 
   const { totalItems, departures } = data[0];
 
   const response: DeparturesResponse = {
     departures,
-    currentPage: page,
-    totalPages: Math.ceil(totalItems / size),
+    page,
     size,
     totalItems,
+    totalPages: Math.ceil(totalItems / size),
   };
 
   return NextResponse.json(response, { status: 200 });
 }
 
 const getQueryParams = (request: NextRequest) => {
-  const queryParams = ['page', 'size', 'sort', 'dir'].map((param) =>
+  const queryParams = ['page', 'size', 'sort', 'order'].map((param) =>
     request.nextUrl.searchParams.get(param),
   );
 
   const page = getNumericalParam(queryParams[0], 1);
   const size = getNumericalParam(queryParams[1], 5);
   const sort = getEnumParam(queryParams[2], ['startDate', 'price'], 'price');
-  const dir = getEnumParam(queryParams[3], ['asc', 'desc'], 'asc');
+  const order = getEnumParam(queryParams[3], ['asc', 'desc'], 'asc');
 
-  return { page, size, sort, dir };
+  return { page, size, sort, order };
 };

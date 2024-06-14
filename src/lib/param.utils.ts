@@ -131,7 +131,7 @@ export const getExpeditionsParams = (params: {
     page,
     size,
     sort: sortOptions[sort].sort,
-    dir: sortOptions[sort].dir,
+    order: sortOptions[sort].order,
     ...(cruiseLines.length === 0 ? {} : { cruiseLines }),
     ...startFilter,
     ...endFilter,

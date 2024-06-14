@@ -14,7 +14,7 @@ export async function GET(request: NextRequest) {
     page,
     size,
     sort,
-    dir,
+    order,
     startDate,
     endDate,
     minDuration,
@@ -54,15 +54,15 @@ export async function GET(request: NextRequest) {
     p_max_duration: maxDuration,
     p_page: page,
     p_size: size,
-    p_order: sort,
-    p_sort: dir,
+    p_sort: sort,
+    p_order: order,
   });
 
   const { totalItems, expeditions } = data[0];
 
   const response: ExpeditionsResponse = {
     expeditions,
-    currentPage: page,
+    page,
     totalPages: Math.ceil(totalItems / size),
     size,
     totalItems,
@@ -76,7 +76,7 @@ const getQueryParams = (request: NextRequest) => {
     'page',
     'size',
     'sort',
-    'dir',
+    'order',
     'startDate',
     'endDate',
     'duration.min',
@@ -92,7 +92,7 @@ const getQueryParams = (request: NextRequest) => {
     ['name', 'cruiseLine', 'startDate', 'startingPrice'],
     'startDate',
   );
-  const dir = getEnumParam(queryParams[3], ['asc', 'desc'], 'asc');
+  const order = getEnumParam(queryParams[3], ['asc', 'desc'], 'asc');
 
   const startDate = getDateParam(queryParams[4]);
   const endDate = getDateParam(queryParams[5]);
@@ -111,7 +111,7 @@ const getQueryParams = (request: NextRequest) => {
     page,
     size,
     sort,
-    dir,
+    order,
     startDate,
     endDate,
     minDuration,

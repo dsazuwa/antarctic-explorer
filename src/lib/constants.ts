@@ -38,32 +38,32 @@ export const sortOptions: ExpeditionSortType[] = [
   {
     displayText: 'Date (Upcoming to Later)',
     sort: 'startDate',
-    dir: 'asc',
+    order: 'asc',
   },
   {
     displayText: 'Date (Later to Upcoming)',
     sort: 'startDate',
-    dir: 'desc',
+    order: 'desc',
   },
   {
     displayText: 'Name (A-Z)',
     sort: 'name',
-    dir: 'asc',
+    order: 'asc',
   },
   {
     displayText: 'Name (Z-A)',
     sort: 'name',
-    dir: 'desc',
+    order: 'desc',
   },
   {
     displayText: 'Price (Low to High)',
     sort: 'startingPrice',
-    dir: 'asc',
+    order: 'asc',
   },
   {
     displayText: 'Price (High to Low)',
     sort: 'startingPrice',
-    dir: 'desc',
+    order: 'desc',
   },
 ];
 
@@ -71,22 +71,22 @@ export const departureSortOptions: DepartureSortType[] = [
   {
     displayText: 'Date (Upcoming to Later)',
     sort: 'startDate',
-    dir: 'asc',
+    order: 'asc',
   },
   {
     displayText: 'Date (Later to Upcoming)',
     sort: 'startDate',
-    dir: 'desc',
+    order: 'desc',
   },
   {
     displayText: 'Price (Low to High)',
     sort: 'price',
-    dir: 'asc',
+    order: 'asc',
   },
   {
     displayText: 'Price (High to Low)',
     sort: 'price',
-    dir: 'desc',
+    order: 'desc',
   },
 ];
 
