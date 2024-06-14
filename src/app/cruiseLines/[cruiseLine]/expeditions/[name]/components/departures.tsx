@@ -6,12 +6,9 @@ import { useEffect } from 'react';
 import HeaderSummary from '@/components/header-summary';
 import LinkButton from '@/components/link-btn';
 import Pagination from '@/components/pagination';
-import PerPageSelector from '@/components/per-page-selector';
+import SizeSelector from '@/components/size-selector';
 import SortSelector from '@/components/sort-selector';
-import {
-  departureSortOptions,
-  departuresPerPageOptions,
-} from '@/lib/constants';
+import { departureSortOptions, departuresSizeOptions } from '@/lib/constants';
 import { TDeparture } from '@/lib/type';
 import { cn, formatPrice } from '@/lib/utils';
 import { useDeparturesStore } from '@/store/departures';
@@ -28,7 +25,7 @@ export default function Departures({ cruiseLine, name }: Props) {
 
     const params = {
       page: currentPage,
-      size: departuresPerPageOptions[selectedSize],
+      size: departuresSizeOptions[selectedSize],
       sort,
       dir,
     };
@@ -75,7 +72,7 @@ function Header() {
       <HeaderSummary
         itemType='departures'
         currentPage={currentPage}
-        itemsPerPage={departuresPerPageOptions[selectedSize]}
+        size={departuresSizeOptions[selectedSize]}
         totalItems={totalItems}
       />
 
@@ -101,10 +98,10 @@ function Controls() {
 
   return (
     <div className='flex flex-col-reverse items-center justify-between gap-4 md:flex-row'>
-      <PerPageSelector
-        options={departuresPerPageOptions}
-        itemsPerPage={selectedSize}
-        setItemsPerPage={setSize}
+      <SizeSelector
+        options={departuresSizeOptions}
+        size={selectedSize}
+        setSize={setSize}
       />
 
       <Pagination

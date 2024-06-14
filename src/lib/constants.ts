@@ -5,8 +5,8 @@ import {
   RangedFilterOption,
 } from './type';
 
-export const itemsPerPageOptions = [6, 12, 18, 24];
-export const departuresPerPageOptions = [5, 10, 15, 20];
+export const sizeOptions = [6, 12, 18, 24];
+export const departuresSizeOptions = [5, 10, 15, 20];
 
 export const cruiseLineOptions = [
   'Aurora Expeditions',
@@ -89,3 +89,9 @@ export const departureSortOptions: DepartureSortType[] = [
     dir: 'desc',
   },
 ];
+
+export const expeditionsDefault = {
+  sort: 'startDate',
+  order: 'asc',
+  size: 6,
+};

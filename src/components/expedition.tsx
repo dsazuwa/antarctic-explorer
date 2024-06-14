@@ -110,7 +110,7 @@ function InfoDisplay({
           {value === null ? (
             <span>Unavailable</span>
           ) : (
-            <span className='text-base text-black'>{value}</span>
+            <span className='text-nowrap text-base text-black'>{value}</span>
           )}
 
           {secondaryLabel && <span>{secondaryLabel}</span>}

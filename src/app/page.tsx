@@ -18,7 +18,7 @@ export default async function HomePage({
 }: {
   searchParams?: SearchParams;
 }) {
-  const { expeditions, currentPage, totalPages, itemsPerPage, totalItems } =
+  const { expeditions, currentPage, totalPages, size, totalItems } =
     await fetchExpeditions(searchParams);
 
   return (
@@ -39,7 +39,7 @@ export default async function HomePage({
 
           <PaginationHeader
             currentPage={currentPage}
-            itemsPerPage={itemsPerPage}
+            size={size}
             totalItems={totalItems}
           />
 
@@ -49,7 +49,7 @@ export default async function HomePage({
             <PaginationControls
               currentPage={currentPage}
               totalPages={totalPages}
-              itemsPerPage={itemsPerPage}
+              size={size}
             />
 
             <Footer />

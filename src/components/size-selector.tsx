@@ -8,20 +8,18 @@ import {
 
 type Props = {
   options: number[];
-  itemsPerPage: number;
-  setItemsPerPage: (i: number) => void;
+  size: number;
+  setSize: (i: number) => void;
 };
 
-export default function PerPageSelector({
-  options,
-  itemsPerPage,
-  setItemsPerPage,
-}: Props) {
+export default function PerPageSelector({ options, size, setSize }: Props) {
+  const isSizeAnOption = options.includes(size);
+
   return (
     <Select
-      onValueChange={(i) => setItemsPerPage(Number.parseInt(i, 10))}
-      value={itemsPerPage + ''}
-      defaultValue={itemsPerPage + ''}
+      onValueChange={(i) => setSize(Number.parseInt(i, 10))}
+      value={size + ''}
+      defaultValue={size + ''}
     >
       <SelectTrigger
         className='max-w-fit items-center gap-2 bg-inherit text-sm font-semibold text-black lg:text-base'
@@ -29,15 +27,12 @@ export default function PerPageSelector({
       >
         <span className='font-normal text-neutral-500'>Items per page:</span>
 
-        <SelectValue
-          defaultValue={itemsPerPage}
-          className='text-sm lg:text-base'
-        />
+        <SelectValue defaultValue={size} className='text-sm lg:text-base' />
       </SelectTrigger>
 
       <SelectContent>
-        {options.map((o, i) => (
-          <SelectItem key={`option${i}`} value={i + ''} className='body'>
+        {[...options, ...(isSizeAnOption ? [] : [size])].map((o, i) => (
+          <SelectItem key={`option${i}`} value={o + ''} className='body'>
             {o}
           </SelectItem>
         ))}

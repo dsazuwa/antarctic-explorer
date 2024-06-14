@@ -7,7 +7,7 @@ import {
   defaultCapacity,
   defaultDuration,
   durationOptions,
-  itemsPerPageOptions,
+  expeditionsDefault,
   sortOptions,
 } from '@/lib/constants';
 import { ExpeditionsParams } from '@/lib/type';
@@ -96,7 +96,7 @@ export const getExpeditionsParams = (params: {
   [key: string]: string | string[] | undefined;
 }): ExpeditionsParams => {
   const page = getNumericalParam(params.page, 1);
-  const itemsPerPage = getNumericalParam(params.itemsPerPage, 0);
+  const size = getNumericalParam(params.size, 6);
 
   const sort = getSortParam(getParamValue(params, 'sort'));
   const cruiseLines = getCruiseLinesParam(params.cruiseLines).join(',');
@@ -129,7 +129,7 @@ export const getExpeditionsParams = (params: {
 
   return {
     page,
-    size: itemsPerPageOptions[itemsPerPage],
+    size,
     sort: sortOptions[sort].sort,
     dir: sortOptions[sort].dir,
     ...(cruiseLines.length === 0 ? {} : { cruiseLines }),
@@ -158,7 +158,7 @@ export const updateQueryParam = (
   payload:
     | { param: 'cruiseLines'; value: string[] }
     | {
-        param: 'page' | 'itemsPerPage' | 'sort' | 'capacity' | 'duration';
+        param: 'page' | 'size' | 'sort' | 'capacity' | 'duration';
         value: number;
       },
 ) => {
@@ -184,7 +184,12 @@ export const updateQueryParam = (
       else params.set(param, value.toString());
       break;
 
-    case 'itemsPerPage':
+    case 'size':
+      params.delete('page');
+      if (value === expeditionsDefault.size) params.delete(param);
+      else params.set(param, value.toString());
+      break;
+
     case 'sort':
       params.delete('page');
       if (value === 0) params.delete(param);

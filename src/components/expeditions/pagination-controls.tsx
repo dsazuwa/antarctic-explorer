@@ -3,32 +3,30 @@
 import { useRouter, useSearchParams } from 'next/navigation';
 
 import Pagination from '@/components/pagination';
-import PerPageSelector from '@/components/per-page-selector';
-import { itemsPerPageOptions } from '@/lib/constants';
+import SizeSelector from '@/components/size-selector';
+import { sizeOptions } from '@/lib/constants';
 import { updateQueryParam } from '@/lib/param.utils';
 
-type Props = { itemsPerPage: number; currentPage: number; totalPages: number };
+type Props = { size: number; currentPage: number; totalPages: number };
 
 export default function PaginationControls({
   currentPage,
   totalPages,
-  itemsPerPage,
+  size,
 }: Props) {
   const router = useRouter();
   const searchParams = useSearchParams();
 
-  const handleClick = (param: 'page' | 'itemsPerPage', value: number) => {
+  const handleClick = (param: 'page' | 'size', value: number) => {
     updateQueryParam(router, searchParams, { param, value });
   };
 
   return (
     <div className='mt-auto flex w-full flex-col-reverse items-center justify-between gap-4 sm:flex-row'>
-      <PerPageSelector
-        options={itemsPerPageOptions}
-        itemsPerPage={
-          itemsPerPageOptions.findIndex((x) => x === itemsPerPage) || 0
-        }
-        setItemsPerPage={(i) => handleClick('itemsPerPage', i)}
+      <SizeSelector
+        options={sizeOptions}
+        size={size}
+        setSize={(size) => handleClick('size', size)}
       />
 
       <Pagination

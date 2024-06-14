@@ -1,7 +1,8 @@
-import Link from 'next/link';
+'use client';
 
-import { cn } from '@/lib/utils';
-import { buttonVariants } from './ui/button';
+import { useRouter } from 'next/navigation';
+
+import { Button } from './ui/button';
 
 type Props = {
   statusCode: number;
@@ -10,18 +11,25 @@ type Props = {
 };
 
 export default function Error({ statusCode, title, text }: Props) {
+  const router = useRouter();
+
+  const backToHome = () => {
+    router.push('/');
+    router.refresh();
+  };
+
   return (
     <div className='mt-[15%] w-full px-4'>
       <div className='mx-auto flex w-full max-w-screen-lg flex-col items-center gap-2 text-center'>
-        <div className='heading-2 font-bold text-navy'>{statusCode}</div>
+        <div className='heading-2 font-bold'>{statusCode}</div>
 
-        <div className='heading-1 font-bold text-gray-600'>{title}</div>
+        <div className='heading-1 font-bold'>{title}</div>
 
-        <div className='body-sm md:body text-gray-600'>{text}</div>
+        <div className='text-sm md:text-base lg:text-lg'>{text}</div>
 
-        <Link className={cn(buttonVariants(), 'mt-2')} href='/'>
+        <Button className='mt-2' onClick={backToHome}>
           Back Home
-        </Link>
+        </Button>
       </div>
     </div>
   );

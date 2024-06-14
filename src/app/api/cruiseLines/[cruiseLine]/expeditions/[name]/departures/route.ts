@@ -50,7 +50,7 @@ export async function GET(
     departures,
     currentPage: page,
     totalPages: Math.ceil(totalItems / size),
-    itemsPerPage: size,
+    size,
     totalItems,
   };
 

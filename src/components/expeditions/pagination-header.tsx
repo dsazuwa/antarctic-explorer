@@ -7,11 +7,11 @@ import SortSelector from '@/components/sort-selector';
 import { sortOptions } from '@/lib/constants';
 import { getSortParam, updateQueryParam } from '@/lib/param.utils';
 
-type Props = { currentPage: number; itemsPerPage: number; totalItems: number };
+type Props = { currentPage: number; size: number; totalItems: number };
 
 export default function PaginationHeader({
   currentPage,
-  itemsPerPage,
+  size,
   totalItems,
 }: Props) {
   const router = useRouter();
@@ -21,7 +21,7 @@ export default function PaginationHeader({
     <div className='flex flex-col-reverse gap-6 sm:flex-row sm:flex-wrap-reverse sm:items-center sm:justify-between'>
       <HeaderSummary
         currentPage={currentPage}
-        itemsPerPage={itemsPerPage}
+        size={size}
         totalItems={totalItems}
         itemType='expeditions'
       />

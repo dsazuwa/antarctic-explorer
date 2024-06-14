@@ -92,7 +92,7 @@ export type ExpeditionsParams = {
 
 export type ExpeditionsResponse = {
   expeditions: TExpedition[];
-  itemsPerPage: number;
+  size: number;
   totalItems: number;
   totalPages: number;
   currentPage: number;
@@ -118,7 +118,7 @@ export type ExpeditionResponse = {
 
 export type DeparturesResponse = {
   departures: TDeparture[];
-  itemsPerPage: number;
+  size: number;
   totalItems: number;
   totalPages: number;
   currentPage: number;

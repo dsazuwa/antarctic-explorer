@@ -64,7 +64,7 @@ export async function GET(request: NextRequest) {
     expeditions,
     currentPage: page,
     totalPages: Math.ceil(totalItems / size),
-    itemsPerPage: size,
+    size,
     totalItems,
   };
 

@@ -1,16 +1,16 @@
 export default function HeaderSummary({
   currentPage,
-  itemsPerPage,
+  size,
   totalItems,
   itemType,
 }: {
   currentPage: number;
-  itemsPerPage: number;
+  size: number;
   totalItems: number;
   itemType: string;
 }) {
-  const start = (currentPage - 1) * itemsPerPage;
-  const end = Math.min(start + itemsPerPage, totalItems);
+  const start = (currentPage - 1) * size;
+  const end = Math.min(start + size, totalItems);
 
   return (
     <div className='body-sm lg:body mr-2 inline-flex flex-wrap space-x-1 font-semibold'>
