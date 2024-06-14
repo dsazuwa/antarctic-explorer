@@ -185,18 +185,15 @@ export const updateQueryParam = (
       break;
 
     case 'itemsPerPage':
-      params.delete('page');
-      params.set(param, value.toString());
-      break;
-
     case 'sort':
       params.delete('page');
-      params.set(param, value.toString());
+      if (value === 0) params.delete(param);
+      else params.set(param, value.toString());
       break;
 
     default:
       if (value === 1) params.delete(param);
-      params.set(param, value.toString());
+      else params.set(param, value.toString());
       break;
   }
 
