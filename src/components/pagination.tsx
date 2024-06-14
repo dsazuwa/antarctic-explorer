@@ -24,6 +24,8 @@ export default function Pagination({
   navigateToNext,
   navigateToPrevious,
 }: Props) {
+  if (totalPages === 0) return <></>;
+
   return (
     <PaginationUI className='items-center'>
       <PaginationContent className='flex-wrap justify-center'>
