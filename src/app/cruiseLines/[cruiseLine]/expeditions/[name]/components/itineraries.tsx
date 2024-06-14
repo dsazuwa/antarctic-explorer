@@ -179,7 +179,12 @@ function Map({ alt, url }: { url: string; alt: string }) {
       )}
     >
       {hasMap ? (
-        <Image className='object-cover' src={url} alt={alt} />
+        <Image
+          className='object-cover'
+          src={url}
+          alt={alt}
+          sizes='(max-width: 768px) 100vw, 50vw'
+        />
       ) : (
         <ImageIcon
           className='h-48 w-48 text-primary/20'

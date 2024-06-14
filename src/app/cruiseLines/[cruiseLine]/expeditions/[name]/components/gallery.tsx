@@ -72,7 +72,7 @@ export default function Gallery({ gallery, className }: Props) {
                 src={url}
                 width={0}
                 height={0}
-                sizes='100vw'
+                sizes='(max-width: 640px) 100vw, 60vw'
                 priority={i === 0}
               />
             </div>

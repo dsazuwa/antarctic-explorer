@@ -47,17 +47,21 @@ function Extension({ extension }: { extension: TExtension }) {
   const { name, startingPrice, duration, photoUrl, website } = extension;
 
   return (
-    <li className='group relative h-full rounded-sm bg-white hover:shadow-sm'>
-      <Image
-        className='h-[270px] w-full rounded-t-sm object-cover'
-        src={photoUrl}
-        alt={name}
-        width={0}
-        height={0}
-        sizes='100vw'
-      />
+    <li className='group relative flex h-full flex-col rounded-sm bg-white hover:shadow-sm'>
+      <div>
+        <div className='aspect-[4/3]'>
+          <Image
+            className='h-full w-full rounded-t-sm object-cover'
+            src={photoUrl}
+            alt={name}
+            width={0}
+            height={0}
+            sizes='(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw'
+          />
+        </div>
+      </div>
 
-      <div className='flex h-[calc(100%-270px)] flex-col rounded-b-sm border-x border-b'>
+      <div className='flex flex-1 flex-col rounded-b-sm border-x border-b'>
         <div className='inline-flex justify-between gap-4 p-6'>
           <h3 className='heading-6 font-bold text-primary group-hover:underline'>
             {name}
