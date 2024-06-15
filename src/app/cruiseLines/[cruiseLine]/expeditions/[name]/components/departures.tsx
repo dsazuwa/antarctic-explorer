@@ -1,5 +1,7 @@
 'use client';
 
+/* eslint-disable  @typescript-eslint/no-explicit-any */
+
 import { format, isSameMonth, isSameYear } from 'date-fns';
 import { useEffect } from 'react';
 
@@ -24,17 +26,16 @@ export default function Departures({ cruiseLine, name }: Props) {
     const { sort, order } = departureSortOptions[selectedSort];
     const params = { page, size, sort, order };
 
-    const url = new URL(
-      `${process.env.NEXT_PUBLIC_API_URL}/cruiseLines/${encodeURIComponent(cruiseLine)}/expeditions/${encodeURIComponent(name)}/departures`,
-    );
-
+    const searchParams: Record<string, any> = new URLSearchParams();
     for (const [key, value] of Object.entries(params))
-      url.searchParams.append(key, String(value));
+      searchParams.append(key, String(value));
 
-    fetch(url.toString())
+    fetch(
+      `/api/cruiseLines/${encodeURIComponent(cruiseLine)}/expeditions/${encodeURIComponent(name)}/departures/?${searchParams.toString()}`,
+    )
       .then((response) => response.json())
       .then((data) => setDepartures(data));
-  }, [cruiseLine, name, page, size, selectedSort]);
+  }, [cruiseLine, name, page, size, selectedSort, setDepartures]);
 
   return departures.length === 0 ? (
     <></>

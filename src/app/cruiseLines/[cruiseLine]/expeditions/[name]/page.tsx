@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 
 import Footer from '@/components/layout/footer';
 import Navbar from '@/components/layout/nav';
-import { fetchExpedition } from '@/lib/data';
+import { getExpedition } from '@/lib/data/expedition';
 import {
   Departures,
   Expeditions,
@@ -30,7 +30,7 @@ export default async function ExpeditionPage({ params }: Props) {
     extensions,
     otherExpeditions,
     departures,
-  } = await fetchExpedition(params.cruiseLine, params.name);
+  } = await getExpedition(decodeURI(params.cruiseLine), decodeURI(params.name));
 
   const numVessels = Object.keys(vessels).length;
 
@@ -72,7 +72,7 @@ export default async function ExpeditionPage({ params }: Props) {
 export async function generateMetadata({
   params: { cruiseLine, name },
 }: Props): Promise<Metadata> {
-  const data = await fetchExpedition(cruiseLine, name);
+  const data = await getExpedition(decodeURI(cruiseLine), decodeURI(name));
 
   return {
     title: `${decodeURIComponent(name)} | Antarctic Explorer`,

@@ -1,6 +1,6 @@
-import { createServerClient, type CookieOptions } from '@supabase/ssr';
-import { cookies } from 'next/headers';
 import { NextRequest, NextResponse } from 'next/server';
+
+import { getExpedition } from '@/lib/data/expedition';
 
 export async function GET(
   request: NextRequest,
@@ -8,30 +8,7 @@ export async function GET(
     params: { cruiseLine, name },
   }: { params: { cruiseLine: string; name: string } },
 ) {
-  const cookieStore = cookies();
+  const response = await getExpedition(cruiseLine, name);
 
-  const supabase = createServerClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-    {
-      cookies: {
-        get(name: string) {
-          return cookieStore.get(name)?.value;
-        },
-        set(name: string, value: string, options: CookieOptions) {
-          cookieStore.set({ name, value, ...options });
-        },
-        remove(name: string, options: CookieOptions) {
-          cookieStore.set({ name, value: '', ...options });
-        },
-      },
-    },
-  );
-
-  const { data } = await supabase.schema('antarctic').rpc('get_expedition', {
-    p_cruise_line: cruiseLine,
-    p_name: name,
-  });
-
-  return NextResponse.json({ ...data[0] }, { status: 200 });
+  return NextResponse.json(response, { status: 200 });
 }

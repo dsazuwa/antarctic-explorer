@@ -1,6 +1,4 @@
-export type SearchParams =
-  | { [key: string]: string | string[] | undefined }
-  | undefined;
+export type SearchParams = Record<string, string> | undefined;
 
 export type TCruiseLine = {
   id: number;
