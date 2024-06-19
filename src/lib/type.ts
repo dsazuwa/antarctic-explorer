@@ -74,20 +74,6 @@ export type TExtension = {
   website: string | null;
 };
 
-export type ExpeditionsParams = {
-  page?: number;
-  size?: number;
-  sort?: string;
-  order?: string;
-  cruiseLines?: string;
-  startDate?: string;
-  endDate?: string;
-  'capacity.min'?: number | null;
-  'capacity.max'?: number | null;
-  'duration.min'?: number | null;
-  'duration.max'?: number | null;
-};
-
 export type ExpeditionsResponse = {
   expeditions: TExpedition[];
   size: number;

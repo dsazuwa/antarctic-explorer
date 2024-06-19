@@ -11,6 +11,7 @@ import SideFilterPanel from '@/components/expeditions/filter-panel-side';
 import Footer from '@/components/layout/footer';
 import Navbar from '@/components/layout/nav';
 import { getExpeditions } from '@/lib/data/expeditions';
+import { getExpeditionsParams } from '@/lib/param.utils';
 import { SearchParams } from '@/lib/type';
 
 export default async function HomePage({
@@ -19,7 +20,7 @@ export default async function HomePage({
   searchParams?: SearchParams;
 }) {
   const { expeditions, page, totalPages, size, totalItems } =
-    await getExpeditions(new URLSearchParams(searchParams || {}));
+    await getExpeditions(getExpeditionsParams(searchParams || {}));
 
   return (
     <>

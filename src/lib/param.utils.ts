@@ -10,7 +10,6 @@ import {
   expeditionsDefault,
   sortOptions,
 } from '@/lib/constants';
-import { ExpeditionsParams } from '@/lib/type';
 import { BasicFilterOption, RangedFilterOption } from './type';
 import { formatDate } from './utils';
 
@@ -99,9 +98,9 @@ const getParamValue = (
 
 export const getExpeditionsParams = (params: {
   [key: string]: string | string[] | undefined;
-}): ExpeditionsParams => {
-  const page = getNumericalParam(params.page, 1);
-  const size = getNumericalParam(params.size, 6);
+}) => {
+  const page = getNumericalParam(params.page, 1).toString();
+  const size = getNumericalParam(params.size, 6).toString();
 
   const sortOption = getSortParam(
     getParamValue(params, 'sort'),
@@ -127,27 +126,21 @@ export const getExpeditionsParams = (params: {
     'duration',
   );
 
-  const startFilter =
-    startDate !== null
-      ? { startDate: encodeURIComponent(formatDate(startDate, 'yyyy-MM-dd')) }
-      : {};
-
-  const endFilter =
-    endDate !== null
-      ? { endDate: encodeURIComponent(formatDate(endDate, 'yyyy-MM-dd')) }
-      : {};
-
-  return {
+  return new URLSearchParams({
     page,
     size,
     sort,
     order,
     ...(cruiseLines.length === 0 ? {} : { cruiseLines }),
-    ...startFilter,
-    ...endFilter,
+    ...(startDate === null
+      ? {}
+      : { startDate: encodeURIComponent(formatDate(startDate, 'yyyy-MM-dd')) }),
+    ...(endDate === null
+      ? {}
+      : { endDate: encodeURIComponent(formatDate(endDate, 'yyyy-MM-dd')) }),
     ...capacityFilter,
     ...durationFilter,
-  };
+  });
 };
 
 const buildRangeFilter = (
