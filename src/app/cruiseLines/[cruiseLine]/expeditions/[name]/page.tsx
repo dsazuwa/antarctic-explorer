@@ -30,7 +30,10 @@ export default async function ExpeditionPage({ params }: Props) {
     extensions,
     otherExpeditions,
     departures,
-  } = await getExpedition(decodeURI(params.cruiseLine), decodeURI(params.name));
+  } = await getExpedition(
+    decodeURIComponent(params.cruiseLine),
+    decodeURIComponent(params.name),
+  );
 
   const numVessels = Object.keys(vessels).length;
 
@@ -72,7 +75,10 @@ export default async function ExpeditionPage({ params }: Props) {
 export async function generateMetadata({
   params: { cruiseLine, name },
 }: Props): Promise<Metadata> {
-  const data = await getExpedition(decodeURI(cruiseLine), decodeURI(name));
+  const data = await getExpedition(
+    decodeURIComponent(cruiseLine),
+    decodeURIComponent(name),
+  );
 
   return {
     title: `${decodeURIComponent(name)} | Antarctic Explorer`,
