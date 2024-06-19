@@ -42,20 +42,15 @@ BEGIN
     JOIN antarctic.cruise_lines c ON c.cruise_line_id = e.cruise_line_id
     LEFT JOIN antarctic.departures d ON e.expedition_id = d.expedition_id
     LEFT JOIN antarctic.vessels v ON v.vessel_id = d.vessel_id
+    LEFT JOIN antarctic.itineraries i ON i.expedition_id = e.expedition_id
     WHERE
       ($1::DATE IS NULL OR d.start_date >= $1) AND
       ($2::DATE IS NULL OR d.end_date <= $2) AND
       (cardinality($3::TEXT[]) = 0 OR c.name = ANY($3)) AND
       ($4::INTEGER IS NULL OR v.capacity >= $4) AND
       ($5::INTEGER IS NULL OR v.capacity <= $5) AND
-      (
-        CASE
-          WHEN POSITION(''-'' IN e.duration) > 0 THEN
-            CAST(SPLIT_PART(e.duration, ''-'', 1) AS INTEGER) BETWEEN $6 AND $7
-            OR CAST(SPLIT_PART(e.duration, ''-'', 2) AS INTEGER) BETWEEN $6 AND $7
-          ELSE CAST(e.duration AS INTEGER) BETWEEN $6 AND $7
-        END
-      )
+      ($6::INTEGER IS NULL OR i.duration >= $6) AND
+      ($7::INTEGER IS NULL OR i.duration <= $7)
     GROUP BY e.expedition_id, c.cruise_line_id
   ';
 
@@ -68,36 +63,56 @@ BEGIN
   records_query := '
     WITH expedition_info AS (
       SELECT
-        jsonb_build_object(
-          ''id'', e.expedition_id,
-          ''name'', e.name,
-          ''cruiseLine'', jsonb_build_object(
-            ''id'', c.cruise_line_id,
-            ''name'', c.name,
-            ''logo'', c.logo
-          ),
-          ''capacity'', min(v.capacity),
-          ''duration'', e.duration,
-          ''startDate'', min(d.start_date),
-          ''startingPrice'', e.starting_price,
-          ''photoUrl'', e.photo_url
-        ) AS expedition
-      ' || base_query || '
-      ORDER BY ' ||
-      CASE p_sort
-        WHEN 'name' THEN 'e.name'
-        WHEN 'cruiseLine' THEN 'c.name, e.name'
-        WHEN 'startDate' THEN 'min(d.start_date)'
-        WHEN 'price' THEN 'e.starting_price'
-        ELSE 'e.expedition_id'
-      END || ' ' || 
-      CASE 
-        WHEN UPPER(p_order) = 'DESC' THEN 'DESC'
-        ELSE 'ASC'
-      END || ' NULLS LAST OFFSET $8 LIMIT $9
+        e.expedition_id,
+        e.name AS expedition_name,
+        c.cruise_line_id,
+        c.name AS cruise_line_name,
+        c.logo,
+        MIN(v.capacity) AS capacity,
+        CASE 
+          WHEN MIN(i.duration) = MAX(i.duration) THEN 
+            MIN(i.duration)::VARCHAR
+          ELSE 
+            (MIN(i.duration) || ''-'' || MAX(i.duration))
+        END AS duration_range,
+        MIN(d.start_date) AS start_date,
+        MIN(COALESCE(d.discounted_price, d.starting_price)) AS starting_price,
+        e.photo_url
+        ' || base_query || '
     )
-    SELECT COALESCE(jsonb_agg(DISTINCT expedition) FILTER (WHERE expedition IS NOT NULL), ''[]''::jsonb) AS expeditions
-    FROM expedition_info';
+    SELECT 
+      COALESCE(jsonb_agg(DISTINCT jsonb_build_object(
+        ''id'', expedition_id,
+        ''name'', expedition_name,
+        ''cruiseLine'', jsonb_build_object(
+          ''id'', cruise_line_id,
+          ''name'', cruise_line_name,
+          ''logo'', logo
+        ),
+        ''capacity'', capacity,
+        ''duration'', duration_range,
+        ''startDate'', start_date,
+        ''startingPrice'', starting_price,
+        ''photoUrl'', photo_url
+      )) FILTER (WHERE expedition_id IS NOT NULL), ''[]''::jsonb) AS expeditions
+    FROM (
+      SELECT *
+      FROM expedition_info
+      ORDER BY ' ||
+        CASE p_sort
+          WHEN 'name' THEN 'expedition_name'
+          WHEN 'cruiseLine' THEN 'cruise_line_name'
+          WHEN 'startDate' THEN 'start_date'
+          WHEN 'price' THEN 'starting_price'
+          ELSE 'expedition_id'
+        END
+        || ' ' ||
+        CASE 
+            WHEN UPPER(p_order) = 'DESC' THEN 'DESC'
+            ELSE 'ASC'
+        END
+        || ' NULLS LAST OFFSET $8 LIMIT $9
+    ) sub';
 
   EXECUTE records_query
   USING p_start_date, p_end_date, p_cruise_lines, p_min_capacity, p_max_capacity, p_min_duration, p_max_duration, p_size * (p_page - 1), p_size

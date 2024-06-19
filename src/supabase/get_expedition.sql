@@ -57,6 +57,8 @@ BEGIN
       i.itinerary_id,
       d.departure_id,
       d.vessel_id,
+      d.discounted_price,
+      d.starting_price,
       jsonb_build_object(
         'startDate', d.start_date,
         'endDate', d.end_date
@@ -86,14 +88,20 @@ BEGIN
       jsonb_build_object(
         'id', e.expedition_id,
         'name', e.name,
-        'duration', e.duration,
+        'duration', CASE 
+          WHEN MIN(i.duration) = MAX(i.duration) THEN 
+            MIN(i.duration)::TEXT
+          ELSE 
+            (MIN(i.duration) || '-' || MAX(i.duration))
+        END,
         'startDate', min(d.start_date),
-        'startingPrice', e.starting_price,
-        'photoUrl', e.photo_url
+        'startingPrice', MIN(COALESCE(d.discounted_price, d.starting_price)),
+        'photoUrl', e.photo_url        
       ) AS expedition
     FROM antarctic.expeditions e
     JOIN antarctic.cruise_lines c ON c.cruise_line_id = e.cruise_line_id
-    LEFT JOIN (SELECT * FROM antarctic.departures d) d ON e.expedition_id = d.expedition_id
+    LEFT JOIN antarctic.itineraries i ON i.expedition_id = e.expedition_id
+    LEFT JOIN antarctic.departures d ON d.expedition_id = e.expedition_id
     WHERE c.name = p_cruise_line AND e.name <> p_name
     GROUP BY e.expedition_id, c.cruise_line_id
     LIMIT 3
@@ -103,8 +111,13 @@ BEGIN
     e.name,
     e.description,
     e.highlights,
-    e.duration,
-    e.starting_price AS "startingPrice",
+    CASE 
+      WHEN MIN(i.duration) = MAX(i.duration) THEN 
+        MIN(i.duration)::VARCHAR
+      ELSE 
+        (MIN(i.duration) || '-' || MAX(i.duration))::VARCHAR
+    END AS duration,
+    MIN(COALESCE(d.discounted_price, d.starting_price)) AS "startingPrice",
     e.website,
     e.photo_url AS "photoUrl",
     jsonb_build_object(
