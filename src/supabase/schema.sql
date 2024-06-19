@@ -79,7 +79,7 @@ CREATE TABLE antarctic.itineraries (
   name VARCHAR(255),
   departing_from VARCHAR(100),
   arriving_at VARCHAR(100),
-  duration VARCHAR(10) NOT NULL,
+  duration INTEGER NOT NULL,
   map_url TEXT,
   PRIMARY KEY (itinerary_id),
   CONSTRAINT fk_expedition_id FOREIGN KEY (expedition_id) REFERENCES antarctic.expeditions (expedition_id) ON DELETE CASCADE ON UPDATE NO ACTION
