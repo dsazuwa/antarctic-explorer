@@ -42,24 +42,23 @@ BEGIN
   records_query := '
     WITH departure_info AS (
       SELECT
-        jsonb_build_object(
-          ''id'', d.departure_id,
-          ''name'', d.name,
-          ''itinerary'', COALESCE(i.name, ''Itinerary '' || i.itinerary_id),
-          ''vessel'', v.name,
-          ''departingFrom'', i.departing_from,
-          ''arrivingAt'', i.arriving_at,
-          ''duration'', i.duration,
-          ''startDate'', d.start_date,
-          ''endDate'', d.end_date,
-          ''startingPrice'', d.starting_price,
-          ''discountedPrice'', d.discounted_price,
-          ''website'', d.website
-        ) AS departure
+        d.departure_id,
+        d.name,
+        COALESCE(i.name, ''Itinerary '' || i.itinerary_id) AS itinerary,
+        v.name AS vessel,
+        i.departing_from,
+        i.arriving_at,
+        i.duration,
+        d.start_date,
+        d.end_date,
+        d.starting_price,
+        d.discounted_price,
+        COALESCE(d.discounted_price, d.starting_price) AS price,
+        d.website
       ' || base_query || '
       ORDER BY ' ||
       CASE p_sort
-        WHEN 'price' THEN 'COALESCE(d.discounted_price, d.starting_price)'
+        WHEN 'price' THEN 'price'
         ELSE 'd.start_date'
       END || ' ' || 
       CASE 
@@ -67,7 +66,33 @@ BEGIN
         ELSE 'ASC'
       END || ' NULLS LAST OFFSET $3 LIMIT $4
     )
-    SELECT COALESCE(jsonb_agg(DISTINCT departure) FILTER (WHERE departure IS NOT NULL), ''[]''::jsonb) AS departures
+    SELECT COALESCE(
+      jsonb_agg(
+        jsonb_build_object(
+          ''id'', departure_id,
+          ''name'', name,
+          ''itinerary'', itinerary,
+          ''vessel'', name,
+          ''departingFrom'', departing_from,
+          ''arrivingAt'', arriving_at,
+          ''duration'', duration,
+          ''startDate'', start_date,
+          ''endDate'', end_date,
+          ''startingPrice'', starting_price,
+          ''discountedPrice'', discounted_price,
+          ''website'', website
+        )
+        ORDER BY ' || 
+        CASE p_sort
+          WHEN 'price' THEN 'price'
+          ELSE 'start_date'
+        END || ' ' || 
+        CASE 
+          WHEN UPPER(p_order) = 'DESC' THEN 'DESC'
+          ELSE 'ASC'
+        END || ' NULLS LAST
+      ) FILTER (WHERE departure_id IS NOT NULL), 
+      ''[]''::jsonb) AS departures
     FROM departure_info';
 
   EXECUTE records_query
