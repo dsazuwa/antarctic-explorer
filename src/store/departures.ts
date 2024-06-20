@@ -52,7 +52,7 @@ export const useDeparturesStore = create<ExpeditionsStore>((set) => ({
   },
 
   navigateToPrevious: () => {
-    set((state) => ({ page: Math.max(1, state.page) }));
+    set((state) => ({ page: Math.max(1, state.page - 1) }));
   },
 
   navigateToNext: () => {
