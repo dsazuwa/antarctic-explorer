@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-import { getExpedition } from '@/lib/data/expedition';
+import getExpedition from '@/lib/data/get-expedition';
 
 export async function GET(
   request: NextRequest,

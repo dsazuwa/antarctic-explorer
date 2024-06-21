@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-import { getExpeditions } from '@/lib/data/expeditions';
+import getExpeditions from '@/lib/data/get-expeditions';
 
 export async function GET(request: NextRequest) {
   const response = await getExpeditions(request.nextUrl.searchParams);

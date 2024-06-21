@@ -3,7 +3,7 @@ import { cookies } from 'next/headers';
 
 import { ExpeditionResponse } from '../type';
 
-export const getExpedition = async (cruiseLine: string, name: string) => {
+export default async function (cruiseLine: string, name: string) {
   const cookieStore = cookies();
 
   const supabase = createServerClient(
@@ -30,4 +30,4 @@ export const getExpedition = async (cruiseLine: string, name: string) => {
   });
 
   return data[0] as ExpeditionResponse;
-};
+}

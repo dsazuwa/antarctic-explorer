@@ -10,7 +10,7 @@ import {
 import SideFilterPanel from '@/components/expeditions/filter-panel-side';
 import Footer from '@/components/layout/footer';
 import Navbar from '@/components/layout/nav';
-import { getExpeditions } from '@/lib/data/expeditions';
+import getExpeditions from '@/lib/data/get-expeditions';
 import { getExpeditionsParams } from '@/lib/param.utils';
 import { SearchParams } from '@/lib/type';
 

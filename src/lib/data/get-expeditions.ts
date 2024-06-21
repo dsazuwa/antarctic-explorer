@@ -4,7 +4,7 @@ import { cookies } from 'next/headers';
 import { getDateParam, getEnumParam, getNumericalParam } from '../param.utils';
 import { ExpeditionsResponse } from '../type';
 
-export const getExpeditions = async (searchParams: URLSearchParams) => {
+export default async function getExpeditions(searchParams: URLSearchParams) {
   const {
     page,
     size,
@@ -62,7 +62,7 @@ export const getExpeditions = async (searchParams: URLSearchParams) => {
     size,
     totalItems,
   } as ExpeditionsResponse;
-};
+}
 
 const getQueryParams = (searchParams: URLSearchParams) => {
   const queryParams = [

@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 
 import Footer from '@/components/layout/footer';
 import Navbar from '@/components/layout/nav';
-import { getExpedition } from '@/lib/data/expedition';
+import { getExpedition } from '@/lib/data/get-expedition';
 import {
   Departures,
   Expeditions,
