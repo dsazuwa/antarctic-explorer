@@ -83,7 +83,7 @@ const getQueryParams = (searchParams: URLSearchParams) => {
   const size = getNumericalParam(queryParams[1], 6);
   const sort = getEnumParam(
     queryParams[2],
-    ['name', 'cruiseLine', 'startDate', 'startingPrice'],
+    ['name', 'price', 'startDate'],
     'startDate',
   );
   const order = getEnumParam(queryParams[3], ['asc', 'desc'], 'asc');

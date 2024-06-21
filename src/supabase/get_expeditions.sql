@@ -64,55 +64,59 @@ BEGIN
     WITH expedition_info AS (
       SELECT
         e.expedition_id,
-        e.name AS expedition_name,
-        c.cruise_line_id,
-        c.name AS cruise_line_name,
-        c.logo,
+        e.name,
+        jsonb_build_object(
+          ''id'', c.cruise_line_id,
+          ''name'', c.name,
+          ''logo'', c.logo
+        ) AS cruise_line,
         MIN(v.capacity) AS capacity,
         CASE 
           WHEN MIN(i.duration) = MAX(i.duration) THEN 
             MIN(i.duration)::VARCHAR
           ELSE 
             (MIN(i.duration) || ''-'' || MAX(i.duration))
-        END AS duration_range,
+        END AS duration,
         MIN(d.start_date) AS start_date,
-        MIN(COALESCE(d.discounted_price, d.starting_price)) AS starting_price,
+        MIN(COALESCE(d.discounted_price, d.starting_price)) AS price,
         e.photo_url
         ' || base_query || '
-    )
-    SELECT 
-      COALESCE(jsonb_agg(DISTINCT jsonb_build_object(
-        ''id'', expedition_id,
-        ''name'', expedition_name,
-        ''cruiseLine'', jsonb_build_object(
-          ''id'', cruise_line_id,
-          ''name'', cruise_line_name,
-          ''logo'', logo
-        ),
-        ''capacity'', capacity,
-        ''duration'', duration_range,
-        ''startDate'', start_date,
-        ''startingPrice'', starting_price,
-        ''photoUrl'', photo_url
-      )) FILTER (WHERE expedition_id IS NOT NULL), ''[]''::jsonb) AS expeditions
-    FROM (
-      SELECT *
-      FROM expedition_info
       ORDER BY ' ||
+      CASE p_sort
+        WHEN 'name' THEN 'name'
+        WHEN 'price' THEN 'price'
+        ELSE 'start_date'
+      END || ' ' || 
+      CASE 
+        WHEN UPPER(p_order) = 'DESC' THEN 'DESC'
+        ELSE 'ASC'
+      END || ' NULLS LAST OFFSET $8 LIMIT $9
+    )
+    SELECT COALESCE(
+      jsonb_agg(
+        jsonb_build_object(
+          ''id'', expedition_id,
+          ''name'', name,
+          ''cruiseLine'', cruise_line,
+          ''capacity'', capacity,
+          ''duration'', duration,
+          ''startDate'', start_date,
+          ''startingPrice'', price,
+          ''photoUrl'', photo_url
+        )
+        ORDER BY ' || 
         CASE p_sort
-          WHEN 'name' THEN 'expedition_name'
-          WHEN 'cruiseLine' THEN 'cruise_line_name'
-          WHEN 'startDate' THEN 'start_date'
-          WHEN 'price' THEN 'starting_price'
-          ELSE 'expedition_id'
-        END
-        || ' ' ||
+          WHEN 'name' THEN 'name'
+          WHEN 'price' THEN 'price'
+          ELSE 'start_date'
+        END || ' ' || 
         CASE 
-            WHEN UPPER(p_order) = 'DESC' THEN 'DESC'
-            ELSE 'ASC'
-        END
-        || ' NULLS LAST OFFSET $8 LIMIT $9
-    ) sub';
+          WHEN UPPER(p_order) = 'DESC' THEN 'DESC'
+          ELSE 'ASC'
+        END || ' NULLS LAST
+      ),
+    ''[]''::jsonb) AS expeditions
+    FROM expedition_info';
 
   EXECUTE records_query
   USING p_start_date, p_end_date, p_cruise_lines, p_min_capacity, p_max_capacity, p_min_duration, p_max_duration, p_size * (p_page - 1), p_size
