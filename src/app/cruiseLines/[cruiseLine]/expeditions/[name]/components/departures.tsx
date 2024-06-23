@@ -3,10 +3,11 @@
 /* eslint-disable  @typescript-eslint/no-explicit-any */
 
 import { format, isSameMonth, isSameYear } from 'date-fns';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 import HeaderSummary from '@/components/header-summary';
 import LinkButton from '@/components/link-btn';
+import Loader from '@/components/loader';
 import Pagination from '@/components/pagination';
 import SizeSelector from '@/components/size-selector';
 import SortSelector from '@/components/sort-selector';
@@ -22,6 +23,9 @@ export default function Departures({ cruiseLine, name }: Props) {
   const { departures, page, size, selectedSort, setDepartures } =
     useDeparturesStore();
 
+  const [isLoading, setLoading] = useState(false);
+  const [isReady, setReady] = useState(false);
+
   useEffect(() => {
     const { sort, order } = departureSortOptions[selectedSort];
     const params = { page, size, sort, order };
@@ -35,6 +39,31 @@ export default function Departures({ cruiseLine, name }: Props) {
     )
       .then((response) => response.json())
       .then((data) => setDepartures(data));
+  }, []);
+
+  useEffect(() => {
+    if (!isReady) {
+      setReady(true);
+      return;
+    }
+
+    const { sort, order } = departureSortOptions[selectedSort];
+    const params = { page, size, sort, order };
+
+    const searchParams: Record<string, any> = new URLSearchParams();
+    for (const [key, value] of Object.entries(params))
+      searchParams.append(key, String(value));
+
+    setLoading(true);
+
+    fetch(
+      `/api/cruiseLines/${encodeURIComponent(cruiseLine)}/expeditions/${encodeURIComponent(name)}/departures/?${searchParams.toString()}`,
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        setDepartures(data);
+        setLoading(false);
+      });
   }, [cruiseLine, name, page, size, selectedSort, setDepartures]);
 
   return departures.length === 0 ? (
@@ -44,15 +73,23 @@ export default function Departures({ cruiseLine, name }: Props) {
       <div className='mx-auto flex max-w-screen-lg flex-col gap-6 px-6 py-8 md:py-12'>
         <h2 className='heading-3 font-bold text-sky-900'>Departures</h2>
 
-        <Header />
+        <div className='relative flex flex-col gap-6'>
+          <Header />
 
-        <ol className='space-y-4'>
-          {departures.map((departure, i) => (
-            <Departure key={`departure-${i}`} departure={departure} />
-          ))}
-        </ol>
+          <ol className='space-y-4'>
+            {departures.map((departure, i) => (
+              <Departure key={`departure-${i}`} departure={departure} />
+            ))}
 
-        <Controls />
+            {isLoading && (
+              <div className='absolute bottom-0 left-0 right-0 top-0 z-50 flex bg-[hsla(0,0%,100%,0.5)]'>
+                <Loader className='my-auto' />
+              </div>
+            )}
+          </ol>
+
+          <Controls />
+        </div>
       </div>
     </section>
   );
