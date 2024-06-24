@@ -3,7 +3,7 @@
 /* eslint-disable  @typescript-eslint/no-explicit-any */
 
 import { format, isSameMonth, isSameYear } from 'date-fns';
-import { useEffect, useState } from 'react';
+import useSWR from 'swr';
 
 import HeaderSummary from '@/components/header-summary';
 import LinkButton from '@/components/link-btn';
@@ -11,139 +11,102 @@ import Loader from '@/components/loader';
 import Pagination from '@/components/pagination';
 import SizeSelector from '@/components/size-selector';
 import SortSelector from '@/components/sort-selector';
+import useDepartures from '@/hooks/use-departures';
 import { departureSortOptions, departuresSizeOptions } from '@/lib/constants';
-import { TDeparture } from '@/lib/type';
+import { DeparturesResponse, TDeparture } from '@/lib/type';
 import { cn, formatPrice } from '@/lib/utils';
-import { useDeparturesStore } from '@/store/departures';
 import InfoDisplay from './info-display';
 
 type Props = { cruiseLine: string; name: string };
 
 export default function Departures({ cruiseLine, name }: Props) {
-  const { departures, page, size, selectedSort, setDepartures } =
-    useDeparturesStore();
+  const {
+    departures,
+    page,
+    size,
+    totalItems,
+    totalPages,
+    selectedSort,
+    setDepartures,
+    setSort,
+    setSize,
+    navigateTo,
+    navigateToPrevious,
+    navigateToNext,
+  } = useDepartures();
 
-  const [isLoading, setLoading] = useState(false);
-  const [isReady, setReady] = useState(false);
+  const { sort, order } = departureSortOptions[selectedSort];
+  const params = { page, size, sort, order };
 
-  useEffect(() => {
-    const { sort, order } = departureSortOptions[selectedSort];
-    const params = { page, size, sort, order };
+  const searchParams: Record<string, any> = new URLSearchParams();
+  for (const [key, value] of Object.entries(params))
+    searchParams.append(key, String(value));
 
-    const searchParams: Record<string, any> = new URLSearchParams();
-    for (const [key, value] of Object.entries(params))
-      searchParams.append(key, String(value));
+  const fetcher = (url: string) => fetch(url).then((r) => r.json());
 
-    fetch(
-      `/api/cruiseLines/${encodeURIComponent(cruiseLine)}/expeditions/${encodeURIComponent(name)}/departures/?${searchParams.toString()}`,
-    )
-      .then((response) => response.json())
-      .then((data) => setDepartures(data));
-  }, []);
-
-  useEffect(() => {
-    if (!isReady) {
-      setReady(true);
-      return;
-    }
-
-    const { sort, order } = departureSortOptions[selectedSort];
-    const params = { page, size, sort, order };
-
-    const searchParams: Record<string, any> = new URLSearchParams();
-    for (const [key, value] of Object.entries(params))
-      searchParams.append(key, String(value));
-
-    setLoading(true);
-
-    fetch(
-      `/api/cruiseLines/${encodeURIComponent(cruiseLine)}/expeditions/${encodeURIComponent(name)}/departures/?${searchParams.toString()}`,
-    )
-      .then((response) => response.json())
-      .then((data) => {
+  const { isLoading } = useSWR<DeparturesResponse>(
+    `/api/cruiseLines/${encodeURIComponent(cruiseLine)}/expeditions/${encodeURIComponent(name)}/departures/?${searchParams.toString()}`,
+    fetcher,
+    {
+      onSuccess(data) {
         setDepartures(data);
-        setLoading(false);
-      });
-  }, [cruiseLine, name, page, size, selectedSort, setDepartures]);
+      },
+    },
+  );
 
-  return departures.length === 0 ? (
-    <></>
-  ) : (
+  if (departures.length === 0) return <></>;
+
+  return (
     <section className='w-full' aria-label='Departure Date & Rates'>
       <div className='mx-auto flex max-w-screen-lg flex-col gap-6 px-6 py-8 md:py-12'>
         <h2 className='heading-3 font-bold text-sky-900'>Departures</h2>
 
         <div className='relative flex flex-col gap-6'>
-          <Header />
+          <div className='inline-flex w-full flex-wrap items-center justify-between gap-4'>
+            <HeaderSummary
+              itemType='departures'
+              page={page}
+              size={size}
+              totalItems={totalItems}
+            />
+
+            <SortSelector
+              sortOptions={departureSortOptions}
+              selectedSort={selectedSort}
+              setSortOption={setSort}
+            />
+          </div>
 
           <ol className='space-y-4'>
             {departures.map((departure, i) => (
               <Departure key={`departure-${i}`} departure={departure} />
             ))}
-
-            {isLoading && (
-              <div className='absolute bottom-0 left-0 right-0 top-0 z-50 flex bg-[hsla(0,0%,100%,0.5)]'>
-                <Loader className='my-auto' />
-              </div>
-            )}
           </ol>
 
-          <Controls />
+          <div className='flex flex-col-reverse items-center justify-between gap-4 md:flex-row'>
+            <SizeSelector
+              options={departuresSizeOptions}
+              size={size}
+              setSize={setSize}
+            />
+
+            <Pagination
+              page={page}
+              totalPages={totalPages}
+              navigateTo={navigateTo}
+              navigateToPrevious={navigateToPrevious}
+              navigateToNext={navigateToNext}
+            />
+          </div>
+
+          {isLoading && (
+            <div className='absolute bottom-0 left-0 right-0 top-0 z-50 flex bg-[hsla(0,0%,100%,0.5)]'>
+              <Loader className='my-auto' />
+            </div>
+          )}
         </div>
       </div>
     </section>
-  );
-}
-
-function Header() {
-  const { page, totalItems, selectedSort, size, setSort } =
-    useDeparturesStore();
-
-  return (
-    <div className='inline-flex w-full flex-wrap items-center justify-between gap-4'>
-      <HeaderSummary
-        itemType='departures'
-        page={page}
-        size={size}
-        totalItems={totalItems}
-      />
-
-      <SortSelector
-        sortOptions={departureSortOptions}
-        selectedSort={selectedSort}
-        setSortOption={setSort}
-      />
-    </div>
-  );
-}
-
-function Controls() {
-  const {
-    page,
-    size,
-    totalPages,
-    setSize,
-    navigateTo,
-    navigateToPrevious,
-    navigateToNext,
-  } = useDeparturesStore();
-
-  return (
-    <div className='flex flex-col-reverse items-center justify-between gap-4 md:flex-row'>
-      <SizeSelector
-        options={departuresSizeOptions}
-        size={size}
-        setSize={setSize}
-      />
-
-      <Pagination
-        page={page}
-        totalPages={totalPages}
-        navigateTo={navigateTo}
-        navigateToPrevious={navigateToPrevious}
-        navigateToNext={navigateToNext}
-      />
-    </div>
   );
 }
 

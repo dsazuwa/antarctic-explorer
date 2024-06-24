@@ -33,7 +33,8 @@
       }
     ],
     "prettier/prettier": "error"
-  }
+  },
+  "ignorePatterns": [
+    "next.config.js"
+  ]
 }
-
- 

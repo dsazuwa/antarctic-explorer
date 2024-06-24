@@ -4,10 +4,8 @@
 
 ## Tech Stack
 - Next.js 14 with App Router
-- Tailwind CSS and Shadcn-ui
+- Tailwind CSS and shadcn/ui
 - Supabase
-- Zustand
-- TypeScript
 
 ## Features
 - Filtering on date, cruise line, capacity, and duration
