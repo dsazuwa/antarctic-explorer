@@ -24,7 +24,7 @@ function Vessel({ vessel }: { vessel: TVessel }) {
 
   return (
     <div>
-      <h3 className='heading-5 font-black italic text-sky-800'>{name}</h3>
+      <h3 className='heading-5 font-bold text-sky-900'>{name}</h3>
 
       <div className='mt-4 grid w-full grid-cols-1 gap-4 lg:grid-cols-12 lg:gap-8'>
         <div className='order-2 flex flex-col gap-2 lg:order-1 lg:col-span-6'>
