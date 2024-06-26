@@ -70,11 +70,13 @@ export default function Departures({ cruiseLine, name }: Props) {
               totalItems={totalItems}
             />
 
-            <SortSelector
-              sortOptions={departureSortOptions}
-              selectedSort={selectedSort}
-              setSortOption={setSort}
-            />
+            {totalItems > 2 && (
+              <SortSelector
+                sortOptions={departureSortOptions}
+                selectedSort={selectedSort}
+                setSortOption={setSort}
+              />
+            )}
           </div>
 
           <ol className='space-y-4'>
@@ -84,11 +86,15 @@ export default function Departures({ cruiseLine, name }: Props) {
           </ol>
 
           <div className='flex flex-col-reverse items-center justify-between gap-4 md:flex-row'>
-            <SizeSelector
-              options={departuresSizeOptions}
-              size={size}
-              setSize={setSize}
-            />
+            {totalItems <= departuresSizeOptions[0] ? (
+              <div />
+            ) : (
+              <SizeSelector
+                options={departuresSizeOptions}
+                size={size}
+                setSize={setSize}
+              />
+            )}
 
             <Pagination
               page={page}
