@@ -3,7 +3,8 @@
 /* eslint-disable  @typescript-eslint/no-explicit-any */
 
 import { format, isSameMonth, isSameYear } from 'date-fns';
-import useSWR from 'swr';
+import { useEffect } from 'react';
+import useSWRImmutable from 'swr/immutable';
 
 import HeaderSummary from '@/components/header-summary';
 import LinkButton from '@/components/link-btn';
@@ -44,15 +45,14 @@ export default function Departures({ cruiseLine, name }: Props) {
 
   const fetcher = (url: string) => fetch(url).then((r) => r.json());
 
-  const { isLoading } = useSWR<DeparturesResponse>(
+  const { data, isLoading } = useSWRImmutable<DeparturesResponse>(
     `/api/cruiseLines/${encodeURIComponent(cruiseLine)}/expeditions/${encodeURIComponent(name)}/departures/?${searchParams.toString()}`,
     fetcher,
-    {
-      onSuccess(data) {
-        setDepartures(data);
-      },
-    },
   );
+
+  useEffect(() => {
+    if (data) setDepartures(data);
+  }, [data]);
 
   if (departures.length === 0) return <></>;
 
