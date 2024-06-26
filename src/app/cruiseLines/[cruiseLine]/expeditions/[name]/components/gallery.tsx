@@ -12,6 +12,41 @@ import { cn } from '@/lib/utils';
 type Props = { gallery: TGallery[]; className: string };
 
 export default function Gallery({ gallery, className }: Props) {
+  return gallery.length === 1 ? (
+    <div className={cn('aspect-video h-[300px] sm:h-auto', className)}>
+      <GalleryImage
+        alt={gallery[0].alt || `gallery image`}
+        url={gallery[0].url}
+        priority
+      />
+    </div>
+  ) : (
+    <Carousel gallery={gallery} className={className} />
+  );
+}
+
+type ImageProps = {
+  alt: string;
+  url: string;
+  priority: boolean;
+};
+
+function GalleryImage({ alt, url, priority }: ImageProps) {
+  return (
+    <Image
+      isSkeletonDark={true}
+      className='h-full w-full object-cover'
+      alt={alt}
+      src={url}
+      width={0}
+      height={0}
+      sizes='(max-width: 640px) 100vw, 60vw'
+      priority={priority}
+    />
+  );
+}
+
+function Carousel({ gallery, className }: Props) {
   const total = gallery.length;
   const [index, setIndex] = useState(0);
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
@@ -51,6 +86,8 @@ export default function Gallery({ gallery, className }: Props) {
     emblaApi.on('select', onSelect);
   }, [emblaApi, onSelect]);
 
+  const isMulti = gallery.length > 1;
+
   return (
     <div
       role='group'
@@ -65,14 +102,9 @@ export default function Gallery({ gallery, className }: Props) {
               key={`highlighted-img-${i}`}
               className='embla__slide shrink-0 grow-0 basis-full'
             >
-              <Image
-                isSkeletonDark={true}
-                className='h-full w-full object-cover'
-                alt={alt || `gallery-image-${i}`}
-                src={url}
-                width={0}
-                height={0}
-                sizes='(max-width: 640px) 100vw, 60vw'
+              <GalleryImage
+                alt={alt || `gallery image ${i}`}
+                url={url}
                 priority={i === 0}
               />
             </div>
@@ -80,27 +112,33 @@ export default function Gallery({ gallery, className }: Props) {
         </div>
       </div>
 
-      <button
-        aria-label='previous image'
-        className='absolute left-2 top-2/4 flex h-6 w-6 items-center justify-center rounded-sm bg-primary/60 bg-opacity-60 font-semibold shadow-icon md:h-7 md:w-7'
-        onClick={slideToPrev}
-        disabled={isPrevDisabled}
-      >
-        <ChevronLeftIcon className='h-3 w-3 stroke-white' strokeWidth={2} />
-        <span className='sr-only'>Previous</span>
-      </button>
+      {isMulti && (
+        <button
+          aria-label='previous image'
+          className='absolute left-2 top-2/4 flex h-6 w-6 items-center justify-center rounded-sm bg-primary/60 bg-opacity-60 font-semibold shadow-icon md:h-7 md:w-7'
+          onClick={slideToPrev}
+          disabled={isPrevDisabled}
+        >
+          <ChevronLeftIcon className='h-3 w-3 stroke-white' strokeWidth={2} />
+          <span className='sr-only'>Previous</span>
+        </button>
+      )}
 
-      <button
-        aria-label='next image'
-        className='absolute right-2 top-2/4 flex h-6 w-6 items-center justify-center rounded-sm bg-primary/60 bg-opacity-60 font-semibold shadow-icon md:h-7 md:w-7'
-        onClick={slideToNext}
-        disabled={isNextDisabled}
-      >
-        <ChevronRightIcon className='h-3 w-3 stroke-white' strokeWidth={2} />
-        <span className='sr-only'>Next</span>
-      </button>
+      {isMulti && (
+        <button
+          aria-label='next image'
+          className='absolute right-2 top-2/4 flex h-6 w-6 items-center justify-center rounded-sm bg-primary/60 bg-opacity-60 font-semibold shadow-icon md:h-7 md:w-7'
+          onClick={slideToNext}
+          disabled={isNextDisabled}
+        >
+          <ChevronRightIcon className='h-3 w-3 stroke-white' strokeWidth={2} />
+          <span className='sr-only'>Next</span>
+        </button>
+      )}
 
-      <div className='absolute right-2 top-2 flex h-8 w-10 items-center justify-center rounded-sm bg-primary/60 bg-opacity-60 text-xxs font-semibold text-white shadow-icon'>{`${index + 1}/${gallery.length}`}</div>
+      {isMulti && (
+        <div className='absolute right-2 top-2 flex h-8 w-10 items-center justify-center rounded-sm bg-primary/60 bg-opacity-60 text-xxs font-semibold text-white shadow-icon'>{`${index + 1}/${gallery.length}`}</div>
+      )}
     </div>
   );
 }
