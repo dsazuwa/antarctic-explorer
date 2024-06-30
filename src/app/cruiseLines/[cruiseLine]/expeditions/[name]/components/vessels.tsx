@@ -56,7 +56,7 @@ function Vessel({ vessel }: { vessel: TVessel }) {
           alt={name}
           width={0}
           height={0}
-          sizes='(max-width: 1024px) 100vw, 50vw'
+          sizes='100vw'
         />
       </div>
     </div>
