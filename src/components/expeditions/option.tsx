@@ -30,11 +30,11 @@ export function OptionsSelector({
       </AccordionTrigger>
 
       <AccordionContent>
-        <form className='ml-1 transition-transform ease-in-out'>
+        <form className='ml-1 flex flex-col gap-1 transition-transform ease-in-out'>
           {options.map((o, i) => (
             <label
               key={i}
-              className='body-sm lg:body my-1 flex items-center font-medium'
+              className='body-sm lg:body flex cursor-pointer items-center font-medium'
             >
               <input
                 type={type}
