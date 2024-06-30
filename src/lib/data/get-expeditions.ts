@@ -1,7 +1,12 @@
 import { createServerClient, type CookieOptions } from '@supabase/ssr';
 import { cookies } from 'next/headers';
 
-import { getDateParam, getEnumParam, getNumericalParam } from '../param.utils';
+import {
+  getDateParam,
+  getEnumParam,
+  getNumericalParam,
+  getNumericalParamOrNull,
+} from '../param.utils';
 import { ExpeditionsResponse } from '../type';
 
 export default async function getExpeditions(searchParams: URLSearchParams) {
@@ -91,11 +96,11 @@ const getQueryParams = (searchParams: URLSearchParams) => {
   const startDate = getDateParam(queryParams[4]);
   const endDate = getDateParam(queryParams[5]);
 
-  const minDuration = getNumericalParam(queryParams[6], 0);
-  const maxDuration = getNumericalParam(queryParams[7], 2147483647);
+  const minDuration = getNumericalParamOrNull(queryParams[6]);
+  const maxDuration = getNumericalParamOrNull(queryParams[7]);
 
-  const minCapacity = getNumericalParam(queryParams[8], 0);
-  const maxCapacity = getNumericalParam(queryParams[9], 2147483647);
+  const minCapacity = getNumericalParamOrNull(queryParams[8]);
+  const maxCapacity = getNumericalParamOrNull(queryParams[9]);
 
   const cruiseLines =
     queryParams[10] === null ? [] : queryParams[10].split(',');

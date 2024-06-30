@@ -26,15 +26,22 @@ export const getEnumParam = (
   return validParam || defaultValue;
 };
 
-export const getNumericalParam = (
+export const getNumericalParamOrNull = (
   param: string | string[] | undefined | null,
-  defaultValue: number,
 ) => {
   return typeof param === 'string' &&
     !isNaN(parseInt(param, 10)) &&
     parseInt(param, 10) >= 0
     ? parseInt(param, 10)
-    : defaultValue;
+    : null;
+};
+
+export const getNumericalParam = (
+  param: string | string[] | undefined | null,
+  defaultValue: number,
+) => {
+  const val = getNumericalParamOrNull(param);
+  return val === null ? defaultValue : val;
 };
 
 export const getCruiseLinesParam = (param: string | string[] | undefined) => {
