@@ -21,18 +21,13 @@ export default function ClearFilters() {
     router.push(`/?${params.toString()}`);
   };
 
-  return (
-    <Button
-      disabled={
-        searchParams.get('startDate') === null &&
-        searchParams.get('endDate') === null &&
-        searchParams.getAll('cruiseLines').length === 0 &&
-        searchParams.get('capacity') === null &&
-        searchParams.get('duration') === null
-      }
-      onClick={clearFilter}
-    >
-      Clear All Filters
-    </Button>
+  return searchParams.get('startDate') === null &&
+    searchParams.get('endDate') === null &&
+    searchParams.getAll('cruiseLines').length === 0 &&
+    searchParams.get('capacity') === null &&
+    searchParams.get('duration') === null ? (
+    <></>
+  ) : (
+    <Button onClick={clearFilter}>Clear All Filters</Button>
   );
 }
