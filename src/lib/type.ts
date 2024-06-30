@@ -88,7 +88,7 @@ export type ExpeditionResponse = {
   description: string[];
   highlights: string[];
   duration: string;
-  startingPrice: number;
+  startingPrice: number | null;
   photoUrl: string;
   website: string;
   cruiseLine: TCruiseLine;

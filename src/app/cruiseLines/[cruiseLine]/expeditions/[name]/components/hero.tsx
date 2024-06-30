@@ -6,7 +6,7 @@ type Props = {
   name: string;
   website: string;
   duration: string;
-  startingPrice: number;
+  startingPrice: number | null;
   cruiseLine: string;
   departures: { startDate: Date; endDate: Date }[];
   numVessels: number;
@@ -61,12 +61,17 @@ export default function Hero({
 
           <div className='space-y-2'>
             <div className='text-sm text-gray-200'>Price from</div>
-            <div className='body font-medium'>{formatPrice(startingPrice)}</div>
+
+            <div className='text-base font-medium'>
+              {startingPrice === null
+                ? 'Unavailable'
+                : formatPrice(startingPrice)}
+            </div>
           </div>
 
           <div className='space-y-2'>
             <div className='text-sm text-gray-200'>{`Departure Date(s)`}</div>
-            <div className='text-xs font-medium'>
+            <div className='text-base font-medium'>
               {getDepartureDatesLabel()}
             </div>
           </div>
@@ -76,7 +81,7 @@ export default function Hero({
               <div className='space-y-2'>
                 <div className='text-sm text-gray-200'>Ship</div>
 
-                <div className='space-y-0.5 text-xs'>
+                <div className='space-y-0.5 text-base'>
                   {vessels.map((v) => (
                     <div key={`vessel-${v.id}-name`} className='font-medium'>
                       {v.name}
@@ -88,7 +93,7 @@ export default function Hero({
 
             <div className='space-y-2'>
               <div className='text-sm text-gray-200'>Duration</div>
-              <div className='text-xs font-medium'>{`${duration} days`}</div>
+              <div className='text-base font-medium'>{`${duration} days`}</div>
             </div>
           </div>
         </div>

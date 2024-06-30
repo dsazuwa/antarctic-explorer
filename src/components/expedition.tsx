@@ -57,7 +57,7 @@ export default function Expedition({
             </div>
           </div>
 
-          <div className='mx-6 mb-6 mt-auto flex flex-col gap-4 border-t-2 border-solid border-gray-200 pt-6 sm:grid sm:grid-cols-[repeat(auto-fit,minmax(8rem,1fr))]'>
+          <div className='mx-6 mb-6 mt-auto grid gap-4 border-t-2 border-solid border-gray-200 pt-6 sm:grid-cols-[repeat(auto-fit,minmax(8rem,1fr))]'>
             <InfoDisplay
               Icon={DurationIcon}
               primaryLabel='Duration'
@@ -71,14 +71,12 @@ export default function Expedition({
               value={startDate}
             />
 
-            {startingPrice && (
-              <InfoDisplay
-                Icon={PriceTagIcon}
-                primaryLabel='Price from'
-                secondaryLabel='pp'
-                value={formatPrice(startingPrice)}
-              />
-            )}
+            <InfoDisplay
+              Icon={PriceTagIcon}
+              primaryLabel='Price from'
+              secondaryLabel='pp'
+              value={startingPrice === null ? null : formatPrice(startingPrice)}
+            />
           </div>
         </div>
       </Link>
@@ -106,14 +104,14 @@ function InfoDisplay({
       <div className='text-[0.9rem] font-semibold'>
         <div>{primaryLabel}</div>
 
-        <div className='inline-flex flex-wrap items-baseline gap-1'>
+        <div className='inline-flex flex-wrap items-baseline gap-1 leading-7'>
           {value === null ? (
             <span>Unavailable</span>
           ) : (
             <span className='text-nowrap text-base text-black'>{value}</span>
           )}
 
-          {secondaryLabel && <span>{secondaryLabel}</span>}
+          {secondaryLabel && value !== null && <span>{secondaryLabel}</span>}
         </div>
       </div>
     </div>
