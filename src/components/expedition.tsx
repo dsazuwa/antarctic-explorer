@@ -35,7 +35,7 @@ export default function Expedition({
               alt={name}
               width={0}
               height={0}
-              sizes='75vw'
+              sizes='(max-width: 1024px) 75vw, 50vw'
               priority={priority}
             />
           </div>
