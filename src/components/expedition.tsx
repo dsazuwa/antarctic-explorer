@@ -25,7 +25,7 @@ export default function Expedition({
     <li>
       <Link
         href={`/cruiseLines/${encodeURIComponent(cruiseLine.name)}/expeditions/${encodeURIComponent(name)}`}
-        className='group relative flex h-full flex-col rounded-sm bg-white hover:shadow-sm'
+        className='group relative flex h-full flex-col rounded-sm bg-white'
       >
         <div>
           <div className='aspect-[4/3]'>

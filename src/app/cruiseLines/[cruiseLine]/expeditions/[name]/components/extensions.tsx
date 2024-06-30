@@ -47,7 +47,7 @@ function Extension({ extension }: { extension: TExtension }) {
   const { name, startingPrice, duration, photoUrl, website } = extension;
 
   return (
-    <li className='group relative flex h-full flex-col rounded-sm bg-white hover:shadow-sm'>
+    <li className='group relative flex h-full flex-col rounded-sm bg-white'>
       <div>
         <div className='aspect-[4/3]'>
           <Image
