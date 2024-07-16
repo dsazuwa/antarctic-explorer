@@ -1,23 +1,5 @@
 --
--- PostgreSQL database dump
---
-
--- Dumped from database version 16.2 (Debian 16.2-1.pgdg120+2)
--- Dumped by pg_dump version 16.2 (Debian 16.2-1.pgdg120+2)
-
-SET statement_timeout = 0;
-SET lock_timeout = 0;
-SET idle_in_transaction_session_timeout = 0;
-SET client_encoding = 'UTF8';
-SET standard_conforming_strings = on;
-SELECT pg_catalog.set_config('search_path', '', false);
-SET check_function_bodies = false;
-SET xmloption = content;
-SET client_min_messages = warning;
-SET row_security = off;
-
---
--- Data for Name: cruise_lines; Type: TABLE DATA; Schema: antarctic; Owner: dsazuwa
+-- Data for Name: cruise_lines; Type: TABLE DATA; Schema: antarctic;
 --
 
 INSERT INTO antarctic.cruise_lines VALUES (1, 'Aurora Expeditions', 'https://www.aurora-expeditions.com/destination', NULL, 'https://www.aurora-expeditions.com/find-an-expedition/?search&destinations%5B0%5D=antarctica-cruises&destinations%5B1%5D=antarctic-peninsula&destinations%5B2%5D=weddell-sea&destinations%5B3%5D=south-georgia-island&destinations%5B4%5D=falkland-islands-malvinas&destinations%5B5%5D=antarctic-circle&destinations%5B6%5D=patagonia&departDates&voyage_types%5B0%5D=expedition', 'https://res.cloudinary.com/dcdakh7gh/image/upload/v1710007648/antarctica-explorer/AuroraLogo.png');
@@ -26,7 +8,7 @@ INSERT INTO antarctic.cruise_lines VALUES (3, 'Lindblad Expeditions', 'https://w
 
 
 --
--- Data for Name: expeditions; Type: TABLE DATA; Schema: antarctic; Owner: dsazuwa
+-- Data for Name: expeditions; Type: TABLE DATA; Schema: antarctic;
 --
 
 INSERT INTO antarctic.expeditions VALUES (1, 1, 'https://www.aurora-expeditions.com/expedition/spirit-of-antarctica-chilean-fjords/', 'Spirit of Antarctica featuring the Chilean Fjords', '{"As Antarctica laps up the last of the summer sun and the landscape bathes in dappled light, its inhabitants show no signs of slowing down. Sail across the famed Drake Passage to and from Antarctica, admiring spectacular seabirds and approaching the ice as the explorers of old did – by sea. With one eye on the sky, watching for skuas, terns or cormorant chicks, you will also need one eye on the water’s surface. This time of year is when humpback whales are peaking in numbers and when you may see penguin chicks heading out for their first swim."}', '{"Hone your ice and wildlife photography skills","In Zodiacs, explore quiet bays and coves in search of wildlife and marvelling at dazzling icebergs","Observe extraordinary wildlife including migrating whales and moulting penguins","Sail the Chilean Fjords, keeping watch for the many seabirds and marine wildlife including dolphins, sea lions and whales preparing to return to warmer climates for the winter"}', 'https://www.aurora-expeditions.com/wp-content/uploads/2023/02/Gentoo-penguins-coming-ashore-at-Neko-Harbour-Graham-Land-Antarctica-Richard-IAnson-768x512.jpg');
@@ -66,7 +48,7 @@ INSERT INTO antarctic.expeditions VALUES (69, 2, 'https://www.hurtigruten.com/en
 
 
 --
--- Data for Name: itineraries; Type: TABLE DATA; Schema: antarctic; Owner: dsazuwa
+-- Data for Name: itineraries; Type: TABLE DATA; Schema: antarctic;
 --
 
 INSERT INTO antarctic.itineraries VALUES (1, 1, NULL, 'Punta Arenas, Chile', 'Ushuaia, Argentina', 13, 'https://kaptiotravel.s3.amazonaws.com/Aurora+Expeditions/00D7F000000xtSFUAY/1677553582834_ANP173S.jpg');
@@ -116,7 +98,7 @@ INSERT INTO antarctic.itineraries VALUES (93, 69, NULL, NULL, NULL, 24, 'https:/
 
 
 --
--- Data for Name: vessels; Type: TABLE DATA; Schema: antarctic; Owner: dsazuwa
+-- Data for Name: vessels; Type: TABLE DATA; Schema: antarctic;
 --
 
 INSERT INTO antarctic.vessels VALUES (1, 1, 'Sylvia Earle', 132, 71, '{"On our small purpose-built ship, the Sylvia Earle, connect with like-minded travellers in a meaningful way on perspective-altering voyages to some of the most remote, unique and spectacular places on the planet. Featuring the Ulstein X-BOW® design, it cuts through the swell for a smoother transit through waves while minimising its environmental impact.","A floating ambassador for the conservation of the planet, the Sylvia Earle pays tribute to marine biologist, oceanographer and explorer Dr. Sylvia Earle and six pioneering women in conservation – Dr. Carden Wallace AM, Joanna Ruxton, Sharon Kwok, Bernadette Demientieff, Dr. Asha de Vos and Hanli Prinsloo – with public decks honouring their contributions and shining a light on their important causes.","With a fully equipped Citizen Science Center, expert lecturers and a participative Citizen Science Program, our aim is to enrich your knowledge and connection to the places we travel to onboard the Sylvia Earle."}', 'https://www.aurora-expeditions.com/ship/sylvia-earle/', 'https://www.auroraexpeditions.com.au/wp-content/uploads/2020/01/Sylvia-Earle-in-Antarctica-scaled.jpg');
@@ -134,7 +116,7 @@ INSERT INTO antarctic.vessels VALUES (12, 3, 'National Geographic Orion', 102, 5
 
 
 --
--- Data for Name: departures; Type: TABLE DATA; Schema: antarctic; Owner: dsazuwa
+-- Data for Name: departures; Type: TABLE DATA; Schema: antarctic;
 --
 
 INSERT INTO antarctic.departures VALUES (1, 1, 1, 1, 'ANP173S', '2025-03-13', '2025-03-25', 16395.0000, 13116.0000, 'https://www.aurora-expeditions.com/expedition/spirit-of-antarctica-chilean-fjords/?code=ANP173S');
@@ -299,7 +281,7 @@ INSERT INTO antarctic.departures VALUES (304, 69, 3, 93, NULL, '2026-03-20', '20
 
 
 --
--- Data for Name: extensions; Type: TABLE DATA; Schema: antarctic; Owner: dsazuwa
+-- Data for Name: extensions; Type: TABLE DATA; Schema: antarctic;
 --
 
 INSERT INTO antarctic.extensions VALUES (1, 1, 'Patagonia Trekking', 5145.0000, 10, 'https://www.aurora-expeditions.com/wp-content/uploads/2023/08/shutterstock_609626255-1024x683.jpg', 'https://www.aurora-expeditions.com/tour/patagonia-trekking/');
@@ -333,7 +315,7 @@ INSERT INTO antarctic.extensions VALUES (52, 2, 'Chilean Patagonia: Torres del P
 
 
 --
--- Data for Name: expeditions_extensions; Type: TABLE DATA; Schema: antarctic; Owner: dsazuwa
+-- Data for Name: expeditions_extensions; Type: TABLE DATA; Schema: antarctic;
 --
 
 INSERT INTO antarctic.expeditions_extensions VALUES (1, 1);
@@ -489,7 +471,7 @@ INSERT INTO antarctic.expeditions_extensions VALUES (66, 50);
 
 
 --
--- Data for Name: gallery; Type: TABLE DATA; Schema: antarctic; Owner: dsazuwa
+-- Data for Name: gallery; Type: TABLE DATA; Schema: antarctic;
 --
 
 INSERT INTO antarctic.gallery VALUES (1, 1, 'https://www.aurora-expeditions.com/wp-content/uploads/2023/02/Gentoo-penguins-coming-ashore-at-Neko-Harbour-Graham-Land-Antarctica-Richard-IAnson-scaled.jpg', 'Gentoo penguins coming ashore at Neko Harbour, Graham Land, Antarctica, Richard I''Anson');
@@ -702,7 +684,7 @@ INSERT INTO antarctic.gallery VALUES (364, 69, 'https://images.ctfassets.net/sb0
 
 
 --
--- Data for Name: itinerary_details; Type: TABLE DATA; Schema: antarctic; Owner: dsazuwa
+-- Data for Name: itinerary_details; Type: TABLE DATA; Schema: antarctic;
 --
 
 INSERT INTO antarctic.itinerary_details VALUES (1, 1, 'Day 1', 'Arrive Punta Arenas', '{"Arrive in Punta Arenas, where you will be met by a representative of Aurora Expeditions and transferred with your fellow expeditioners to your assigned pre-voyage hotel. If you are already in Punta Arenas, we ask you to make your way to your hotel. Check-in is from 3.00 pm.","Upon arrival, please visit the Aurora Expeditions hospitality desk in the lobby between 3.00 pm and 7.00 pm, to collect your luggage cabin tags, and confirm if you wish to join our Punta Arenas tour tomorrow. Our team will confirm details regarding your embarkation day, answer any questions and provide you with information about where to dine or purchase last minute items.","Expeditioners arriving after 7.00 pm will find a welcome pack waiting for them at check-in. We ask you to visit our hospitality desk tomorrow between 8.00 am – 10.00 am.","The remainder of your time is at leisure. All meals today are at your own expense.","Assigned accommodation: Cabo De Hornos"}');
@@ -1103,56 +1085,56 @@ INSERT INTO antarctic.itinerary_details VALUES (851, 93, 'Day 24', 'Buenos Aires
 
 
 --
--- Name: cruise_lines_cruise_line_id_seq; Type: SEQUENCE SET; Schema: antarctic; Owner: dsazuwa
+-- Name: cruise_lines_cruise_line_id_seq; Type: SEQUENCE SET; Schema: antarctic;
 --
 
 SELECT pg_catalog.setval('antarctic.cruise_lines_cruise_line_id_seq', 3, true);
 
 
 --
--- Name: departures_departure_id_seq; Type: SEQUENCE SET; Schema: antarctic; Owner: dsazuwa
+-- Name: departures_departure_id_seq; Type: SEQUENCE SET; Schema: antarctic;
 --
 
 SELECT pg_catalog.setval('antarctic.departures_departure_id_seq', 304, true);
 
 
 --
--- Name: expeditions_expedition_id_seq; Type: SEQUENCE SET; Schema: antarctic; Owner: dsazuwa
+-- Name: expeditions_expedition_id_seq; Type: SEQUENCE SET; Schema: antarctic;
 --
 
 SELECT pg_catalog.setval('antarctic.expeditions_expedition_id_seq', 69, true);
 
 
 --
--- Name: extensions_extension_id_seq; Type: SEQUENCE SET; Schema: antarctic; Owner: dsazuwa
+-- Name: extensions_extension_id_seq; Type: SEQUENCE SET; Schema: antarctic;
 --
 
 SELECT pg_catalog.setval('antarctic.extensions_extension_id_seq', 52, true);
 
 
 --
--- Name: gallery_photo_id_seq; Type: SEQUENCE SET; Schema: antarctic; Owner: dsazuwa
+-- Name: gallery_photo_id_seq; Type: SEQUENCE SET; Schema: antarctic;
 --
 
 SELECT pg_catalog.setval('antarctic.gallery_photo_id_seq', 364, true);
 
 
 --
--- Name: itineraries_itinerary_id_seq; Type: SEQUENCE SET; Schema: antarctic; Owner: dsazuwa
+-- Name: itineraries_itinerary_id_seq; Type: SEQUENCE SET; Schema: antarctic;
 --
 
 SELECT pg_catalog.setval('antarctic.itineraries_itinerary_id_seq', 93, true);
 
 
 --
--- Name: itinerary_details_detail_id_seq; Type: SEQUENCE SET; Schema: antarctic; Owner: dsazuwa
+-- Name: itinerary_details_detail_id_seq; Type: SEQUENCE SET; Schema: antarctic;
 --
 
 SELECT pg_catalog.setval('antarctic.itinerary_details_detail_id_seq', 851, true);
 
 
 --
--- Name: vessels_vessel_id_seq; Type: SEQUENCE SET; Schema: antarctic; Owner: dsazuwa
+-- Name: vessels_vessel_id_seq; Type: SEQUENCE SET; Schema: antarctic;
 --
 
 SELECT pg_catalog.setval('antarctic.vessels_vessel_id_seq', 12, true);

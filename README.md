@@ -13,27 +13,46 @@
 - State management with URL parameters
 
 ## Getting Started
+
 1. Clone the repo
     ```bash
-    git clone https://github.com/dsazuwa/antarctic-explorer-app
+    git clone https://github.com/dsazuwa/antarctic-explorer
     ```
     
 2. Go to the project folder
     ```bash
-    cd antarctic-explorer-app
+    cd antarctic-explorer
     ```
     
-3. Create a [supabase project](https://supabase.com/dashboard)
-   
-4. Set up your .env file
+3. Set up your .env file
     - Duplicate the `.env.sample` to `.env`
-    - Populate with your Supabase connection variables:
-      <br/><br/>
+    - Create a [supabase project](https://supabase.com/dashboard) and populate with `.env` with your Supabase connection variables
       
-5. Install dependencies
+4. Install dependencies
     ```bash
     npm install
     ```
+    
+5. Supabase CLI is installed using npm and can be run by prefixing each command with `npx`
+    - Connect the Supabase CLI to your Supabase account by logging in with your personal access token.
+    ```bash
+    npx supabase login
+    ```
+    - Link your local development project to a hosted Supabase project.
+        - You can get your project's Reference ID from Dashboard > `Your project` > Project Settings > General.
+        - Linking your projects will require the remote database password. You can reset the password at Dashboard > `Your project` > Database.
+    ```bash
+    npx supabase link --project-ref ********************
+    ```
+    - Starts the Supabase local development stack.
+    ```bash
+    npx supabase start
+    ```
+    - Stops the Supabase local development stack.
+    ```bash
+    npx supabase stop
+    ```
+    More supabase CLI commands can be found at [Supabase CLI reference](https://supabase.com/docs/reference/cli)
     
 6. Run the development server
    ```bash
