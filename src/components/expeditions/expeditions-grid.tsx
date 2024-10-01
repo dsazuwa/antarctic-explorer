@@ -5,7 +5,7 @@ import { TExpedition } from '@/lib/type';
 
 type Props = { expeditions: TExpedition[] };
 
-export default async function ExpeditionsGrid({ expeditions }: Props) {
+export default function ExpeditionsGrid({ expeditions }: Props) {
   return expeditions.length === 0 ? (
     <div className='flex w-full flex-col items-center justify-center gap-3 p-4 text-center font-semibold text-gray-300 sm:flex-row'>
       <ValueNoneIcon className='h-10 w-10' />
