@@ -1,4 +1,4 @@
-<h1 align="center">Antarctica Explorer App</h1>
+<h1 align="center">Antarctic Explorer</h1>
 
 ![antarctica-explorer-cover](https://res.cloudinary.com/dcdakh7gh/image/upload/v1718787900/antarctica-explorer/Screenshot_2024-06-14_201028_gyf9nk.webp)
 
